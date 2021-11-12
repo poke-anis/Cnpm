@@ -35,7 +35,7 @@ width : 100%;
 const Vaccin = (props)=>{
   const {id,formik} = props
     return(
-        <form onSubmit={formik.handleSubmit}>
+ 
         <FormikProvider value={formik}>
         <FlexBox>
         <Box>
@@ -113,7 +113,6 @@ const Vaccin = (props)=>{
         </Box>
         </FlexBox>
         </FormikProvider>
-        </form>
         
     )
 }
@@ -123,7 +122,6 @@ const Solvant = (props)=>{
   const {id,formik} = props
 
   return(
-      <form onSubmit={formik.handleSubmit}>
       <FormikProvider value={formik}>
       <FlexBox>
       <Box>
@@ -177,7 +175,6 @@ const Solvant = (props)=>{
       </Box>
       </FlexBox>
       </FormikProvider>
-      </form>
       
   )
 }
@@ -434,7 +431,7 @@ const FormBlanche = () => {
         name='Sexe'
       />Masculin
       <Inputstyled
-        id=""Sexe
+        id="Sexe"
         name="Sexe"
         type="radio"
         value="Feminin"

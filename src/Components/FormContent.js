@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import FormJaune from './FormJaune'
-
 import FormBleue from './FormBleue'
 import FormBlanche from './FormBlanche'
+import FormParme from './FormParme'
 
 const FormContent = (props) =>{
     const {Tab} = props
@@ -16,7 +16,7 @@ const FormContent = (props) =>{
         Tab === 'Blanche'?
         <FormBlanche/>:
         Tab === 'Parme'?
-        <FormJaune/>:
+        <FormParme/>:
         Tab === 'Verte'?
         <FormJaune/>:
         Tab === 'Rose'?

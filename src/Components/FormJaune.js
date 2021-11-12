@@ -109,7 +109,7 @@ const FormJaune = () => {
   value={formik.values.Sexe}
 />Masculin
 <Inputstyled
-  id=""Sexe
+  id="Sexe"
   name="Sexe"
   type="radio"
   value="Feminin"
