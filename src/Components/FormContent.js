@@ -3,7 +3,10 @@ import FormJaune from './FormJaune'
 import FormBleue from './FormBleue'
 import FormBlanche from './FormBlanche'
 import FormParme from './FormParme'
-
+import FormPink from './FormPink'
+import FormVerte from './FormVerte'
+import FormOrange from './FormOrange'
+import Notificateur from './Notificateur'
 const FormContent = (props) =>{
     const {Tab} = props
     return(
@@ -18,11 +21,11 @@ const FormContent = (props) =>{
         Tab === 'Parme'?
         <FormParme/>:
         Tab === 'Verte'?
-        <FormJaune/>:
+        <FormVerte/>:
         Tab === 'Rose'?
-        <FormJaune/>:
+        <FormPink/>:
         Tab === 'Orange'?
-        <FormJaune/>:
+        <FormOrange/>:
         Tab === 'Coronavirus'?
         <FormJaune/>:null}
         </div>

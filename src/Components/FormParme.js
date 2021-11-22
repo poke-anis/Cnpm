@@ -7,19 +7,22 @@ import styled from 'styled-components'
 const Box = styled.div`
 display: flex;
 flex-direction: column;
-width : 50%;
+width : 45%;
 `
-
 const BigBox = styled.div`
+display: flex;
+flex-direction: column;
+justify-content:space-between;
+width : 49%;
+border: 2px solid #dee2e6;
 
-width : 50%;
 `
 const Titre = styled.h1`
 text-align: center;
 border: 3px black solid;
 margin:10px;
 padding:5px;
-
+width:100%;
 `
 const Inputstyled = styled(Field)`
 margin:5px;
@@ -36,83 +39,21 @@ width : 100%;
 const FormParme = () => {
 const formik = useFormik({
 initialValues: {
-Wilaya: '',
-Etablissement:'',
-Commune: '',
-Etablissement_P: '',
-Centre_D_V: '',
-Nom_D_P: '',
-Adresse_D_P: '',
-Telephone: '',
-Sexe: '',
-Date_D_N: '',
-Date_A_MPVI: '',
-Nom_D_N: '',
-Courriel: '',
-Adresse: '',
-Date_D_D: '',
-Fonction: '',
-Vaccin:[{
-"Nom_D_Vaccin":'',
-"Fabricant":'',
-"Date_D_Vaccination":'',
-"Dose":'',
-"Voie":'',
-"Point_D":'',
-"Num_D_Lot":'',
-"Date_D_Peremption":'',
-},
-{
-"Nom_D_Vaccin":'',
-"Fabricant":'',
-"Date_D_Vaccination":'',
-"Dose":'',
-"Voie":'',
-"Point_D":'',
-"Num_D_Lot":'',
-"Date_D_Peremption":'',
-},
-{
-"Nom_D_Vaccin":'',
-"Fabricant":'',
-"Date_D_Vaccination":'',
-"Dose":'',
-"Voie":'',
-"Point_D":'',
-"Num_D_Lot":'',
-"Date_D_Peremption":'',
-},
-{
-"Nom_D_Vaccin":'',
-"Fabricant":'',
-"Date_D_Vaccination":'',
-"Dose":'',
-"Voie":'',
-"Point_D":'',
-"Num_D_Lot":'',
-"Date_D_Peremption":'',
-},],
-Solvant : [
-{"Nom_D_Solvant":'',
-"Fabricant":'',
-"Numero_D_Lot":'',
-"Date_D_P":'',
-"Date_Heure_R":''},
-{"Nom_D_Solvant":'',
-"Fabricant":'',
-"Numero_D_Lot":'',
-"Date_D_P":'',
-"Date_Heure_R":''},
-{"Nom_D_Solvant":'',
-"Fabricant":'',
-"Numero_D_Lot":'',
-"Date_D_P":'',
-"Date_Heure_R":''},
-{"Nom_D_Solvant":'',
-"Fabricant":'',
-"Numero_D_Lot":'',
-"Date_D_P":'',
-"Date_Heure_R":''}],
+  Nom: '',
+  Prenom:'',
+  Profession: '',
+  Adresse_P: '',
+  Code_P: '',
+  Email: '',
+  Telephone: '',
+  Fax: '',
+  Etablissement: '',
+  Collaborateur: '',
+  Nom_D_C: '',
+  Email_D_C: '',
+  Telephone_D_C: '',
+  Fax_D_C: '',
+  Dispositif_M_D_I_V:'',
 Manifestaion_I: '',
 Grave: '',
 Traitement_R_MPVI: '',
@@ -140,9 +81,9 @@ return (
       </Titre>
       <InputText name="Date d’envoi du signalement:" formik={formik} />
       <FlexBox>
-        <BigBox>
+        
           <Titre>Le Déclarant</Titre>
-
+          <BigBox>
           <InputText name="Nom" id="Nom" formik={formik} />
           <InputText name="Prénom" id="Prenom" formik={formik} />
           <InputText name="Profession :" id="Profession" formik={formik} />
@@ -268,7 +209,7 @@ return (
           <InputText name="Nom commercial :" id="Nom_C" formik={formik} />
           <InputText name="Modèle :" id="Modele" formik={formik} />
           <InputText name="Type :" id="Type" formik={formik} />
-          <InputText name="Fax du collaborateur:" id="Nom_C" formik={formik} />
+          <InputText name="Fax du collaborateur:" id="Fax_D_C" formik={formik} />
           <InputText name="Référence :" id="Reference" formik={formik} />
           <InputCheck
             name="Domaine d’application :"
