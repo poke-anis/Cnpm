@@ -1,96 +1,115 @@
 import React, { useState } from 'react'
-import {Nav,TabContainer,TabPane ,TabContent} from 'react-bootstrap'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+// import "../Components/theme_1638455751035.";
+import './Button.css'
 import styled from 'styled-components'
 import FormContent from './FormContent'
-import "./Formulaire.css"
-
+import {Nav,Button,Tab} from 'react-bootstrap'
 const Content = styled.div`
-grid-column-start:2;
-grid-column-end:4;
-grid-row-start:3;
-grid-row-end:4;
+width:100%;
+display:flex;
+justify-content:center;
 padding: 50px;
 `
+const Container = styled.div`
+display: flex;
+`
 const LeftContent = styled.div`
-grid-column-start:1;
-grid-column-end:2;
-grid-row-start:3;
-grid-row-end:4;
+width:25%;
 margin-Right: 50px;
 border-right: 2px solid #dee2e6;
-
 `
 
+const Butt = styled(Button)`
+width: 100%;
+margin-bottom:3px;
+`
 
-const Formulaire = () =>{
-    const [Tab,setTab] = useState('Jaune')
-
+const Formulaire = (props) =>{
+    const [tab,setTab] = useState('Jaune')
+  const {DeclarationsType} = props
     return(
-
-<TabContainer id="left-tabs-example" defaultActiveKey={Tab} >
-
+<Container>
+<Tab.Container id="left-tabs-example" defaultActiveKey={tab} >
     <LeftContent className="LeftContent">
-    <h4>Type de declaration</h4>
-
+    <h4 style={{textAlign:'center'}}>Type de declaration</h4>
+    
       <Nav variant="pills" className="flex-column" >
-        <Nav.Item >
-          <Nav.Link className="Jaune" eventKey="Jaune" onClick={()=>{setTab('Jaune')}}>Fiche de Pharmacovigilance (Fiche Jaune)</Nav.Link>
+        <Nav.Item style={{width:"100%",height:"100%"}}>
+          <Nav.Link  variant="flat" className="yellow" eventKey="Jaune" style={{display:"flex",justifyContent:"space-between"}}onClick={()=>{setTab('Jaune')}}>Fiche de Pharmacovigilance
+          <span className="badge badge-pill bg-yellow"  style={{marginLeft:'auto',color: 'black',lineHeight: '2',width:"9%"}}>   </span>
+</Nav.Link>
+
         </Nav.Item>
-        <Nav.Item>
-          <Nav.Link id="Bleue" eventKey="Bleue" onClick={()=>{setTab('Bleue')}}>Fiche Matériovigilance (Fiche Bleue)</Nav.Link>
+        <Nav.Item style={{width:"100%",height:"100%"}}>
+          <Nav.Link  variant="secondary" className="blue" id="Bleue" eventKey="Bleue" style={{display:"flex",justifyContent:"space-between"}}onClick={()=>{setTab('Bleue')}}>Fiche de Matériovigilance
+          <span className="badge badge-pill bg-blue"  style={{marginLeft:'auto',color: 'black',lineHeight: '2',width:"9%"}}>   </span></Nav.Link>
         </Nav.Item>
-        <Nav.Item>
-          <Nav.Link id="Blanche" eventKey="Blanche" onClick={()=>{setTab('Blanche')}}>Fiche Vaccinovigilance (Fiche Blanche)</Nav.Link>
+        <Nav.Item style={{width:"100%",height:"100%"}}>
+          <Nav.Link  variant="danger" className="blanche" id="Blanche" eventKey="Blanche" style={{display:"flex",justifyContent:"space-between"}}onClick={()=>{setTab('Blanche')}}>Fiche de Vaccinovigilance
+          <span className="badge badge-pill bg-blanche"  style={{marginLeft:'auto',color: 'black',lineHeight: '2',width:"9%"}}>   </span>
+</Nav.Link>
         </Nav.Item>
-        <Nav.Item>
-          <Nav.Link id="Parme" eventKey="Parme" onClick={()=>{setTab('Parme')}}>Fiche Réactovigilance (Fiche Parme)</Nav.Link>
+        <Nav.Item style={{width:"100%",height:"100%"}}>
+          <Nav.Link  variant="success" className="parme" id="Parme" eventKey="Parme" style={{display:"flex",justifyContent:"space-between"}}onClick={()=>{setTab('Parme')}}>Fiche de Réactovigilance
+          <span className="badge badge-pill bg-parme"  style={{marginLeft:'auto',color: 'black',lineHeight: '2',width:"9%"}}>   </span>
+</Nav.Link>
         </Nav.Item>
-        <Nav.Item>
-          <Nav.Link id="Verte" eventKey="Verte" onClick={()=>{setTab('Verte')}}>Fiche Phytovigilance (Fiche Verte)</Nav.Link>
+        <Nav.Item style={{width:"100%",height:"100%"}}>
+          <Nav.Link  variant="warning" className="vert" id="Verte" eventKey="Verte" style={{display:"flex",justifyContent:"space-between"}}onClick={()=>{setTab('Verte')}}>Fiche de Phytovigilance
+          <span className="badge badge-pill bg-vert"  style={{marginLeft:'auto',color: 'black',lineHeight: '2',width:"9%"}}>   </span>
+</Nav.Link>
+
         </Nav.Item>
-        <Nav.Item>
-          <Nav.Link id="Rose" eventKey="Rose" onClick={()=>{setTab('Rose')}}>Fiche Cosmétovigilance (Fiche Rose)</Nav.Link>
+        <Nav.Item style={{width:"100%",height:"100%"}}>
+          <Nav.Link  variant="info" className="rose" id="Rose" eventKey="Rose" style={{display:"flex",justifyContent:"space-between"}}onClick={()=>{setTab('Rose')}}>Fiche de Cosmétovigilance
+          <span className="badge badge-pill bg-rose"  style={{marginLeft:'auto',color: 'black',lineHeight: '2',width:"9%"}}>   </span>
+</Nav.Link>
+
         </Nav.Item>
-        <Nav.Item>
-          <Nav.Link id="Orange" eventKey="Orange" onClick={()=>{setTab('Orange')}}>Fiche Compléments alimentaires (Fiche Orange)</Nav.Link>
+        <Nav.Item style={{width:"100%",height:"100%"}}>
+          <Nav.Link variant="light" className="orange" id="Orange" eventKey="Orange" style={{display:"flex",justifyContent:"space-between"}}onClick={()=>{setTab('Orange')}}>Fiche Compléments alimentaires
+          <span className="badge badge-pill bg-orange"  style={{marginLeft:'auto',color: 'black',lineHeight: '2',width:"9%"}}>   </span>
+</Nav.Link>
+
         </Nav.Item>
-        <Nav.Item>
-          <Nav.Link id="coronavirus" eventKey="coronavirus" onClick={()=>{setTab('coronavirus')}}>Fiche déclaration coronavirus</Nav.Link>
+        <Nav.Item style={{width:"100%",height:"100%"}}>
+          <Nav.Link  variant="danger" className="blanche" id="coronavirus" eventKey="Coronavirus" style={{display:"flex",justifyContent:"space-between",width:"100%",height:"100%"}}onClick={()=>{setTab('Coronavirus')}}>Fiche de déclaration coronavirus
+          <span className="badge badge-pill bg-blanche"  style={{marginLeft:'auto',color: 'black',lineHeight: '2',width:"9%"}}>     </span>
+</Nav.Link>
+
         </Nav.Item>
       </Nav>
     </LeftContent>
     <Content>
-      <TabContent>
-        <TabPane eventKey="Jaune" >
-          <FormContent Tab={Tab} />
-        </TabPane>
-        <TabPane transition eventKey="Bleue" mountOnEnter>
-          <FormContent Tab={Tab} />
-        </TabPane>
-        <TabPane eventKey="Blanche" mountOnEnter>
-          <FormContent Tab={Tab} />
-        </TabPane>
-        <TabPane eventKey="Parme"  mountOnEnter>
-          <FormContent Tab={Tab} />
-        </TabPane>
-        <TabPane eventKey="Verte" mountOnEnter>
-          <FormContent Tab={Tab} />
-        </TabPane>
-        <TabPane eventKey="Rose"  mountOnEnter>
-          <FormContent Tab={Tab} />
-        </TabPane>
-        <TabPane eventKey="Orange" mountOnEnter>
-          <FormContent Tab={Tab} />
-        </TabPane>
-        <TabPane eventKey="Coronavirus" >
-          <FormContent Tab={Tab} />
-        </TabPane>
-      </TabContent>
+      <Tab.Content style={{width:"100%"}}>
+        <Tab.Pane eventKey="Jaune" >
+          <FormContent Tab={tab} DeclarationsType={DeclarationsType} />
+        </Tab.Pane>
+        <Tab.Pane  eventKey="Bleue" mountOnEnter>
+          <FormContent Tab={tab} DeclarationsType={DeclarationsType} />
+        </Tab.Pane>
+        <Tab.Pane eventKey="Blanche" mountOnEnter>
+          <FormContent Tab={tab} DeclarationsType={DeclarationsType} />
+        </Tab.Pane>
+        <Tab.Pane eventKey="Parme"  mountOnEnter>
+          <FormContent Tab={tab} DeclarationsType={DeclarationsType} />
+        </Tab.Pane>
+        <Tab.Pane eventKey="Verte" mountOnEnter>
+          <FormContent Tab={tab} DeclarationsType={DeclarationsType} />
+        </Tab.Pane>
+        <Tab.Pane eventKey="Rose"  mountOnEnter>
+          <FormContent Tab={tab} DeclarationsType={DeclarationsType} />
+        </Tab.Pane>
+        <Tab.Pane eventKey="Orange" mountOnEnter>
+          <FormContent Tab={tab} DeclarationsType={DeclarationsType} />
+        </Tab.Pane>
+        <Tab.Pane eventKey="Coronavirus" mountOnEnter>
+          <FormContent Tab={tab} DeclarationsType={DeclarationsType} />
+        </Tab.Pane>
+      </Tab.Content>
     </Content>
-
-</TabContainer>
+    </Tab.Container>
+    </Container>
         )
 }
 

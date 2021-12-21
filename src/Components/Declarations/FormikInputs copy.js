@@ -1,6 +1,7 @@
-import { useFormik,Field,FormikProvider,FieldArray } from 'formik';
+import { Field } from 'formik';
 import styled from 'styled-components'
-
+import {
+  Form, Button, InputGroup } from "react-bootstrap";
 const Inputstyled = styled(Field)`
 margin:5px;
 `
@@ -11,31 +12,27 @@ flex-direction: column;
 `
 
 const InputText =(props) =>{
+
     const {name,formik,id} = props
     return (
         <Box>
-            <label htmlFor={id}>{name}</label>
-            <Inputstyled
-            
-            name={id}
-            type="text"
-            onChange={formik.handleChange}
-        />
+
+
+    <label>{name}</label>
+    <Form.Control name={id} as={Field} type="text" placeholder={name} onChange={formik.handleChange}/>
+
+
         </Box>
         )
 }
 
 const InputNumber =(props) =>{
+
     const {name,formik,id} = props
     return (
         <Box>
-            <label htmlFor={id}>{name}</label>
-            <Inputstyled
-            
-            name={id}
-            type="number"
-            onChange={formik.handleChange}
-        />
+    <label>{name}</label>
+    <Form.Control  name={id} as={Field} type="number" placeholder={id} onChange={formik.handleChange}/>
         </Box>
         )
 }
@@ -45,19 +42,16 @@ const InputCheck =(props) =>{
 
     return (
         <Box>
-            <label htmlFor={`${id}`} >{name}
+            <label>{name}
             
                 {checkContent.map((content,index) =>{
                 return(
                     <div key={index}>
-              <Inputstyled
-                name={`${id}`}
-                id={`${id}`}
-                key={index}
-                type="checkbox"
-                onChange={formik.handleChange}
-                value={`${content}`}
-            />{content} 
+<Form.Check  id={`${id}`} label={`${content}`} name={`${id}`} key={index} as={Field} type="checkbox" value={`${content}`} onChange={formik.handleChange}/>
+
+
+
+    
             </div>
             )
 })}
@@ -69,7 +63,21 @@ const InputCheck =(props) =>{
 
 
 const InputRadio = (props) => {
+
   const { name, formik, id, radioContent, Sexe } = props;
+
+
+  <Form.Group check>
+  <Form.Control
+    name="radio2"
+    type="radio"
+    tag={Field}
+  />
+  {' '}
+  <label check>
+    Option one is this and that—be sure to include why it's great
+  </label>
+</Form.Group>
 
   return (
     <Box>
@@ -78,14 +86,10 @@ const InputRadio = (props) => {
         {radioContent.map((content, index) => {
           return (
             <div key={index}>
-              <Inputstyled
-                id={`${id}`}
-                name={`${id}`}
-                type="radio"
-                value={`${content}`}
-                onChange={formik.handleChange}
-              />
-              {`${content}`}
+<Form.Check  id={`${id}`} label={`${content}`} name={`${id}`} key={index} as={Field} type="radio" value={`${content}`} onChange={formik.handleChange}/>
+
+
+
             </div>
           );
         })}
@@ -101,6 +105,9 @@ const InputRadio = (props) => {
             />
           </label>
         ) : null}
+                {formik.values[id] === "Oui" && id === 'Prise_C_M'? (
+          <InputText name="Lequel ?:" id="Prise_C_M_M" formik={formik} />
+        ) : null}
         {formik.values[id] === "Feminin" ? (
           <InputRadio
             name="Enceinte :"
@@ -115,14 +122,16 @@ const InputRadio = (props) => {
             id="Derniere_D_R"
             formik={formik}
           />
-        ) : (
-          console.log(formik.values.id)
-        )}
+        ) : null}
         {formik.values[id] === "Décès" ? (
           <InputDate name="Date de décès :" id="Date_D_D" formik={formik} />
         ) : null}
+                {formik.values[id] === "Décès" ? (
+          <InputSelect name="Autopsie effectuée:" id="Autopsie_E" options={["Oui", "Non", "Inconnu"]}
+          formik={formik} />
+        ) : null}
         {formik.values[id] === "Oui" && id === 'Fabriquant_I_P'? (
-          <InputDate name="Quand ?:" id="Quand" formik={formik} />
+          <InputDate name="Quand ?:" id="Date_Fabriquant_I_P" formik={formik} />
         ) : null}
 
       </label>
@@ -131,28 +140,25 @@ const InputRadio = (props) => {
 };
 
 const InputDate = (props) => {
+
   const { name, formik, id } = props;
   return (
     <Box>
-      <label htmlFor={id}>{name}</label>
-      <Inputstyled
-        
-        name={id}
-        type="date"
-        onChange={formik.handleChange}
-      />
+
+      <label>{name}</label>
+    <Form.Control  name={id} as={Field} type="date" placeholder={id} onChange={formik.handleChange}/>
     </Box>
   );
 };
 
 const InputSelect = (props) => {
   const { name, formik, id, options } = props;
-  console.log(formik.values.id)
+
   return (
     <Box>
       <label htmlFor={`${id}`}>
         {name}
-        <select onChange={formik.handleChange} id={id}>
+        <Form.Select onChange={formik.handleChange} id={id}>
           {options.map((content, index) => {
             return (
               <option name={`${content}`} value={`${content}`} key={index}>
@@ -160,7 +166,7 @@ const InputSelect = (props) => {
               </option>
             );
           })}
-        </select>
+        </Form.Select>
         {
         formik.values[id] === "Autre" ? (
           <label htmlFor={id}>
@@ -191,19 +197,16 @@ const InputSelect = (props) => {
 
 
 const InputFile = (props) => {
-  const { name, formik, id } = props;
+
+  const { name, formik, id ,onFileChange} = props;
   return (
     <Box>
-      <label htmlFor={id}>{name}</label>
-      <Inputstyled
-        type="file"
-        name={id}
-        onChange={(event) => {
-          formik.setFieldValue({id}, event.target.files[0]);
-        }}
-      />
+       <label>{name}</label>
+    <Form.Control   name={id} id={id} type="file" onChange={onFileChange}/>
+      
     </Box>
   );
+
 };
 
 

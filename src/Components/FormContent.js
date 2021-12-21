@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react'
-import FormJaune from './FormJaune'
-import FormBleue from './FormBleue'
-import FormBlanche from './FormBlanche'
-import FormParme from './FormParme'
-import FormPink from './FormPink'
-import FormVerte from './FormVerte'
-import FormOrange from './FormOrange'
-import Notificateur from './Notificateur'
+import React from 'react'
+import FormJaune from './Declarations/FormJaune'
+import FormBleue from './Declarations/FormBleue'
+import FormBlanche from './Declarations/FormBlanche'
+import FormParme from './Declarations/FormParme'
+import FormPink from './Declarations/FormPink'
+import FormVerte from './Declarations/FormVerte'
+import FormOrange from './Declarations/FormOrange'
+
+import FormCoronavirus from './Declarations/FormCoronavirus'
+
+
 const FormContent = (props) =>{
-    const {Tab} = props
+    const {Tab,DeclarationsType} = props
     return(
 
         <div>
@@ -27,7 +30,7 @@ const FormContent = (props) =>{
         Tab === 'Orange'?
         <FormOrange/>:
         Tab === 'Coronavirus'?
-        <FormJaune/>:null}
+        <FormCoronavirus/>:null}
         </div>
         
         )

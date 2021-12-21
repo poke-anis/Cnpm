@@ -1,9 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { useFormik,Field,FormikProvider,FieldArray } from 'formik';
-import {Tab,Tabs,TabPane ,TabContent} from 'react-bootstrap'
-import { InputText,InputCheck,InputNumber,InputRadio,InputSelect } from './FormikInputs';
+import {
+    Form,
+  Row,
+  Col,
+} from "react-bootstrap";
+import { InputText,InputCheck,InputNumber,InputRadio,InputSelect } from './Declarations/FormikInputs';
 import styled from 'styled-components'
+import axiosConfig from "./axios"
+import cookie ,{ useCookies } from 'react-cookie'
 
+var User = styled.div`
+display: flex;
+flex-direction: column;
+justify-content:center;
+align-items:center;
+max-width:100%;
+`
 const Box = styled.div`
 display: flex;
 flex-direction: column;
@@ -20,7 +33,7 @@ border: 2px solid #dee2e6;
 const Titre = styled.h1`
 text-align: center;
 border: 3px black solid;
-margin:10px;
+
 padding:5px;
 width:100%;
 `
@@ -35,57 +48,86 @@ width : 100%;
 
 `
 const Notificateur = () =>{
-    const formik = useFormik({
-        initialValues: {
-        Nom: '',
-        Prenom:'',
-        Tel: '',
-        Email: '',
-        Profession: '',
-        Type_E: '',
-        Adresse_P: '',
-        },
-        
-        onSubmit: values => {
-        alert(JSON.stringify(values, null, 2));
-        },
-        });
+  const [cookies, setCookie, removeCookie] = useCookies('token_key');
+
+  const [infos, setInfos] = useState()
+  const id = cookies['id']
+  useEffect(() => {
+
+    axiosConfig.get(`/infos/${id}`)
+      .then(function (res) {
+        setInfos(res.data)
+      })
+  }
+    , []);
+
+
 return(
-    <form onSubmit={formik.handleSubmit}>
-    <FormikProvider value={formik}>
-    <Titre>
+<User>
+    <Titre style={{width:'50%'}}>
     Information du Notificateur
     </Titre>
-    <FlexBox>
-    <BigBox>
-    <InputText name="Nom :" id="Nom" formik={formik} />
-    <InputText name="Prénom :" id="Prenom" formik={formik} />
-    <InputNumber name="Tél/Fax/Mobile :" id="Tel" formik={formik} />
-    <InputText name="E-Mail :" id="Email" formik={formik} />
-    </BigBox>
-    <BigBox>
-    <InputRadio name="Profession :" 
-                id="Profession"             
-                radioContent={[
-              "Médecin",
-              "Pharmacien",
-              "Dentiste",
-              "Paramedical",
-              "Sage femme",
-              "Autre",
-            ]}
-                formik={formik} />
-    <InputRadio name="Type d’exercice :" 
-                id="Type_E"             
-                radioContent={[
-              "Public",
-              "Privé"]}
-                formik={formik} />       
-    <InputText name="Adresse professionnelle :" id="Adresse_P" formik={formik} />
-    </BigBox>
-    </FlexBox>
-</FormikProvider>
-  </form>
+    {infos ?   
+      <Form className="container-fluid" style={{width:'60%'}}>
+  <Form.Group as={Row}  controlId="Nom" style={{padding:'10px 5px'}}>
+    <Form.Label column sm="2" lg="3">
+    Nom
+    </Form.Label>
+    <Col sm="9">
+      <Form.Control  readOnly defaultValue={infos.Nom} />
+    </Col>
+  </Form.Group>
+  <Form.Group as={Row}  controlId="Prenom" style={{padding:'10px 5px'}}>
+    <Form.Label column sm="2" lg="3">
+      Prenom
+    </Form.Label>
+    <Col sm="9">
+      <Form.Control  readOnly defaultValue={infos.Prenom} />
+    </Col>
+  </Form.Group>
+  <Form.Group as={Row}  controlId="Telephone" style={{padding:'10px 5px'}}>
+    <Form.Label column sm="2" lg="3">
+      Telephone
+    </Form.Label>
+    <Col sm="9">
+      <Form.Control  readOnly defaultValue={infos.Telephone} />
+    </Col>
+  </Form.Group>
+  <Form.Group as={Row}  controlId="Email" style={{padding:'10px 5px'}}>
+    <Form.Label column sm="2" lg="3">
+      Email
+    </Form.Label>
+    <Col sm="9">
+      <Form.Control  readOnly defaultValue={infos.Email} />
+    </Col>
+  </Form.Group>
+  <Form.Group as={Row}  controlId="Profession" style={{padding:'10px 5px'}}>
+    <Form.Label column sm="2" lg="3">
+      Profession
+    </Form.Label>
+    <Col sm="9">
+      <Form.Control  readOnly defaultValue={infos.Profession} />
+    </Col>
+  </Form.Group>
+  <Form.Group as={Row}  controlId="Type d’exercice" style={{padding:'10px 5px'}}>
+    <Form.Label column sm="2" lg="3">
+    Type d’exercice 
+    </Form.Label>
+    <Col sm="9">
+      <Form.Control  readOnly defaultValue={infos.Type_Execrice} />
+    </Col>
+  </Form.Group>
+  <Form.Group as={Row}  controlId="Adresse Professionnelle" style={{padding:'10px 5px'}}>
+    <Form.Label column sm="2" lg="3">
+      Adresse Professionnelle
+    </Form.Label>
+    <Col sm="9">
+      <Form.Control  readOnly defaultValue={infos.Adresse_Professionnelle} />
+    </Col>
+  </Form.Group>
+  </Form>
+:null}
+</User>
 )
 
 }

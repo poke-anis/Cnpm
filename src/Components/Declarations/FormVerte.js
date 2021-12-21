@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useFormik,Field,FormikProvider } from 'formik';
-import { InputText,InputCheck,InputNumber,InputRadio,InputDate,InputSelect,InputFile } from './FormikInputs';
-import { MultiSelect } from "react-multi-select-component";
+import { InputText,InputCheck,InputNumber,InputRadio,InputDate,InputFile } from './FormikInputs';
 import styled from 'styled-components'
-import axios from 'axios'
+import axiosConfig from "../axios"
 import SelectField from './React-select'
-import CreatableSelect from 'react-select/creatable';
-import {Tab,Tabs,TabPane ,TabContent,Nav,TabContainer} from 'react-bootstrap'
-const Box = styled.div`
-display: flex;
-flex-direction: column;
-width : 45%;
-`
+import {Tab,Nav,Button,ProgressBar} from 'react-bootstrap'
+import Auto1 from './Auto1'
+import Auto3 from './Auto3'
+import Auto6 from './Auto6'
+import swal from "sweetalert";
 const BigBox = styled.div`
 display: flex;
 flex-direction: column;
 justify-content:space-between;
 width : 49%;
 border: 2px solid #dee2e6;
+padding:10px;
 
 `
 const Titre = styled.h1`
@@ -27,16 +25,19 @@ margin:10px;
 padding:5px;
 width:100%;
 `
-const Inputstyled = styled(Field)`
-margin:5px;
-`
 const FlexBox = styled.div`
 display: flex;
 flex-wrap: wrap;
 justify-content:space-between;
 width : 100%;
-
+margin-top:5px;
+margin-bottom:10px;
 `
+
+const Inputstyled = styled(Field)`
+margin:5px;
+`
+
 
 
 const Plante = (props)=>{
@@ -67,17 +68,24 @@ const Plante = (props)=>{
 
       ];
 
-    const {id,formik} = props
+    const {id,formik,onFileChange} = props
   
     return (
       <FormikProvider value={formik}>
+                <FlexBox>
+          <BigBox>
         <InputText
           name="Nom,Vernaculaire et Nom scientifique (si connu) :"
           id={`Plante${id}.Nom_V_N_S`}
           formik={formik}
         />
 
-        <h1>Parties utilisées</h1>
+                  <InputFile
+  name='Photo (Si possible) :'
+  id={`Photo_D_N`}
+  onFileChange={onFileChange}
+/>
+  
         <label htmlFor="Parties utilisées">Parties utilisées</label>
         <Field
              component={SelectField}
@@ -91,6 +99,8 @@ const Plante = (props)=>{
              component={SelectField}
           options={Dose}
         />
+                </BigBox>
+<BigBox>
         <label htmlFor="Mode de préparation">Mode de préparation</label>
         <Field
         name={`Plante${id}.Mode_D_P`}
@@ -109,6 +119,8 @@ const Plante = (props)=>{
           id={`Plante${id}.Raison_U_P_M`}
           formik={formik}
         />
+        </BigBox>
+            </FlexBox>
       </FormikProvider>
     );
   }
@@ -117,7 +129,8 @@ const Plante = (props)=>{
 
 const FormVerte = () => {
       const [Plantes,setPlantes] = useState([1])
-
+      var [files,setFiles] = useState([])
+      const [progress,setProgress] = useState(0)
   const formik = useFormik({
     initialValues: {
       Nom: '',
@@ -126,40 +139,95 @@ const FormVerte = () => {
       Age: '',
       Sexe: '',
       Taille: '',
-      poids: '',
-      Description_D_L_R: '',
+      Poids: '',
+      Profession: '',
+      Activite_S: '',
+      Regime_A_V: '',
+      Nom_D_M: '',
+      Plante1:{
+        Nom_V_N_S:'',
+        Partie_U:'' ,
+        Dose:'',
+        Mode_D_P: '',
+        Date_U: '',
+        Raison_U_P_M: '',
+      },
+      Description_E_I:'',
+      Antecedents_D_M:'',
       Date_A: '',
-      Medciament_DCI: '',
-      Numero_D_L: '',
-      Voie_A: '',
-      Posologie: '',
-      Date_A_D: '',
-      Date_A_F: '',
-      Raison_E: '',
-      Nature_D_T: '',
-      Descriptif_D_T: '',
-      Evolution:'',
-      Sequelles:'',
-      Facteurs_R_A:'',
-    Partie_U:'' ,
-    Dose:{},
-    Mode_D_P: '',
+      Delai_A: '',
+      Arret_D_L_P: '',
+      Traitement_C: '',
+      Lequel: '',
+      Evolution: '',
+      Date_D_D: '',
+      Medicament: '',
+      Lequel_M: '',
+      Alcool: '',
+      Tabac: '',
+      Millepertuis: '',
+      Pamplemousse: '',
+      The: '',
+      Cafe: '',
+      Cannabis: '',
+      Autres_P: '',
+
 
     },
 
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: (values) => {
 
-      axios.post(`http://127.0.0.1:3001/api/postfichesData/`, { values })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);})
-    },
-  });
+      const formData = new FormData();
+
+      formData.append(
+       'body',
+       JSON.stringify(values)
+       );
+       formData.append(
+        'typeOfFiches',
+        'Verte'
+        );
+       files.forEach((el,index)=>{
+         formData.append(
+       `${el.file_id}`,
+       el.uploaded_file.file
+       );
+     })
+     
+      axiosConfig.post(`/secure/postfichesData/`,   formData,  {
+       headers: {
+         "Content-Type": "multipart/form-data",
+       }, 
+       onUploadProgress: (progressEvent) => {
+           let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+           console.log(progressEvent.lengthComputable)
+           setProgress(percentCompleted);
+         }
+     } )
+     .then((res) => {
+      if (res.data.result === "success") {
+        swal("Success!", res.data.message, "success").then(value => {
+        });
+      } else if (res.data.result === "error") {
+        swal("Error!", res.data.message, "error");
+      }
+    });
+         }, 
+       });
+      var onFileChange = (event,name) => {
+       event.preventDefault();
+     
+       let id = event.target.id;
+     
+       let file = event.target.files[0];
+         setFiles([...files, { file_id: id, uploaded_file: {file} }]);
+
+      }
 
 
   return (
     <form onSubmit={formik.handleSubmit}>
+      <Titre>Fiche de Phytovigilance</Titre>
       <FormikProvider value={formik}>
         <Titre>Informations du patient</Titre>
         <FlexBox>
@@ -168,14 +236,15 @@ const FormVerte = () => {
             <InputText name="Prénom :" id="Prenom" formik={formik} />
             <InputNumber name="Tél/Fax/Mobile :" id="Tel" formik={formik} />
             <InputNumber name="Age :" id="Age" formik={formik} />
-          </BigBox>
-          <BigBox>
+
             <InputRadio
               name="Sexe :"
               id="Sexe"
               radioContent={["Masculin", "Feminin"]}
               formik={formik}
             />
+                      </BigBox>
+          <BigBox>
             <InputText name="Taille (cm) :" id="Taille" formik={formik} />
             <InputText name="Poids (Kg) :" id="Poids" formik={formik} />
             <InputText name="Profession :" id="Profession" formik={formik} />
@@ -195,8 +264,14 @@ const FormVerte = () => {
 
         <Titre>Identification du produit</Titre>
         <InputText name="Nom de marque :" id="Nom_D_M" formik={formik} />
+
+                  <InputFile
+  name='Photo du Produit (Si possible) :'
+  id={`Photo_P`}
+  onFileChange={onFileChange}
+/>
         <Titre>Identification de la (les) plante(s)</Titre>
-        <TabContainer id="Plantes-tabs-example" defaultActiveKey="Plante#1" >
+        <Tab.Container id="left-tabs-example" defaultActiveKey="Plante#1">
         <Nav variant="tabs"  >
           {Plantes.map((el, index) => {
             return (
@@ -208,34 +283,52 @@ const FormVerte = () => {
           <Nav.Item
             as={() => {
               return (
-                <button type="button"
+                <Button variant="warning" type="Button"
                   onClick={() => {
                     setPlantes([...Plantes, Plantes.length + 1]);
                   }}
                 >
-                  ++
-                </button>
+                  +
+                </Button>
               );
             }}
           />
         </Nav>
-<TabContent>
+<Tab.Content>
           {Plantes.map((el, index) => {
-            console.log(el)
+
             return (
-              <TabPane eventKey={`Plante#${el}`} key={index}>
-                    <Plante formik={formik} id={index} className={`Plante#${el}`}/>
-              </TabPane>
+              <Tab.Pane eventKey={`Plante#${el}`} key={index}>
+                    <Plante onFileChange={onFileChange} formik={formik} id={index} className={`Plante#${el}`}/>
+              </Tab.Pane>
             );
           })}
 
 
-        </TabContent>
-        </TabContainer>
+        </Tab.Content>
+        </Tab.Container>
+        <FlexBox>
+        <BigBox>
+
+        <label htmlFor="Description_E_I">Description de l’effet indésirable </label>
+        <Auto1 isMulti={false} id={``} formik={formik} values={formik.values.Description_D_L_R}/>
+        <label htmlFor="Antecedents_D_M">Antécédents et terrain du patient  </label>
+        <Auto3 id={``} formik={formik} values={formik.values.Antecedents_D_M}/>
+
+                  <InputFile
+  name='Photo de leffet indesirable(Si possible) :'
+  id={`Photo_E_I`}
+  onFileChange={onFileChange}
+/>
+</BigBox><BigBox>
         <InputDate name="Date d’apparition :" id="Date_A" formik={formik} />
         <InputText name="Délai d’apparition :" id="Delai_A" formik={formik} />
-
+        </BigBox>
+        </FlexBox>
         <Titre>Conduite adoptée</Titre>
+        <FlexBox>
+        <BigBox>
+
         <InputCheck name="Arrêt de la phytothérapie :" 
 id="Arret_D_L_P"
 checkContent={["Oui","Non"]} 
@@ -253,7 +346,8 @@ formik={formik}
             name="Lequel"
             type="text"
             onChange={formik.handleChange}
-        /></label>:null}
+        /></label>:null}   </BigBox>
+         <BigBox>
          <InputRadio name="Gravité :" 
 id="Gravite"
 radioContent={["Non grave","Hospitalisation ou prolongation de l'hospitalisation","Mise en jeu du pronostic vital","Autre situation médicale grave","Décès"]} 
@@ -261,8 +355,15 @@ formik={formik}
  />       
 {        formik.values.Gravite === "Décès"?            
         <InputDate name="Date de décès :" id="Date_D_D" formik={formik} />:null}
-        <Titre>Consommations associées</Titre>
+              <label htmlFor="Evolution">Evolution</label>
 
+                <Auto6 id={``} formik={formik} values={formik.values.Evolution}/>
+                </BigBox>
+                </FlexBox>
+
+        <Titre>Consommations associées</Titre>
+        <FlexBox>
+          <BigBox>
         <InputRadio name="Médicament :" 
 id="Medicament"
 radioContent={["Oui","Non"]} 
@@ -291,11 +392,14 @@ id="Millepertuis"
 radioContent={["Oui","Non"]} 
 formik={formik}
  />
+ </BigBox>
+ <BigBox>
          <InputRadio name="Pamplemousse :" 
 id="Pamplemousse"
 radioContent={["Oui","Non"]} 
 formik={formik}
  />
+ 
          <InputRadio name="Thé :" 
 id="The"
 radioContent={["Oui","Non"]} 
@@ -311,11 +415,13 @@ id="Cannabis"
 radioContent={["Oui","Non"]} 
 formik={formik}
  />
+        <InputText name="Autres produits :" id="Autres_P" formik={formik} />
 
+        
+          </BigBox>
+          </FlexBox>
 
-
-
-        <button type="submit">Submit</button>
+          <div style={{display:"flex"}}> <Button type="submit" variant="primary">Confirmer</Button><ProgressBar animated now={progress} style={{width:'50%',margin:'10px'}}/></div>
       </FormikProvider>
     </form>
   );

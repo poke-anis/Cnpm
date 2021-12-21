@@ -1,64 +1,186 @@
-import React, { useState, useEffect,useContext,createContext } from 'react'
-import { BrowserRouter, Route, Switch, NavLink,Routes } from "react-router-dom";
-import './App.css';
-import Authentication from './Components/Authentification'
-import Register from './Components/Register'
-import EnTete from './Components/Header';
-import Formulaire from './Components/Formulaire';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import styled from 'styled-components';
-import { Form,Button,FormGroup,Navbar,Nav,Container } from 'react-bootstrap'
-import cookie from 'react-cookies'
+import React, { useState, useEffect, createContext } from "react";
+import { Route, Routes, useNavigate, Navigate } from "react-router-dom";
+import "./App.css";
+import { Navbar, Nav, Container, } from "react-bootstrap";
+import { useCookies } from "react-cookie";
+import styled from "styled-components";
+import Authentication from "./Components/Authentification";
+import AuthenticationCnpm from "./Components/AuthentificationCnpm";
+import Register from "./Components/Register";
+import EnTete from "./Components/Header";
+import Formulaire from "./Components/Formulaire";
+import MesDeclarations from "./Components/MesDeclarations";
+import "./Components/Moderateurs.js"
+import Notificateur from "./Components/Notificateur";
+import Moderateurs from "./Components/Moderateurs"
+import Home from "./Components/Home"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "./Components/Button.css"
+import 'normalize.css'
 var Body = styled.div`
-display:grid;
-grid-template-columns:20% auto 30%;
-grid-template-rows: 15% 10% auto ;
-`
-var Navigation = styled(Navbar)`
-grid-column-start:1;
-grid-column-end:4;
-grid-row-start:2;
-grid-row-end:3;
-`
 
-const userContext = createContext(null);
+`;
+
+const userContext = createContext("");
+
+
+function Navigationbar (props) {
+ const  {isloged,setDeclarationsType,Deco}= props
+
+return(
+  <Navbar variant="dark" className="sticky-top Navcolor">
+  {isloged === 'false' ?
+    <Container>
+      <Navbar.Brand href="#home">CNMP</Navbar.Brand>
+      <Nav className="me-auto">
+        <Nav.Link href="/Seconnecter">Se connecter</Nav.Link>
+        <Nav.Link href="/SeconnecterCnpm">Cnpm Login</Nav.Link>
+        <Nav.Link href="/Register">S'inscrire</Nav.Link>
+      </Nav>
+    </Container>
+  :
+  isloged === 'Mods' ? 
+    <Container>
+      <Navbar.Brand href="">CNMP</Navbar.Brand>
+      <Nav className="me-auto" style={{width:'100%'}}>
+      <Nav.Link
+          href="/MesDeclaration"
+          onClick={() => setDeclarationsType("Pro")}
+        >
+          Afficher les declaration
+        </Nav.Link>
+        <Nav.Link href="/Profile">Profile</Nav.Link>
+        <Nav.Link href="/Mods">Panneau de Gestion</Nav.Link>
+        <Nav.Link onClick={Deco} style={{marginLeft:'auto'}}>
+          Se deconnecter
+        </Nav.Link>
+      </Nav>
+    </Container>
+:isloged === 'User' ? 
+  <Container>
+    <Navbar.Brand href="/">CNMP</Navbar.Brand>
+    <Nav className="me-auto">
+      <Nav.Link
+        href="/Declaration"
+        onClick={() => setDeclarationsType("User")}
+      >
+        Faire une declaration
+      </Nav.Link>
+      {/* <Nav.Link
+        href="/MesDeclaration"
+        onClick={() => setDeclarationsType("Pro")}
+      >
+        Afficher les declaration
+      </Nav.Link> */}
+      <Nav.Link href="/Profile">Profile</Nav.Link>
+      <Nav.Link onClick={Deco} style={{marginLeft:'auto'}}>
+        Se deconnecter
+      </Nav.Link>
+    </Nav>
+  </Container>
+ : isloged=== 'Cnpm'?
+ <Container>
+   <Nav className="me-auto">
+    <Navbar.Brand href="/">CNMP</Navbar.Brand>
+ <Nav.Link
+        href="/MesDeclaration"
+        onClick={() => setDeclarationsType("Pro")}
+      >
+        Afficher les declaration
+      </Nav.Link>
+      
+      <Nav.Link onClick={Deco} style={{marginLeft:'auto'}}>
+        Se deconnecter
+      </Nav.Link>
+      </Nav>
+  </Container>:null}
+</Navbar>
+  )
+}
+
 
 function App() {
-  const [Connected ,setConnected] = useState(false)
-  const [isloged, setIsloged] = useState({ token: cookie.load('token_key') })
+  const [cookies, removeCookie] = useCookies("token_key");
+  const [DeclarationsType, setDeclarationsType] = useState("User");
+  const [isloged, setIsloged] = useState(cookies.token_key !== 'undefined' && cookies.token_key ? cookies.UserType : 'false');
+  const navigate = useNavigate();
+  const readCookie = () => {
+    if (cookies.token_key !== 'undefined' && cookies.token_key ) {
+      setIsloged(cookies.UserType);
+    } else {
+      setIsloged('false');
+    }
+  };
+  function Deco(props) {
+    removeCookie("token_key");
+    removeCookie("UserType");
+    removeCookie("id");
+    setIsloged('false');
+    navigate("/");
+  }
+  useEffect(() => {
+    readCookie();
+    console.log(isloged)
+  }, []);
+
+
   return (
     <Body className="App">
       <userContext.Provider value={{ isloged, setIsloged }}>
-      <EnTete></EnTete>
-      <Routes>
-   
-      <Route path="/Seconnecter" element={<Authentication/>} />
-        <Route path="/Register" element={<Register/>} />
+        <EnTete></EnTete>
+        <Navigationbar isloged={isloged} setDeclarationsType={setDeclarationsType} Deco={Deco}/>
+
+        <Routes>
+        {/*   {isloged === "User" || isloged === "Mods"? (
+            <Route path="/" element={<Navigate to="/Profile" />} />
+          ) : isloged === "Cnpm"?
+          <Route path="/" element={<Navigate to="/MesDeclaration" />} />:
+          
+            <Route path="/" element={<Navigate to="/Seconnecter" />} />
+          } */}
+<Route path="/" element={<Home/>}/>
+{isloged === 'false' ?
+<>
+          <Route
+          path="/Seconnecter"
+          element={
+            <Authentication
+              useNavigate={useNavigate}
+              userContext={userContext}
+            />
+          }
+        />
+        <Route
+        path="/SeconnecterCnpm"
+        element={
+          <AuthenticationCnpm
+            useNavigate={useNavigate}
+            userContext={userContext}
+          />
+        }
+      />
+      <Route path="/Register" element={<Register useNavigate={useNavigate}/>} />
+      </>
+:isloged === 'User'||isloged === 'Mods' ||isloged === 'Cnpm'? 
+<>
+<Route path="/Mods" element={<Moderateurs cookie={cookies} />} />
+<Route
+  path="/Declaration"
+  element={<Formulaire DeclarationsType={DeclarationsType} />}
+/>
+<Route
+  path="/MesDeclaration"
+  element={<MesDeclarations DeclarationsType={DeclarationsType} cookie={cookies} />}
+/>
+<Route path="/Profile" element={<Notificateur />} />
+</>
+:null}
+
+
+          
+         
         </Routes>
-   
-      <Navigation  variant="dark" className="sticky-top Navcolor" >
-            { isloged.token ?
-                            <Container>
-                            <Navbar.Brand href="#home">CNMP</Navbar.Brand>
-                            <Nav className="me-auto">
-                            <Nav.Link href="#home">Accueil</Nav.Link>
-                            <Nav.Link href="#home">Declaration</Nav.Link>
-                            <Nav.Link href="#home">Profile</Nav.Link>
-                            </Nav>
-                        </Container>
-                :
-                <Container>
-                    <Navbar.Brand href="#home">CNMP</Navbar.Brand>
-                    <Nav className="me-auto">
-                    <Nav.Link href="#home">Accueil</Nav.Link>
-                    <Nav.Link href="/Seconnecter">Se connecter</Nav.Link>
-                    <Nav.Link href="/Register">S'inscrire</Nav.Link>
-                    </Nav>
-                </Container>}
-            </Navigation>
 
-
-      { Connected === true ? <Formulaire></Formulaire>:null}
       </userContext.Provider>
     </Body>
   );

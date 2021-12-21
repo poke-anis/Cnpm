@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext,createContext } from 'react'
 import {   
   Form,Button } from 'react-bootstrap'
 import styled from 'styled-components'
@@ -8,17 +8,20 @@ import swal from "sweetalert";
 import { useCookies } from 'react-cookie'
 import axiosConfig from "./axios"
 var AuthBox = styled.div`
-
+grid-column-start:2;
+grid-column-end:3;
+grid-row-start:3;
+grid-row-end:4;
 text-align: left;
 display:flex;
 flex-direction:column;
-align-items:center;
+justify-content:space-around;
 padding-top:100px;
 `
 
 
 
-function Authentication(props) 
+function AuthenticationCnpm(props) 
 {
   const [cookies, setCookie, removeCookie] = useCookies('token_key');
 
@@ -28,17 +31,19 @@ function Authentication(props)
     setCookie('token_key', token, { path: '/' });
     setCookie('id', id, { path: '/' });
     setCookie('UserType', UserType, { path: '/' });
+    setCookie('TypeExecrice', TypeExecrice, { path: '/' });
     setIsloged(UserType)
   };
   let submitForm = (values, history) => {
     axiosConfig
-      .post("/login", values)
+      .post("/loginCnpm", values)
       .then(res => {
-
         if (res.data.result === "success") {
-          onLogin(res.data.token,res.data.id,res.data.UserType,res.data.TypeExecrice)
+          
+          onLogin(res.data.token,res.data.id,res.data.UserType,res.data.Type_Execrice[0])
           swal("Success!", res.data.message, "success").then(value => {
-            navigate("/Profile")
+            
+            navigate("/")
           });
         } else if (res.data.result === "error") {
           swal("Error!", res.data.message, "error");
@@ -53,13 +58,12 @@ function Authentication(props)
 return (
   <AuthBox>
     <Formik
-      initialValues={{ Email: "", Password: "" }}
+      initialValues={{ Username: "", Password: "" }}
       validationSchema={Yup.object({
-        Email: Yup.string().email("Invalid email address").required("Required"),
+        Username: Yup.string().required("Required"),
         Password: Yup.string().required("Password is required"),
       })}
       onSubmit={(values, { setSubmitting }) => {
-
         submitForm(values);
         setSubmitting(false);
       }}
@@ -73,12 +77,12 @@ return (
       }) => (
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <label>Email</label>
+            <label>Username</label>
             <Form.Control
-            name="Email"
+            name="Username"
               type="text"
               placeholder="Identifiant"
-              value={values.Email}
+              value={values.Username}
               onChange={handleChange}
             />
           </Form.Group>
@@ -106,4 +110,4 @@ return (
 );
 }
 
-export default Authentication;
+export default AuthenticationCnpm;
