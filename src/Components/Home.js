@@ -69,7 +69,7 @@ const afficherForm = (props) =>{
   return (
     <Content>
       <h1 style={{width:"100%",textAlign:'center'}}>Alertes</h1>
-      {cnpmAlertes.length !== 0
+      {cnpmAlertes instanceof Array && cnpmAlertes.length >= 0
         ? cnpmAlertes.map((el, index) => (
             <Card style={{ width: "18rem" }} key={index}>
               {el.image
@@ -105,7 +105,7 @@ const afficherForm = (props) =>{
               </Card.Footer>
             </Card>
           ))
-        : null}
+        : <p>Rien a afficher</p>}
     </Content>
   );
 };
