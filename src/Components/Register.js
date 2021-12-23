@@ -10,33 +10,34 @@ import axiosConfig from "./axios";
 import { InputRadio } from "./Declarations/FormikInputs";
 
 var AuthBox = styled.div`
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding-top: 50px;
-`;
-const Box = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 45%;
-`;
+
+text-align: left;
+display:flex;
+flex-direction:column;
+align-items:center;
+padding-top:100px;
+`
+
 const BigBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 40%;
+  width: 50%;
   padding: 5px;
 `;
+
 const FlexBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   width: 100%;
+`;
+const FlexBox2 = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+  flex-direction: column;
 `;
 
 const userContext = createContext({ token: null });
@@ -254,7 +255,7 @@ const Pro = (props) =>{
               </Form.Group> 
             </BigBox>
           </FlexBox>
-          <Button type="submit"  >Confirmer</Button>
+          <Button style={{marigin:'10px'}} type="submit"  >Confirmer</Button>
         </Form>
         </div>
     )}
@@ -267,12 +268,18 @@ const GrandPublic = (props) =>{
     <div>
     <Formik
     initialValues={{
+      Password: "",
       Email: "",
+      Nom: "",
+      Prenom: "",
       Password: "",
       CPassword: "",
     }}
     validationSchema={
       Yup.object({
+        Nom: Yup.string().required("Le nom est requis"),
+        Prenom: Yup.string().required("Le Prenom  est requis"),
+      Telephone: Yup.number().required( "Le numero de Telephone est requis"),
       Email: Yup.string()
         .email("Invalid email address")
         .required("Required"),
@@ -301,8 +308,40 @@ const GrandPublic = (props) =>{
     }) => (
       <div className="login">
         <Form onSubmit={handleSubmit}>
-          <FlexBox>
-            <BigBox>
+          <FlexBox2>
+        
+            <Form.Group md="4" controlId="Nom">
+                <Form.Label>Nom</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="Nom"
+                  value={values.Nom}
+                  onChange={handleChange}
+                  isValid={touched.Nom && !errors.Nom}
+                />
+              </Form.Group>
+              <Form.Group md="4" controlId="Prénom">
+                <Form.Label>Prénom</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="Prenom"
+                  value={values.Prenom}
+                  onChange={handleChange}
+                  isInvalid={!!errors.Prenom}
+                  isValid={touched.Prenom && !errors.Prenom}
+                />
+              </Form.Group>
+              <Form.Group md="4" controlId="Telephone">
+                <Form.Label>Téléphone</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="Telephone"
+                  value={values.Telephone}
+                  onChange={handleChange}
+                  isInvalid={!!errors.Telephone}
+                  isValid={touched.Telephone && !errors.Telephone}
+                />
+              </Form.Group>
               <Form.Group md="4" controlId="validationFormikUsername">
                 <Form.Label>E-mail</Form.Label>
                 <InputGroup hasValidation>
@@ -357,9 +396,9 @@ const GrandPublic = (props) =>{
                   {errors.CPassword}
                 </Form.Control.Feedback>
               </Form.Group>
-            </BigBox>
-          </FlexBox>
-          <Button type="submit">Confirmer</Button>
+ 
+          </FlexBox2>
+          <Button style={{margin:'10px'}} type="submit">Confirmer</Button>
         </Form>
       </div>
     )}
@@ -372,7 +411,7 @@ function Register(props) {
   const [userType, setuserType] = useState("");
   function submitForm(values) {
     axiosConfig
-      .post("http://127.0.0.1:3001/register", values)
+      .post("/register", values)
       .then((res) => {
 
         if (res.data.result === "success") {

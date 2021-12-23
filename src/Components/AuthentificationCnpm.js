@@ -8,14 +8,11 @@ import swal from "sweetalert";
 import { useCookies } from 'react-cookie'
 import axiosConfig from "./axios"
 var AuthBox = styled.div`
-grid-column-start:2;
-grid-column-end:3;
-grid-row-start:3;
-grid-row-end:4;
+
 text-align: left;
 display:flex;
 flex-direction:column;
-justify-content:space-around;
+align-items:center;
 padding-top:100px;
 `
 
