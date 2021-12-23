@@ -1,9 +1,9 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useRef } from 'react'
 import axiosConfig from "./axios"
 import styled from 'styled-components'
 import { FaEdit,FaPlus,FaRegTimesCircle } from "react-icons/fa";
 
-import { Field,useFormik,FormikProvider } from 'formik';
+import { Field,useFormik,FormikProvider,useField } from 'formik';
 import {Card,Badge ,Button,Figure,   
   Form,Row,
     Nav,Table,Tab,Modal} from 'react-bootstrap'
@@ -17,6 +17,8 @@ import FormBlanche from './MesDeclarations/FormBlanche'
 import FormCoronavirus from './MesDeclarations/FormCoronavirus'
 import SelectField from './React-select'
 import { useCookies } from 'react-cookie'
+import JoditEditor from "jodit-react";
+import parse from 'html-react-parser';
 
 const Content = styled.div`
 
@@ -33,8 +35,19 @@ border-right: 2px solid #dee2e6;
 `
 
 function ModalForm(props) {
+  const [field, meta, helpers] = useField('description');
+  console.log(helpers)
   const {formik} = props
+  const config = {
+    buttons: ['preview','|',"bold", "italic", "link", "unlink", "underline", "source"],
+    sizeLG: 900,
+    sizeMD: 700,
+    sizeSM: 400,
+    sizeSM: 400,
+}
+const editor = useRef(null)
   return (
+    <div>
     <Modal
       {...props}
       size="lg"
@@ -47,15 +60,27 @@ function ModalForm(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-
-<Form.Group  controlId="description">
+{/*       <Form.Group  controlId="description">
    <Form.Control  onChange={formik.handleChange} value={formik.values.description} name="description" as="textarea" />
-</Form.Group>
+</Form.Group>  */}
+<div>{parse(formik.values.description)}
+</div>
+
+
+<JoditEditor
+          
+          value={formik.values.description}
+        
+          onBlur={(el)=>{helpers.setTouched(el)}}
+          onChange={(el)=>{helpers.setValue(el)}}
+  />
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
+
+  </div>
   );
 }
 
@@ -207,7 +232,7 @@ const Alert = (props) => {
       const  formik = useFormik({
     initialValues: {
       titre: '',
-      description: ''},
+      description: 'Text'},
  
     onSubmit: values => {
       const formData = new FormData();
@@ -256,7 +281,7 @@ const Alert = (props) => {
 
   };
     useEffect(() => {
-        axiosConfig.get(`/secure/getalertes/`)
+        axiosConfig.get(`/getalertes/`)
         .then(res => {
             setCnpmAlertes(res.data);
           })
@@ -287,11 +312,11 @@ return(
           <tr key={key}>
           <th>{key+1}</th>
           <th>{el.titre}</th>
-          <th>{el.description}</th>
+          <th>{parse(el.description)}</th>
           <th>{el.image? el.image.map((el,index)=><Figure key={index}>
                       <Figure.Image
                         width={100}
-                        height={100}
+                        style={{objectFit: 'contain'}}
                         alt="171x180"
                         src={`data:${el.mimetype};base64,${el.buffer}`}
                       />
@@ -308,7 +333,7 @@ return(
 <th style={{padding:"15px",maxWidth:'100px'}}> <Form.Group as={Row}  controlId="titre">
    <Form.Control   onChange={formik.handleChange} name="titre" type="text" />
 </Form.Group></th>
-<th style={{padding:"15px",maxWidth:'400px'}}><div style={{overflowX:'auto',margin:'0em'}}>{formik.values.description}</div><Button variant="secondary" style={{width:'100%',display:'flex',justifyContent:'center'}} onClick={() => setModalShow(true)}>
+<th style={{padding:"15px",maxWidth:'400px'}}><div style={{overflowX:'auto',margin:'0em'}}></div><Button variant="secondary" style={{width:'100%',display:'flex',justifyContent:'center'}} onClick={() => setModalShow(true)}>
 <FaEdit/>
       </Button>
       </th>

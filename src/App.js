@@ -17,6 +17,7 @@ import Home from "./Components/Home"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./Components/Button.css"
 import 'normalize.css'
+
 var Body = styled.div`
 
 `;
@@ -33,6 +34,7 @@ return(
     <Container>
       <Navbar.Brand href="#home">CNMP</Navbar.Brand>
       <Nav className="me-auto">
+        <Nav.Link href="/">Accueil</Nav.Link>
         <Nav.Link href="/Seconnecter">Se connecter</Nav.Link>
         <Nav.Link href="/SeconnecterCnpm">Cnpm Login</Nav.Link>
         <Nav.Link href="/Register">S'inscrire</Nav.Link>
@@ -43,6 +45,7 @@ return(
     <Container>
       <Navbar.Brand href="">CNMP</Navbar.Brand>
       <Nav className="me-auto" style={{width:'100%'}}>
+      <Nav.Link href="/">Accueil</Nav.Link>
       <Nav.Link
           href="/MesDeclaration"
           onClick={() => setDeclarationsType("Pro")}
@@ -60,6 +63,7 @@ return(
   <Container>
     <Navbar.Brand href="/">CNMP</Navbar.Brand>
     <Nav className="me-auto">
+    <Nav.Link href="/">Accueil</Nav.Link>
       <Nav.Link
         href="/Declaration"
         onClick={() => setDeclarationsType("User")}
@@ -82,6 +86,7 @@ return(
  <Container>
    <Nav className="me-auto">
     <Navbar.Brand href="/">CNMP</Navbar.Brand>
+    <Nav.Link href="/">Accueil</Nav.Link>
  <Nav.Link
         href="/MesDeclaration"
         onClick={() => setDeclarationsType("Pro")}
