@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react'
-import CreatableSelect  from 'react-select/creatable';
+
 import './Switch.css';
 import {Card,Badge ,Button,Col,Row} from 'react-bootstrap'
 import axiosConfig from "./axios"
@@ -34,8 +34,7 @@ const mailContent=" Votre formulaire est en cours de traitement par la Cnpm"
 // };
 
 const Filtre = (props,isMulti) =>{
-    const {setClicked,decla,setChangement,changement} = props
-    const [selectedValue, setSelectedValue] = useState("");
+    const {setClicked,decla,setChangement,changement,selectedValue} = props
 
     const typeOfFiches = (props) => {
       if (props === undefined) {
@@ -63,19 +62,8 @@ const Filtre = (props,isMulti) =>{
       
       setClicked({[props]:key})  }
     
-    const DeclaTypes = [
-        { label: "Fiche de Pharmacovigilance", value: "Jaune" },
-        { label: "Fiche de Matériovigilance", value: "Bleue" },
-        { label: "Fiche de Vaccinovigilance", value: "Blanche" },
-        { label: "Fiche de Réactovigilance", value: "Parme" },
-        { label: "Fiche de Phytovigilance", value: "Verte" },
-        { label: "Fiche de Cosmétovigilance", value: "Rose" },
-        { label: "Fiche Compléments alimentaires", value: "Orange" },
-        { label: "Fiche de déclaration coronavirus", value: "Coronavirus" },
-      ];
-      const onChange = (value) => {
-        setSelectedValue(value)
-    };
+
+
 const ThemeColor = (props) =>{
   if (props === undefined) {
     return "Fiche de déclaration ";
@@ -130,9 +118,9 @@ if(status_Type === null){
 
   }
       return(
-       <div  style={{width:'100%',display:'flex',flexDirection:'column',alignItems:'center'}}>
+       <div  style={{width:'65%',height: '100%',display:'flex',flexDirection:'column',paddingLeft:"20px"}}>
          
-        <CreatableSelect
+{/*         <CreatableSelect
          options={DeclaTypes} 
       name="Search"
       onChange={(val) =>
@@ -140,7 +128,7 @@ if(status_Type === null){
       }
       isMulti
       isClearable
-    />
+    /> */}
        <Col md={10} className="g-0" >
     {decla.length !== 0  ? decla.filter((singledecla)=> selectedValue == "" ?singledecla:
     selectedValue.some((val)=>val.includes(singledecla.typeOfFiches))? singledecla :

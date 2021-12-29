@@ -23,7 +23,7 @@ const PaginationPage = (props) => {
     }
   
     return (
-        <Pagination aria-label="Page navigation example" className="paginationcss" style={{paddingTop:"30px"}}>
+        <Pagination aria-label="Page navigation example" className="paginationcss" style={{position: "fixed",top: "350px",right: "20px"}}>
   
             {
                 currentPage > 10 &&
