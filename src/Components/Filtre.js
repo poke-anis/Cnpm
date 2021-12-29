@@ -118,7 +118,7 @@ if(status_Type === null){
 
   }
       return(
-       <div  style={{width:'65%',height: '100%',display:'flex',flexDirection:'column',paddingLeft:"20px"}}>
+       <div  style={{width:'65%',display:'flex',flexDirection:'column',paddingLeft:"20px"}}>
          
 {/*         <CreatableSelect
          options={DeclaTypes} 
