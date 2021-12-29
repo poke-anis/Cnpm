@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { FaEdit,FaPlus,FaRegTimesCircle } from "react-icons/fa";
 
 import { Field,useFormik,FormikProvider,useField } from 'formik';
-import { InputText,InputRadio,InputDate,InputSelect,InputFile } from './Declarations/FormikInputs';
+
 import {Card,Badge ,Button,Figure,Form,Row,Nav,Table,Tab,Modal} from 'react-bootstrap'
 import FormJaune from './MesDeclarations/FormJaune'
 import FormBleue from './MesDeclarations/FormBleue'
