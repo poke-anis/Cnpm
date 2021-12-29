@@ -5,8 +5,7 @@ import SelectField from './React-select'
 
 const FlexBox = styled.div`
 display: flex;
-flex-wrap: wrap;
-justify-content:space-between;
+flex-direction:column;
 width : 100%;
 
 `
@@ -175,7 +174,33 @@ if (value === "Point_I") {
   return Ophtalmologiques;
 }
 }
-
+const namereturn = (value) => {
+  if (value === 'Point_I') {
+  return "Au point d'injection"
+  }
+  else if (value === 'Systemiques')
+  {return 'Systemiques'}
+  else if (value === 'Infection')
+  {return 'Infection'}
+  else if (value === 'Neurologiques')
+  {return 'Neurologiques'}
+  else if (value === 'Digestifs')
+  {return 'Digestifs'}
+  else if (value === 'Cardio_vasculaires')
+  {return 'Cardio vasculaires'}
+  else if (value === 'Respiratoires')
+  {return 'Respiratoires'}
+  else if (value === 'Allergiques')
+  {return 'Allergiques'}
+  else if (value === 'Sphere_ORL')
+  {return 'Sphere ORL'}
+  else if (value === 'Biologiques')
+  {return 'Biologiques'}
+  else if (value === 'Musculo_squelettique')
+  {return 'Musculo squelettique'}
+  else if (value === 'Ophtalmologiques')
+  {return 'Ophtalmologiques'}
+  }
 
     return (
       <FlexBox>
@@ -187,7 +212,7 @@ if (value === "Point_I") {
 
               return (
                 <label htmlFor={word} key={key}>
-                  {word}
+                  {namereturn(word)}
                   <Field
                     options={varreturn(word)}
                     component={SelectField}

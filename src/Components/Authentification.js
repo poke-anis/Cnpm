@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext ,useState} from 'react'
 import {   
   Form,Button } from 'react-bootstrap'
 import styled from 'styled-components'
@@ -21,13 +21,14 @@ padding-top:100px;
 function Authentication(props) 
 {
   const [cookies, setCookie, removeCookie] = useCookies('token_key');
-
+  const [Espace, setEspace] = useState("");
   const { isloged, setIsloged } = useContext(props.userContext)
   const navigate = props.useNavigate()
-  function onLogin(token,id,UserType,TypeExecrice) {
+  function onLogin(token,id,UserType,Espace) {
     setCookie('token_key', token, { path: '/' });
     setCookie('id', id, { path: '/' });
     setCookie('UserType', UserType, { path: '/' });
+    setCookie('Espace', Espace, { path: '/' });
     setIsloged(UserType)
   };
   let submitForm = (values, history) => {
@@ -36,7 +37,8 @@ function Authentication(props)
       .then(res => {
 
         if (res.data.result === "success") {
-          onLogin(res.data.token,res.data.id,res.data.UserType,res.data.TypeExecrice)
+          
+          onLogin(res.data.token,res.data.id,res.data.UserType,res.data.Espace)
           swal("Success!", res.data.message, "success").then(value => {
             navigate("/Profile")
           });
@@ -53,10 +55,10 @@ function Authentication(props)
 return (
   <AuthBox>
     <Formik
-      initialValues={{ Email: "", Password: "" }}
+      initialValues={{ Username: "", Password: "" }}
       validationSchema={Yup.object({
-        Email: Yup.string().email("Invalid email address").required("Required"),
-        Password: Yup.string().required("Password is required"),
+        Username: Yup.string().required("Nom d'utilisateur invalide"),
+        Password: Yup.string().required("Le mot de passe est requis"),
       })}
       onSubmit={(values, { setSubmitting }) => {
 
@@ -72,13 +74,13 @@ return (
 
       }) => (
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <label>Email</label>
+          <Form.Group className="mb-3" controlId="formBasicUsername">
+            <label>Nom d'utilisateur</label>
             <Form.Control
-            name="Email"
+            name="Username"
               type="text"
               placeholder="Identifiant"
-              value={values.Email}
+              value={values.Username}
               onChange={handleChange}
             />
           </Form.Group>
@@ -93,9 +95,9 @@ return (
               onChange={handleChange}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+{/*           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check type="checkbox" label="Rester connecté" />
-          </Form.Group>
+          </Form.Group> */}
           <Button variant="primary" type="submit">
             Entrer
           </Button>

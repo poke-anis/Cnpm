@@ -18,7 +18,6 @@ height: 100%;
 function ModalForm(props) {
 
   const {values} = props
-console.log(props)
 
   return (
 
@@ -58,7 +57,6 @@ const Home = () => {
     axiosConfig.get(`/getalertes/`).then((res) => {
       setCnpmAlertes(res.data);
     });
-    console.log(cnpmAlertes)
   }, []);
 const afficherForm = (props) =>{
 

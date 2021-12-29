@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import axiosConfig from "./axios"
 import styled from 'styled-components'
-
+import { InputText,InputRadio,InputDate,InputSelect,InputFile } from './Declarations/FormikInputs';
 import {Card,Badge ,Button,Col} from 'react-bootstrap'
 import FormJaune from './MesDeclarations/FormJaune'
 import FormBleue from './MesDeclarations/FormBleue'
@@ -213,6 +213,7 @@ const MesDeclarations =(props)=>{
 
      axiosConfig.get(`/secure/getfichesData?pagination=${'5'}&page=${currentPage}`)
       .then(res => {
+        console.log(res.data)
         setDecla(res.data);
         })
         
@@ -221,6 +222,7 @@ const MesDeclarations =(props)=>{
 
      axiosConfig.get(`/secure/getfichesnbr`)
       .then(res => {
+        console.log(res.data)
         setDeclanum(res.data);
         })
         getDecla(currentPage)

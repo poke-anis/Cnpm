@@ -56,7 +56,6 @@ const FormJauneDecla = (props) => {
     , {
       onDownloadProgress: (progressEvent) => {
         let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-        console.log(progressEvent.lengthComputable)
         setProgress(percentCompleted);
       }})
     .then(res => {

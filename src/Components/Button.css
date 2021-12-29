@@ -4,15 +4,15 @@
   }
   
 .badge.bg-yellow{
-  background-color: #FFF748 !important;
+  background-color: #FBFCAF !important;
 
 }
 .badge.bg-blue{
-  background-color: #013DC4 !important;
+  background-color: #AAF1F7 !important;
 
 }
 .badge.bg-parme{
-  background-color: #8000FF !important;
+  background-color: #F4E8FC !important;
 
 }
 .badge.bg-blanche{
@@ -20,36 +20,99 @@
 
 }
 .badge.bg-rose{
-  background-color: #ED2188 !important;
+  background-color: #FEEDFC !important;
 
 }
 .badge.bg-vert{
-  background-color: #006838 !important;
+  background-color: #E1FCE3 !important;
 
 }
 .badge.bg-orange{
-  background-color: #F7C5CC !important;
+  background-color: #FDE6B5 !important;
 
 }
 
 .nav-pills .nav-link.active.yellow,.nav-pills .show>.nav-link.yellow{
-  color:black;background-color:#FFF748 !important;
+  color:black;background-color:#FBFCAF !important;
 }
 .nav-pills .nav-link.active.blue,.nav-pills .show>.nav-link.blue{
-  color:#fff;background-color:#013DC4 !important;
+  color:black;background-color:#AAF1F7 !important;
 }
 .nav-pills .nav-link.active.parme,.nav-pills .show>.nav-link.parme{
-  color:#fff;background-color:#8000FF !important;
+  color:black;background-color:#F4E8FC !important;
 }
 .nav-pills .nav-link.active.blanche,.nav-pills .show>.nav-link.blanche{
   color:black;background-color:#F7F7F7 !important;
 }
 .nav-pills .nav-link.active.rose,.nav-pills .show>.nav-link.rose{
-  color:#fff;background-color:#ED2188 !important;
+  color:black;background-color:#FEEDFC !important;
 }
 .nav-pills .nav-link.active.vert,.nav-pills .show>.nav-link.vert{
-  color:#fff;background-color:#006838 !important;
+  color:black;background-color:#E1FCE3 !important;
 }
 .nav-pills .nav-link.active.orange,.nav-pills .show>.nav-link.orange{
-  color:#fff;background-color:#F7C5CC !important;
+  color:black;background-color:#FDE6B5 !important;
+}
+
+
+.nav-pills .nav-link.yellow,.nav-pills .show>.nav-link.yellow{
+    display: block;
+  padding: 0.5rem 1rem;
+  color: #747474;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;; 
+}
+.nav-pills .nav-link.blue,.nav-pills .show>.nav-link.blue{
+    display: block;
+  padding: 0.5rem 1rem;
+  color: #747474;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;; 
+}
+.nav-pills .nav-link.parme,.nav-pills .show>.nav-link.parme{
+    display: block;
+  padding: 0.5rem 1rem;
+  color: #747474;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;; 
+}
+.nav-pills .nav-link.blanche,.nav-pills .show>.nav-link.blanche{
+    display: block;
+  padding: 0.5rem 1rem;
+  color: #747474;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;; 
+}
+.nav-pills .nav-link.rose,.nav-pills .show>.nav-link.rose{
+    display: block;
+  padding: 0.5rem 1rem;
+  color: #747474;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;; 
+}
+.nav-pills .nav-link.vert,.nav-pills .show>.nav-link.vert{
+    display: block;
+  padding: 0.5rem 1rem;
+  color: #747474;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;; 
+}
+.nav-pills .nav-link.orange,.nav-pills .show>.nav-link.orange{
+    display: block;
+  padding: 0.5rem 1rem;
+  color: #747474;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;; 
+} 
+
+.nav-link.orange:hover,.nav-link.orange:hover,.nav-link.rose:hover,
+.nav-link.blanche:hover,.nav-link.parme:hover,.nav-link.blue:hover,
+.nav-link.yellow:hover {
+  color: White !important;
+}
+
+.nav-link.orange:focus,.nav-link.orange:focus,.nav-link.rose:focus,
+.nav-link.blanche:focus,.nav-link.parme:focus,.nav-link.blue:focus,
+.nav-link.yellow:focus {
+  color: BLack !important;
 }

@@ -54,8 +54,9 @@ const Notificateur = () =>{
   const id = cookies['id']
   useEffect(() => {
 
-    axiosConfig.get(`/infos/${id}`)
+    axiosConfig.get(`infos/${id}`)
       .then(function (res) {
+ 
         setInfos(res.data)
       })
   }

@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext, createContext } from "react";
 import { Form, Button, InputGroup } from "react-bootstrap";
 import styled from "styled-components";
 import * as Yup from "yup";
-import { Formik, Field, ErrorMessage } from "formik";
+import { Formik, useField,FormikProvider } from "formik";
 import swal from "sweetalert";
 
 import axiosConfig from "./axios";
@@ -15,7 +15,7 @@ text-align: left;
 display:flex;
 flex-direction:column;
 align-items:center;
-padding-top:100px;
+padding-top:50px;
 `
 
 const BigBox = styled.div`
@@ -50,32 +50,40 @@ const Pro = (props) =>{
       Email: "",
       Password: "",
       Email: "",
+      Username: "",
       Nom: "",
       Prenom: "",
-      Proffesion: "",
+      Profession: "",
       Telephone: "",
       Adresse_Professionnelle: "",
       Type_Execrice: "",
       CPassword: "",
       Specifier: "",
+      Espace:"Pro",
     }}
     validationSchema={
       Yup.object({
         Nom: Yup.string().required("Le nom est requis"),
         Prenom: Yup.string().required("Le Prenom  est requis"),
       Telephone: Yup.number().required( "Le numero de Telephone est requis"),
-      Proffesion: Yup.string().required("La proffesion est requise"),
-      // Specifier: Yup.string().required("La proffesion est requise"),
-
+      Profession: Yup.string().required("La Profession est requise"),
+       Specifier: Yup.string().when('Profession', {
+         is: "Autre",
+         then: Yup.string()
+         .required('La Profession est requise'),
+         otherwise: Yup.string(),
+      }),
+      Username: Yup.string().required("La nom d'utilisateur est requis"),
        Email: Yup.string().email("Invalid email address").required("Required"),
        Password: Yup.string().required("Le mot de passe est requis"),
-      // // .matches(/[^(Autre)]/,"La proffesion est requise")
       
       Type_Execrice: Yup.string().required( "Le Type d'execrice est requis"),
       Adresse_Professionnelle: Yup.string().required("L'Adresse Professionnelle est requise"),
       CPassword: Yup.string().oneOf(  [Yup.ref("Password"), null],"Les mots de passe ne correspondent pas"),
     })}
     onSubmit={(values,{ setSubmitting }) => {
+      
+
       setTimeout(() => {
         props.submitForm(values);
         setSubmitting(false);
@@ -90,8 +98,11 @@ const Pro = (props) =>{
       touched,
       isValid,
       errors,
-    }) => (
-      <div>
+    
+    }) => 
+    (
+      
+      <div >
         <Form onSubmit={handleSubmit}>
           <FlexBox>
             <BigBox>
@@ -128,14 +139,14 @@ const Pro = (props) =>{
                 />
               </Form.Group>
 
-              <Form.Group md="6" controlId="Proffesion">
-                <Form.Label>Proffesion</Form.Label>
+              <Form.Group md="6" controlId="Profession">
+                <Form.Label>Profession</Form.Label>
                 <Form.Select
                   aria-label="Default select example"
-                  isInvalid={!!errors.Proffesion}
-                  isValid={touched.Proffesion && !errors.Proffesion}
-                  name="Proffesion"
-                  value={values.Proffesion}
+                  isInvalid={!!errors.Profession}
+                  isValid={touched.Profession && !errors.Profession}
+                  name="Profession"
+                  value={values.Profession}
                   onChange={handleChange}
                 >
                   <option></option>
@@ -146,7 +157,7 @@ const Pro = (props) =>{
                   <option value="Sage femme">Sage femme</option>
                   <option value="Autre">Autre</option>
                 </Form.Select>
-                {values.Proffesion === "Autre" ? (
+                {values.Profession === "Autre" ? (
                   <Form.Group md="4" controlId="Spécifier">
                     <Form.Label>Spécifier</Form.Label>
                     <Form.Control
@@ -160,7 +171,7 @@ const Pro = (props) =>{
                   </Form.Group>
                 ) : null}
                 <Form.Control.Feedback type="invalid">
-                  {errors.Proffesion || errors.Specifier}
+                  {errors.Profession || errors.Specifier}
                 </Form.Control.Feedback>
               </Form.Group>
              
@@ -204,12 +215,10 @@ const Pro = (props) =>{
               <Form.Group md="4" controlId="E-mail">
                 <Form.Label>E-mail</Form.Label>
                 <InputGroup hasValidation>
-                  <InputGroup.Text id="inputGroupPrepend">
-                    @
-                  </InputGroup.Text>
+
                   <Form.Control
                     type="text"
-                    placeholder="Email"
+                    
                     aria-describedby="inputGroupPrepend"
                     name="Email"
                     value={values.Email}
@@ -222,11 +231,33 @@ const Pro = (props) =>{
                   </Form.Control.Feedback>
                 </InputGroup>
               </Form.Group>
+              <Form.Group md="4" controlId="validationFormikUsername">
+                <Form.Label>Nom d'utilisateur</Form.Label>
+                <InputGroup hasValidation>
+                  <InputGroup.Text id="inputGroupPrepend">
+                    @
+                  </InputGroup.Text>
+                  <Form.Control
+                    variant="primary"
+                    type="text"
+                   
+                    aria-describedby="inputGroupPrepend"
+                    name="Username"
+                    value={values.Username}
+                    onChange={handleChange}
+                    isInvalid={errors.Username}
+                    isValid={touched.Username && !errors.Username}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.Username}
+                  </Form.Control.Feedback>
+                </InputGroup>
+              </Form.Group>
               <Form.Group md="3" controlId="Password">
                 <Form.Label>Mot de passe</Form.Label>
                 <Form.Control
-                  type="text"
-                  placeholder="Mot de passe"
+                  type="password"
+                  
                   name="Password"
                   value={values.Password}
                   onChange={handleChange}
@@ -241,8 +272,8 @@ const Pro = (props) =>{
               <Form.Group md="3" controlId="CPassword">
                 <Form.Label>Confirmer le mot de passe</Form.Label>
                 <Form.Control
-                  type="text"
-                  placeholder="Confirmer le Mot de passe"
+                  type="password"
+                  
                   name="CPassword"
                   value={values.CPassword}
                   onChange={handleChange}
@@ -255,7 +286,7 @@ const Pro = (props) =>{
               </Form.Group> 
             </BigBox>
           </FlexBox>
-          <Button style={{marigin:'10px'}} type="submit"  >Confirmer</Button>
+          <Button style={{margin:'10px'}} type="submit"  >Confirmer</Button>
         </Form>
         </div>
     )}
@@ -268,18 +299,21 @@ const GrandPublic = (props) =>{
     <div>
     <Formik
     initialValues={{
-      Password: "",
       Email: "",
       Nom: "",
+      Username: "",
       Prenom: "",
+      Telephone: "",
       Password: "",
       CPassword: "",
+      Espace:"GrandPublic",
     }}
     validationSchema={
       Yup.object({
         Nom: Yup.string().required("Le nom est requis"),
         Prenom: Yup.string().required("Le Prenom  est requis"),
       Telephone: Yup.number().required( "Le numero de Telephone est requis"),
+      Username: Yup.string().required("La nom d'utilisateur est requis"),
       Email: Yup.string()
         .email("Invalid email address")
         .required("Required"),
@@ -345,13 +379,11 @@ const GrandPublic = (props) =>{
               <Form.Group md="4" controlId="validationFormikUsername">
                 <Form.Label>E-mail</Form.Label>
                 <InputGroup hasValidation>
-                  <InputGroup.Text id="inputGroupPrepend">
-                    @
-                  </InputGroup.Text>
+
                   <Form.Control
                     variant="primary"
                     type="text"
-                    placeholder="Email"
+                    
                     aria-describedby="inputGroupPrepend"
                     name="Email"
                     value={values.Email}
@@ -364,11 +396,33 @@ const GrandPublic = (props) =>{
                   </Form.Control.Feedback>
                 </InputGroup>
               </Form.Group>
+              <Form.Group md="4" controlId="validationFormikUsername">
+                <Form.Label>Nom d'utilisateur</Form.Label>
+                <InputGroup hasValidation>
+                  <InputGroup.Text id="inputGroupPrepend">
+                    @
+                  </InputGroup.Text>
+                  <Form.Control
+                    variant="primary"
+                    type="text"
+                   
+                    aria-describedby="inputGroupPrepend"
+                    name="Username"
+                    value={values.Username}
+                    onChange={handleChange}
+                    isInvalid={errors.Username}
+                    isValid={touched.Username && !errors.Username}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.Username}
+                  </Form.Control.Feedback>
+                </InputGroup>
+              </Form.Group>
               <Form.Group md="3" controlId="validationFormik05">
                 <Form.Label>Mot de passe</Form.Label>
                 <Form.Control
-                  type="text"
-                  placeholder="Mot de passe"
+                  type="password"
+                  
                   name="Password"
                   value={values.Password}
                   onChange={handleChange}
@@ -383,8 +437,8 @@ const GrandPublic = (props) =>{
               <Form.Group md="3" controlId="validationFormik05">
                 <Form.Label>Confirmer le mot de passe</Form.Label>
                 <Form.Control
-                  type="text"
-                  placeholder="Confirmer le Mot de passe"
+                  type="password"
+                  
                   name="CPassword"
                   value={values.CPassword}
                   onChange={handleChange}
@@ -407,6 +461,7 @@ const GrandPublic = (props) =>{
   )
 }
 function Register(props) {
+
   const navigate = props.useNavigate()
   const [userType, setuserType] = useState("");
   function submitForm(values) {
@@ -432,17 +487,22 @@ function Register(props) {
   return (
     <AuthBox>
       <label htmlFor="Etes vous ?">
+        S'inscrire en tant que :
         <Form.Check
+          value={userType}
           label="Professionnel de Santé"
-          name="Etes vous ?"
+          name="choise"
+          id="Pro"
           type="radio"
           onChange={() => {
             setuserType("Pro");
           }}
         />
         <Form.Check
+          value={userType}
           label="Grand Public"
-          name="Etes vous ?"
+          name="choise"
+          id="GrandPublic"
           type="radio"
           onChange={() => {
             setuserType("GrandPublic");
@@ -451,9 +511,9 @@ function Register(props) {
       </label>
 
       {userType === "Pro" ? (
-        <Pro submitForm={submitForm} fonction={userType}/>
+        <Pro submitForm={submitForm} />
       ) : userType === "GrandPublic" ? (
-        <GrandPublic submitForm={submitForm} fonction={userType}/>
+        <GrandPublic submitForm={submitForm} />
       ) : null}
     </AuthBox>
   );

@@ -4,7 +4,7 @@ import { InputText,InputNumber,InputRadio,InputDate,InputSelect,InputFile } from
 import {Nav,Button,Tab,ProgressBar} from 'react-bootstrap'
 import styled from 'styled-components'
 import axiosConfig from "../axios"
-import Auto1 from './Auto1'
+import Auto9 from './Auto9'
 import Auto2 from './Auto2'
 import Auto3 from './Auto3'
 import swal from "sweetalert";
@@ -45,14 +45,14 @@ const Reaction = (props)=>{
   <FlexBox>
     <BigBox>
     <label htmlFor="Description_D_L_R">Description de la réaction</label>
-<Auto1 isMulti={false} id={`Reaction[${id}].`} formik={formik} values={formik.values.Reaction[`${id}`].Description_D_L_R}/>
+<Auto9 isMulti={false} id={`Reaction[${id}].`} formik={formik} values={formik.values.Reaction[`${id}`].Description_D_L_R}/>
   <InputFile
   name='Photo de la reaction (Si possible) :'
   id={`Photo_R_${id}`}
   onFileChange={onFileChange}
 />
 
-<InputDate name="Date d’apparition :" id={`Reaction[${id}].Date_A`} formik={formik} />
+<InputDate name="Date de servenue de la réaction :" id={`Reaction[${id}].Date_A`} formik={formik} />
 <InputText name="Médicament(s) DCI (mettre le nom de marque) :" id={`Reaction[${id}].Medciament_DCI`} formik={formik} />
 
     <InputFile
@@ -75,7 +75,7 @@ const Reaction = (props)=>{
 <label htmlFor="Description_D_L_R">Voie d’administration</label>
 
   <Auto2 id={`Reaction[${id}].`} formik={formik} values={formik.values.Reaction[id].Voie_A}/>
-<InputText name="Posologie :" id={`Reaction[${id}].Posologie`} formik={formik} />
+<InputText name="Dose/jour utilisée :" id={`Reaction[${id}].Posologie`} formik={formik} />
 <InputDate name="Date d’administration (Début):" id={`Reaction[${id}].Date_A_D`} formik={formik} />
 <InputDate name="Date d’administration (Fin):" id={`Reaction[${id}].Date_A_F`} formik={formik} />
 <InputText name="Raison d’emploi (indication) :" id={`Reaction[${id}].Raison_E`} formik={formik} />
@@ -117,9 +117,11 @@ const FormJaune = (props) => {
       Nature_D_T: "",
       Descriptif_D_T: "",
       Evolution: "",
-      Sequelles: "",
+      Evolution_G: "",
+      Evolution_D: "",
+      Conséquences_S_V_Q: "",
+      Conséquences_S_V_Q_O: "",
       Antecedent_M:"",
-      Facteurs_R_A: "",
     },
 
     onSubmit: (values) => {
@@ -132,7 +134,7 @@ const FormJaune = (props) => {
        );
        formData.append(
         'typeOfFiches',
-        'Jaune'
+        'Patient'
         );
        files.forEach((el,index)=>{
          formData.append(
@@ -174,9 +176,9 @@ const FormJaune = (props) => {
   return (
     <form onSubmit={formik.handleSubmit}>
             <FormikProvider value={formik}>
-            <Titre>Fiche de Pharmacovigilance</Titre>
+            <Titre>Fiche Patient</Titre>
 
-      <Titre> Informations malade</Titre>
+      <Titre> Informations patient</Titre>
       <FlexBox>
     <BigBox>
     <InputText name="Nom :" id="Nom" formik={formik} />
@@ -278,29 +280,41 @@ const FormJaune = (props) => {
 <InputRadio name="Evolution :" 
                 id="Evolution"             
                 radioContent={[
-              "Disparition",
-              "En cours",
-              "Inconnue",
-              "Décès"]}
+              "Guérison",
+              "Sujet non encore rétabli",
+              "Décès en relation avec la prise du médicament",
+              "Inconnue"]}
                 formik={formik} /> 
-     
+{formik.values.Evolution === "Guérison"?
+<InputSelect name="" 
+id="Evolution_G"
+options={["En cours","Sans séquelles","Avec séquelles"]} 
+formik={formik}/>
+:formik.values.Evolution === "Décès en relation avec la prise du médicament"?
+<InputSelect name="" 
+id="Evolution_D"
+options={["Oui","Non","Inconnue"]} 
+formik={formik}/>:null
+}     
        
-<InputRadio name="Séquelles :" 
-id="Sequelles"
+<InputRadio name="Conséquences sur la vie quotidienne :" 
+id="Conséquences_S_V_Q"
 radioContent={["Oui","Non"]} 
 formik={formik}
  />
+
+ {formik.values.Conséquences_S_V_Q === "Oui" ? 
+ <InputRadio name="" 
+ id="Conséquences_S_V_Q_O"             
+ radioContent={[
+"Arrêt de travail",
+"Impossibilité de sortir de chez soi",
+"Autre",]}
+ formik={formik} /> 
+ :null }
      <label htmlFor="Antecedents_D_M">Antécédents du malade/Histoire de la maladie ou commentaires</label>
 
    <Auto3 id={``} formik={formik} values={formik.values.Antecedents_D_M}/>
-<InputSelect name="Les facteurs de risques associés :" 
-id="Facteurs_R_A"
-options={["Insuffisance rénale","Exposition antérieure au médicament suspecté",
-"Allergies antérieures", "Atopie","Modalités d’utilisation","Insufficance hépatique"
-,"Allergie alimentaire","Maladie auto-immune","Diabète","HTA","Insufficance cardiaque","Troubles endocréniens","Prise concomittante de médicaments","MICI","Hémopathies","Grossesse","Allaitement","Immunodepressions (VIH, Cancers, …)","Autre"]} 
-formik={formik}
-
- />
                </BigBox>
                </FlexBox>
                

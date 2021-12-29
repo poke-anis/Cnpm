@@ -26,18 +26,18 @@ const userContext = createContext("");
 
 
 function Navigationbar (props) {
- const  {isloged,setDeclarationsType,Deco}= props
+ const  {isloged,Deco}= props
 
 return(
   <Navbar variant="dark" className="sticky-top Navcolor">
   {isloged === 'false' ?
     <Container>
       <Navbar.Brand href="#home">CNMP</Navbar.Brand>
-      <Nav className="me-auto">
+      <Nav className="me-auto" style={{width:'100%'}}>
         <Nav.Link href="/">Accueil</Nav.Link>
         <Nav.Link href="/Seconnecter">Se connecter</Nav.Link>
-        <Nav.Link href="/SeconnecterCnpm">Cnpm Login</Nav.Link>
         <Nav.Link href="/Register">S'inscrire</Nav.Link>
+        <Nav.Link href="/SeconnecterCnpm"  style={{marginLeft:'auto'}}>Cnpm Login</Nav.Link>
       </Nav>
     </Container>
   :
@@ -47,8 +47,7 @@ return(
       <Nav className="me-auto" style={{width:'100%'}}>
       <Nav.Link href="/">Accueil</Nav.Link>
       <Nav.Link
-          href="/MesDeclaration"
-          onClick={() => setDeclarationsType("Pro")}
+ href="/MesDeclaration"
         >
           Afficher les declaration
         </Nav.Link>
@@ -66,13 +65,11 @@ return(
     <Nav.Link href="/">Accueil</Nav.Link>
       <Nav.Link
         href="/Declaration"
-        onClick={() => setDeclarationsType("User")}
       >
         Faire une declaration
       </Nav.Link>
       {/* <Nav.Link
         href="/MesDeclaration"
-        onClick={() => setDeclarationsType("Pro")}
       >
         Afficher les declaration
       </Nav.Link> */}
@@ -89,7 +86,6 @@ return(
     <Nav.Link href="/">Accueil</Nav.Link>
  <Nav.Link
         href="/MesDeclaration"
-        onClick={() => setDeclarationsType("Pro")}
       >
         Afficher les declaration
       </Nav.Link>
@@ -106,12 +102,13 @@ return(
 
 function App() {
   const [cookies, removeCookie] = useCookies("token_key");
-  const [DeclarationsType, setDeclarationsType] = useState("User");
+  const [Espace, setEspace] = useState(cookies.Espace);
   const [isloged, setIsloged] = useState(cookies.token_key !== 'undefined' && cookies.token_key ? cookies.UserType : 'false');
   const navigate = useNavigate();
   const readCookie = () => {
     if (cookies.token_key !== 'undefined' && cookies.token_key ) {
       setIsloged(cookies.UserType);
+      setEspace(cookies.Espace)
     } else {
       setIsloged('false');
     }
@@ -125,7 +122,7 @@ function App() {
   }
   useEffect(() => {
     readCookie();
-    console.log(isloged)
+    
   }, []);
 
 
@@ -133,7 +130,7 @@ function App() {
     <Body className="App">
       <userContext.Provider value={{ isloged, setIsloged }}>
         <EnTete></EnTete>
-        <Navigationbar isloged={isloged} setDeclarationsType={setDeclarationsType} Deco={Deco}/>
+        <Navigationbar isloged={isloged}  Deco={Deco}/>
 
         <Routes>
         {/*   {isloged === "User" || isloged === "Mods"? (
@@ -171,11 +168,11 @@ function App() {
 <Route path="/Mods" element={<Moderateurs cookie={cookies} />} />
 <Route
   path="/Declaration"
-  element={<Formulaire DeclarationsType={DeclarationsType} />}
+  element={<Formulaire Espace={Espace} userID={cookies.id}/>}
 />
 <Route
   path="/MesDeclaration"
-  element={<MesDeclarations DeclarationsType={DeclarationsType} cookie={cookies} />}
+  element={<MesDeclarations  cookie={cookies} />}
 />
 <Route path="/Profile" element={<Notificateur />} />
 </>

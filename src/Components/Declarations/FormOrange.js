@@ -91,7 +91,8 @@ const Produit = (props)=>{
   
 
 
-const FormOrange = () => {
+const FormOrange = (props) => {
+  const {userID} = props
   var [files,setFiles] = useState([])
       const [Produits,setProduits] = useState([1])
       const [progress,setProgress] = useState(0)
@@ -161,13 +162,12 @@ const FormOrange = () => {
      })
      
   
-      axiosConfig.post(`/secure/postfichesData/`,   formData,  {
+      axiosConfig.post(`/secure/postfichesData/?userID=${userID}`,   formData,  {
        headers: {
          "Content-Type": "multipart/form-data",
        }, 
        onUploadProgress: (progressEvent) => {
            let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-           console.log(progressEvent.lengthComputable)
            setProgress(percentCompleted);
          }
      } )

@@ -36,7 +36,7 @@ function AuthenticationCnpm(props)
       .post("/loginCnpm", values)
       .then(res => {
         if (res.data.result === "success") {
-          
+         
           onLogin(res.data.token,res.data.id,res.data.UserType,res.data.Type_Execrice[0])
           swal("Success!", res.data.message, "success").then(value => {
             
@@ -57,8 +57,8 @@ return (
     <Formik
       initialValues={{ Username: "", Password: "" }}
       validationSchema={Yup.object({
-        Username: Yup.string().required("Required"),
-        Password: Yup.string().required("Password is required"),
+        Username: Yup.string().required("Nom d'utilisateur invalide"),
+        Password: Yup.string().required("Le mot de passe est requis"),
       })}
       onSubmit={(values, { setSubmitting }) => {
         submitForm(values);
@@ -73,7 +73,7 @@ return (
 
       }) => (
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className="mb-3" controlId="formBasicUsername">
             <label>Username</label>
             <Form.Control
             name="Username"
@@ -94,9 +94,9 @@ return (
               onChange={handleChange}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+{/*           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check type="checkbox" label="Rester connecté" />
-          </Form.Group>
+          </Form.Group> */}
           <Button variant="primary" type="submit">
             Entrer
           </Button>

@@ -7,31 +7,34 @@ import FormPink from './Declarations/FormPink'
 import FormVerte from './Declarations/FormVerte'
 import FormOrange from './Declarations/FormOrange'
 
+import FormPatientFr from './Declarations/FormPatientFr'
 import FormCoronavirus from './Declarations/FormCoronavirus'
 
 
 const FormContent = (props) =>{
-    const {Tab,DeclarationsType} = props
+    const {Tab,userID} = props
     return(
 
-        <div>
+        <>
         {Tab === 'Jaune' ?
-        <FormJaune/>:
+        <FormJaune userID={userID} />:
         Tab === 'Bleue'?
-        <FormBleue/>:
+        <FormBleue userID={userID}/>:
         Tab === 'Blanche'?
-        <FormBlanche/>:
+        <FormBlanche userID={userID}/>:
         Tab === 'Parme'?
-        <FormParme/>:
+        <FormParme userID={userID}/>:
         Tab === 'Verte'?
-        <FormVerte/>:
+        <FormVerte userID={userID}/>:
         Tab === 'Rose'?
-        <FormPink/>:
+        <FormPink userID={userID}/>:
         Tab === 'Orange'?
-        <FormOrange/>:
+        <FormOrange userID={userID}/>:
+        Tab === 'PatientFr'?
+        <FormPatientFr userID={userID}/>:
         Tab === 'Coronavirus'?
-        <FormCoronavirus/>:null}
-        </div>
+        <FormCoronavirus userID={userID}/>:null}
+        </>
         
         )
 }

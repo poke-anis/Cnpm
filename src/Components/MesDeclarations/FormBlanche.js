@@ -43,12 +43,10 @@ useEffect(() => {
   axiosConfig.get(`/secure/getImages/${decla._id}`, {
     onDownloadProgress: (progressEvent) => {
       let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-      console.log(progressEvent.lengthComputable)
       setProgress(percentCompleted);
     }})
   .then(res => {
     setdeclaPic(res.data);
-    console.log(res)
     })
 
 }, [])

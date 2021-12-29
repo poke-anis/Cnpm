@@ -1,9 +1,7 @@
 import React from 'react'
 import {Field} from 'formik';
-
 import styled from 'styled-components'
 import SelectField from './React-select'
-
 
 const FlexBox = styled.div`
 display: flex;
@@ -13,14 +11,14 @@ width : 100%;
 
 `
 
-const Auto8 =(props)=>{
-    const Manifestation_P_V_I = [
+const Auto9 =(props)=>{
+    const Description_D_L_R = [
         { label: "Au point d'injection", value: "Point_I" },
-        { label: "Systemiques", value: "Systemiques" },
-        { label: "Infectieux", value: "Infectieux"},
+        { label: "Signes généraux", value: "Signes_généraux" },
+        { label: "Infection", value: "Infection"},
         { label: "Neurologiques", value: "Neurologiques"},
         { label: "Digestifs", value: "Digestifs"},
-        { label: "Cardio-vasculaires", value: "Cardio_vasculaires"},
+        { label: "Cœur et vaisseaux sanguins", value: "Cœur_et_vaisseaux_sanguins"},
         { label: "Respiratoires", value: "Respiratoires"},
         { label: "Allergiques", value: "Allergiques"},
         { label: "Sphére ORL", value: "Sphere_ORL"},
@@ -34,40 +32,41 @@ const Auto8 =(props)=>{
         { label: "Réactions locales /Rougeur/induration", value: "Réactions locales /Rougeur/induration" },
         { label: "Abcès au point d'injection", value: "Abcès au point d'injection"},
       ];
-      const Systemiques = [
+      const Signes_généraux = [
         { label: "Fièvre > 38,5°C", value: "Fièvre > 38,5°C" },
-        { label: "Asthénie", value: "Asthénie" },
-        { label: "Arthralgie", value: "Arthralgie"},
+        { label: "Fatigue", value: "Fatigue" },
+        { label: "Douleur articulaire", value: "Douleur articulaire"},
         { label: "Courbature", value: "Courbature"},
         { label: "Frissons", value: "Frissons"},
         { label: "Bouffées de chaleur", value: "Bouffées de chaleur"},
         { label: "Douleur musculaire", value: "Douleur musculaire"},
         { label: "Sueurs", value: "Sueurs"},
         { label: "Perte d'appétit", value: "Perte d'appétit"},
-        { label: "Adénopathies", value: "Adénopathies"},
+        { label: "Ganglions sous la peau", value: "Ganglions sous la peau"},
         { label: "Malaise", value: "Malaise"},
-        { label: "Choc vagal/etat de choc/ syndrome de choc toxique", value: "Choc vagal/etat de choc/ syndrome de choc toxique"},
+        { label: "Perte d'equilibre", value: "Perte d'equilibre"},
       ];
-      const Infectieux = [
-        { label: "Syndrome grippal", value: "Syndrome grippal" },
+      const Infection = [
+        { label: "Signes de la grippe", value: "Signes de la grippe" },
       ];
       const Neurologiques = [
         { label: "Vertige", value: "Vertige" },
-        { label: "Céphalée/ migraine ", value: "Céphalée/ migraine " },
+        { label: "Maux de tete/ migraine ", value: "Maux de tete/ migraine " },
         { label: "Guillain Barré", value: "Guillain Barré" },
-        { label: "Paresthésies /fourmillements", value: "Paresthésies /fourmillements" },
+        { label: "Faiblesse musculaire", value: "Faiblesse musculaire" },
+        { label: "fourmillements", value: "fourmillements" },
         { label: "Convulsion", value: "Convulsion" },
         { label: "Trouble de la conscience/ lipothymie", value: "Trouble de la conscience/ lipothymie" },
-        { label: "Névralgies/ Névralgie du V", value: "Névralgies/ Névralgie du V" },
-        { label: "Crise de paniqu", value: "Crise de paniqu" },
-        { label: "Encéphalopathie", value: "Encéphalopathie" },
-        { label: "Aphasie de brocca", value: "Aphasie de brocca" },
-        { label: "Hypotonie-hyporeactivité", value: "Hypotonie-hyporeactivité" },
+        { label: "Douleur radicualire", value: "Douleur radicualire" },
+        { label: "Crise de panique", value: "Crise de panique" },
+        { label: "Détérioration de la fonction cérébrale", value: "Détérioration de la fonction cérébrale" },
+        { label: "Troubles du langage", value: "Troubles du langage" },
+        { label: "Diminution de la force musculaire", value: "Diminution de la force musculaire" },
         { label: "Confusion", value: "Confusion" },
-        { label: "Insomnie", value: "Insomnie" },
-        { label: "Hémiplegie temporaire", value: "Hémiplegie temporaire" },
-        { label: "HIC", value: "HIC" },
-        { label: "Paresthesie", value: "Paresthesie" },
+        { label: "Troubles du sommeil", value: "Troubles du sommeil" },
+        { label: "Paralysie temporaire", value: "Paralysie temporaire" },
+        { label: "Maux de tête avec vision double", value: "Maux de tête avec vision double" },
+        { label: "Troubles de la sensation thermique", value: "Troubles de la sensation thermique" },
       ];
       const Digestifs = [
         { label: "Nausées", value: "Nausées" },
@@ -76,19 +75,19 @@ const Auto8 =(props)=>{
         { label: "Douleurs abdominales", value: "Douleurs abdominales" },
         { label: "Gout amère", value: "Gout amère" },
         { label: "Hémorragie digestive", value: "Hémorragie digestive" },
-        { label: "Dysphagie", value: "Dysphagie" },
+        { label: "Difficultés à avaler", value: "Difficultés à avaler" },
       ];
-      const Cardio_vasculaires = [
+      const Cœur_et_vaisseaux_sanguins = [
         { label: "Pic hypertensif", value: "Pic hypertensif" },
         { label: "Tachycardie/ Palpitations", value: "Tachycardie/ Palpitations" },
-        { label: "Hypotension", value: "Hypotension" },
-        { label: "Pincement de la tension/ déséquilibre tensionel", value: "Pincement de la tension/ déséquilibre tensionel" },
-        { label: "Trouble du rythme", value: "Trouble du rythme" },
-        { label: "Thrombose /phlébite/  thrombophlébite", value: "Thrombose /phlébite/  thrombophlébite" },
-        { label: "AVC", value: "AVC" },
+        { label: "Chute de la tension artérielle", value: "Chute de la tension artérielle" },
+        { label: "Pincement de la tension artérielle/ déséquilibre tensionel", value: "Pincement de la tension artérielle/ déséquilibre tensionel" },
+        { label: "Trouble du rythme cardiaque", value: "Trouble du rythme cardiaque" },
+        { label: "Jambes lourdes", value: "Jambes lourdes" },
+        { label: "Accident Vasculaire Cérébral", value: "Accident Vasculaire Cérébral" },
         { label: "Saignement", value: "Saignement" },
-        { label: "Précordialgies", value: "Précordialgies" },
-        { label: "Infarctus du myocarde", value: "Infarctus du myocarde" },
+        { label: "Douleurs thoraciques", value: "Douleurs thoraciques" },
+        { label: "Douleurs thoraciques violentes", value: "Douleurs thoraciques violentes" },
         { label: "Embolie pulmonaire", value: "Embolie pulmonaire" },
         { label: "Accident ischemique transitoire", value: "Accident ischemique transitoire" },
       ];
@@ -96,7 +95,7 @@ const Auto8 =(props)=>{
         { label: "Toux", value: "Toux" },
         { label: "Dyspnée /Gène respiratoire/oppression thoracique", value: "Dyspnée /Gène respiratoire/oppression thoracique" },
         { label: "Essoufflements", value: "Essoufflements" },
-        { label: "Pneumopathie", value: "Pneumopathie" },
+        { label: "Atteintes pulmonaires", value: "Atteintes pulmonaires" },
         { label: "Douleur thoracique", value: "Douleur thoracique" },
         { label: "Crise d'asthme", value: "Crise d'asthme" },
         { label: "Crépitation / OAP", value: "Crépitation / OAP" },
@@ -105,8 +104,8 @@ const Auto8 =(props)=>{
         { label: "Urticaire", value: "Urticaire" },
         { label: "Oedeme facial/angio-oedeme/bouffissure du visage", value: "Oedeme facial/angio-oedeme/bouffissure du visage" },
         { label: "Eruption cutanée érythémateuse", value: "Eruption cutanée érythémateuse" },
-        { label: "Rash cutané", value: "Rash cutané" },
-        { label: "Réaction allergique/ anaphylactique/ oedeme de quinck ", value: "Réaction allergique/ anaphylactique/ oedeme de quinck " },
+        { label: "Boutons ou plaques rouges sur la peau", value: "Boutons ou plaques rouges sur la peau" },
+        { label: "Réaction allergique/ Gonflement rapide de la peau et des muqueuses au niveau de la tête et du cou", value: "Réaction allergique/ Gonflement rapide de la peau et des muqueuses au niveau de la tête et du cou" },
         { label: "Oedeme des extrémités", value: "Oedeme des extrémités" },
         { label: "Rougeur du visage", value: "Rougeur du visage" },
         { label: "Picotement laryngé", value: "Picotement laryngé" },
@@ -115,54 +114,54 @@ const Auto8 =(props)=>{
         { label: "Maux de gorge", value: "Maux de gorge" },
         { label: "Ecoulement nasal/rhinorrhées", value: "Ecoulement nasal/rhinorrhées" },
         { label: "Sécheresse buccale", value: "Sécheresse buccale" },
-        { label: "Anosmie", value: "Anosmie" },
-        { label: "Pharyngite", value: "Pharyngite" },
+        { label: "Troubles du sommeil", value: "Troubles du sommeil" },
+        { label: "Inflammation de la gorge", value: "Inflammation de la gorge" },
         { label: "Eternuement", value: "Eternuement" },
-        { label: "Dysphonie", value: "Dysphonie" },
+        { label: "Enrouement", value: "Enrouement" },
         { label: "Rhinite", value: "Rhinite" },
         { label: "Angine", value: "Angine" },
-        { label: "Agueusie", value: "Agueusie" },
-        { label: "Epistaxis", value: "Epistaxis" },
+        { label: "Troubles du goût", value: "Troubles du goût" },
+        { label: "Saignement nasal", value: "Saignement nasal" },
         { label: "Otalgie / otite", value: "Otalgie / otite" },
       ];
       const Biologiques = [
         { label: "Hypoglycémie", value: "Hypoglycémie" },
         { label: "Hyperglycémie", value: "Hyperglycémie" },
-        { label: "Hyperleucocytose", value: "Hyperleucocytose" },
+        { label: "Taux élevé des globules blancs", value: "Taux élevé des globules blancs" },
         { label: "Anémie", value: "Anémie" },
-        { label: "Cytolyse hépatique", value: "Cytolyse hépatique" },
-        { label: "Thrombocytopénie", value: "Thrombocytopénie" },
+        { label: "Marqueurs du foie élevé", value: "Marqueurs du foie élevé" },
+        { label: "Diminution du taux des plaquettes sanguin", value: "Diminution du taux des plaquettes sanguin" },
       ];
       const Musculo_squelettique = [
         { label: "Douleur lombaire", value: "Douleur lombaire" },
-        { label: "Myalgies", value: "Myalgies" },
+        { label: "Douleur musculaire", value: "Douleur musculaire" },
         { label: "Douleur du membre superieur  /lourdeur du membre sup/Douleur sous l'aisselle/douleur de l'épaule", value: "Douleur du membre superieur  /lourdeur du membre sup/Douleur sous l'aisselle/douleur de l'épaule" },
         { label: "Douleur dorsale", value: "Douleur dorsale" },
 
       ];
       const Ophtalmologiques = [
         { label: "Trouble visuel", value: "Trouble visuel" },
-        { label: "Uvéite", value: "Uvéite" },
+        { label: "inflamation de l'oeil", value: "inflamation de l'oeil" },
         { label: "Conjonctivite", value: "Conjonctivite" },
         { label: "Hémorragie sous conjontivale", value: "Hémorragie sous conjontivale" },
       ];
       var {id,formik,onFileChange,values} = props
-      var idf = `${id}Manifestation_P_V_I`
+      var idf = `${id}Description_D_L_R`
   
   const varreturn = (value) => {
   if (value === 'Point_I') {
       return Point_I
   }
-  else if (value === 'Systemiques')
-  {return Systemiques}
-  else if (value === 'Infectieux')
-  {return Infectieux}
+  else if (value === 'Signes_généraux')
+  {return Signes_généraux}
+  else if (value === 'Infection')
+  {return Infection}
   else if (value === 'Neurologiques')
   {return Neurologiques}
   else if (value === 'Digestifs')
   {return Digestifs}
-  else if (value === 'Cardio_vasculaires')
-  {return Cardio_vasculaires}
+  else if (value === 'Cœur_et_vaisseaux_sanguins')
+  {return Cœur_et_vaisseaux_sanguins}
   else if (value === 'Respiratoires')
   {return Respiratoires}
   else if (value === 'Allergiques')
@@ -176,21 +175,20 @@ const Auto8 =(props)=>{
   else if (value === 'Ophtalmologiques')
   {return Ophtalmologiques}
   }
-  
   const namereturn = (value) => {
     if (value === 'Point_I') {
     return "Au point d'injection"
     }
-    else if (value === 'Systemiques')
-    {return 'Systemiques'}
+    else if (value === 'Signes_généraux')
+    {return 'Signes généraux'}
     else if (value === 'Infection')
     {return 'Infection'}
     else if (value === 'Neurologiques')
     {return 'Neurologiques'}
     else if (value === 'Digestifs')
     {return 'Digestifs'}
-    else if (value === 'Cardio_vasculaires')
-    {return 'Cardio vasculaires'}
+    else if (value === 'Cœur_et_vaisseaux_sanguins')
+    {return 'Cœur et vaisseaux sanguins'}
     else if (value === 'Respiratoires')
     {return 'Respiratoires'}
     else if (value === 'Allergiques')
@@ -209,13 +207,12 @@ const Auto8 =(props)=>{
         <Field
         isMulti={true}
              component={SelectField}
-             name={`Manifestation_P_V_I`}
-          options={Manifestation_P_V_I}
+             name={idf}
+          options={Description_D_L_R}
         />
                 {values
           ? 
           values.map((word,key) => {
-
               return (
                 <label htmlFor={word} key={key}>
                   {namereturn(word)}
@@ -229,7 +226,7 @@ const Auto8 =(props)=>{
               );
             }):
 
-/* formik.values.Manifestation_P_V_I.filter(word.value === 'Point_I')?
+/* formik.values.Description_D_L_R.filter(word.value === 'Point_I')?
 <label htmlFor="Point_I">Au point d'injection
         <Field
              component={SelectField}
@@ -243,12 +240,12 @@ const Auto8 =(props)=>{
              name={`Systemiques`}
           options={Systemiques}
         /></label>:
-        formik.values.Description_D_L_R.filter(word.value === 'Infectieux')?
-<label htmlFor="Infectieux">Infectieux
+        formik.values.Description_D_L_R.filter(word.value === 'Infection')?
+<label htmlFor="Infection">Infection
         <Field
              component={SelectField}
-             name={`Infectieux`}
-          options={Infectieux}
+             name={`Infection`}
+          options={Infection}
         /></label>:
         formik.values.Description_D_L_R.filter(word.value === 'Neurologiques')?
 <label htmlFor="Neurologiques">Neurologiques
@@ -264,12 +261,12 @@ const Auto8 =(props)=>{
              name={`Digestifs`}
           options={Digestifs}
         /></label>:
-        formik.values.Description_D_L_R.filter(word.value === 'Cardio_vasculaires')?
-<label htmlFor="Cardio_vasculaires">Cardio_vasculaires
+        formik.values.Description_D_L_R.filter(word.value === 'Cœur_et_vaisseaux_sanguins')?
+<label htmlFor="Cœur_et_vaisseaux_sanguins">Cœur_et_vaisseaux_sanguins
         <Field
              component={SelectField}
-             name={`Cardio_vasculaires`}
-          options={Cardio_vasculaires}
+             name={`Cœur_et_vaisseaux_sanguins`}
+          options={Cœur_et_vaisseaux_sanguins}
         /></label>:
         formik.values.Description_D_L_R.filter(word.value === 'Respiratoires')?
 <label htmlFor="Respiratoires">Respiratoires
@@ -324,4 +321,4 @@ formik={formik}
     )
 }
 
-export default Auto8;
+export default Auto9;

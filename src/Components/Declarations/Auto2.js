@@ -5,8 +5,8 @@ import styled from 'styled-components'
 import SelectField from './React-select'
 const FlexBox = styled.div`
 display: flex;
-flex-wrap: wrap;
-justify-content:space-between;
+flex-direction:column;
+
 width : 100%;
 
 `

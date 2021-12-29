@@ -2,11 +2,13 @@
 import React, { useState } from 'react'
 import CreatableSelect  from 'react-select/creatable';
 import './Switch.css';
-import {Card,Badge ,Button,Col} from 'react-bootstrap'
+import {Card,Badge ,Button,Col,Row} from 'react-bootstrap'
 import axiosConfig from "./axios"
 import './Button.css'
 import Switch from "react-switch";
+import { InputText,InputRadio,InputDate,InputSelect,InputFile } from './Declarations/FormikInputs';
 
+const mailContent=" Votre formulaire est en cours de traitement par la Cnpm"
 // const Switch = ({ isOn, handleToggle,nbr }) => {
 //   console.log(nbr)
 //   return (
@@ -32,10 +34,7 @@ import Switch from "react-switch";
 // };
 
 const Filtre = (props,isMulti) =>{
-
-
-    const {setClicked,decla,setChangement,changement} =props
-
+    const {setClicked,decla,setChangement,changement} = props
     const [selectedValue, setSelectedValue] = useState("");
 
     const typeOfFiches = (props) => {
@@ -98,16 +97,37 @@ const ThemeColor = (props) =>{
     return "blanche";
   }
 }
-  const changestatus = (id,status,key)=>{
+  const changestatus = (id,status,status_Type,Email,Username)=>{
+    console.log(Email)
+if(status_Type === null){
+  axiosConfig.put(`/secure/modfichesData/${id}?status=${status}`)
+  .then(res => {
+    })
+    const change = setTimeout(() => {
+      setChangement(!changement);
+    }, 200) 
+    if(Email && status){
+      axiosConfig.post(`/send/?name=Cnpm&email=${Email}&messageHtml=Bonjour%0D%0A${Username}%0D%0A${mailContent}`)
+      .then((response)=>{
+        if (response.data.msg === 'success'){
+            alert("Email sent, awesome!");
+           
+        }else if(response.data.msg === 'fail'){
+            alert("Oops, something went wrong. Try again")
+        }
+        })
+    }
 
-    axiosConfig.put(`/modfichesData/${id}?status=${status}`)
-    .then(res => {
+}else{
+  axiosConfig.put(`/secure/modfichesData/${id}?status=${status}&status_Type=${status_Type}`)
+  .then(res => {
+    console.log(res)
+    })
+    const change = setTimeout(() => {
+      setChangement(!changement);
+    }, 100)
+}
 
-      })
-
-      const change = setTimeout(() => {
-        setChangement(!changement);
-      }, 200);
   }
       return(
        <div  style={{width:'100%',display:'flex',flexDirection:'column',alignItems:'center'}}>
@@ -121,23 +141,40 @@ const ThemeColor = (props) =>{
       isMulti
       isClearable
     />
-       <Col md={9} className="g-0" >
+       <Col md={10} className="g-0" >
     {decla.length !== 0  ? decla.filter((singledecla)=> selectedValue == "" ?singledecla:
     selectedValue.some((val)=>val.includes(singledecla.typeOfFiches))? singledecla :
       null).map((val,key)=>{
         
           var date =new Date(val.DateAdded)
   return(
-    
-       <Card key={key} style={{marginBottom: '20px',marginTop: '20px',width:'100%'}}>
+     
+       <Card key={key} style={{marginBottom: '20px',marginTop: '20px',width:'100%',height:"22%"}}>
         <Card.Header style={{width:'100%',display:'flex'}}>{date.toLocaleString()}<Badge pill bg={ThemeColor(val.typeOfFiches)} style={{marginLeft:'auto',color: 'black',lineHeight: '2'}}> {typeOfFiches(val.typeOfFiches)}</Badge></Card.Header>
-        <Card.Body style={{display:"flex",flexWrap:"wrap",justifyContent:'space-between'}}>
+        <Card.Body style={{display:"flex",flexWrap:"wrap",justifyContent:'space-between',alignItems:"flex-start"}}>
           <Card.Title style={{width:"100%"}}>{val.Cases.Nom} {val.Cases.Prenom}</Card.Title>
-          <Button variant="secondary"  onClick={(e)=>{handleClick(e,val.typeOfFiches,key)}}>Afficher</Button>
+          <Button variant="secondary" style={{height:"40px"}} onClick={(e)=>{handleClick(e,val.typeOfFiches,key)}}>Afficher</Button>
+<div style={{display:"flex",flexDirection:'column'}}>
+  <div style={{display:"flex"}}>
+<Switch onChange={()=>changestatus(val._id,!val.status,null,val.creator.Email,val.creator.Username)} checked={val.status} />
+<p>Vu</p>
+</div>
+      {val.status === true?<select style={{marginTop:"5px"}} onChange={(el)=>changestatus(val._id,val.status,el.target.value)} value={val.status_Type} id={"Statut"}>
+          {["En cours","Traité"].map((content, key) => {
+            return (
+              <option name={`${content}`} value={`${content}`} key={key}>
+                {`${content}`}
+              </option>
+            );
+          })}
+        </select> :null}</div>
+      
+       
 
-      <Switch onChange={()=>changestatus(val._id,!val.status,key)} checked={val.status} />
         </Card.Body>
-      </Card> )
+      </Card> 
+    
+      )
     }) :null}
 </Col>
 </div>

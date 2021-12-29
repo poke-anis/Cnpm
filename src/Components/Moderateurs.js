@@ -4,9 +4,8 @@ import styled from 'styled-components'
 import { FaEdit,FaPlus,FaRegTimesCircle } from "react-icons/fa";
 
 import { Field,useFormik,FormikProvider,useField } from 'formik';
-import {Card,Badge ,Button,Figure,   
-  Form,Row,
-    Nav,Table,Tab,Modal} from 'react-bootstrap'
+import { InputText,InputRadio,InputDate,InputSelect,InputFile } from './Declarations/FormikInputs';
+import {Card,Badge ,Button,Figure,Form,Row,Nav,Table,Tab,Modal} from 'react-bootstrap'
 import FormJaune from './MesDeclarations/FormJaune'
 import FormBleue from './MesDeclarations/FormBleue'
 import FormParme from './MesDeclarations/FormParme'
@@ -36,7 +35,6 @@ border-right: 2px solid #dee2e6;
 
 function ModalForm(props) {
   const [field, meta, helpers] = useField('description');
-  console.log(helpers)
   const {formik} = props
   const config = {
     buttons: ['preview','|',"bold", "italic", "link", "unlink", "underline", "source"],
@@ -212,7 +210,7 @@ return(
 <th style={{padding:"15px"}}><Form.Group as={Row}  controlId="Password">
    <Form.Control  onChange={formik.handleChange} name="Password" type="text"  />
 </Form.Group></th>
-<th style={{padding:"15px"}}><Field  isMulti={true} component={SelectField}  name='Type_Execrice' options={Type_Execrice} /></th>
+<th style={{padding:"15px"}}><Field  isMulti={false} component={SelectField}  name='Type_Execrice' options={Type_Execrice} /></th>
 <th style={{padding:"15px"}}><Button  variant="secondary" type="submit" onSubmit={formik.handleSubmit} style={{width:'100%',display:'flex',justifyContent:'center'}}><FaPlus /></Button></th>
 </tr>
 </tbody>
