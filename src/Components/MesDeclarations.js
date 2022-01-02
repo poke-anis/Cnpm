@@ -188,7 +188,7 @@ const MesDeclarationsCnpm = (props) =>{
         const HandlePrint = (e,props,key) => {
       setPrint({[props]:key})
            const change = setTimeout(() => {
-            console.log(componentRef)
+
           handlePrint()},300) 
         } 
 return(
@@ -263,7 +263,7 @@ const MesDeclarations =(props,isMulti)=>{
 
      axiosConfig.get(`/secure/getfichesData?pagination=${'5'}&page=${currentPage}`)
       .then(res => {
-        console.log(res.data)
+     
         setDecla(res.data);
         })
         
@@ -272,7 +272,7 @@ const MesDeclarations =(props,isMulti)=>{
 
      axiosConfig.get(`/secure/getfichesnbr`)
       .then(res => {
-        console.log(res.data)
+
         setDeclanum(res.data);
         })
         getDecla(currentPage)

@@ -98,7 +98,7 @@ const ThemeColor = (props) =>{
   }
 }
   const changestatus = (id,status,status_Type,Email,Username)=>{
-    console.log(Email)
+ 
 if(status_Type === null){
   axiosConfig.put(`/secure/modfichesData/${id}?status=${status}`)
   .then(res => {
@@ -121,7 +121,7 @@ if(status_Type === null){
 }else{
   axiosConfig.put(`/secure/modfichesData/${id}?status=${status}&status_Type=${status_Type}`)
   .then(res => {
-    console.log(res)
+ 
     })
     const change = setTimeout(() => {
       setChangement(!changement);
@@ -162,7 +162,7 @@ if(status_Type === null){
   const HandlePrint = (e,props,key) => {
 setPrint({[props]:key})
      const change = setTimeout(() => {
-      console.log(componentRef)
+  
     handlePrint()},300) 
   } 
       return(
