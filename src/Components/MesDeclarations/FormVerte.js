@@ -46,7 +46,7 @@ margin-top:10px;
   width: 100%;
 `;
 
-const FormBlancheDecla = (props) => {
+const FormBlancheDecla = React.forwardRef((props,ref) => {
   const { decla } = props;
   const [progress,setProgress] = useState(0)
   const [declaData, setDeclaData] = useState(decla.Cases);
@@ -67,7 +67,7 @@ const FormBlancheDecla = (props) => {
       {declaData.length === 0 ? (
         <div>Loading...</div>
       ) : (
-        <div>
+        <div ref={ref}>
           <FlexBox>
 <BigBox>
 <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
@@ -591,6 +591,6 @@ const FormBlancheDecla = (props) => {
       )}
     </Form>
   );
-};
+});
 
 export default FormBlancheDecla;

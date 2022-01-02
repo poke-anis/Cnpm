@@ -46,8 +46,10 @@ margin-top:10px;
   width: 100%;
 `;
 
-const FormJauneDecla = (props) => {
+const FormJauneDecla = React.forwardRef((props,ref) => {
+  
   const { decla } = props;
+
   const [progress,setProgress] = useState(0)
   const [declaData, setDeclaData] = useState(decla.Cases);
   const [declaPic, setdeclaPic] = useState([]);
@@ -65,11 +67,11 @@ const FormJauneDecla = (props) => {
   
   }, [])
   return (
-    <Form>
+    <Form >
       {declaData.length === 0 ? (
         <div>Loading...</div>
       ) : (
-        <div>
+        <div ref={ref}>
           <FlexBox>
 <BigBox>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
@@ -436,6 +438,6 @@ const FormJauneDecla = (props) => {
     </Form>
     
   );
-};
+})
 
 export default FormJauneDecla;

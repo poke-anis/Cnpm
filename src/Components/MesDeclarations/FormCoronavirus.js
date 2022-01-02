@@ -48,7 +48,7 @@ const FlexBox = styled.div`
   width: 100%;
 `;
 
-const FormCoronavirusDecla = (props) => {
+const FormCoronavirusDecla = React.forwardRef((props,ref) => {
   const { decla } = props;
   const [progress,setProgress] = useState(0)
   const [declaData, setDeclaData] = useState(decla.Cases);
@@ -71,7 +71,7 @@ const FormCoronavirusDecla = (props) => {
         <div>Loading...</div>
       ) : (
 
-        <div>
+        <div ref={ref}>
                   <FlexBox>
         <BigBox>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
@@ -565,6 +565,6 @@ const FormCoronavirusDecla = (props) => {
       )}
     </Form>
   );
-};
+});
 
 export default FormCoronavirusDecla;

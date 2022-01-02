@@ -44,7 +44,7 @@ const FlexBox = styled.div`
   width: 100%;
 `;
 
-const FormParmeDecla = (props) => {
+const FormParmeDecla = React.forwardRef((props,ref) => {
   const { decla } = props;
   const [progress,setProgress] = useState(0)
   const [declaData, setDeclaData] = useState(decla.Cases);
@@ -61,7 +61,7 @@ const FormParmeDecla = (props) => {
   
   }, [])
   return (
-    <Form>
+    <Form ref={ref}>
       {declaData.length === 0 ? (
         <div>Loading...</div>
       ) : (
@@ -306,6 +306,6 @@ const FormParmeDecla = (props) => {
       )}
     </Form>
   );
-};
+});
 
 export default FormParmeDecla;

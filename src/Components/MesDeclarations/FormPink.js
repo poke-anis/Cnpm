@@ -41,7 +41,7 @@ margin-top:10px;
   width: 100%;
 `;
 
-const FormBlancheDecla = (props) => {
+const FormBlancheDecla = React.forwardRef((props,ref) => {
   const { decla } = props;
   const [progress,setProgress] = useState(0)
   const [declaData, setDeclaData] = useState(decla.Cases);
@@ -58,7 +58,7 @@ const FormBlancheDecla = (props) => {
   
   }, [])
   return (
-    <Form>
+    <Form ref={ref}>
       {declaData.length === 0 ? (
         <div>Loading...</div>
       ) : (
@@ -469,6 +469,6 @@ const FormBlancheDecla = (props) => {
       )}
     </Form>
   );
-};
+});
 
 export default FormBlancheDecla;

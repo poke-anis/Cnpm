@@ -1,7 +1,8 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useRef } from 'react'
 import axiosConfig from "./axios"
 import styled from 'styled-components'
-import { InputText,InputRadio,InputDate,InputSelect,InputFile } from './Declarations/FormikInputs';
+import { FaPrint,FaPlus,FaRegTimesCircle } from "react-icons/fa";
+import { useReactToPrint,ReactToPrint } from 'react-to-print';
 import {Card,Badge ,Button,Col} from 'react-bootstrap'
 import FormJaune from './MesDeclarations/FormJaune'
 import FormBleue from './MesDeclarations/FormBleue'
@@ -47,6 +48,7 @@ return(
 }
 
 const MesDeclarationsCnpm = (props) =>{
+  const [print,setPrint] = useState(false)
   const [changement,setChangement] = useState(false)
   const {token_key,TypeExecrice} = props
   const [decla,setDecla] = useState([])
@@ -155,6 +157,40 @@ const MesDeclarationsCnpm = (props) =>{
           getDeclacount()
         
         }, [])
+        const componentRef = useRef();
+        const CompRender = (props) => {
+          if (props === undefined) {
+            
+            return "Fiche de déclaration ";
+          } else if (Object.keys(props)[0]=== "Jaune") {
+            return <FormJaune  decla={decla[Object.values(props)[0]]} ref={componentRef}/>;
+          } else if (Object.keys(props)[0] === "Bleue") {
+            return <FormBleue  decla={decla[Object.values(props)[0]]} ref={componentRef}/>;
+          } else if (Object.keys(props)[0] === "Blanche") {
+            return <FormBlanche  decla={decla[Object.values(props)[0]]} ref={componentRef}/>;
+          } else if (Object.keys(props)[0] === "Parme") {
+            return <FormParme  decla={decla[Object.values(props)[0]]} ref={componentRef}/>;
+          } else if (Object.keys(props)[0] === "Verte") {
+            return <FormVerte  decla={decla[Object.values(props)[0]]} ref={componentRef}/>;
+          } else if (Object.keys(props)[0] === "Rose") {
+            return <FormRose  decla={decla[Object.values(props)[0]]} ref={componentRef}/>;
+          } else if (Object.keys(props)[0] === "Orange") {
+            return <FormOrange  decla={decla[Object.values(props)[0]]} ref={componentRef}/>;
+          } else if (Object.keys(props)[0] === "Coronavirus") {
+            return <FormCoronavirus  decla={decla[Object.values(props)[0]]} ref={componentRef}/>;
+          }
+        };
+        
+        const handlePrint = useReactToPrint({
+    
+          content: () => componentRef.current,
+        })
+        const HandlePrint = (e,props,key) => {
+      setPrint({[props]:key})
+           const change = setTimeout(() => {
+            console.log(componentRef)
+          handlePrint()},300) 
+        } 
 return(
   <div>
            <Col md={9} className="g-0" >
@@ -168,8 +204,11 @@ return(
           <Card.Title style={{width:"100%"}} >{val.Cases.Nom} {val.Cases.Prenom}</Card.Title>
           <Switch onChange={()=>changestatus(val._id,!val.status,key)} checked={val.status} />
 
-          <Button variant="secondary"  onClick={(e)=>{handleClick(e,val.typeOfFiches,key)}}>Afficher</Button>
         </Card.Body>
+        <Card.Footer style={{display:"flex",flexWrap:"wrap",justifyContent:'space-between',alignItems:"flex-start"}}>
+        <Button variant="secondary" style={{height:"40px"}} onClick={(e)=>{handleClick(e,val.typeOfFiches,key)}}>Afficher</Button>
+          <Button onClick={(e)=>{HandlePrint(e,val.typeOfFiches,key)}}><FaPrint/></Button> 
+        </Card.Footer>
       </Card> )
     }) :null}
 </Col>

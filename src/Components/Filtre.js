@@ -1,12 +1,23 @@
 
-import React, { useState } from 'react'
-
+import React, { useRef,useState } from 'react'
 import './Switch.css';
 import {Card,Badge ,Button,Col,Row} from 'react-bootstrap'
 import axiosConfig from "./axios"
 import './Button.css'
 import Switch from "react-switch";
-import { InputText,InputRadio,InputDate,InputSelect,InputFile } from './Declarations/FormikInputs';
+import { FaPrint,FaPlus,FaRegTimesCircle } from "react-icons/fa";
+import { useReactToPrint,ReactToPrint } from 'react-to-print';
+import FormJaune from './MesDeclarations/FormJaune'
+import FormBleue from './MesDeclarations/FormBleue'
+import FormParme from './MesDeclarations/FormParme'
+import FormRose from './MesDeclarations/FormPink'
+import FormVerte from './MesDeclarations/FormVerte'
+import FormOrange from './MesDeclarations/FormOrange'
+import FormBlanche from './MesDeclarations/FormBlanche'
+import FormCoronavirus from './MesDeclarations/FormCoronavirus'
+
+
+
 
 const mailContent=" Votre formulaire est en cours de traitement par la Cnpm"
 // const Switch = ({ isOn, handleToggle,nbr }) => {
@@ -34,6 +45,8 @@ const mailContent=" Votre formulaire est en cours de traitement par la Cnpm"
 // };
 
 const Filtre = (props,isMulti) =>{
+  const [print,setPrint] = useState(false)
+  
     const {setClicked,decla,setChangement,changement,selectedValue} = props
 
     const typeOfFiches = (props) => {
@@ -62,7 +75,6 @@ const Filtre = (props,isMulti) =>{
       
       setClicked({[props]:key})  }
     
-
 
 const ThemeColor = (props) =>{
   if (props === undefined) {
@@ -117,6 +129,42 @@ if(status_Type === null){
 }
 
   }
+
+  const componentRef = useRef();
+  const CompRender = (props) => {
+    if (props === undefined) {
+      
+      return "Fiche de déclaration ";
+    } else if (Object.keys(props)[0]=== "Jaune") {
+      return <FormJaune  decla={decla[Object.values(props)[0]]} ref={componentRef}/>;
+    } else if (Object.keys(props)[0] === "Bleue") {
+      return <FormBleue  decla={decla[Object.values(props)[0]]} ref={componentRef}/>;
+    } else if (Object.keys(props)[0] === "Blanche") {
+      return <FormBlanche  decla={decla[Object.values(props)[0]]} ref={componentRef}/>;
+    } else if (Object.keys(props)[0] === "Parme") {
+      return <FormParme  decla={decla[Object.values(props)[0]]} ref={componentRef}/>;
+    } else if (Object.keys(props)[0] === "Verte") {
+      return <FormVerte  decla={decla[Object.values(props)[0]]} ref={componentRef}/>;
+    } else if (Object.keys(props)[0] === "Rose") {
+      return <FormRose  decla={decla[Object.values(props)[0]]} ref={componentRef}/>;
+    } else if (Object.keys(props)[0] === "Orange") {
+      return <FormOrange  decla={decla[Object.values(props)[0]]} ref={componentRef}/>;
+    } else if (Object.keys(props)[0] === "Coronavirus") {
+      return <FormCoronavirus  decla={decla[Object.values(props)[0]]} ref={componentRef}/>;
+    }
+  };
+  
+
+  const handlePrint = useReactToPrint({
+    
+    content: () => componentRef.current,
+  })
+  const HandlePrint = (e,props,key) => {
+setPrint({[props]:key})
+     const change = setTimeout(() => {
+      console.log(componentRef)
+    handlePrint()},300) 
+  } 
       return(
        <div  style={{width:'65%',display:'flex',flexDirection:'column',paddingLeft:"20px"}}>
          
@@ -140,8 +188,12 @@ if(status_Type === null){
        <Card key={key} style={{marginBottom: '20px',marginTop: '20px',width:'100%',height:"22%"}}>
         <Card.Header style={{width:'100%',display:'flex'}}>{date.toLocaleString()}<Badge pill bg={ThemeColor(val.typeOfFiches)} style={{marginLeft:'auto',color: 'black',lineHeight: '2'}}> {typeOfFiches(val.typeOfFiches)}</Badge></Card.Header>
         <Card.Body style={{display:"flex",flexWrap:"wrap",justifyContent:'space-between',alignItems:"flex-start"}}>
-          <Card.Title style={{width:"100%"}}>{val.Cases.Nom} {val.Cases.Prenom}</Card.Title>
-          <Button variant="secondary" style={{height:"40px"}} onClick={(e)=>{handleClick(e,val.typeOfFiches,key)}}>Afficher</Button>
+          <Card.Title >{val.Cases.Nom} {val.Cases.Prenom}</Card.Title>
+
+{/*           <ReactToPrint
+        trigger={() => <Button>Print this out!</Button>}
+        content={() => componentRef.current}
+      /> */}
 <div style={{display:"flex",flexDirection:'column'}}>
   <div style={{display:"flex"}}>
 <Switch onChange={()=>changestatus(val._id,!val.status,null,val.creator.Email,val.creator.Username)} checked={val.status} />
@@ -160,10 +212,20 @@ if(status_Type === null){
        
 
         </Card.Body>
+        <Card.Footer style={{display:"flex",flexWrap:"wrap",justifyContent:'space-between',alignItems:"flex-start"}}>
+        <Button variant="secondary" style={{height:"40px"}} onClick={(e)=>{handleClick(e,val.typeOfFiches,key)}}>Afficher</Button>
+          <Button onClick={(e)=>{HandlePrint(e,val.typeOfFiches,key)}}><FaPrint/></Button> 
+        </Card.Footer>
       </Card> 
     
       )
     }) :null}
+    {print?
+          <div style={{ display: "none" }}>
+          {CompRender(print)}
+         
+      </div>:null}
+
 </Col>
 </div>
   
