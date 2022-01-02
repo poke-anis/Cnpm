@@ -116,6 +116,8 @@ const MesDeclarationsCnpm = (props) =>{
           return "light"
         } else if (props === "Coronavirus") {
           return "danger";
+        } else if (props === "Patient") {
+          return "blanche";
         }
       }
       const typeOfFiches = (props) => {
@@ -137,6 +139,8 @@ const MesDeclarationsCnpm = (props) =>{
           return "Fiche Compléments alimentaires";
         } else if (props === "Coronavirus") {
           return "Fiche de déclaration coronavirus";
+        } else if (props === "Patient") {
+          return "Fiche de déclaration Patient";
         }
       };
   const changestatus = (id,status,key)=>{

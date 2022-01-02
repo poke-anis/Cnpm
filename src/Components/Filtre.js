@@ -68,6 +68,8 @@ const Filtre = (props,isMulti) =>{
         return "Fiche Compléments alimentaires";
       } else if (props === "Coronavirus") {
         return "Fiche de déclaration coronavirus";
+      } else if (props === "Patient") {
+        return "Fiche de déclaration Patient";
       }
     };
     const handleClick = (e,props,key) => {
@@ -94,6 +96,8 @@ const ThemeColor = (props) =>{
   } else if (props === "Orange") {
     return "orange"
   } else if (props === "Coronavirus") {
+    return "blanche";
+  } else if (props === "Patient") {
     return "blanche";
   }
 }
