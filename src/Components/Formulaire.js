@@ -27,14 +27,14 @@ const Butt = styled(Button)`
 
 const Formulaire = (props) => {
   const { Espace,userID } = props;
-  const [tab, setTab] = useState(Espace === "Pro" ?"Jaune":"Rose");
+  const [tab, setTab] = useState(Espace === "Professionnel" ?"Jaune":"Rose");
   return (
     <Container>
       <Tab.Container id="left-tabs-example" defaultActiveKey={tab}>
         <LeftContent className="LeftContent">
           <h4 style={{ textAlign: "center",color:"white"}}>Type de declaration</h4>
 
-            {Espace === "Pro"? 
+            {Espace === "Professionnel"? 
               <Nav variant="pills" className="flex-column">
               <Nav.Item style={{ width: "100%", height: "100%" }}>
               <Nav.Link
@@ -240,7 +240,7 @@ const Formulaire = (props) => {
                 </span>
               </Nav.Link>
             </Nav.Item> 
-            </Nav>:Espace === "GrandPublic"? 
+            </Nav>:Espace === "Grand Public"? 
             
             <Nav variant="pills" className="flex-column">
 <Nav.Item style={{ width: "100%", height: "100%" }}>

@@ -56,10 +56,10 @@ const Pro = (props) =>{
       Profession: "",
       Telephone: "",
       Adresse_Professionnelle: "",
-      Type_Execrice: "",
+      Type_Exercice: "",
       CPassword: "",
       Specifier: "",
-      Espace:"Pro",
+      Espace:"Professionnel",
     }}
     validationSchema={
       Yup.object({
@@ -77,7 +77,7 @@ const Pro = (props) =>{
        Email: Yup.string().email("Invalid email address").required("Required"),
        Password: Yup.string().required("Le mot de passe est requis"),
       
-      Type_Execrice: Yup.string().required( "Le Type d'execrice est requis"),
+      Type_Exercice: Yup.string().required( "Le Type d'execrice est requis"),
       Adresse_Professionnelle: Yup.string().required("L'Adresse Professionnelle est requise"),
       CPassword: Yup.string().oneOf(  [Yup.ref("Password"), null],"Les mots de passe ne correspondent pas"),
     })}
@@ -175,15 +175,15 @@ const Pro = (props) =>{
                 </Form.Control.Feedback>
               </Form.Group>
              
-              <Form.Group md="3" controlId="Type_Execrice">
+              <Form.Group md="3" controlId="Type_Exercice">
                 <Form.Label>Type d'Execrice</Form.Label>
 
                 <Form.Select
                   aria-label="Default select example"
-                  isInvalid={!!errors.Type_Execrice}
-                  isValid={touched.Type_Execrice && !errors.Type_Execrice}
-                  name="Type_Execrice"
-                  value={values.Type_Execrice}
+                  isInvalid={!!errors.Type_Exercice}
+                  isValid={touched.Type_Exercice && !errors.Type_Exercice}
+                  name="Type_Exercice"
+                  value={values.Type_Exercice}
                   onChange={handleChange}
                 >
                   <option></option>
@@ -192,7 +192,7 @@ const Pro = (props) =>{
                 </Form.Select>
 
                 <Form.Control.Feedback type="invalid">
-                  {errors.Type_Execrice}
+                  {errors.Type_Exercice}
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group md="3" controlId="Adresse_Professionnelle">
@@ -306,7 +306,7 @@ const GrandPublic = (props) =>{
       Telephone: "",
       Password: "",
       CPassword: "",
-      Espace:"GrandPublic",
+      Espace:"Grand Public",
     }}
     validationSchema={
       Yup.object({

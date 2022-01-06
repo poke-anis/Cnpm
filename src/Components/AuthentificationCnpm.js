@@ -37,7 +37,7 @@ function AuthenticationCnpm(props)
       .then(res => {
         if (res.data.result === "success") {
          
-          onLogin(res.data.token,res.data.id,res.data.UserType,res.data.Type_Execrice[0])
+          onLogin(res.data.token,res.data.id,res.data.UserType,res.data.Type_Exercice[0])
           swal("Success!", res.data.message, "success").then(value => {
             
             navigate("/")

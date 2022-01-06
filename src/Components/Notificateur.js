@@ -115,7 +115,7 @@ return(
     Type d’exercice 
     </Form.Label>
     <Col sm="9">
-      <Form.Control  readOnly defaultValue={infos.Type_Execrice} />
+      <Form.Control  readOnly defaultValue={infos.Type_Exercice} />
     </Col>
   </Form.Group>
   <Form.Group as={Row}  controlId="Adresse Professionnelle" style={{padding:'10px 5px'}}>

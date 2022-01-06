@@ -106,7 +106,7 @@ const UserManagment = (props) => {
   
   })
 
-  var Type_Execrice = [
+  var Type_Exercice = [
     { label: "Pharmacovigilance", value: "Jaune" },
     { label: "Matériovigilance", value: "Bleue" },
     { label: "Vaccinovigilance", value: "Blanche"},
@@ -193,7 +193,7 @@ return(
           <th> {el.Username}</th>
           <th>{el.Nom}</th>
           <th></th>
-          <th>{el.Type_Execrice.map((ele,index)=> typeOffonctions(ele)+',')}</th>
+          <th>{el.Type_Exercice.map((ele,index)=> typeOffonctions(ele)+',')}</th>
           <th ><Button  variant="secondary" onClick={()=>handledelete(el._id)} style={{width:'100%',display:'flex',justifyContent:'center'}}><FaRegTimesCircle/></Button></th>
         </tr>)
   })
@@ -210,7 +210,7 @@ return(
 <th style={{padding:"15px"}}><Form.Group as={Row}  controlId="Password">
    <Form.Control  onChange={formik.handleChange} name="Password" type="text"  />
 </Form.Group></th>
-<th style={{padding:"15px"}}><Field  isMulti={false} component={SelectField}  name='Type_Execrice' options={Type_Execrice} /></th>
+<th style={{padding:"15px"}}><Field  isMulti={false} component={SelectField}  name='Type_Exercice' options={Type_Exercice} /></th>
 <th style={{padding:"15px"}}><Button  variant="secondary" type="submit" onSubmit={formik.handleSubmit} style={{width:'100%',display:'flex',justifyContent:'center'}}><FaPlus /></Button></th>
 </tr>
 </tbody>
