@@ -126,7 +126,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
           </Form.Group>
           </BigBox>
           </FlexBox>
-          {declaData.Vaccin.map((el, index) => (
+          {declaData.Produits.map((el, index) => (
             <FlexBox key={index}>
             <BigBox>
               <h1>Vaccin {index+1}</h1>
@@ -293,7 +293,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
   </FlexBox>
           ))}
 
-          {declaData.Solvant.map((el, index) => (
+          {declaData.Solvants.map((el, index) => (
                     <FlexBox key={index}>
                     <BigBox>
               <h1>Solvant {index+1}</h1>

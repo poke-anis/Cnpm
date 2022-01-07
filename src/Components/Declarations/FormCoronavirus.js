@@ -145,7 +145,7 @@ const Solvant = (props) => {
       />
                 <InputFile
   name='Photo du Solvant (Si possible) :'
-  id={`Photo_S__${id+1}`}
+  id={`Photo_S_${id+1}`}
   onFileChange={onFileChange}
 />
       <InputText
@@ -403,7 +403,7 @@ const FormCoronavirus = (props) => {
                   onFileChange={onFileChange}
                     formik={formik}
                     id={index}
-                    className={`Vaccin#${el}`}
+                    className={`Vaccins#${el}`}
                   />
                 </Tab.Pane>
               );
@@ -444,7 +444,7 @@ const FormCoronavirus = (props) => {
                   onFileChange={onFileChange}
                     formik={formik}
                     id={index}
-                    className={`Solvant#${el}`}
+                    className={`Solvants#${el}`}
                   />
                 </Tab.Pane>
               );

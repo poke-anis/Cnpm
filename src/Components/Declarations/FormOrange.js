@@ -48,14 +48,14 @@ const Produit = (props)=>{
       <FormikProvider value={formik}>
                 <FlexBox>
           <BigBox>
-        <InputText name="Nom commercial complet :" id={`Produit${id}.Nom_C_C`} formik={formik} />
+        <InputText name="Nom commercial complet :" id={`Produits${id}.Nom_C_C`} formik={formik} />
         <InputFile
   name='Photo du produit (Si possible) :'
   id={`Photo_P_${id}`}
   onFileChange={onFileChange}
 />
-        <InputText name="Fabricant :" id={`Produit${id}.Fabricant`} formik={formik} />
-        <InputText name="N° de lot :" id={`Produit${id}.Numero_D_L`} formik={formik} />
+        <InputText name="Fabricant :" id={`Produits${id}.Fabricant`} formik={formik} />
+        <InputText name="N° de lot :" id={`Produits${id}.Numero_D_L`} formik={formik} />
 
         <InputFile
   name='Photo du Lot (Si possible) :'
@@ -66,19 +66,19 @@ const Produit = (props)=>{
 <BigBox>
         <InputDate
           name="Date de fabrication :"
-          id={`Produit${id}.Date_D_F`}
+          id={`Produits${id}.Date_D_F`}
           formik={formik}
         />
         <InputDate
           name="Date de péremption :"
-          id={`Produit${id}.Date_D_P`}
+          id={`Produits${id}.Date_D_P`}
           formik={formik}
         />
-        <InputText name="Motif de la consommation :" id={`Produit${id}.Motif_D_C`} formik={formik} />
-        <InputText name="Dose consommée :" id={`Produit${id}.Dose_C`} formik={formik} />
+        <InputText name="Motif de la consommation :" id={`Produits${id}.Motif_D_C`} formik={formik} />
+        <InputText name="Dose consommée :" id={`Produits${id}.Dose_C`} formik={formik} />
         <InputRadio
               name="Lieu d'achat :"
-              id={`Produit${id}.Lieu_A`}
+              id={`Produits${id}.Lieu_A`}
               radioContent={["Pharmacie", "Herboriste","Supermarché","Autre"]}
               formik={formik}
             />
@@ -260,7 +260,7 @@ const FormOrange = (props) => {
 
             return (
               <Tab.Pane eventKey={`Produit#${el}`} key={index}>
-                    <Produit formik={formik} id={index} className={`Produit#${el}`}/>
+                    <Produit formik={formik} id={index} className={`Produits#${el}`}/>
               </Tab.Pane>
             );
           })}

@@ -103,9 +103,9 @@ const FormJaune = (props) => {
       Sexe: "",
       Taille: "",
       Poids: "",
-      Reaction: [{
+      Reactions: [{
         Description_D_L_R: [],
-        Date_A: "",
+        Date_S_R: "",
         Medciament_DCI: "",
         Numero_D_L: "",
         Voie_A: "",
@@ -217,7 +217,7 @@ const FormJaune = (props) => {
               return (
                 <Button type="button"
                   onClick={() => {
-                    formik.values.Reaction[Reactions.length] = {
+                    formik.values.Reactions[Reactions.length] = {
                       Description_D_L_R: "",
                       Date_A: "",
                       Medciament_DCI: "",

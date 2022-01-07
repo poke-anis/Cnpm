@@ -207,7 +207,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               )}
               </BigBox>
               </FlexBox>
-          {declaData.Plante.map((el, index) => 
+          {declaData.Plantes.map((el, index) => 
           <FlexBox key={index}>
           <BigBox>
             <h1>Plante {index+1}</h1>

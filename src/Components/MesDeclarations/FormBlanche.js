@@ -158,7 +158,7 @@ useEffect(() => {
           </BigBox>
           </FlexBox>
       
-          {declaData.Vaccin.map((el, index) => 
+          {declaData.Vaccins.map((el, index) => 
               <FlexBox key={index}>
             <BigBox>
                 <h1>Vaccin {index+1}</h1>
@@ -311,7 +311,7 @@ useEffect(() => {
           )}
 
 
-          {declaData.Solvant.map((el, index) => 
+          {declaData.Solvants.map((el, index) => 
           <FlexBox key={index}>
           <BigBox>
 

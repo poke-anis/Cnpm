@@ -179,7 +179,7 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
           </BigBox>
           </FlexBox>
           
-          {declaData.Produit.map((el, index) => 
+          {declaData.Produits.map((el, index) => 
           <FlexBox key={index}>
             <BigBox>
             <h1>Produit {index+1}</h1>

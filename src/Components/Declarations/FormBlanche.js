@@ -207,7 +207,7 @@ const FormBlanche = (props) => {
       Sexe: "",
       Taille: "",
       Poids: "",
-      Vaccin: [
+      Vaccins: [
         {
           Type_D_V: "",
           Fabricant: "",
@@ -220,7 +220,7 @@ const FormBlanche = (props) => {
           Date_D_Peremption: "",
         },
       ],
-      Solvant: [
+      Solvants: [
         {
           Nom_D_Solvant: "",
           Fabricant: "",

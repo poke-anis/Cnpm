@@ -76,7 +76,7 @@ const Plante = (props)=>{
           <BigBox>
         <InputText
           name="Nom,Vernaculaire et Nom scientifique (si connu) :"
-          id={`Plante${id}.Nom_V_N_S`}
+          id={`Plantes${id}.Nom_V_N_S`}
           formik={formik}
         />
 
@@ -89,13 +89,13 @@ const Plante = (props)=>{
         <label htmlFor="Parties utilisées">Parties utilisées</label>
         <Field
              component={SelectField}
-             name={`Plante${id}.Partie_U`}
+             name={`Plantes${id}.Partie_U`}
           options={Partie_U}
         />
         <label htmlFor="Dose">Dose</label>
 
         <Field
-        name={`Plante${id}.Dose`}
+        name={`Plantes${id}.Dose`}
              component={SelectField}
           options={Dose}
         />
@@ -103,20 +103,20 @@ const Plante = (props)=>{
 <BigBox>
         <label htmlFor="Mode de préparation">Mode de préparation</label>
         <Field
-        name={`Plante${id}.Mode_D_P`}
+        name={`Plantes${id}.Mode_D_P`}
              component={SelectField}
           options={Mode_D_P}
         />
 
         <InputCheck
           name="Dates d’utilisation :"
-          id={`Plante${id}.Date_U`}
+          id={`Plantes${id}.Date_U`}
           checkContent={["Début", "Fin"]}
           formik={formik}
         />
         <InputText
           name="Raison d'utilisation de la plante médicinale :"
-          id={`Plante${id}.Raison_U_P_M`}
+          id={`Plantes${id}.Raison_U_P_M`}
           formik={formik}
         />
         </BigBox>
@@ -145,14 +145,14 @@ const FormVerte = (props) => {
       Activite_S: '',
       Regime_A_V: '',
       Nom_D_M: '',
-      Plante1:{
+      Plantes:[{
         Nom_V_N_S:'',
         Partie_U:'' ,
         Dose:'',
         Mode_D_P: '',
         Date_U: '',
         Raison_U_P_M: '',
-      },
+      }],
       Description_E_I:'',
       Antecedents_D_M:'',
       Date_A: '',
@@ -299,7 +299,7 @@ const FormVerte = (props) => {
 
             return (
               <Tab.Pane eventKey={`Plante#${el}`} key={index}>
-                    <Plante onFileChange={onFileChange} formik={formik} id={index} className={`Plante#${el}`}/>
+                    <Plante onFileChange={onFileChange} formik={formik} id={index} className={`Plantes#${el}`}/>
               </Tab.Pane>
             );
           })}
@@ -342,7 +342,7 @@ formik={formik}
 {        formik.values.Traitement_C === "Oui"?            
         <label htmlFor="Lequel">Lequel
             <Inputstyled
-            id="Lequel"
+            id="Lequel_T"
             name="Lequel"
             type="text"
             onChange={formik.handleChange}
