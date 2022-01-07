@@ -182,7 +182,7 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
           {declaData.Produits.map((el, index) => 
           <FlexBox key={index}>
             <BigBox>
-            <h1>Produit {index+1}</h1>
+            <h1 style={{width:"100%",textAlign:"center"}}>Produit {index+1}</h1>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Nom commercial complet
@@ -330,6 +330,10 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
           )}
           <FlexBox>
           <BigBox>
+
+          {/* ///Auto */}
+          {declaData.Description_D_L_R.map((elem,index2)=>
+  <div key={elem}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Description de l’effet indésirable
@@ -338,10 +342,27 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
               <Form.Control
                 
                 readOnly
-                defaultValue={declaData.Description_D_L_R}
+                defaultValue={elem}
               />
             </Col>
           </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Label column sm="5">
+                    :
+                    </Form.Label>
+                    <Col sm="7">
+                      <Form.Control
+                        
+                        readOnly
+                        defaultValue={declaData.TypeofDescription_D_L_RI[index2]}
+                      />
+                    </Col>
+                  </Form.Group>
+                  </div>
+  )}
+
+
+
           {declaPic === undefined ? (
                 <div>Loading...</div>
               ) : (
@@ -358,6 +379,12 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
                     </Figure>
                   ))
               )}
+
+
+
+{/* //Auto */}
+          {declaData.Description_D_L_R.map((elem,index2)=>
+  <div key={elem}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Antécédents et terrain du patient 
@@ -366,10 +393,27 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
               <Form.Control
                 
                 readOnly
-                defaultValue={declaData.Antecedents_D_M}
+                defaultValue={elem}
               />
             </Col>
           </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Label column sm="5">
+                    :
+                    </Form.Label>
+                    <Col sm="7">
+                      <Form.Control
+                        
+                        readOnly
+                        defaultValue={declaData.TypeofAntecedents_D_M[index2]}
+                      />
+                    </Col>
+                  </Form.Group>
+                  </div>
+  )}
+
+
+
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Date d’apparition 

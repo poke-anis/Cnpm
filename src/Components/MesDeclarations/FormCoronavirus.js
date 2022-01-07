@@ -126,10 +126,10 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
           </Form.Group>
           </BigBox>
           </FlexBox>
-          {declaData.Produits.map((el, index) => (
+          {declaData.Vaccins.map((el, index) => (
             <FlexBox key={index}>
             <BigBox>
-              <h1>Vaccin {index+1}</h1>
+              <h1 style={{width:"100%",textAlign:"center"}}>Vaccin {index+1}</h1>
               <Form.Group
                 as={Row}
                 className="mb-3"
@@ -296,7 +296,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
           {declaData.Solvants.map((el, index) => (
                     <FlexBox key={index}>
                     <BigBox>
-              <h1>Solvant {index+1}</h1>
+              <h1> style={{width:"100%",textAlign:"center"}}Solvant {index+1}</h1>
               <Form.Group
                 as={Row}
                 className="mb-3"
@@ -424,6 +424,9 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
           ))}
                     <FlexBox>
           <BigBox>
+            {/* Auto */}
+          {declaData.Manifestation_P_V_I.map((elem,index2)=>
+  <div key={elem}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
               Manifestation(s) post-vaccinale(s) indésirable(s)
@@ -432,10 +435,25 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
               <Form.Control
                 
                 readOnly
-                defaultValue={declaData.Manifestation_P_V_I}
+                defaultValue={elem}
               />
             </Col>
           </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Label column sm="5">
+                    :
+                    </Form.Label>
+                    <Col sm="7">
+                      <Form.Control
+                        
+                        readOnly
+                        defaultValue={declaData.TypeofManifestation_P_V_I[index2]}
+                      />
+                    </Col>
+                  </Form.Group>
+                  </div>
+  )}
+
 
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
@@ -535,6 +553,9 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
+          ///Auto3
+          {declaData.Antecedent_M.map((elem,index2)=>
+  <div key={elem}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
               Antécédents du malade/Histoire de la maladie ou commentaires
@@ -543,10 +564,24 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
               <Form.Control
                 
                 readOnly
-                defaultValue={declaData.Antecedent_M}
+                defaultValue={elem}
               />
             </Col>
           </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Label column sm="5">
+                    :
+                    </Form.Label>
+                    <Col sm="7">
+                      <Form.Control
+                        
+                        readOnly
+                        defaultValue={declaData.TypeofAntecedent_M[index2]}
+                      />
+                    </Col>
+                  </Form.Group>
+                  </div>
+  )}
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
               Prise concomitante de médicaments ou autre substance

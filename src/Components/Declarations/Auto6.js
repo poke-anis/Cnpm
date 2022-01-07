@@ -33,7 +33,7 @@ const Auto6 =(props)=>{
       ];
       var {id,formik,onFileChange,values} = props
       var idf = `${id}Evolution`
-  
+      var idf2 = `${id}TypeofEvolution`
   const varreturn = (value) => {
   if (value === 'Guérison')
   {return Guérison}
@@ -58,7 +58,7 @@ const Auto6 =(props)=>{
                   <Field
                     options={varreturn(word)}
                     component={SelectField}
-                    name={`${idf}.${word}`}
+                    name={`${idf2}`}
                   />
                 </label>
               );

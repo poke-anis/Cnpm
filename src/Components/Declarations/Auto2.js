@@ -45,7 +45,7 @@ const Auto2 =(props)=>{
       ];
       var {id,formik,onFileChange,values} = props
       var idf = `${id}Voie_A`
-  
+      var idf2 = `${id}TypeofVoie_A`
   const varreturn = (value) => {
   if (value === 'Orale') {
       return Orale
@@ -75,7 +75,7 @@ const Auto2 =(props)=>{
                   isMulti={false}
                     options={varreturn(word)}
                     component={SelectField}
-                    name={`${idf}.${word}`}
+                    name={`${idf2}`}
                   />
                 </label>
               );

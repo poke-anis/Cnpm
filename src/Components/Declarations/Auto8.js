@@ -148,7 +148,7 @@ const Auto8 =(props)=>{
       ];
       var {id,formik,onFileChange,values} = props
       var idf = `${id}Manifestation_P_V_I`
-  
+      var idf2 = `${id}TypeofManifestation_P_V_I`
   const varreturn = (value) => {
   if (value === 'Point_I') {
       return Point_I
@@ -223,7 +223,7 @@ const Auto8 =(props)=>{
                   isMulti={true}
                     options={varreturn(word)}
                     component={SelectField}
-                    name={`${idf}.${word}`}
+                    name={`${idf2}`}
                   />
                 </label>
               );

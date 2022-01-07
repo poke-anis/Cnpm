@@ -147,6 +147,8 @@ const Auto1 =(props)=>{
       ];
     var {id,formik,onFileChange,values} = props
     var idf = `${id}Description_D_L_R`
+    var idf2 = `${id}TypeofDescription_D_L_R`
+    console.log(values)
 const varreturn = (value) => {
 if (value === "Point_I") {
   return Point_I;
@@ -175,13 +177,14 @@ if (value === "Point_I") {
 }
 }
 const namereturn = (value) => {
+  console.log(value)
   if (value === 'Point_I') {
   return "Au point d'injection"
   }
   else if (value === 'Systemiques')
   {return 'Systemiques'}
-  else if (value === 'Infection')
-  {return 'Infection'}
+  else if (value === 'Infectieux')
+  {return 'Infectieux'}
   else if (value === 'Neurologiques')
   {return 'Neurologiques'}
   else if (value === 'Digestifs')
@@ -208,7 +211,7 @@ const namereturn = (value) => {
         { values  && values !== undefined ?
         
         
-          values.map((word,key) => {
+        Object(values).map((word,key) => {
 
               return (
                 <label htmlFor={word} key={key}>
@@ -216,7 +219,7 @@ const namereturn = (value) => {
                   <Field
                     options={varreturn(word)}
                     component={SelectField}
-                    name={`${idf}.${word}`}
+                    name={`${idf2}`}
                     isMulti={props.isMulti}
                   />
                 </label>

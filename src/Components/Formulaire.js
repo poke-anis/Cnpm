@@ -14,7 +14,7 @@ const Container = styled.div`
   display: flex;
 `;
 const LeftContent = styled.div`
-  width: 25%;
+  width: 20%;
   margin-right: 50px;
   border-right: 2px solid #dee2e6;
   background-color: #272727;

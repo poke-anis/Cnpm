@@ -66,6 +66,8 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
       })
   
   }, [])
+
+  console.log(declaData.TypeofAntecedents_D_M.Digestifs)
   return (
     <Form >
       {declaData.length === 0 ? (
@@ -160,11 +162,14 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
           </BigBox> 
           </FlexBox>
           
-          {declaData.Reaction.map((el, index) => 
+          {declaData.Reactions.map((el, index) => 
           <FlexBox key={index}>
             <BigBox> 
-  <h1>Reaction {index+1}</h1>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+  <h1 style={{width:"100%",textAlign:"center"}}>Reaction {index+1}</h1>
+  {/* // Auto1 */}
+  {el.Description_D_L_R.map((elem,index2)=>
+  <div key={elem}>
+            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Description de la réaction 
             </Form.Label>
@@ -172,10 +177,25 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
               <Form.Control
                 
                 readOnly
-                defaultValue={el.Description_D_L_R}
+                defaultValue={elem}
               />
             </Col>
           </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Label column sm="5">
+                    Description de la réaction 
+                    </Form.Label>
+                    <Col sm="7">
+                      <Form.Control
+                        
+                        readOnly
+                        defaultValue={el.TypeofDescription_D_L_R[index2]}
+                      />
+                    </Col>
+                  </Form.Group>
+                  </div>
+  )}
+
           {declaPic === [] ? (
                 <ProgressBar animated now={progress} />
               ) : (
@@ -265,6 +285,9 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
               )}
                         </BigBox>
           <BigBox> 
+
+{el.Voie_A.map((elem,index2)=>
+  <div key={index2}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Voie d’administration 
@@ -273,10 +296,31 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
               <Form.Control
                 
                 readOnly
-                defaultValue={el.Voie_A}
+                defaultValue={elem}
               />
             </Col>
           </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Label column sm="5">
+                    :
+                    </Form.Label>
+                    <Col sm="7">
+                      <Form.Control
+                        
+                        readOnly
+                        defaultValue={el.TypeofVoie_A[index2]}
+                      />
+                    </Col>
+                  </Form.Group>
+                  </div>
+  )}
+
+
+
+
+
+
+
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
               Posologie
@@ -405,6 +449,9 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
             </Col>
           </Form.Group>
 
+{/* Auto3 */}
+          {declaData.Antecedents_D_M.map((elem,index2)=>
+  <div key={elem}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Antécédents du malade/Histoire de la maladie ou commentaires
@@ -413,10 +460,29 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
               <Form.Control
                 
                 readOnly
-                defaultValue={declaData.Antecedent_M}
+                defaultValue={elem}
               />
             </Col>
           </Form.Group>
+
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Label column sm="5">
+                    :
+                    </Form.Label>
+                    <Col sm="7">
+                      <Form.Control
+                        
+                        readOnly
+                        defaultValue={declaData.TypeofAntecedents_D_M[index2]}
+                      />
+                    </Col>
+                  </Form.Group>
+                  </div>
+  )}
+
+
+
+
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Les facteurs de risques associés 

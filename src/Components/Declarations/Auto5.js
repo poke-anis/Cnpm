@@ -116,7 +116,7 @@ const Auto5 =(props)=>{
       ];
       var {id,formik,onFileChange,values} = props
       var idf = `${id}Effets_I`
-  
+      var idf2 = `${id}TypeofEffets_I`
   const varreturn = (value) => {
   if (value === 'Systemiques')
   {return Systemiques}
@@ -157,7 +157,7 @@ const Auto5 =(props)=>{
                   isMulti={true}
                     options={varreturn(word)}
                     component={SelectField}
-                    name={`${idf}.${word}`}
+                    name={`${idf2}`}
                   />
                 </label>
               );

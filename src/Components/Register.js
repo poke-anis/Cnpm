@@ -82,8 +82,6 @@ const Pro = (props) =>{
       CPassword: Yup.string().oneOf(  [Yup.ref("Password"), null],"Les mots de passe ne correspondent pas"),
     })}
     onSubmit={(values,{ setSubmitting }) => {
-      console.log(values)
-
       setTimeout(() => {
         props.submitForm(values);
         setSubmitting(false);

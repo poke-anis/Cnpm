@@ -376,6 +376,10 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
+
+          {/* ///Auto */}
+          {declaData.Effets_I.map((elem,index2)=>
+  <div key={elem}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Description de l'effet indésirable
@@ -384,10 +388,27 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               <Form.Control
                 
                 readOnly
-                defaultValue={declaData.Description_E_I}
+                defaultValue={elem}
               />
             </Col>
           </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Label column sm="5">
+                    :
+                    </Form.Label>
+                    <Col sm="7">
+                      <Form.Control
+                        
+                        readOnly
+                        defaultValue={declaData.TypeofEffets_I[index2]}
+                      />
+                    </Col>
+                  </Form.Group>
+                  </div>
+  )}
+
+
+
           {declaPic === undefined ? (
                 <div>Loading...</div>
               ) : (

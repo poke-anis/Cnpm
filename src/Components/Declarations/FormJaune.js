@@ -45,15 +45,15 @@ const Reaction = (props)=>{
   <FlexBox>
     <BigBox>
     <label htmlFor="Description_D_L_R">Description de la réaction</label>
-<Auto1 isMulti={false} id={`Reaction[${id}].`} formik={formik} values={formik.values.Reaction[`${id}`].Description_D_L_R}/>
+<Auto1 isMulti={true} id={`Reactions[${id}].`} formik={formik} values={formik.values.Reactions[`${id}`].Description_D_L_R}/>
   <InputFile
   name='Photo de la reaction (Si possible) :'
   id={`Photo_R_${id}`}
   onFileChange={onFileChange}
 />
 
-<InputDate name="Date d’apparition :" id={`Reaction[${id}].Date_A`} formik={formik} />
-<InputText name="Médicament(s) DCI (mettre le nom de marque) :" id={`Reaction[${id}].Medciament_DCI`} formik={formik} />
+<InputDate name="Date d’apparition :" id={`Reactions[${id}].Date_A`} formik={formik} />
+<InputText name="Médicament(s) DCI (mettre le nom de marque) :" id={`Reactions[${id}].Medciament_DCI`} formik={formik} />
 
     <InputFile
   name="Photo du Médicament (Si possible) :"
@@ -62,7 +62,7 @@ const Reaction = (props)=>{
 />
 
 
-<InputText name="N° de lot :" id={`Reaction[${id}].Numero_D_L`} formik={formik} />
+<InputText name="N° de lot :" id={`Reactions[${id}].Numero_D_L`} formik={formik} />
 
       </BigBox>
       <BigBox>
@@ -74,11 +74,11 @@ const Reaction = (props)=>{
 
 <label htmlFor="Description_D_L_R">Voie d’administration</label>
 
-  <Auto2 id={`Reaction[${id}].`} formik={formik} values={formik.values.Reaction[id].Voie_A}/>
-<InputText name="Posologie :" id={`Reaction[${id}].Posologie`} formik={formik} />
-<InputDate name="Date d’administration (Début):" id={`Reaction[${id}].Date_A_D`} formik={formik} />
-<InputDate name="Date d’administration (Fin):" id={`Reaction[${id}].Date_A_F`} formik={formik} />
-<InputText name="Raison d’emploi (indication) :" id={`Reaction[${id}].Raison_E`} formik={formik} />
+  <Auto2 id={`Reactions[${id}].`} formik={formik} values={formik.values.Reactions[id].Voie_A}/>
+<InputText name="Posologie :" id={`Reactions[${id}].Posologie`} formik={formik} />
+<InputDate name="Date d’administration (Début):" id={`Reactions[${id}].Date_A_D`} formik={formik} />
+<InputDate name="Date d’administration (Fin):" id={`Reactions[${id}].Date_A_F`} formik={formik} />
+<InputText name="Raison d’emploi (indication) :" id={`Reactions[${id}].Raison_E`} formik={formik} />
 </BigBox>
 </FlexBox>
 
@@ -103,12 +103,12 @@ const FormJaune = (props) => {
       Sexe: "",
       Taille: "",
       Poids: "",
-      Reaction: [{
+      Reactions: [{
         Description_D_L_R: [],
         Date_A: "",
         Medciament_DCI: "",
         Numero_D_L: "",
-        Voie_A: "",
+        Voie_A: [],
         Posologie: "",
         Date_A_D: "",
         Date_A_F: "",
@@ -118,12 +118,12 @@ const FormJaune = (props) => {
       Descriptif_D_T: "",
       Evolution: "",
       Sequelles: "",
-      Antecedent_M:"",
+      Antecedent_M:[],
       Facteurs_R_A: "",
     },
 
     onSubmit: (values) => {
-
+console.log(values)
       const formData = new FormData();
 
       formData.append(

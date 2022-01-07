@@ -108,7 +108,7 @@ const FormOrange = (props) => {
       Profession: '',
       Activite_S: '',
       Regime_A_V: '',
-      Produit:{ 
+      Produits:{ 
         Nom_C_C: '',
         Fabricant: '',
         Fournisseur: '',

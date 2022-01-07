@@ -117,7 +117,7 @@ const Auto3 =(props)=>{
       ];
       var {id,formik,onFileChange,values} = props
       var idf = `${id}Antecedents_D_M`
-  
+      var idf2 = `${id}TypeofAntecedents_D_M`
   const varreturn = (value) => {
   if (value === 'Neurologiques')
   {return Neurologiques}
@@ -157,7 +157,7 @@ const Auto3 =(props)=>{
                   isMulti={true}
                     options={varreturn(word)}
                     component={SelectField}
-                    name={`${idf}.${word}`}
+                    name={`${idf2}`}
                   />
                 </label>
               );

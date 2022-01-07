@@ -56,7 +56,7 @@ const Vaccin = (props) => {
           <BigBox>
       <InputText
         name="Type du vaccin :"
-        id={`Vaccin[${id}].Type_D_V`}
+        id={`Vaccins[${id}].Type_D_V`}
         formik={formik}
       />
                     <InputFile
@@ -67,36 +67,36 @@ const Vaccin = (props) => {
 />
       <InputText
         name="Fabricant :"
-        id={`Vaccin[${id}].Fabricant`}
+        id={`Vaccins[${id}].Fabricant`}
         formik={formik}
       />
       <InputDate
         name="Date de vaccination :"
-        id={`Vaccin[${id}].Date_D_V`}
+        id={`Vaccins[${id}].Date_D_V`}
         formik={formik}
       />
       <InputText
         name="Heure de vaccination :"
-        id={`Vaccin[${id}].Heure_D_V`}
+        id={`Vaccins[${id}].Heure_D_V`}
         formik={formik}
       />
             </BigBox>
       <BigBox>
       <InputSelect
         name="Dose :"
-        id={`Vaccin[${id}].Dose`}
+        id={`Vaccins[${id}].Dose`}
         options={["1ère", "2ème", "3ème", "4ème"]}
         formik={formik}
       />
       <InputSelect
         name="Voie :"
-        id={`Vaccin[${id}].Voie`}
+        id={`Vaccins[${id}].Voie`}
         options={["ID", "SC", "IM", "Orale"]}
         formik={formik}
       />
       <InputSelect
         name="Point d'injection :"
-        id={`Vaccin[${id}].Point_I`}
+        id={`Vaccins[${id}].Point_I`}
         options={[
           "Deltoide Gauche",
           "Deltoide Droit",
@@ -110,7 +110,7 @@ const Vaccin = (props) => {
 
       <InputText
         name="N° de lot :"
-        id={`Vaccin[${id}].Numero_D_L`}
+        id={`Vaccins[${id}].Numero_D_L`}
         formik={formik}
       />
 
@@ -121,7 +121,7 @@ const Vaccin = (props) => {
 />
       <InputDate
         name="Date de Péremption :"
-        id={`Vaccin[${id}].Date_D_P`}
+        id={`Vaccins[${id}].Date_D_P`}
         formik={formik}
       />
             </BigBox>
@@ -139,7 +139,7 @@ const Solvant = (props) => {
   <BigBox>
       <InputSelect
         name="Solvant :"
-        id={`Solvant[${id}].Solvant`}
+        id={`Solvants[${id}].Solvant`}
         options={["Du même vaccin", "Autre"]}
         formik={formik}
       />
@@ -150,12 +150,12 @@ const Solvant = (props) => {
 />
       <InputText
         name="Fabricant :"
-        id={`Solvant[${id}].Fabricant`}
+        id={`Solvants[${id}].Fabricant`}
         formik={formik}
       />
       <InputText
         name="N° de lot :"
-        id={`Solvant[${id}].Numero_D_L`}
+        id={`Solvants[${id}].Numero_D_L`}
         formik={formik}
       />
       </BigBox>
@@ -167,17 +167,17 @@ const Solvant = (props) => {
 />
       <InputDate
         name="Date de péremption :"
-        id={`Solvant[${id}].Date_D_P`}
+        id={`Solvants[${id}].Date_D_P`}
         formik={formik}
       />
       <InputDate
         name="Date de reconstitution :"
-        id={`Solvant[${id}].Date_D_R`}
+        id={`Solvants[${id}].Date_D_R`}
         formik={formik}
       />
       <InputText
         name="Heure de reconstitution :"
-        id={`Solvant[${id}].Heure_D_R`}
+        id={`Solvants[${id}].Heure_D_R`}
         formik={formik}
       />
       </BigBox>
@@ -199,7 +199,7 @@ const FormCoronavirus = (props) => {
       Age: "",
       Sexe: "",
       Date_A_E_I: "",
-      Vaccin: [
+      Vaccins: [
         {
           Type_D_V: "",
           Fabricant: "",
@@ -212,7 +212,7 @@ const FormCoronavirus = (props) => {
           Date_D_Peremption: "",
         },
       ],
-      Solvant: [
+      Solvants: [
         {
           Nom_D_Solvant: "",
           Fabricant: "",
