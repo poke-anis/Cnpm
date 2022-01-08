@@ -174,7 +174,7 @@ function App() {
   path="/MesDeclaration"
   element={<MesDeclarations  cookie={cookies} />}
 />
-<Route path="/Profile" element={<Notificateur />} />
+<Route path="/Profile" element={<Notificateur Espace={Espace}/>} />
 </>
 :null}
 

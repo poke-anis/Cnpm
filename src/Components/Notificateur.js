@@ -47,9 +47,9 @@ justify-content:space-between;
 width : 100%;
 
 `
-const Notificateur = () =>{
+const Notificateur = (props) =>{
   const [cookies, setCookie, removeCookie] = useCookies('token_key');
-
+const {Espace} = props
   const [infos, setInfos] = useState()
   const id = cookies['id']
   useEffect(() => {
@@ -102,6 +102,8 @@ return(
       <Form.Control  readOnly defaultValue={infos.Email} />
     </Col>
   </Form.Group>
+  { Espace === "Professionnel"  ?
+    <> 
   <Form.Group as={Row}  controlId="Profession" style={{padding:'10px 5px'}}>
     <Form.Label column sm="2" lg="3">
       Profession
@@ -110,22 +112,25 @@ return(
       <Form.Control  readOnly defaultValue={infos.Profession} />
     </Col>
   </Form.Group>
+  
+
   <Form.Group as={Row}  controlId="Type d’exercice" style={{padding:'10px 5px'}}>
-    <Form.Label column sm="2" lg="3">
-    Type d’exercice 
-    </Form.Label>
-    <Col sm="9">
-      <Form.Control  readOnly defaultValue={infos.Type_Exercice} />
-    </Col>
-  </Form.Group>
-  <Form.Group as={Row}  controlId="Adresse Professionnelle" style={{padding:'10px 5px'}}>
-    <Form.Label column sm="2" lg="3">
-      Adresse Professionnelle
-    </Form.Label>
-    <Col sm="9">
-      <Form.Control  readOnly defaultValue={infos.Adresse_Professionnelle} />
-    </Col>
-  </Form.Group>
+  <Form.Label column sm="2" lg="3">
+  Type d’exercice 
+  </Form.Label>
+  <Col sm="9">
+    <Form.Control  readOnly defaultValue={infos.Type_Exercice} />
+  </Col>
+</Form.Group>
+<Form.Group as={Row}  controlId="Adresse Professionnelle" style={{padding:'10px 5px'}}>
+  <Form.Label column sm="2" lg="3">
+    Adresse Professionnelle
+  </Form.Label>
+  <Col sm="9">
+    <Form.Control  readOnly defaultValue={infos.Adresse_Professionnelle} />
+  </Col>
+</Form.Group></>:null}
+  
   </Form>
 :null}
 </User>
