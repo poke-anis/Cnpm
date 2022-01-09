@@ -229,7 +229,7 @@ const FormCoronavirus = (props) => {
       Evolution: "",
       Date_D_D: "",
       Autopsie_E: "",
-      Antecedent_M: "",
+      Type_A: "",
       Prise_C_M: "",
       Prise_C_M_M: "",
     },
@@ -453,9 +453,9 @@ const FormCoronavirus = (props) => {
           </Tab.Container>
         <FlexBox>
   <BigBox>
-  <label htmlFor="Manifestation_P_V_I">Manifestation(s) post-vaccinale(s) indésirable(s)</label>
+  <label htmlFor="Type_Manifestation_P_V_I">Manifestation(s) post-vaccinale(s) indésirable(s)</label>
 
-        <Auto8 id={``} formik={formik} values={formik.values.Manifestation_P_V_I}/>
+        <Auto8 id={``} formik={formik} values={formik.values.Type_Manifestation_P_V_I}/>
         <InputRadio
           name="Traitement reçu de la MPVI :"
           id="Traitement_R_MPVI"
@@ -492,9 +492,9 @@ const FormCoronavirus = (props) => {
           ]}
           formik={formik}
         />
-                  <label htmlFor="Antecedents_D_M">Antécédents du malade/Histoire de la maladie ou commentaires</label>
+                  <label htmlFor="Type_A">Antécédents du malade/Histoire de la maladie ou commentaires</label>
 
-         <Auto3 id={``} formik={formik} values={formik.values.Antecedents_D_M}/>
+         <Auto3 id={``} formik={formik} values={formik.values.Type_A}/>
         <InputRadio
           name="Prise concomitante de médicaments ou autre substance :"
           id="Prise_C_M"

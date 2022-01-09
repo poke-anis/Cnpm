@@ -15,7 +15,7 @@ width : 100%;
 `
 
 const Auto3 =(props)=>{
-    const Antecedents_D_M = [
+    const Type_A = [
         { label: "Neurologiques", value: "Neurologiques"},
         { label: "Digestifs", value: "Digestifs"},
         { label: "Cardio-vasculaires", value: "Cardio_vasculaires"},
@@ -116,8 +116,8 @@ const Auto3 =(props)=>{
         { label: "Hémorragie sous conjontivale", value: "Hémorragie sous conjontivale" },
       ];
       var {id,formik,onFileChange,values} = props
-      var idf = `${id}Antecedents_D_M`
-      var idf2 = `${id}TypeofAntecedents_D_M`
+      var idf = `${id}Type_A`
+      var idf2 = `${id}Description_A`
   const varreturn = (value) => {
   if (value === 'Neurologiques')
   {return Neurologiques}
@@ -144,8 +144,8 @@ const Auto3 =(props)=>{
         <Field
         isMulti={true}
              component={SelectField}
-             name={`Antecedents_D_M`}
-          options={Antecedents_D_M}
+             name={`Type_A`}
+          options={Type_A}
         />
         {values
           ? 

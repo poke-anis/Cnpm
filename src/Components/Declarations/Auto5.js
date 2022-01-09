@@ -14,7 +14,7 @@ width : 100%;
 `
 
 const Auto5 =(props)=>{
-    const Effets_I = [
+    const Type_E_I = [
         { label: "Systemiques", value: "Systemiques" },
         { label: "Neurologiques", value: "Neurologiques"},
         { label: "Digestifs", value: "Digestifs"},
@@ -115,8 +115,8 @@ const Auto5 =(props)=>{
         { label: "Hémorragie sous conjontivale", value: "Hémorragie sous conjontivale" },
       ];
       var {id,formik,onFileChange,values} = props
-      var idf = `${id}Effets_I`
-      var idf2 = `${id}TypeofEffets_I`
+      var idf = `${id}Type_E_I`
+      var idf2 = `${id}Description_E_I`
   const varreturn = (value) => {
   if (value === 'Systemiques')
   {return Systemiques}
@@ -143,8 +143,8 @@ const Auto5 =(props)=>{
         <Field
             isMulti={true}
              component={SelectField}
-             name={`Effets_I`}
-          options={Effets_I}
+             name={`Type_E_I`}
+          options={Type_E_I}
         />
         {values
           ? 

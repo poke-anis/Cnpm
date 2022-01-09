@@ -11,7 +11,7 @@ width : 100%;
 `
 
 const Auto1 =(props)=>{
-    const Description_D_L_R = [
+    const Type_D_L_R = [
         { label: "Au point d'injection", value: "Point_I" },
         { label: "Systemiques", value: "Systemiques" },
         { label: "Infectieux", value: "Infectieux"},
@@ -146,8 +146,8 @@ const Auto1 =(props)=>{
         { label: "Hémorragie sous conjontivale", value: "Hémorragie sous conjontivale" },
       ];
     var {id,formik,onFileChange,values} = props
-    var idf = `${id}Description_D_L_R`
-    var idf2 = `${id}TypeofDescription_D_L_R`
+    var idf = `${id}Type_D_L_R`
+    var idf2 = `${id}Description_D_L_R`
     console.log(values)
 const varreturn = (value) => {
 if (value === "Point_I") {
@@ -207,7 +207,7 @@ const namereturn = (value) => {
 
     return (
       <FlexBox>
-        <Field  isMulti={props.isMulti} component={SelectField}  name={idf} options={Description_D_L_R} />
+        <Field  isMulti={props.isMulti} component={SelectField}  name={idf} options={Type_D_L_R} />
         { values  && values !== undefined ?
         
         

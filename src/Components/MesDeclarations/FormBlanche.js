@@ -430,7 +430,7 @@ useEffect(() => {
           <BigBox>
 
             {/* Auto8 */}
-          {declaData.Manifestation_P_V_I.map((elem,index2)=>
+          {declaData.Type_Manifestation_P_V_I.map((elem,index2)=>
   <div key={elem}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
@@ -452,7 +452,7 @@ useEffect(() => {
                       <Form.Control
                         
                         readOnly
-                        defaultValue={declaData.TypeofManifestation_P_V_I[index2]}
+                        defaultValue={declaData.Description_Manifestation_P_V_I[index2]}
                       />
                     </Col>
                   </Form.Group>
@@ -559,7 +559,7 @@ useEffect(() => {
             </Col>
           </Form.Group>
           {/* Auto3 */}
-          {declaData.Antecedent_M.map((elem,index2)=>
+          {declaData.Type_A.map((elem,index2)=>
   <div key={elem}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
@@ -581,7 +581,7 @@ useEffect(() => {
                       <Form.Control
                         
                         readOnly
-                        defaultValue={declaData.TypeofAntecedent_M[index2]}
+                        defaultValue={declaData.Description_A[index2]}
                       />
                     </Col>
                   </Form.Group>

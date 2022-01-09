@@ -44,8 +44,8 @@ const Reaction = (props)=>{
       <FormikProvider value={formik}>
   <FlexBox>
     <BigBox>
-    <label htmlFor="Description_D_L_R">Description de la réaction</label>
-<Auto9 isMulti={false} id={`Reactions[${id}].`} formik={formik} values={formik.values.Reactions[`${id}`].Description_D_L_R}/>
+    <label htmlFor="Type_D_L_R">Description de la réaction</label>
+<Auto9 isMulti={false} id={`Reactions[${id}].`} formik={formik} values={formik.values.Reactions[`${id}`].Type_D_L_R}/>
   <InputFile
   name='Photo de la reaction (Si possible) :'
   id={`Photo_R_${id}`}
@@ -72,9 +72,9 @@ const Reaction = (props)=>{
   onFileChange={onFileChange}
 />
 
-<label htmlFor="Description_D_L_R">Voie d’administration</label>
+<label htmlFor="Type_Voie_A">Voie d’administration</label>
 
-  <Auto2 id={`Reaction[${id}].`} formik={formik} values={formik.values.Reactions[id].Voie_A}/>
+  <Auto2 id={`Reaction[${id}].`} formik={formik} values={formik.values.Reactions[id].Type_Voie_A}/>
 <InputText name="Dose/jour utilisée :" id={`Reactions[${id}].Posologie`} formik={formik} />
 <InputDate name="Date d’administration (Début):" id={`Reactions[${id}].Date_A_D`} formik={formik} />
 <InputDate name="Date d’administration (Fin):" id={`Reactions[${id}].Date_A_F`} formik={formik} />
@@ -104,11 +104,11 @@ const FormJaune = (props) => {
       Taille: "",
       Poids: "",
       Reactions: [{
-        Description_D_L_R: [],
+        Type_D_L_R: [],
         Date_S_R: "",
         Medciament_DCI: "",
         Numero_D_L: "",
-        Voie_A: "",
+        Type_Voie_A: "",
         Posologie: "",
         Date_A_D: "",
         Date_A_F: "",
@@ -121,7 +121,7 @@ const FormJaune = (props) => {
       Evolution_D: "",
       Conséquences_S_V_Q: "",
       Conséquences_S_V_Q_O: "",
-      Antecedent_M:"",
+      Type_A:"",
     },
 
     onSubmit: (values) => {
@@ -218,7 +218,7 @@ const FormJaune = (props) => {
                 <Button type="button"
                   onClick={() => {
                     formik.values.Reactions[Reactions.length] = {
-                      Description_D_L_R: "",
+                      Type_D_L_R: "",
                       Date_A: "",
                       Medciament_DCI: "",
                       Numero_D_L: "",
@@ -312,9 +312,9 @@ formik={formik}
 "Autre",]}
  formik={formik} /> 
  :null }
-     <label htmlFor="Antecedents_D_M">Antécédents du malade/Histoire de la maladie ou commentaires</label>
+     <label htmlFor="Type_A">Antécédents du malade/Histoire de la maladie ou commentaires</label>
 
-   <Auto3 id={``} formik={formik} values={formik.values.Antecedents_D_M}/>
+   <Auto3 id={``} formik={formik} values={formik.values.Type_A}/>
                </BigBox>
                </FlexBox>
                

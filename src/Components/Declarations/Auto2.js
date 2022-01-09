@@ -12,7 +12,7 @@ width : 100%;
 `
 
 const Auto2 =(props)=>{
-    const Voie_A = [
+    const Type_Voie_A = [
         { label: "Orale", value: "Orale" },
         { label: "Intraveineuse", value: "Intraveineuse" },
         { label: "Intramusculaire", value: "Intramusculaire"},
@@ -44,8 +44,8 @@ const Auto2 =(props)=>{
         { label: "Intradermique", value: "Intradermique" },
       ];
       var {id,formik,onFileChange,values} = props
-      var idf = `${id}Voie_A`
-      var idf2 = `${id}TypeofVoie_A`
+      var idf = `${id}Type_Voie_A`
+      var idf2 = `${id}Description_Voie_A`
   const varreturn = (value) => {
   if (value === 'Orale') {
       return Orale
@@ -62,7 +62,7 @@ const Auto2 =(props)=>{
         isMulti={false}
              component={SelectField}
              name={idf}
-          options={Voie_A}
+          options={Type_Voie_A}
         />
         {values
           ? 

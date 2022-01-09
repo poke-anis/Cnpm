@@ -424,8 +424,8 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
           ))}
                     <FlexBox>
           <BigBox>
-            {/* Auto */}
-          {declaData.Manifestation_P_V_I.map((elem,index2)=>
+            {/* Auto8 */}
+          {declaData.Type_Manifestation_P_V_I.map((elem,index2)=>
   <div key={elem}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
@@ -447,7 +447,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
                       <Form.Control
                         
                         readOnly
-                        defaultValue={declaData.TypeofManifestation_P_V_I[index2]}
+                        defaultValue={declaData.Description_Manifestation_P_V_I[index2]}
                       />
                     </Col>
                   </Form.Group>
@@ -553,8 +553,8 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
-          ///Auto3
-          {declaData.Antecedent_M.map((elem,index2)=>
+          {/* ///Auto3 */}
+          {declaData.Type_A.map((elem,index2)=>
   <div key={elem}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
@@ -576,7 +576,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
                       <Form.Control
                         
                         readOnly
-                        defaultValue={declaData.TypeofAntecedent_M[index2]}
+                        defaultValue={declaData.Description_A[index2]}
                       />
                     </Col>
                   </Form.Group>

@@ -67,7 +67,7 @@ const FormPink = (props) => {
       Traitement: '',
       Evolution: '',
       Sequelles: '',
-      Antecedant_M_H: '',
+      Type_A: '',
 
 
 
@@ -224,9 +224,9 @@ checkContent={["Localisé","A distance de a zone d'application"]}
 formik={formik}
  />
 <InputText name="Description des zones concernées" id="Description_Z_C" formik={formik} />
-<label htmlFor="Effets_I">Description de l'effet indésirable :</label>
+<label htmlFor="Type_E_I">Description de l'effet indésirable :</label>
 
-<Auto5 id={``} formik={formik} values={formik.values.Effets_I}/>
+<Auto5 id={``} formik={formik} values={formik.values.Type_E_I}/>
 </BigBox>
 <BigBox>
 <InputFile
@@ -249,8 +249,8 @@ formik={formik}
  />
  {        formik.values.Sequelles === "Oui"?            
         <InputText name="Types de séquelle" id="Type_D_S" formik={formik} />:null}
-        <label htmlFor="Antecedents_D_M">Antécédents du malade/Histoire de la maladie ou commentaires :</label>
-<Auto3 id={``} formik={formik} values={formik.values.Antecedents_D_M}/>
+        <label htmlFor="Type_A">Antécédents du malade/Histoire de la maladie ou commentaires :</label>
+<Auto3 id={``} formik={formik} values={formik.values.Type_A}/>
 
 
     </BigBox>

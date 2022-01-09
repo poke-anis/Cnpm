@@ -12,7 +12,7 @@ width : 100%;
 `
 
 const Auto9 =(props)=>{
-    const Description_D_L_R = [
+    const Type_D_L_R = [
         { label: "Au point d'injection", value: "Point_I" },
         { label: "Signes généraux", value: "Signes_généraux" },
         { label: "Infection", value: "Infection"},
@@ -146,8 +146,8 @@ const Auto9 =(props)=>{
         { label: "Hémorragie sous conjontivale", value: "Hémorragie sous conjontivale" },
       ];
       var {id,formik,onFileChange,values} = props
-      var idf = `${id}Description_D_L_R`
-      var idf2 = `${id}TypeofDescription_D_L_R`
+      var idf = `${id}Type_D_L_R`
+      var idf2 = `${id}Description_D_L_R`
   const varreturn = (value) => {
   if (value === 'Point_I') {
       return Point_I
@@ -208,7 +208,7 @@ const Auto9 =(props)=>{
         isMulti={true}
              component={SelectField}
              name={idf}
-          options={Description_D_L_R}
+          options={Type_D_L_R}
         />
                 {values
           ? 
@@ -226,7 +226,7 @@ const Auto9 =(props)=>{
               );
             }):
 
-/* formik.values.Description_D_L_R.filter(word.value === 'Point_I')?
+/* formik.values.Type_D_L_R.filter(word.value === 'Point_I')?
 <label htmlFor="Point_I">Au point d'injection
         <Field
              component={SelectField}

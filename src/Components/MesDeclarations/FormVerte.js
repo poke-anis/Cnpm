@@ -308,7 +308,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
           <BigBox>
 
 {/* ///Auto1 */}
-          {declaData.Description_D_L_R.map((elem,index2)=>
+          {declaData.Type_D_L_R.map((elem,index2)=>
   <div key={elem}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
@@ -330,7 +330,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
                       <Form.Control
                         
                         readOnly
-                        defaultValue={declaData.TypeofDescription_D_L_R[index2]}
+                        defaultValue={declaData.Description_D_L_R[index2]}
                       />
                     </Col>
                   </Form.Group>
@@ -355,8 +355,8 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               )}
 
 
-{/* ///Auto */}
-          {declaData.Antecedents_D_M.map((elem,index2)=>
+{/* Auto3 */}
+          {declaData.Type_A.map((elem,index2)=>
   <div key={elem}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
@@ -378,7 +378,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
                       <Form.Control
                         
                         readOnly
-                        defaultValue={declaData.TypeofAntecedents_D_M[index2]}
+                        defaultValue={declaData.Description_A[index2]}
                       />
                     </Col>
                   </Form.Group>
@@ -478,6 +478,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
+          {/* //auto6 */}
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Evolution

@@ -27,6 +27,7 @@ const Butt = styled(Button)`
 
 const Formulaire = (props) => {
   const { Espace,userID } = props;
+  console.log(Espace)
   const [tab, setTab] = useState(Espace === "Professionnel" ?"Jaune":"Rose");
   return (
     <Container>
@@ -240,7 +241,7 @@ const Formulaire = (props) => {
                 </span>
               </Nav.Link>
             </Nav.Item> 
-            </Nav>:Espace === "Grand Public"? 
+            </Nav>:Espace === "GrandPublic"? 
             
             <Nav variant="pills" className="flex-column">
 <Nav.Item style={{ width: "100%", height: "100%" }}>

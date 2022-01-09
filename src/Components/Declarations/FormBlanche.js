@@ -232,14 +232,14 @@ const FormBlanche = (props) => {
         },
       ],
 
-      Manifestation_P_V_I: "",
+      Type_Manifestation_P_V_I: "",
       Traitement_R_MPVI: "",
       Hospitalisation: "",
       Motif_H: "",
       Evolution: "",
       Date_D_D: "",
       Autopsie_E: "",
-      Antecedent_M: "",
+      Antecedents_D_M: "",
       Prise_C_M: "",
     },
 
@@ -449,12 +449,12 @@ const FormBlanche = (props) => {
           </Tab.Container>
         <FlexBox>
           <BigBox>
-          <label htmlFor="Manifestation_P_V_I">Manifestation(s) post-vaccinale(s) indésirable(s)</label>
+          <label htmlFor="Type_Manifestation_P_V_I">Manifestation(s) post-vaccinale(s) indésirable(s)</label>
 
             <Auto8
               id={``}
               formik={formik}
-              values={formik.values.Manifestation_P_V_I}
+              values={formik.values.Type_Manifestation_P_V_I}
             />
             <InputRadio
               name="Traitement reçu de la MPVI :"

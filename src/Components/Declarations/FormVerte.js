@@ -154,13 +154,13 @@ const FormVerte = (props) => {
         Raison_U_P_M: '',
       }],
       Description_E_I:'',
-      Antecedents_D_M:'',
+      Type_A:'',
       Date_A: '',
       Delai_A: '',
       Arret_D_L_P: '',
       Traitement_C: '',
       Lequel: '',
-      Evolution: '',
+      Type_Evolution: '',
       Date_D_D: '',
       Medicament: '',
       Lequel_M: '',
@@ -311,9 +311,9 @@ const FormVerte = (props) => {
         <BigBox>
 
         <label htmlFor="Description_E_I">Description de l’effet indésirable </label>
-        <Auto1 isMulti={false} id={``} formik={formik} values={formik.values.Description_D_L_R}/>
-        <label htmlFor="Antecedents_D_M">Antécédents et terrain du patient  </label>
-        <Auto3 id={``} formik={formik} values={formik.values.Antecedents_D_M}/>
+        <Auto1 isMulti={false} id={``} formik={formik} values={formik.values.Type_D_L_R}/>
+        <label htmlFor="Type_A">Antécédents et terrain du patient  </label>
+        <Auto3 id={``} formik={formik} values={formik.values.Type_A}/>
 
                   <InputFile
   name='Photo de leffet indesirable(Si possible) :'
@@ -355,9 +355,9 @@ formik={formik}
  />       
 {        formik.values.Gravite === "Décès"?            
         <InputDate name="Date de décès :" id="Date_D_D" formik={formik} />:null}
-              <label htmlFor="Evolution">Evolution</label>
+              <label htmlFor="Type_Evolution">Evolution</label>
 
-                <Auto6 id={``} formik={formik} values={formik.values.Evolution}/>
+                <Auto6 id={``} formik={formik} values={formik.values.Type_Evolution}/>
                 </BigBox>
                 </FlexBox>
 

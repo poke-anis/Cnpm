@@ -48,14 +48,14 @@ const Produit = (props)=>{
       <FormikProvider value={formik}>
                 <FlexBox>
           <BigBox>
-        <InputText name="Nom commercial complet :" id={`Produits${id}.Nom_C_C`} formik={formik} />
+        <InputText name="Nom commercial complet :" id={`Produits[${id}].Nom_C_C`} formik={formik} />
         <InputFile
   name='Photo du produit (Si possible) :'
   id={`Photo_P_${id}`}
   onFileChange={onFileChange}
 />
-        <InputText name="Fabricant :" id={`Produits${id}.Fabricant`} formik={formik} />
-        <InputText name="N° de lot :" id={`Produits${id}.Numero_D_L`} formik={formik} />
+        <InputText name="Fabricant :" id={`Produits[${id}].Fabricant`} formik={formik} />
+        <InputText name="N° de lot :" id={`Produits[${id}].Numero_D_L`} formik={formik} />
 
         <InputFile
   name='Photo du Lot (Si possible) :'
@@ -66,19 +66,19 @@ const Produit = (props)=>{
 <BigBox>
         <InputDate
           name="Date de fabrication :"
-          id={`Produits${id}.Date_D_F`}
+          id={`Produits[${id}].Date_D_F`}
           formik={formik}
         />
         <InputDate
           name="Date de péremption :"
-          id={`Produits${id}.Date_D_P`}
+          id={`Produits[${id}].Date_D_P`}
           formik={formik}
         />
-        <InputText name="Motif de la consommation :" id={`Produits${id}.Motif_D_C`} formik={formik} />
-        <InputText name="Dose consommée :" id={`Produits${id}.Dose_C`} formik={formik} />
+        <InputText name="Motif de la consommation :" id={`Produits[${id}].Motif_D_C`} formik={formik} />
+        <InputText name="Dose consommée :" id={`Produits[${id}].Dose_C`} formik={formik} />
         <InputRadio
               name="Lieu d'achat :"
-              id={`Produits${id}.Lieu_A`}
+              id={`Produits[${id}].Lieu_A`}
               radioContent={["Pharmacie", "Herboriste","Supermarché","Autre"]}
               formik={formik}
             />
@@ -122,13 +122,13 @@ const FormOrange = (props) => {
     },
     Description_D_L_R:'',
     Photo_E_I:'',
-    Antecedents_D_M:'',
+    Type_A:'',
       Date_A: '',
       Delai_D_S: '',
       Arret_D_C_A: '',
       Traitement_C: '',
       Lequel: '',
-      Evolution: '',
+      Type_Evolution: '',
       Date_D_D: '',
       Medicament: '',
       Lequel_M: '',
@@ -272,14 +272,14 @@ const FormOrange = (props) => {
         <BigBox>
  
         <label htmlFor="Effets_I">Description de l'effet indésirable :</label>
-        <Auto1 isMulti={false} id={``} formik={formik} values={formik.values.Description_D_L_R}/>
+        <Auto1 isMulti={false} id={``} formik={formik} values={formik.values.Type_D_L_R}/>
         <InputFile
   name="Photo de l'effet indesirable(Si possible) :"
   id={`Photo_E_I`}
   onFileChange={onFileChange}
 />
         <label htmlFor="Effets_I">Antécédents et terrain du patient  :</label>
-        <Auto3 id={``} formik={formik} values={formik.values.Antecedents_D_M}/>
+        <Auto3 id={``} formik={formik} values={formik.values.Type_A}/>
 
 </BigBox>
 <BigBox>
@@ -317,9 +317,9 @@ formik={formik}
  />       
 {        formik.values.Gravite === "Décès"?            
         <InputDate name="Date de décès :" id="Date_D_D" formik={formik} />:null}
-                              <label htmlFor="Evolution">Evolution</label>
+                              <label htmlFor="Type_Evolution">Evolution</label>
 
-                <Auto6 id={``} formik={formik} values={formik.values.Evolution}/>
+                <Auto6 id={``} formik={formik} values={formik.values.Type_Evolution}/>
                 </BigBox>
                 </FlexBox>
 

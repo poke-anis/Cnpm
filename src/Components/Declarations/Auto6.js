@@ -14,7 +14,7 @@ width : 100%;
 `
 
 const Auto6 =(props)=>{
-    const Evolution = [
+    const Type_Evolution = [
         { label: "Guérison", value: "Guérison" },
         { label: "Sujet non encore rétabli", value: "Sujet non encore rétabli" },
         { label: "Décès", value: "Décès"},
@@ -32,8 +32,8 @@ const Auto6 =(props)=>{
 
       ];
       var {id,formik,onFileChange,values} = props
-      var idf = `${id}Evolution`
-      var idf2 = `${id}TypeofEvolution`
+      var idf = `${id}Type_Evolution`
+      var idf2 = `${id}Description_Evolution`
   const varreturn = (value) => {
   if (value === 'Guérison')
   {return Guérison}
@@ -45,8 +45,8 @@ const Auto6 =(props)=>{
 <FlexBox>
         <Field
              component={SelectField}
-             name={`Evolution`}
-          options={Evolution}
+             name={`Type_Evolution`}
+          options={Type_Evolution}
         />
         {values
           ? 

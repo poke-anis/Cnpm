@@ -14,7 +14,7 @@ width : 100%;
 `
 
 const Auto8 =(props)=>{
-    const Manifestation_P_V_I = [
+    const Type_Manifestation_P_V_I = [
         { label: "Au point d'injection", value: "Point_I" },
         { label: "Systemiques", value: "Systemiques" },
         { label: "Infectieux", value: "Infectieux"},
@@ -147,8 +147,8 @@ const Auto8 =(props)=>{
         { label: "Hémorragie sous conjontivale", value: "Hémorragie sous conjontivale" },
       ];
       var {id,formik,onFileChange,values} = props
-      var idf = `${id}Manifestation_P_V_I`
-      var idf2 = `${id}TypeofManifestation_P_V_I`
+      var idf = `${id}Type_Manifestation_P_V_I`
+      var idf2 = `${id}Description_Manifestation_P_V_I`
   const varreturn = (value) => {
   if (value === 'Point_I') {
       return Point_I
@@ -209,8 +209,8 @@ const Auto8 =(props)=>{
         <Field
         isMulti={true}
              component={SelectField}
-             name={`Manifestation_P_V_I`}
-          options={Manifestation_P_V_I}
+             name={`Type_Manifestation_P_V_I`}
+          options={Type_Manifestation_P_V_I}
         />
                 {values
           ? 

@@ -45,7 +45,7 @@ const Reaction = (props)=>{
   <FlexBox>
     <BigBox>
     <label htmlFor="Description_D_L_R">Description de la réaction</label>
-<Auto1 isMulti={true} id={`Reactions[${id}].`} formik={formik} values={formik.values.Reactions[`${id}`].Description_D_L_R}/>
+<Auto1 isMulti={true} id={`Reactions[${id}].`} formik={formik} values={formik.values.Reactions[`${id}`].Type_D_L_R}/>
   <InputFile
   name='Photo de la reaction (Si possible) :'
   id={`Photo_R_${id}`}
@@ -74,7 +74,7 @@ const Reaction = (props)=>{
 
 <label htmlFor="Description_D_L_R">Voie d’administration</label>
 
-  <Auto2 id={`Reactions[${id}].`} formik={formik} values={formik.values.Reactions[id].Voie_A}/>
+  <Auto2 id={`Reactions[${id}].`} formik={formik} values={formik.values.Reactions[id].Type_Voie_A}/>
 <InputText name="Posologie :" id={`Reactions[${id}].Posologie`} formik={formik} />
 <InputDate name="Date d’administration (Début):" id={`Reactions[${id}].Date_A_D`} formik={formik} />
 <InputDate name="Date d’administration (Fin):" id={`Reactions[${id}].Date_A_F`} formik={formik} />
@@ -104,11 +104,11 @@ const FormJaune = (props) => {
       Taille: "",
       Poids: "",
       Reactions: [{
-        Description_D_L_R: [],
+        Type_D_L_R: [],
         Date_A: "",
         Medciament_DCI: "",
         Numero_D_L: "",
-        Voie_A: [],
+        Type_Voie_A: [],
         Posologie: "",
         Date_A_D: "",
         Date_A_F: "",
@@ -118,7 +118,7 @@ const FormJaune = (props) => {
       Descriptif_D_T: "",
       Evolution: "",
       Sequelles: "",
-      Antecedent_M:[],
+      Type_A:[],
       Facteurs_R_A: "",
     },
 
@@ -216,11 +216,11 @@ console.log(values)
                 <Button type="button"
                   onClick={() => {
                     formik.values.Reaction[Reactions.length] = {
-                      Description_D_L_R: "",
+                      Type_D_L_R: "",
                       Date_A: "",
                       Medciament_DCI: "",
                       Numero_D_L: "",
-                      Voie_A: "",
+                      Type_Voie_A: "",
                       Posologie: "",
                       Date_A_D: "",
                       Date_A_F: "",
@@ -290,9 +290,9 @@ id="Sequelles"
 radioContent={["Oui","Non"]} 
 formik={formik}
  />
-     <label htmlFor="Antecedents_D_M">Antécédents du malade/Histoire de la maladie ou commentaires</label>
+     <label htmlFor="Type_A">Antécédents du malade/Histoire de la maladie ou commentaires</label>
 
-   <Auto3 id={``} formik={formik} values={formik.values.Antecedents_D_M}/>
+   <Auto3 id={``} formik={formik} values={formik.values.Type_A}/>
 <InputSelect name="Les facteurs de risques associés :" 
 id="Facteurs_R_A"
 options={["Insuffisance rénale","Exposition antérieure au médicament suspecté",

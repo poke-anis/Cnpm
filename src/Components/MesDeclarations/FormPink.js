@@ -377,8 +377,8 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
             </Col>
           </Form.Group>
 
-          {/* ///Auto */}
-          {declaData.Effets_I.map((elem,index2)=>
+          {/* ///Auto5 */}
+          {declaData.Type_E_I.map((elem,index2)=>
   <div key={elem}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
@@ -400,7 +400,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
                       <Form.Control
                         
                         readOnly
-                        defaultValue={declaData.TypeofEffets_I[index2]}
+                        defaultValue={declaData.Description_E_I[index2]}
                       />
                     </Col>
                   </Form.Group>
@@ -464,6 +464,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
+          {/* Auto3 */}
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Antécédents du malade/Histoire de la maladie ou commentaires

@@ -47,7 +47,7 @@ const mailContent=" Votre formulaire est en cours de traitement par la Cnpm"
 const Filtre = (props,isMulti) =>{
   const [print,setPrint] = useState(false)
   
-    const {setClicked,decla,setChangement,changement,selectedValue} = props
+    const {setClicked,decla,setChangement,changement,selectedValue,selectedValueEtat} = props
 
     const typeOfFiches = (props) => {
       if (props === undefined) {
@@ -169,10 +169,16 @@ setPrint({[props]:key})
   
     handlePrint()},300) 
   } 
-      return(
-       <div  style={{width:'65%',display:'flex',flexDirection:'column',paddingLeft:"20px"}}>
-         
-{/*         <CreatableSelect
+      return (
+        <div
+          style={{
+            width: "65%",
+            display: "flex",
+            
+            paddingLeft: "20px",
+          }}
+        >
+          {/*         <CreatableSelect
          options={DeclaTypes} 
       name="Search"
       onChange={(val) =>
@@ -181,59 +187,150 @@ setPrint({[props]:key})
       isMulti
       isClearable
     /> */}
-       <Col md={10} className="g-0" >
-    {decla.length !== 0  ? decla.filter((singledecla)=> selectedValue == "" ?singledecla:
-    selectedValue.some((val)=>val.includes(singledecla.typeOfFiches))? singledecla :
-      null).map((val,key)=>{
-        
-          var date =new Date(val.DateAdded)
-  return(
-     
-       <Card key={key} style={{marginBottom: '20px',marginTop: '20px',width:'100%',height:"22%"}}>
-        <Card.Header style={{width:'100%',display:'flex'}}>{date.toLocaleString()}<Badge pill bg={ThemeColor(val.typeOfFiches)} style={{marginLeft:'auto',color: 'black',lineHeight: '2'}}> {typeOfFiches(val.typeOfFiches)}</Badge></Card.Header>
-        <Card.Body style={{display:"flex",flexWrap:"wrap",justifyContent:'space-between',alignItems:"flex-start"}}>
-          <Card.Title >{val.Cases.Nom} {val.Cases.Prenom}</Card.Title>
+          <Col md={10} className="g-0">
+            {decla.length !== 0
+              ? decla
+                  .filter((singledecla) =>
+                    selectedValue == ""
+                      ? singledecla
+                      : selectedValue.some((val) =>
+                          val.includes(singledecla.typeOfFiches)
+                        )
+                      ? singledecla
+                      : null
+                  ).filter((singledecla) =>
+                  selectedValueEtat == ""
+                    ? singledecla
+                    : selectedValueEtat.some((val) =>
+                        val.includes(singledecla.status_Type||singledecla.status)
+                      )
+                    ? singledecla
+                    : null
+                )
+                  .map((val, key) => {
+                    var date = new Date(val.DateAdded);
+                    return (
+                      <Card
+                        key={key}
+                        style={{
+                          marginBottom: "20px",
+                          marginTop: "20px",
+                          width: "100%",
+                          height: "15%",
+                        }}
+                      >
+                        <Card.Header style={{ width: "100%", display: "flex" }}>
+                          {date.toLocaleString()}
+                          <Badge
+                            pill
+                            bg={ThemeColor(val.typeOfFiches)}
+                            style={{
+                              marginLeft: "auto",
+                              color: "black",
+                              lineHeight: "2",
+                            }}
+                          >
+                            {" "}
+                            {typeOfFiches(val.typeOfFiches)}
+                          </Badge>
+                        </Card.Header>
+                        <Card.Body
+                          style={{
+                            display: "flex",
+                            flexWrap: "wrap",
+                            justifyContent: "space-between",
+                            alignItems: "flex-start",
+                          }}
+                        >
+                          <Card.Title>
+                            {val.Cases.Nom} {val.Cases.Prenom}
+                          </Card.Title>
 
-{/*           <ReactToPrint
+                          {/*           <ReactToPrint
         trigger={() => <Button>Print this out!</Button>}
         content={() => componentRef.current}
       /> */}
-<div style={{display:"flex",flexDirection:'column'}}>
-  <div style={{display:"flex"}}>
-<Switch onChange={()=>changestatus(val._id,!val.status,null,val.creator.Email,val.creator.Username)} checked={val.status} />
-<p>Vu</p>
-</div>
-      {val.status === true?<select style={{marginTop:"5px"}} onChange={(el)=>changestatus(val._id,val.status,el.target.value)} value={val.status_Type} id={"Statut"}>
-          {["En cours","Traité"].map((content, key) => {
-            return (
-              <option name={`${content}`} value={`${content}`} key={key}>
-                {`${content}`}
-              </option>
-            );
-          })}
-        </select> :null}</div>
-      
-       
-
-        </Card.Body>
-        <Card.Footer style={{display:"flex",flexWrap:"wrap",justifyContent:'space-between',alignItems:"flex-start"}}>
-        <Button variant="secondary" style={{height:"40px"}} onClick={(e)=>{handleClick(e,val.typeOfFiches,key)}}>Afficher</Button>
-          <Button onClick={(e)=>{HandlePrint(e,val.typeOfFiches,key)}}><FaPrint/></Button> 
-        </Card.Footer>
-      </Card> 
-    
-      )
-    }) :null}
-    {print?
-          <div style={{ display: "none" }}>
-          {CompRender(print)}
-         
-      </div>:null}
-
-</Col>
-</div>
-  
-    )
+                          <div
+                            style={{ display: "flex", flexDirection: "column" }}
+                          >
+                            <div style={{ display: "flex" }}>
+                              <Switch
+                                onChange={() =>
+                                  changestatus(
+                                    val._id,
+                                    !val.status,
+                                    null,
+                                    val.creator.Email,
+                                    val.creator.Username
+                                  )
+                                }
+                                checked={val.status}
+                              />
+                              <p>Vu</p>
+                            </div>
+                            {val.status === true ? (
+                              <select
+                                style={{ marginTop: "5px" }}
+                                onChange={(el) =>
+                                  changestatus(
+                                    val._id,
+                                    val.status,
+                                    el.target.value
+                                  )
+                                }
+                                value={val.status_Type}
+                                id={"Statut"}
+                              >
+                                {["En cours", "Traité"].map((content, key) => {
+                                  return (
+                                    <option
+                                      name={`${content}`}
+                                      value={`${content}`}
+                                      key={key}
+                                    >
+                                      {`${content}`}
+                                    </option>
+                                  );
+                                })}
+                              </select>
+                            ) : null}
+                          </div>
+                        </Card.Body>
+                        <Card.Footer
+                          style={{
+                             display: "flex",
+                            flexWrap: "wrap",
+                            justifyContent: "space-between",
+                            alignItems: "flex-start", 
+                          }}
+                        >
+                          <Button
+                            variant="secondary"
+                            style={{ height: "40px" }}
+                            onClick={(e) => {
+                              handleClick(e, val.typeOfFiches, key);
+                            }}
+                          >
+                            Afficher
+                          </Button>
+                          <Button
+                            onClick={(e) => {
+                              HandlePrint(e, val.typeOfFiches, key);
+                            }}
+                          >
+                            <FaPrint />
+                          </Button>
+                        </Card.Footer>
+                      </Card>
+                    );
+                  })
+              : null}
+            {print ? (
+              <div style={{ display: "none" }}>{CompRender(print)}</div>
+            ) : null}
+          </Col>
+        </div>
+      );
 }
 
 

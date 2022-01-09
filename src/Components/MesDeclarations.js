@@ -19,9 +19,8 @@ import CreatableSelect  from 'react-select/creatable';
 const Content = styled.div`
 display:flex;
 justify-content:center;
-padding: 50px;
 width: 100%;
-height: 100%;
+height: 100vmax;
 `
 
 
@@ -236,6 +235,14 @@ return(
 
 const MesDeclarations =(props,isMulti)=>{
   const [selectedValue, setSelectedValue] = useState("");
+  const [selectedValueEtat ,setSelectedValueEtat] = useState("")
+  const Etat =[
+    { label: "Non Vu", value: 'false' },
+    { label: "Vu", value: 'true' },
+    { label: "Traité", value: "Traité" },
+    { label: "En cours", value: "En cours" },
+
+  ]
 
   const DeclaTypes = [
     { label: "Fiche de Pharmacovigilance", value: "Jaune" },
@@ -325,22 +332,39 @@ const MesDeclarations =(props,isMulti)=>{
 useEffect(() => {
   getDeclacount()
 
-
 }, [changement])
 const onChange = (value) => {
   setSelectedValue(value)
 };
+const onChangeEtat = (value) => {
+  setSelectedValueEtat(value)
+  console.log(selectedValueEtat)
+};
+
     return(   
-        <div style={{width:'100%',display:"flex",flexWrap:"wrap",alignItems:"center"}}>
+        <div style={{width:'100%',height:"100%",display:"flex",flexWrap:"wrap"}}>
                   
                   {
   clicked === false ?
-  <div style={{height:"100%",width:"25%",marginTop:"50px"}} >
+  <div style={{height:"100%",width:"20%",paddingTop:"30px",backgroundColor: "#272727"}} >
+    <div style={{color:"white"}}>Filtre:</div>
+    <div style={{color:"white"}}>Par Type:</div>
   <CreatableSelect
   options={DeclaTypes} 
-name="Search"
+name="TYPEDEDECLA"
 onChange={(val) =>
  isMulti ? onChange(val.map((c) => c.value)) : onChange(val.value)
+}
+isMulti
+isClearable
+
+/>
+<div style={{color:"white"}}>Par Etat:</div>
+<CreatableSelect
+  options={Etat} 
+name="ETAT"
+onChange={(val) =>
+ isMulti ? onChangeEtat(val.map((c) => c.value)) : onChangeEtat(val.value)
 }
 isMulti
 isClearable
@@ -353,7 +377,7 @@ isClearable
   clicked === false ?null:<Button onClick={()=>{setClicked(false)}} style={{position: "fixed",top: "350px",right: "20px"}}>Retour</Button>
   }
 {
-  clicked === false ?<Filtre setClicked={setClicked} decla={decla} changement={changement} setChangement={setChangement} selectedValue={selectedValue}/>:CompRender(clicked)
+  clicked === false ?<Filtre setClicked={setClicked} decla={decla} changement={changement} setChangement={setChangement} selectedValue={selectedValue} selectedValueEtat={selectedValueEtat}/>:CompRender(clicked)
   } 
 
 

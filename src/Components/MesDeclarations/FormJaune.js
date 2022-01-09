@@ -167,7 +167,7 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
             <BigBox> 
   <h1 style={{width:"100%",textAlign:"center"}}>Reaction {index+1}</h1>
   {/* // Auto1 */}
-  {el.Description_D_L_R.map((elem,index2)=>
+  {el.Type_D_L_R.map((elem,index2)=>
   <div key={elem}>
             <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
@@ -189,7 +189,7 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                       <Form.Control
                         
                         readOnly
-                        defaultValue={el.TypeofDescription_D_L_R[index2]}
+                        defaultValue={el.Description_D_L_R[index2]}
                       />
                     </Col>
                   </Form.Group>
@@ -285,8 +285,8 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
               )}
                         </BigBox>
           <BigBox> 
-
-{el.Voie_A.map((elem,index2)=>
+{/* //auto2 */}
+{el.Type_Voie_A.map((elem,index2)=>
   <div key={index2}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
@@ -308,7 +308,7 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                       <Form.Control
                         
                         readOnly
-                        defaultValue={el.TypeofVoie_A[index2]}
+                        defaultValue={el.Description_Voie_A[index2]}
                       />
                     </Col>
                   </Form.Group>
@@ -450,7 +450,7 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
           </Form.Group>
 
 {/* Auto3 */}
-          {declaData.Antecedents_D_M.map((elem,index2)=>
+          {declaData.Type_A.map((elem,index2)=>
   <div key={elem}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
@@ -473,7 +473,7 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                       <Form.Control
                         
                         readOnly
-                        defaultValue={declaData.TypeofAntecedents_D_M[index2]}
+                        defaultValue={declaData.Description_A[index2]}
                       />
                     </Col>
                   </Form.Group>
