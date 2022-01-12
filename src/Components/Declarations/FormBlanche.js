@@ -194,6 +194,7 @@ const Solvant = (props) => {
 };
 
 const FormBlanche = (props) => {
+  const [validated, setValidated] = useState(false);
   const {userID} = props
   var [files, setFiles] = useState([]);
   const [progress,setProgress] = useState(0)
@@ -245,6 +246,7 @@ const FormBlanche = (props) => {
 
     onSubmit: (values) => {
       const formData = new FormData();
+      setValidated(true);
 
       formData.append("body", JSON.stringify(values));
       formData.append("typeOfFiches", "Blanche");
@@ -285,7 +287,7 @@ const FormBlanche = (props) => {
   const [Solvants, setSolvants] = useState([1]);
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <Form  validated={validated} onSubmit={formik.handleSubmit}>
       <FormikProvider value={formik}>
         <Titre>Fiche de Vaccinovigilance</Titre>
 
@@ -506,7 +508,7 @@ const FormBlanche = (props) => {
         </FlexBox>
         <div style={{display:"flex"}}> <Button type="submit" variant="primary">Confirmer</Button><ProgressBar animated now={progress} style={{width:'50%',margin:'10px'}}/></div>
       </FormikProvider>
-    </form>
+    </Form>
   );
 };
 

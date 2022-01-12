@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useFormik, FormikProvider } from "formik";
 import { InputText, InputCheck, InputRadio,InputFile } from "./FormikInputs";
-import {Button,ProgressBar} from 'react-bootstrap'
+import {Button,ProgressBar,Form} from 'react-bootstrap'
 import styled from "styled-components";
 import axiosConfig from "../axios"
 import swal from "sweetalert";
+import { InputDate } from "../MesDeclarations/FormikInputs";
 const BigBox = styled.div`
 display: flex;
 flex-direction: column;
@@ -58,6 +59,7 @@ const FormParme = (props) => {
     onSubmit: (values) => {
 
       const formData = new FormData();
+      setValidated(true);
 
       formData.append(
        'body',
@@ -102,9 +104,10 @@ const FormParme = (props) => {
          setFiles([...files, { file_id: id, uploaded_file: {file} }]);
 
       }
+      const [validated, setValidated] = useState(false);
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <Form  validated={validated}  onSubmit={formik.handleSubmit}>
       <FormikProvider value={formik}>
       <Titre>Fiche de Réactovigilance</Titre>
       <Titre>
@@ -184,17 +187,17 @@ const FormParme = (props) => {
         onFileChange={onFileChange}
       /> 
 
-            <InputText
+            <InputDate
               name="Date de péremption :"
               id="Date_D_P"
               formik={formik}
             />
-            <InputText
+            <InputDate
               name="Date de mise en service :"
               id="Date_D_M_S"
               formik={formik}
             />
-            <InputText
+            <InputDate
               name="Nom, adresse du distributeur :"
               id="Nom_A_D"
               formik={formik}
@@ -250,7 +253,7 @@ const FormParme = (props) => {
           </FlexBox>
           <div style={{display:"flex"}}> <Button type="submit" variant="primary">Confirmer</Button><ProgressBar animated now={progress} style={{width:'50%',margin:'10px'}}/></div>
       </FormikProvider>
-    </form>
+    </Form>
   );
 };
 

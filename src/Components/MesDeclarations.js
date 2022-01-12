@@ -364,7 +364,7 @@ isClearable
   options={Etat} 
 name="ETAT"
 onChange={(val) =>
- isMulti ? onChangeEtat(val.map((c) => c.value)) : onChangeEtat(val.value)
+ true ? onChangeEtat(val.map((c) => c.value)) : onChangeEtat(val.value)
 }
 isMulti
 isClearable

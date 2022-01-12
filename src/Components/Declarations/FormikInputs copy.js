@@ -16,11 +16,11 @@ const InputText =(props) =>{
     const {name,formik,id} = props
     return (
         <Box>
+<Form.Group  md="4" controlId="validationCustom01">
 
-
-    <label>{name}</label>
-    <Form.Control name={id} as={Field} type="text" placeholder={name} onChange={formik.handleChange}/>
-
+    <Form.Label>{name}</Form.Label>
+    <Form.Control  required name={id} as={Field} type="text" placeholder={name} onChange={formik.handleChange}/>
+    </Form.Group>
 
         </Box>
         )

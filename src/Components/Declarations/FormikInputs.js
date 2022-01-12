@@ -17,11 +17,11 @@ const InputText =(props) =>{
     return (
         <Box>
 
+<Form.Group  md="4" controlId="validationCustom01">
+<Form.Label>{name}</Form.Label>
+    <Form.Control required name={id} as={FastField} type="text"  onChange={formik.handleChange}/>
 
-    <label>{name}</label>
-    <Form.Control name={id} as={FastField} type="text"  onChange={formik.handleChange}/>
-
-
+    </Form.Group>
         </Box>
         )
 }

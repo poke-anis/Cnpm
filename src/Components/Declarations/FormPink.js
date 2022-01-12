@@ -5,7 +5,7 @@ import axiosConfig from "../axios"
 import styled from 'styled-components'
 import Auto5 from './Auto5'
 import Auto3 from './Auto3'
-import {Button,ProgressBar} from 'react-bootstrap'
+import {Button,ProgressBar,Form} from 'react-bootstrap'
 import swal from "sweetalert";
 const BigBox = styled.div`
 display: flex;
@@ -75,6 +75,7 @@ const FormPink = (props) => {
 
 
     onSubmit: values => {
+      setValidated(true);
 
       const formData = new FormData();
      
@@ -126,9 +127,10 @@ const FormPink = (props) => {
   ;
 
 
+  const [validated, setValidated] = useState(false);
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <Form  validated={validated}  onSubmit={formik.handleSubmit}>
             <FormikProvider value={formik}>
             <Titre>Fiche de Cosmétovigilance</Titre>
       <Titre>Informations du patient</Titre>
@@ -261,7 +263,7 @@ formik={formik}
 
       </FormikProvider>
 
-    </form>
+    </Form>
 
   );
 

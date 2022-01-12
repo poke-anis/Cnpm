@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useFormik,FormikProvider } from 'formik';
 import { InputText,InputNumber,InputRadio,InputDate,InputSelect,InputFile } from './FormikInputs';
-import {Nav,Button,Tab,ProgressBar} from 'react-bootstrap'
+import {Nav,Button,Tab,ProgressBar,Form} from 'react-bootstrap'
 import styled from 'styled-components'
 import axiosConfig from "../axios"
 import Auto1 from './Auto1'
@@ -123,8 +123,8 @@ const FormJaune = (props) => {
     },
 
     onSubmit: (values) => {
-console.log(values)
       const formData = new FormData();
+      setValidated(true);
 
       formData.append(
        'body',
@@ -169,10 +169,10 @@ console.log(values)
          setFiles([...files, { file_id: id, uploaded_file: {file} }]);
 
       }
-     
+      const [validated, setValidated] = useState(false);
   const [Reactions,setReactions] = useState([1])
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <Form  validated={validated} onSubmit={formik.handleSubmit}>
             <FormikProvider value={formik}>
             <Titre>Fiche de Pharmacovigilance</Titre>
 
@@ -310,7 +310,7 @@ formik={formik}
 
       </FormikProvider>
 
-    </form>
+    </Form>
 
   );
 

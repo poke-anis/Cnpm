@@ -426,7 +426,7 @@ return(
   <thead>
     <tr>
       <th>#</th>
-      <th>Nom de l'Alerte</th>
+      <th>Nom de l'Actualité</th>
       <th>Description</th>
       <th>Image</th>
       <th>Createur</th>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useFormik,FormikProvider } from 'formik';
 import { InputText,InputRadio,InputDate,InputSelect,InputFile } from './FormikInputs';
-import {Button,ProgressBar} from 'react-bootstrap'
+import {Button,ProgressBar,Form} from 'react-bootstrap'
 import styled from 'styled-components'
 import axiosConfig from "../axios"
 import swal from "sweetalert";
@@ -63,6 +63,7 @@ var formik = useFormik({
     onSubmit: values => {
 
  const formData = new FormData();
+ setValidated(true);
 
  formData.append(
   'body',
@@ -107,10 +108,11 @@ var formik = useFormik({
     setFiles([...files, { file_id: id, uploaded_file: {file} }]);
 
  }
+ const [validated, setValidated] = useState(false);
 
   return (
 
-    <form onSubmit={formik.handleSubmit} >
+    <Form  validated={validated}  onSubmit={formik.handleSubmit} >
             <Titre>Fiche de Matériovigilance</Titre>
 
     <FormikProvider value={formik}>
@@ -191,7 +193,7 @@ var formik = useFormik({
         </BigBox>
         <div style={{display:"flex"}}> <Button type="submit" variant="primary">Confirmer</Button><ProgressBar animated now={progress} style={{width:'50%',margin:'10px'}}/></div>
         </FormikProvider>
-    </form>
+    </Form>
 
   );
 

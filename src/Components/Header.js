@@ -3,13 +3,10 @@ import styled from 'styled-components'
 import logo from '../Assets/logo.png'
 
 const Bar = styled.header`
-grid-column-start:1;
-grid-column-end:4;
-grid-row-start:1;
-grid-row-end:2;
+
 text-align: center;
 padding-top: 5px;
-height:100%;`
+`
 
 const  Titre = styled.div`
 display: flex;

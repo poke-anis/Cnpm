@@ -5,7 +5,7 @@ import { InputText,InputCheck,InputNumber,InputRadio,InputDate,InputFile } from 
 import styled from 'styled-components'
 import axiosConfig from "../axios"
 import swal from "sweetalert";
-import {Tab,Nav,Button,ProgressBar} from 'react-bootstrap'
+import {Tab,Nav,Button,ProgressBar,Form} from 'react-bootstrap'
 import Auto1 from './Auto1'
 import Auto3 from './Auto3'
 import Auto6 from './Auto6'
@@ -145,7 +145,8 @@ const FormOrange = (props) => {
     onSubmit: values => {
 
       const formData = new FormData();
-     
+      setValidated(true);
+
       formData.append(
        'body',
        JSON.stringify(values)
@@ -193,9 +194,10 @@ const FormOrange = (props) => {
      
   ;
 
+  const [validated, setValidated] = useState(false);
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <Form  validated={validated}  onSubmit={formik.handleSubmit}>
       <FormikProvider value={formik}>
       <Titre>Fiche Compléments alimentaires</Titre>
         <Titre>Informations du patient</Titre>
@@ -385,7 +387,7 @@ formik={formik}
 
           <div style={{display:"flex"}}> <Button type="submit" variant="primary">Confirmer</Button><ProgressBar animated now={progress} style={{width:'50%',margin:'10px'}}/></div>
       </FormikProvider>
-    </form>
+    </Form>
   );
 
 };
