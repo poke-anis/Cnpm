@@ -54,6 +54,7 @@ const Reaction = (props)=>{
 
 <InputDate name="Date d’apparition :" id={`Reactions[${id}].Date_A`} formik={formik} />
 <InputText name="Médicament(s) DCI (mettre le nom de marque) :" id={`Reactions[${id}].Medciament_DCI`} formik={formik} />
+<InputText name="Nom du laboratoire :" id={`Reactions[${id}].Nom_D_L`} formik={formik} />
 
     <InputFile
   name="Photo du Médicament (Si possible) :"
@@ -255,7 +256,16 @@ const FormJaune = (props) => {
 
 <Titre>Traitement de la réaction indésirable</Titre>
 <FlexBox>
-      <BigBox>
+<BigBox>
+
+<InputRadio name="Traitement de la réaction indésirable :" 
+                id="Traitement_O_N"             
+                radioContent={[
+              "Oui",
+              "Non"]}
+                formik={formik} /> 
+                {formik.values.Traitement_O_N === "Oui"?
+             <>     
 <InputRadio name="Nature du traitement:" 
                 id="Nature_D_T"             
                 radioContent={[
@@ -264,7 +274,8 @@ const FormJaune = (props) => {
                 formik={formik} /> 
 
 
-<Box>
+
+                <Box>
 <label htmlFor="Descriptif_D_T">Descriptif du traitement</label>
 <textarea rows="5" cols="10" 
   id="Descriptif_D_T"
@@ -273,6 +284,11 @@ const FormJaune = (props) => {
   onChange={formik.handleChange}
   value={formik.values.Descriptif_D_T}/>
 </Box>
+</>
+                :null}
+
+
+
 </BigBox>
 <BigBox>
 <InputRadio name="Evolution :" 
@@ -295,7 +311,7 @@ formik={formik}
    <Auto3 id={``} formik={formik} values={formik.values.Type_A}/>
 <InputSelect name="Les facteurs de risques associés :" 
 id="Facteurs_R_A"
-options={["Insuffisance rénale","Exposition antérieure au médicament suspecté",
+options={["","Insuffisance rénale","Exposition antérieure au médicament suspecté",
 "Allergies antérieures", "Atopie","Modalités d’utilisation","Insufficance hépatique"
 ,"Allergie alimentaire","Maladie auto-immune","Diabète","HTA","Insufficance cardiaque","Troubles endocréniens","Prise concomittante de médicaments","MICI","Hémopathies","Grossesse","Allaitement","Immunodepressions (VIH, Cancers, …)","Autre"]} 
 formik={formik}

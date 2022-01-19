@@ -85,19 +85,20 @@ const Vaccin = (props) => {
       <InputSelect
         name="Dose :"
         id={`Vaccins[${id}].Dose`}
-        options={["1ère", "2ème", "3ème", "4ème"]}
+        options={["","1ère", "2ème", "3ème", "4ème"]}
         formik={formik}
       />
       <InputSelect
         name="Voie :"
         id={`Vaccins[${id}].Voie`}
-        options={["ID", "SC", "IM", "Orale"]}
+        options={["","ID", "SC", "IM", "Orale"]}
         formik={formik}
       />
       <InputSelect
         name="Point d'injection :"
         id={`Vaccins[${id}].Point_I`}
         options={[
+          "",
           "Deltoide Gauche",
           "Deltoide Droit",
           "Avant bras Gauche",
@@ -140,7 +141,7 @@ const Solvant = (props) => {
       <InputSelect
         name="Solvant :"
         id={`Solvants[${id}].Solvant`}
-        options={["Du même vaccin", "Autre"]}
+        options={["","Du même vaccin", "Autre"]}
         formik={formik}
       />
                 <InputFile
@@ -299,8 +300,9 @@ const FormCoronavirus = (props) => {
               id="wilaya"
               type="select"
               onChange={formik.handleChange}
-              value={formik.values.wilaya}
+              value={formik.values.Wilaya}
             >
+              <option value=""></option>
               <option value="Adrar">Adrar</option>
               <option value="Chlef">Chlef</option>
               <option value="Laghouat">Laghouat</option>
@@ -386,7 +388,7 @@ const FormCoronavirus = (props) => {
               as={() => {
                 return (
                   <Button
-                  variant="danger"
+                  variant="primary"
                     onClick={() => {
                       setVaccins([...Vaccins, Vaccins.length + 1]);
                     }}
@@ -426,7 +428,7 @@ const FormCoronavirus = (props) => {
               as={() => {
                 return (
                   <Button
-                  variant="danger"
+                  variant="primary"
                     type="Button"
                     onClick={() => {
                       setSolvants([...Solvants, Solvants.length + 1]);
@@ -477,7 +479,7 @@ const FormCoronavirus = (props) => {
           <InputText name="Motif ?:" id="Motif_H" formik={formik} />
         ) : null}
         {formik.values.Hospitalisation === "Oui" ? (
-          <InputText name="indiquer l'hôpital :" id="Hopital" formik={formik} />
+          <InputText name="Indiquer l'hôpital :" id="Hopital" formik={formik} />
         ) : null}
                 </BigBox>
   <BigBox>

@@ -53,9 +53,11 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
         setProgress(percentCompleted);
       }})
     .then(res => {
-      setdeclaPic(res.data);
+      setdeclaPic(res.data[0].images);
+      console.log(res.data[0])
+
       })
-  
+
   }, [])
   return (
     <Form ref={ref}>
@@ -101,6 +103,8 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               <Form.Control  readOnly defaultValue={declaData.Age} />
             </Col>
           </Form.Group>
+          </BigBox>
+          <BigBox>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
               Sexe
@@ -109,8 +113,32 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               <Form.Control  readOnly defaultValue={declaData.Sexe} />
             </Col>
           </Form.Group>
-          </BigBox>
-          <BigBox>
+          {declaData.Sexe === "Feminin"?
+                      <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                      <Form.Label column sm="5">
+                        Enceinte
+                      </Form.Label>
+                      <Col sm="7">
+                        <Form.Control
+                          
+                          readOnly
+                          defaultValue={declaData.Enceinte}
+                        />
+                      </Col>
+                    </Form.Group>
+                    :declaData.Enceinte === "Oui"?       
+                       <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Label column sm="5">
+                      Dernière date des règles
+                    </Form.Label>
+                    <Col sm="7">
+                      <Form.Control
+                        
+                        readOnly
+                        defaultValue={declaData.Derniere_D_R}
+                      />
+                    </Col>
+                  </Form.Group>:null}
 
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
@@ -153,8 +181,11 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
                 <div>Loading...</div>
               ) : (
                 declaPic
-                  .filter((el, key) => el.fieldname === `Photo_L`)
+                  .filter((el, key) => 
+                  
+                  el.fieldname === `Photo_L`)
                   .map((el, key) => (
+
                     <Figure key={key}>
                       <Figure.Image
                         width={171}
@@ -163,6 +194,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
                         src={`data:${el.mimetype};base64,${el.buffer}`}
                       />
                     </Figure>
+                  
                   ))
               )}
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
@@ -177,7 +209,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
-          {declaPic = undefined ? (
+          {declaPic === undefined ? (
                 <div>Loading...</div>
               ) : (
                 declaPic
@@ -452,6 +484,19 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
+          {declaData.Evolution === "Décès"?
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+            <Form.Label column sm="5">
+            Date de décès
+            </Form.Label>
+            <Col sm="7">
+              <Form.Control
+                
+                readOnly
+                defaultValue={declaData.Date_D_D}
+              />
+            </Col>
+          </Form.Group>:null}
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
               Sequelles
@@ -464,6 +509,20 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
+          {declaData.Sequelles === "Oui"?
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+
+            <Form.Label column sm="5">
+            Types de séquelle
+            </Form.Label>
+            <Col sm="7">
+              <Form.Control
+                
+                readOnly
+                defaultValue={declaData.Type_D_S}
+              />
+            </Col>
+          </Form.Group>:null}
           {/* Auto3 */}
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
@@ -473,7 +532,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               <Form.Control
                 
                 readOnly
-                defaultValue={declaData.Antecedant_M_H}
+                defaultValue={declaData.Type_A}
               />
             </Col>
           </Form.Group>

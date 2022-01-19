@@ -111,30 +111,34 @@ useEffect(() => {
           </Form.Group>
           </BigBox>
           <BigBox>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-              Enceinte
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={declaData.Enceinte}
-              />
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-              Dernière date des règles
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={declaData.Derniere_D_R}
-              />
-            </Col>
-          </Form.Group>
+            {declaData.Sexe === "Feminin"?
+                      <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                      <Form.Label column sm="5">
+                        Enceinte
+                      </Form.Label>
+                      <Col sm="7">
+                        <Form.Control
+                          
+                          readOnly
+                          defaultValue={declaData.Enceinte}
+                        />
+                      </Col>
+                    </Form.Group>
+                    :declaData.Enceinte === "Oui"?       
+                       <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Label column sm="5">
+                      Dernière date des règles
+                    </Form.Label>
+                    <Col sm="7">
+                      <Form.Control
+                        
+                        readOnly
+                        defaultValue={declaData.Derniere_D_R}
+                      />
+                    </Col>
+                  </Form.Group>:null}
+
+
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
               Taille (cm)
@@ -198,7 +202,7 @@ useEffect(() => {
                 <Form.Control
                   
                   readOnly
-                  defaultValue={el.Fabricant}
+                  defaultValue={el.Fabricant_V}
                 />
               </Col>
             </Form.Group>
@@ -272,7 +276,7 @@ useEffect(() => {
                 <Form.Control
                   
                   readOnly
-                  defaultValue={el.Num_D_Lot}
+                  defaultValue={el.Numero_D_L_V}
                 />
               </Col>
             </Form.Group>
@@ -280,7 +284,7 @@ useEffect(() => {
                 <div>Loading...</div>
                : (
                 declaPic
-                  .filter((el, key) => el.fieldname === `Photo_L_D_V_${index}`)
+                  .filter((el, key) => el.fieldname === `Photo_L_V_${index}`)
                   .map((el, key) => 
                     <Figure>
                       <Figure.Image
@@ -300,7 +304,7 @@ useEffect(() => {
                 <Form.Control
                   
                   readOnly
-                  defaultValue={el.Date_D_Peremption}
+                  defaultValue={el.Date_D_P_V}
                 />
               </Col>
             </Form.Group>
@@ -324,7 +328,7 @@ useEffect(() => {
               <Form.Control
                 
                 readOnly
-                defaultValue={el.Nom_D_S}
+                defaultValue={el.Type_S}
               />
             </Col>
           </Form.Group>
@@ -332,7 +336,7 @@ useEffect(() => {
                 <div>Loading...</div>
               ) : (
                 declaPic
-                  .filter((el, key) => el.fieldname === `Photo_D_S_${index}`)
+                  .filter((el, key) => el.fieldname === `Photo_T_S_${index}`)
                   .map((el, key) => (
                     <Figure>
                       <Figure.Image
@@ -352,7 +356,7 @@ useEffect(() => {
               <Form.Control
                 
                 readOnly
-                defaultValue={el.Fabricant}
+                defaultValue={el.Fabricant_S}
               />
             </Col>
           </Form.Group>
@@ -364,7 +368,7 @@ useEffect(() => {
               <Form.Control
                 
                 readOnly
-                defaultValue={el.Numero_D_L}
+                defaultValue={el.Numero_D_L_S}
               />
             </Col>
           </Form.Group>
@@ -372,7 +376,7 @@ useEffect(() => {
                 <div>Loading...</div>
               ) : (
                 declaPic
-                  .filter((el, key) => el.fieldname === `Photo_L_D_S_${index}`)
+                  .filter((el, key) => el.fieldname === `Photo_L_S_${index}`)
                   .map((el, key) => (
                     <Figure>
                       <Figure.Image
@@ -394,7 +398,7 @@ useEffect(() => {
               <Form.Control
                 
                 readOnly
-                defaultValue={el.Date_D_P}
+                defaultValue={el.Date_D_P_S}
               />
             </Col>
           </Form.Group>
@@ -406,7 +410,7 @@ useEffect(() => {
               <Form.Control
                 
                 readOnly
-                defaultValue={el.Date_D_R}
+                defaultValue={el.Date_D_R_S}
               />
             </Col>
           </Form.Group>
@@ -418,7 +422,7 @@ useEffect(() => {
               <Form.Control
                 
                 readOnly
-                defaultValue={el.Heure_D_R}
+                defaultValue={el.Heure_D_R_S}
               />
             </Col>
           </Form.Group>
@@ -534,9 +538,10 @@ useEffect(() => {
               />
             </Col>
           </Form.Group>
+          {declaData.Evolution === "Décès"?
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
-              Date de décès
+            Date de décès
             </Form.Label>
             <Col sm="7">
               <Form.Control
@@ -545,7 +550,7 @@ useEffect(() => {
                 defaultValue={declaData.Date_D_D}
               />
             </Col>
-          </Form.Group>
+          </Form.Group>:null}
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
               Autopsie effectuée
@@ -600,6 +605,20 @@ useEffect(() => {
               />
             </Col>
           </Form.Group>
+          {declaData.Prise_C_M === "Oui"?
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Label column sm="5">
+                    Lequel :
+                    </Form.Label>
+                    <Col sm="7">
+                      <Form.Control
+                        
+                        readOnly
+                        defaultValue={declaData.Lequel}
+                      />
+                    </Col>
+                  </Form.Group>
+          :null}
           </BigBox>
         </FlexBox>
         </div>

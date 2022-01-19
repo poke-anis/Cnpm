@@ -290,12 +290,12 @@ const FormJaune = (props) => {
 {formik.values.Evolution === "Guérison"?
 <InputSelect name="" 
 id="Evolution_G"
-options={["En cours","Sans séquelles","Avec séquelles"]} 
+options={["","En cours","Sans séquelles","Avec séquelles"]} 
 formik={formik}/>
 :formik.values.Evolution === "Décès en relation avec la prise du médicament"?
 <InputSelect name="" 
 id="Evolution_D"
-options={["Oui","Non","Inconnue"]} 
+options={["","Oui","Non","Inconnue"]} 
 formik={formik}/>:null
 }     
        

@@ -465,18 +465,20 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-            Lequel
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={declaData.Lequel}
-              />
-            </Col>
-          </Form.Group>
+          {declaData.Traitement_C === "Oui"?
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Label column sm="5">
+                    Lequel
+                    </Form.Label>
+                    <Col sm="7">
+                      <Form.Control
+                        
+                        readOnly
+                        defaultValue={declaData.Lequel}
+                      />
+                    </Col>
+                  </Form.Group>
+          :null}
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Gravité
@@ -489,6 +491,19 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
+          {declaData.Gravite === "Décès"?
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+            <Form.Label column sm="5">
+            Date de décès
+            </Form.Label>
+            <Col sm="7">
+              <Form.Control
+                
+                readOnly
+                defaultValue={declaData.Date_D_D}
+              />
+            </Col>
+          </Form.Group>:null}
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Date de décès
@@ -531,6 +546,19 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
+          {declaData.Medicament === "Oui"?
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+            <Form.Label column sm="5">
+            Lequel
+            </Form.Label>
+            <Col sm="7">
+              <Form.Control
+                
+                readOnly
+                defaultValue={declaData.Lequel_M}
+              />
+            </Col>
+          </Form.Group>:null}
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Lequel

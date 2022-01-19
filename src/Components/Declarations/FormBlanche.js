@@ -65,7 +65,7 @@ const Vaccin = (props) => {
           />
           <InputText
             name="Fabricant :"
-            id={`Vaccins[${id}].Fabricant`}
+            id={`Vaccins[${id}].Fabricant_V`}
             formik={formik}
           />
           <InputDate
@@ -83,19 +83,20 @@ const Vaccin = (props) => {
           <InputSelect
             name="Dose :"
             id={`Vaccins[${id}].Dose`}
-            options={["1ère", "2ème", "3ème", "4ème"]}
+            options={["","1ère", "2ème", "3ème", "4ème"]}
             formik={formik}
           />
           <InputSelect
             name="Voie :"
             id={`Vaccins[${id}].Voie`}
-            options={["ID", "SC", "IM", "Orale"]}
+            options={["","ID", "SC", "IM", "Orale"]}
             formik={formik}
           />
           <InputSelect
             name="Point d'injection :"
-            id={`Vaccins[${id}].Point_I`}
+            id={`Vaccins[${id}].Point_D`}
             options={[
+              "",
               "Deltoide Gauche",
               "Deltoide Droit",
               "Avant bras Gauche",
@@ -108,7 +109,7 @@ const Vaccin = (props) => {
 
           <InputText
             name="N° de lot :"
-            id={`Vaccins[${id}].Numero_D_L`}
+            id={`Vaccins[${id}].Numero_D_L_V`}
             formik={formik}
           />
 
@@ -117,12 +118,12 @@ const Vaccin = (props) => {
   </div> */}
           <InputFile
             name="Photo du lot (Si possible) :"
-            id={`Photo_L_D_V_${id}`}
+            id={`Photo_L_V_${id}`}
             onFileChange={onFileChange}
           />
           <InputDate
             name="Date de Péremption :"
-            id={`Vaccins[${id}].Date_D_P`}
+            id={`Vaccins[${id}].Date_D_P_V`}
             formik={formik}
           />
         </BigBox>
@@ -140,24 +141,24 @@ const Solvant = (props) => {
         <BigBox>
           <InputSelect
             name="Solvant :"
-            id={`Solvants[${id}].Nom_D_S`}
-            options={["Du même vaccin", "Autre"]}
+            id={`Solvants[${id}].Type_S`}
+            options={["","Du même vaccin", "Autre"]}
             formik={formik}
           />
 
           <InputFile
             name="Photo du Solvant (Si possible) :"
-            id={`Photo_D_S_${id}`}
+            id={`Photo_T_S_${id}`}
             onFileChange={onFileChange}
           />
           <InputText
             name="Fabricant :"
-            id={`Solvants[${id}].Fabricant`}
+            id={`Solvants[${id}].Fabricant_S`}
             formik={formik}
           />
           <InputText
             name="N° de lot :"
-            id={`Solvants[${id}].Numero_D_L`}
+            id={`Solvants[${id}].Numero_D_L_S`}
             formik={formik}
           />
           {/*         <InputFile
@@ -169,22 +170,22 @@ const Solvant = (props) => {
         <BigBox>
           <InputFile
             name="Photo du lot (Si possible) :"
-            id={`Photo_L_D_S_${id}`}
+            id={`Photo_L_S_${id}`}
             onFileChange={onFileChange}
           />
           <InputDate
             name="Date de péremption :"
-            id={`Solvants[${id}].Date_D_P`}
+            id={`Solvants[${id}].Date_D_P_S`}
             formik={formik}
           />
           <InputDate
             name="Date de reconstitution :"
-            id={`Solvants[${id}].Date_D_R`}
+            id={`Solvants[${id}].Date_D_R_S`}
             formik={formik}
           />
           <InputText
             name="Heure de reconstitution :"
-            id={`Solvants[${id}].Heure_D_R`}
+            id={`Solvants[${id}].Heure_D_R_S`}
             formik={formik}
           />
         </BigBox>
@@ -211,25 +212,25 @@ const FormBlanche = (props) => {
       Vaccins: [
         {
           Type_D_V: "",
-          Fabricant: "",
+          Fabricant_V: "",
           Date_D_V: "",
           Heure_D_V: "",
           Dose: "",
           Voie: "",
           Point_D: "",
-          Num_D_Lot: "",
-          Date_D_Peremption: "",
+          Numero_D_L_V: "",
+          Date_D_P_V: "",
         },
       ],
       Solvants: [
         {
-          Nom_D_Solvant: "",
-          Fabricant: "",
-          Numero_D_L: "",
-          Photo_L_D_S: "",
-          Date_D_P: "",
-          Date_D_R: "",
-          Heure_D_R: "",
+          Type_S: "",
+          Fabricant_S: "",
+          Numero_D_L_S: "",
+          Photo_L_S: "",
+          Date_D_P_S: "",
+          Date_D_R_S: "",
+          Heure_D_R_S: "",
         },
       ],
 
@@ -299,8 +300,9 @@ const FormBlanche = (props) => {
               id="wilaya"
               type="select"
               onChange={formik.handleChange}
-              value={formik.values.wilaya}
+              value={formik.values.Wilaya}
             >
+              <option value=""></option>
               <option value="Adrar">Adrar</option>
               <option value="Chlef">Chlef</option>
               <option value="Laghouat">Laghouat</option>
@@ -382,7 +384,7 @@ const FormBlanche = (props) => {
               as={() => {
                 return (
                   <Button
-                    variant="danger"
+                    variant="primary"
                     onClick={() => {
                       setVaccins([...Vaccins, Vaccins.length + 1]);
                     }}
@@ -422,7 +424,7 @@ const FormBlanche = (props) => {
               as={() => {
                 return (
                   <Button
-                    variant="danger"
+                    variant="primary"
                     type="Button"
                     onClick={() => {
                       setSolvants([...Solvants, Solvants.length + 1]);
@@ -478,7 +480,7 @@ const FormBlanche = (props) => {
             ) : null}
             {formik.values.Hospitalisation === "Oui" ? (
               <InputText
-                name="indiquer l'hôpital :"
+                name="Indiquer l'hôpital :"
                 id="Hopital"
                 formik={formik}
               />

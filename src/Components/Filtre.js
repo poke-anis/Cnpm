@@ -17,7 +17,7 @@ import FormBlanche from './MesDeclarations/FormBlanche'
 import FormCoronavirus from './MesDeclarations/FormCoronavirus'
 
 
-
+var optionstime = {year: "numeric", month: "long", day: "numeric",hour:"numeric",minute:"numeric"};
 
 const mailContent=" Votre formulaire est en cours de traitement par la Cnpm"
 // const Switch = ({ isOn, handleToggle,nbr }) => {
@@ -190,23 +190,23 @@ setPrint({[props]:key})
           <Col md={10} className="g-0">
             {decla.length !== 0
               ? decla
-                  .filter((singledecla) =>
-                    selectedValue == ""
-                      ? singledecla
-                      : selectedValue.some((val) =>
-                          val.includes(singledecla.typeOfFiches)
-                        )
-                      ? singledecla
-                      : null
-                  ).filter((singledecla) =>
-                  selectedValueEtat == ""
-                    ? singledecla
-                    : selectedValueEtat.some((val) =>
-                        val.includes(singledecla.status_Type||singledecla.status)
-                      )
-                    ? singledecla
-                    : null
-                )
+                //   .filter((singledecla) =>
+                //     selectedValue == ""
+                //       ? singledecla
+                //       : selectedValue.some((val) =>
+                //           val.includes(singledecla.typeOfFiches)
+                //         )
+                //       ? singledecla
+                //       : null
+                //   ).filter((singledecla) =>
+                //   selectedValueEtat == ""
+                //     ? singledecla
+                //     : selectedValueEtat.some((val) =>
+                //         val.includes(singledecla.status_Type||singledecla.status)
+                //       )
+                //     ? singledecla
+                //     : null
+                // )
                   .map((val, key) => {
                     var date = new Date(val.DateAdded);
                     return (
@@ -220,7 +220,7 @@ setPrint({[props]:key})
                         }}
                       >
                         <Card.Header style={{ width: "100%", display: "flex" }}>
-                          {date.toLocaleString()}
+                          {date.toLocaleString("fr-FR",optionstime)}
                           <Badge
                             pill
                             bg={ThemeColor(val.typeOfFiches)}
@@ -281,7 +281,7 @@ setPrint({[props]:key})
                                 value={val.status_Type}
                                 id={"Statut"}
                               >
-                                {["En cours", "Traité"].map((content, key) => {
+                                {["","En cours", "Traité"].map((content, key) => {
                                   return (
                                     <option
                                       name={`${content}`}

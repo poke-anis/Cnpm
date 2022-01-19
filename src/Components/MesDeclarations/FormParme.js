@@ -291,7 +291,20 @@ const FormParmeDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
-         
+          {declaData.Fabriquant_I_I === "Oui" ?
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+          <Form.Label column sm="5">
+          Quelle attitude a-t-il préconisé :
+          </Form.Label>
+          <Col sm="7">
+            <Form.Control
+              
+              readOnly
+              defaultValue={declaData.Attitude_P}
+            />
+          </Col>
+        </Form.Group>
+          :null}
           {declaPic === undefined ? (
             <div>Loading...</div>
           ) : (

@@ -148,7 +148,6 @@ const Auto1 =(props)=>{
     var {id,formik,onFileChange,values} = props
     var idf = `${id}Type_D_L_R`
     var idf2 = `${id}Description_D_L_R`
-    console.log(values)
 const varreturn = (value) => {
 if (value === "Point_I") {
   return Point_I;
@@ -177,7 +176,6 @@ if (value === "Point_I") {
 }
 }
 const namereturn = (value) => {
-  console.log(value)
   if (value === 'Point_I') {
   return "Au point d'injection"
   }
@@ -209,10 +207,7 @@ const namereturn = (value) => {
       <FlexBox>
         <Field  isMulti={props.isMulti} component={SelectField}  name={idf} options={Type_D_L_R} />
         { values  && values !== undefined ?
-        
-        
         Object(values).map((word,key) => {
-
               return (
                 <label htmlFor={word} key={key}>
                   {namereturn(word)}

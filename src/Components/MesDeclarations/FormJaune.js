@@ -67,442 +67,512 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
   
   }, [])
 
-  console.log(declaData.TypeofAntecedents_D_M.Digestifs)
+  const namereturn = (value) => {
+    if (value === 'Point_I') {
+    return "Au point d'injection"
+    }
+    else if (value === 'Systemiques')
+    {return 'Systemiques'}
+    else if (value === 'Infectieux')
+    {return 'Infectieux'}
+    else if (value === 'Neurologiques')
+    {return 'Neurologiques'}
+    else if (value === 'Digestifs')
+    {return 'Digestifs'}
+    else if (value === 'Cardio_vasculaires')
+    {return 'Cardio vasculaires'}
+    else if (value === 'Respiratoires')
+    {return 'Respiratoires'}
+    else if (value === 'Allergiques')
+    {return 'Allergiques'}
+    else if (value === 'Sphere_ORL')
+    {return 'Sphere ORL'}
+    else if (value === 'Biologiques')
+    {return 'Biologiques'}
+    else if (value === 'Musculo_squelettique')
+    {return 'Musculo squelettique'}
+    else if (value === 'Ophtalmologiques')
+    {return 'Ophtalmologiques'}
+    }
   return (
-    <Form >
+    <Form>
       {declaData.length === 0 ? (
         <div>Loading...</div>
       ) : (
         <div ref={ref}>
           <FlexBox>
-<BigBox>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-              Nom
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control  readOnly defaultValue={declaData.Nom} />
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-              Prenom
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={declaData.Prenom}
-              />
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-              Telephone
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control  readOnly defaultValue={declaData.Tel} />
-            </Col>
-          </Form.Group>
-          
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-              Age
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control  readOnly defaultValue={declaData.Age} />
-            </Col>
-          </Form.Group>
-          </BigBox>
-          <BigBox>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-              Sexe
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control  readOnly defaultValue={declaData.Sexe} />
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-              Enceinte
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control  readOnly defaultValue={declaData.Enceinte} />
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-            Dernière date des règles
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control  readOnly defaultValue={declaData.Derniere_D_R} />
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-              Taille
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={declaData.Taille}
-              />
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-              Poids
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control  readOnly defaultValue={declaData.Poids} />
-            </Col>
-          </Form.Group>
-          </BigBox> 
+            <BigBox>
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="5">
+                  Nom
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control readOnly defaultValue={declaData.Nom} />
+                </Col>
+              </Form.Group>
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="5">
+                  Prenom
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control readOnly defaultValue={declaData.Prenom} />
+                </Col>
+              </Form.Group>
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="5">
+                  Telephone
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control readOnly defaultValue={declaData.Tel} />
+                </Col>
+              </Form.Group>
+
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="5">
+                  Age
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control readOnly defaultValue={declaData.Age} />
+                </Col>
+              </Form.Group>
+            </BigBox>
+            <BigBox>
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="5">
+                  Sexe
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control readOnly defaultValue={declaData.Sexe} />
+                </Col>
+              </Form.Group>
+              {declaData.Sexe === "Feminin" ? (
+                <Form.Group
+                  as={Row}
+                  className="mb-3"
+                  controlId="formPlaintextEmail"
+                >
+                  <Form.Label column sm="5">
+                    Enceinte
+                  </Form.Label>
+                  <Col sm="7">
+                    <Form.Control readOnly defaultValue={declaData.Enceinte} />
+                  </Col>
+                </Form.Group>): null}
+{                declaData.Enceinte === "Oui" ? (
+                <Form.Group
+                  as={Row}
+                  className="mb-3"
+                  controlId="formPlaintextEmail"
+                >
+                  <Form.Label column sm="5">
+                    Dernière date des règles
+                  </Form.Label>
+                  <Col sm="7">
+                    <Form.Control
+                      readOnly
+                      defaultValue={declaData.Derniere_D_R}
+                    />
+                  </Col>
+                </Form.Group>
+              ) : null}  
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="5">
+                  Taille
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control readOnly defaultValue={declaData.Taille} />
+                </Col>
+              </Form.Group>
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="5">
+                  Poids
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control readOnly defaultValue={declaData.Poids} />
+                </Col>
+              </Form.Group>
+            </BigBox>
           </FlexBox>
-          
-          {declaData.Reactions.map((el, index) => 
-          <FlexBox key={index}>
-            <BigBox> 
-  <h1 style={{width:"100%",textAlign:"center"}}>Reaction {index+1}</h1>
-  {/* // Auto1 */}
-  {el.Type_D_L_R.map((elem,index2)=>
-  <div key={elem}>
-            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-            Description de la réaction 
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={elem}
-              />
-            </Col>
-          </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                    <Form.Label column sm="5">
-                    Description de la réaction 
-                    </Form.Label>
-                    <Col sm="7">
-                      <Form.Control
-                        
-                        readOnly
-                        defaultValue={el.Description_D_L_R[index2]}
-                      />
-                    </Col>
-                  </Form.Group>
+
+          {declaData.Reactions.map((el, index) => (
+            <FlexBox key={index}>
+              <BigBox>
+                <h1 style={{ width: "100%", textAlign: "center" }}>
+                  Reaction {index + 1}
+                </h1>
+                {/* // Auto1 */}
+                {el.Type_D_L_R.map((elem, index2) => (
+                  <div key={elem}>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="5">
+                        Description de la réaction
+                      </Form.Label>
+                      <Col sm="7">
+                        <Form.Control readOnly defaultValue={namereturn(elem)} />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="5">
+                        :
+                      </Form.Label>
+                      <Col sm="7">
+                        <Form.Control
+                          readOnly
+                          defaultValue={el.Description_D_L_R[index2]}
+                        />
+                      </Col>
+                    </Form.Group>
                   </div>
-  )}
+                ))}
 
-          {declaPic === [] ? (
-                <ProgressBar animated now={progress} />
-              ) : (
-                declaPic
-                  .filter((el, key) => el.fieldname === `Photo_R_${index}`)
-                  .map((el, key) => (
-                    <Figure key={key}>
-                      <Figure.Image
-                        width={171}
-                        height={180}
-                        alt="171x180"
-                        src={`data:${el.mimetype};base64,${el.buffer}`}
-                      />
-                    </Figure>
-                  ))
-              )}
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-            Date d’apparition 
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={el.Date_A}
-              />
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-            Médicament(s) DCI (mettre le nom de marque)
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={el.Medciament_DCI}
-              />
-            </Col>
-          </Form.Group>
+                {declaPic === [] ? (
+                  <ProgressBar animated now={progress} />
+                ) : (
+                  declaPic
+                    .filter((el, key) => el.fieldname === `Photo_R_${index}`)
+                    .map((el, key) => (
+                      <Figure key={key}>
+                        <Figure.Image
+                          width={171}
+                          height={180}
+                          alt="171x180"
+                          src={`data:${el.mimetype};base64,${el.buffer}`}
+                        />
+                      </Figure>
+                    ))
+                )}
+                <Form.Group
+                  as={Row}
+                  className="mb-3"
+                  controlId="formPlaintextEmail"
+                >
+                  <Form.Label column sm="5">
+                    Date d’apparition
+                  </Form.Label>
+                  <Col sm="7">
+                    <Form.Control readOnly defaultValue={el.Date_A} />
+                  </Col>
+                </Form.Group>
+                <Form.Group
+                  as={Row}
+                  className="mb-3"
+                  controlId="formPlaintextEmail"
+                >
+                  <Form.Label column sm="5">
+                    Médicament(s) DCI (mettre le nom de marque)
+                  </Form.Label>
+                  <Col sm="7">
+                    <Form.Control readOnly defaultValue={el.Medciament_DCI} />
+                  </Col>
+                </Form.Group>
 
-          {declaPic === [] ? (
-                <ProgressBar animated now={progress} />
-              ) : (
-                declaPic
-                  .filter((el, key) => el.fieldname === `Photo_M_${index}`)
-                  .map((el, key) => (
-                    <Figure key={key}>
-                      <Figure.Image
-                        width={171}
-                        height={180}
-                        alt="171x180"
-                        src={`data:${el.mimetype};base64,${el.buffer}`}
-                      />
-                    </Figure>
-                  ))
-              )}
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-            N° de lot
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={el.Numero_D_L}
-              />
-            </Col>
-          </Form.Group>
-          {declaPic === [] ? (
-                <ProgressBar animated now={progress} />
-              ) : (
-                declaPic
-                  .filter((el, key) => el.fieldname === `Photo_L_${index}`)
-                  .map((el, key) => 
-                  
-                  (
-                    <Figure key={key}>
-                      <Figure.Image
-                        width={171}
-                        height={180}
-                        alt="171x180"
-                        src={`data:${el.mimetype};base64,${el.buffer}`}
-                      />
-                    </Figure>
-                  ))
-              )}
-                        </BigBox>
-          <BigBox> 
-{/* //auto2 */}
-{el.Type_Voie_A.map((elem,index2)=>
-  <div key={index2}>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-            Voie d’administration 
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={elem}
-              />
-            </Col>
-          </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                    <Form.Label column sm="5">
-                    :
-                    </Form.Label>
-                    <Col sm="7">
-                      <Form.Control
-                        
-                        readOnly
-                        defaultValue={el.Description_Voie_A[index2]}
-                      />
-                    </Col>
-                  </Form.Group>
+                {declaPic === [] ? (
+                  <ProgressBar animated now={progress} />
+                ) : (
+                  declaPic
+                    .filter((el, key) => el.fieldname === `Photo_M_${index}`)
+                    .map((el, key) => (
+                      <Figure key={key}>
+                        <Figure.Image
+                          width={171}
+                          height={180}
+                          alt="171x180"
+                          src={`data:${el.mimetype};base64,${el.buffer}`}
+                        />
+                      </Figure>
+                    ))
+                )}
+                <Form.Group
+                  as={Row}
+                  className="mb-3"
+                  controlId="formPlaintextEmail"
+                >
+                  <Form.Label column sm="5">
+                    N° de lot
+                  </Form.Label>
+                  <Col sm="7">
+                    <Form.Control readOnly defaultValue={el.Numero_D_L} />
+                  </Col>
+                </Form.Group>
+                {declaPic === [] ? (
+                  <ProgressBar animated now={progress} />
+                ) : (
+                  declaPic
+                    .filter((el, key) => el.fieldname === `Photo_L_${index}`)
+                    .map((el, key) => (
+                      <Figure key={key}>
+                        <Figure.Image
+                          width={171}
+                          height={180}
+                          alt="171x180"
+                          src={`data:${el.mimetype};base64,${el.buffer}`}
+                        />
+                      </Figure>
+                    ))
+                )}
+              </BigBox>
+              <BigBox>
+                {/* //auto2 */}
+                {el.Type_Voie_A.map((elem, index2) => (
+                  <div key={index2}>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="5">
+                        Voie d’administration
+                      </Form.Label>
+                      <Col sm="7">
+                        <Form.Control readOnly defaultValue={elem} />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group
+                      as={Row}
+                      className="mb-3"
+                      controlId="formPlaintextEmail"
+                    >
+                      <Form.Label column sm="5">
+                        :
+                      </Form.Label>
+                      <Col sm="7">
+                        <Form.Control
+                          readOnly
+                          defaultValue={el.Description_Voie_A[index2]}
+                        />
+                      </Col>
+                    </Form.Group>
                   </div>
-  )}
+                ))}
 
+                <Form.Group
+                  as={Row}
+                  className="mb-3"
+                  controlId="formPlaintextEmail"
+                >
+                  <Form.Label column sm="5">
+                    Posologie
+                  </Form.Label>
+                  <Col sm="7">
+                    <Form.Control readOnly defaultValue={el.Posologie} />
+                  </Col>
+                </Form.Group>
+                <Form.Group
+                  as={Row}
+                  className="mb-3"
+                  controlId="formPlaintextEmail"
+                >
+                  <Form.Label column sm="5">
+                    Date d’administration Debut
+                  </Form.Label>
+                  <Col sm="7">
+                    <Form.Control readOnly defaultValue={el.Date_A_D} />
+                  </Col>
+                </Form.Group>
+                <Form.Group
+                  as={Row}
+                  className="mb-3"
+                  controlId="formPlaintextEmail"
+                >
+                  <Form.Label column sm="5">
+                    Date d’administration Fin
+                  </Form.Label>
+                  <Col sm="7">
+                    <Form.Control readOnly defaultValue={el.Date_A_F} />
+                  </Col>
+                </Form.Group>
+                <Form.Group
+                  as={Row}
+                  className="mb-3"
+                  controlId="formPlaintextEmail"
+                >
+                  <Form.Label column sm="5">
+                    Raison d’emploi (indication)
+                  </Form.Label>
+                  <Col sm="7">
+                    <Form.Control readOnly defaultValue={el.Raison_E} />
+                  </Col>
+                </Form.Group>
+              </BigBox>
+            </FlexBox>
+          ))}
 
-
-
-
-
-
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-              Posologie
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={el.Posologie}
-              />
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-            Date d’administration Debut
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={el.Date_A_D}
-              />
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-            Date d’administration Fin
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={el.Date_A_F}
-              />
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-            Raison d’emploi (indication)
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={el.Raison_E}
-              />
-            </Col>
-          </Form.Group>
-          </BigBox></FlexBox>)}
-          
           <FlexBox>
-          <BigBox>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-            Nature de traitement
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={declaData.Nature_D_T}
-              />
-            </Col>
-          </Form.Group>
+            <BigBox>
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="5">
+                  Nature de traitement
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control readOnly defaultValue={declaData.Nature_D_T} />
+                </Col>
+              </Form.Group>
 
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-            Descriptif du traitement 
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={declaData.Descriptif_D_T}
-              />
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-              Evolution
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={declaData.Evolution}
-              />
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-            Date de décès
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={declaData.Date_D_D}
-              />
-            </Col>
-          </Form.Group>
-          </BigBox>
-          <BigBox>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-              Sequelles
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={declaData.Sequelles}
-              />
-            </Col>
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-            Types de séquelle
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={declaData.Type_D_S}
-              />
-            </Col>
-          </Form.Group>
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="5">
+                  Descriptif du traitement
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control
+                    readOnly
+                    defaultValue={declaData.Descriptif_D_T}
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="5">
+                  Evolution
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control readOnly defaultValue={declaData.Evolution} />
+                </Col>
+              </Form.Group>
+              {declaData.Evolution === "Décès" ? (
+                <Form.Group
+                  as={Row}
+                  className="mb-3"
+                  controlId="formPlaintextEmail"
+                >
+                  <Form.Label column sm="5">
+                    Date de décès
+                  </Form.Label>
+                  <Col sm="7">
+                    <Form.Control readOnly defaultValue={declaData.Date_D_D} />
+                  </Col>
+                </Form.Group>
+              ) : null}
+            </BigBox>
+            <BigBox>
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="5">
+                  Sequelles
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control readOnly defaultValue={declaData.Sequelles} />
+                </Col>
+              </Form.Group>
+              {declaData.Sequelles === "Oui" ? (
+                <Form.Group
+                  as={Row}
+                  className="mb-3"
+                  controlId="formPlaintextEmail"
+                >
+                  <Form.Label column sm="5">
+                    Types de séquelle
+                  </Form.Label>
+                  <Col sm="7">
+                    <Form.Control readOnly defaultValue={declaData.Types_D_S} />
+                  </Col>
+                </Form.Group>
+              ) : null}
 
-{/* Auto3 */}
-          {declaData.Type_A.map((elem,index2)=>
-  <div key={elem}>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-            Antécédents du malade/Histoire de la maladie ou commentaires
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={elem}
-              />
-            </Col>
-          </Form.Group>
-
-                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+              {/* Auto3 */}
+              {declaData.Type_A.map((elem, index2) => (
+                <div key={elem}>
+                  <Form.Group
+                    as={Row}
+                    className="mb-3"
+                    controlId="formPlaintextEmail"
+                  >
                     <Form.Label column sm="5">
-                    :
+                      Antécédents du malade/Histoire de la maladie ou
+                      commentaires
+                    </Form.Label>
+                    <Col sm="7">
+                      <Form.Control readOnly defaultValue={elem} />
+                    </Col>
+                  </Form.Group>
+
+                  <Form.Group
+                    as={Row}
+                    className="mb-3"
+                    controlId="formPlaintextEmail"
+                  >
+                    <Form.Label column sm="5">
+                      :
                     </Form.Label>
                     <Col sm="7">
                       <Form.Control
-                        
                         readOnly
                         defaultValue={declaData.Description_A[index2]}
                       />
                     </Col>
                   </Form.Group>
-                  </div>
-  )}
+                </div>
+              ))}
 
-
-
-
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-            Les facteurs de risques associés 
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={declaData.Facteurs_R_A}
-              />
-            </Col>
-          </Form.Group>
-          </BigBox>
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="5">
+                  Les facteurs de risques associés
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control
+                    readOnly
+                    defaultValue={declaData.Facteurs_R_A}
+                  />
+                </Col>
+              </Form.Group>
+            </BigBox>
           </FlexBox>
         </div>
-        
       )}
-      
     </Form>
-    
   );
 })
 

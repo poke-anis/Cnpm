@@ -2,6 +2,8 @@ import { Field,FastField } from 'formik';
 import styled from 'styled-components'
 import {
   Form, Button, InputGroup } from "react-bootstrap";
+import { MdAddAPhoto } from "react-icons/md";
+
 const Inputstyled = styled(Field)`
 margin:5px;
 `
@@ -95,7 +97,7 @@ const InputRadio = (props) => {
           </label>
         ) : null}
                 {formik.values[id] === "Oui" && id === 'Prise_C_M'? (
-          <InputText name="Lequel ?:" id="Prise_C_M_M" formik={formik} />
+          <InputText name="Lequel ?:" id="Lequel" formik={formik} />
         ) : null}
         {formik.values[id] === "Feminin" ? (
           <InputRadio
@@ -116,7 +118,11 @@ const InputRadio = (props) => {
           <InputDate name="Date de décès :" id="Date_D_D" formik={formik} />
         ) : null}
                 {formik.values[id] === "Décès" ? (
-          <InputSelect name="Autopsie effectuée:" id="Autopsie_E" options={["Oui", "Non", "Inconnu"]}
+          <InputSelect name="Autopsie effectuée:" id="Autopsie_E" options={["","Oui", "Non", "Inconnu"]}
+          formik={formik} />
+        ) : null}
+                {formik.values["Sequelles"] === "Oui" && id === "Sequelles" ? (
+          <InputText name="Types de séquelle :" id="Types_D_S"
           formik={formik} />
         ) : null}
         {formik.values[id] === "Oui" && id === 'Fabriquant_I_P'? (
@@ -190,9 +196,12 @@ const InputFile = (props) => {
   const { name, formik, id ,onFileChange} = props;
   return (
     <Box>
-       <label>{name}</label>
-    <Form.Control   name={id} id={id} type="file" onChange={onFileChange}/>
-      
+       <label>{name}
+       {/* <Button  >  
+    <MdAddAPhoto style={{height:"20px",width:'20px'}}/></Button> */}
+    <Form.Control   name={id} id={id} type="file" onChange={onFileChange} />
+
+    </label>
     </Box>
   );
 

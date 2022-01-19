@@ -50,6 +50,7 @@ const MesDeclarationsCnpm = (props) =>{
   const [print,setPrint] = useState(false)
   const [changement,setChangement] = useState(false)
   const {token_key,TypeExecrice} = props
+  console.log(TypeExecrice)
   const [decla,setDecla] = useState([])
     const [currentPage,setCurrentPage]= useState(1)
     const [declanum,setDeclanum]= useState(0)
@@ -65,7 +66,7 @@ const MesDeclarationsCnpm = (props) =>{
     }
     const getDecla = (currentPage) => {
 
-     axiosConfig.get(`/secure/getfichestype?pagination=${'5'}&page=${currentPage}&typeOfFiches=${TypeExecrice}`)
+     axiosConfig.get(`/secure/getfichestype?pagination=${'5'}&page=${currentPage}&typeOfFiches=[${TypeExecrice.map((el)=>`"${el}"`)}]`)
       .then(res => {
         setDecla(res.data);
         })
@@ -73,7 +74,7 @@ const MesDeclarationsCnpm = (props) =>{
     }
     const getDeclacount = () => {
 
-     axiosConfig.get(`/secure/getfichestypenbr?typeOfFiches=${TypeExecrice}`)
+     axiosConfig.get(`/secure/getfichestypenbr?typeOfFiches=[${TypeExecrice.map((el)=>`"${el}"`)}]`)
       .then(res => {
         setDeclanum(res.data);
         })
@@ -234,8 +235,12 @@ return(
 }
 
 const MesDeclarations =(props,isMulti)=>{
-  const [selectedValue, setSelectedValue] = useState("");
+  const [selectedValue, setSelectedValue] = useState([]);
+  const [selectedValueToSend, setSelectedValueToSend] = useState([]);
   const [selectedValueEtat ,setSelectedValueEtat] = useState("")
+  const [selectedValueEtatToSend ,setSelectedValueEtatToSend] = useState([])
+  const [numberOfPages ,setNumberOfPages] = useState(0)
+
   const Etat =[
     { label: "Non Vu", value: 'false' },
     { label: "Vu", value: 'true' },
@@ -272,7 +277,7 @@ const MesDeclarations =(props,isMulti)=>{
     }
     const getDecla = (currentPage) => {
 
-     axiosConfig.get(`/secure/getfichesData?pagination=${'5'}&page=${currentPage}`)
+     axiosConfig.get(`/secure/getfichestype?pagination=${'5'}&page=${currentPage}&typeOfFiches=[${selectedValueToSend.map((el)=>`"${el}"`)}]&status=[${selectedValueEtatToSend.map((el)=>`"${el}"`)}]`)
       .then(res => {
      
         setDecla(res.data);
@@ -281,10 +286,14 @@ const MesDeclarations =(props,isMulti)=>{
     }
     const getDeclacount = () => {
 
-     axiosConfig.get(`/secure/getfichesnbr`)
+     axiosConfig.get(`/secure/getfichestypenbr?typeOfFiches=[${selectedValueToSend.map((el)=>`"${el}"`)}]&status=[${selectedValueEtatToSend.map((el)=>`"${el}"`)}]`)
       .then(res => {
 
         setDeclanum(res.data);
+        if (res.data % 5 === 0)
+        setNumberOfPages(Math.floor(res.data / 5))
+      else
+      {setNumberOfPages(Math.floor(res.data / 5) + 1)}
         })
         getDecla(currentPage)
     }
@@ -299,11 +308,7 @@ const MesDeclarations =(props,isMulti)=>{
 
       getDecla(finalPage);
     }
-    let numberOfPages = 0;
-    if (declanum % 5 === 0)
-      numberOfPages = Math.floor(declanum / 5);
-    else
-      numberOfPages = Math.floor(declanum / 5) + 1;
+
 
 
     const CompRender = (props) => {
@@ -332,13 +337,30 @@ const MesDeclarations =(props,isMulti)=>{
 useEffect(() => {
   getDeclacount()
 
-}, [changement])
+}, [changement,selectedValue,selectedValueEtatToSend])
+
 const onChange = (value) => {
   setSelectedValue(value)
+  if(value.length === 0)
+  {
+    setSelectedValueToSend([])
+  }
+  else{
+    setSelectedValueToSend(value)
+  }
+
 };
 const onChangeEtat = (value) => {
   setSelectedValueEtat(value)
-  console.log(selectedValueEtat)
+  if(value.length === 0)
+  {
+    setSelectedValueEtatToSend([])
+  }
+  else{
+    setSelectedValueEtatToSend(value)
+  }
+
+
 };
 
     return(   

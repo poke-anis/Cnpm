@@ -33,6 +33,7 @@
 }
 
 .nav-pills .nav-link.active.yellow,.nav-pills .show>.nav-link.yellow{
+  
   color:black;background-color:#FBFCAF !important;
 }
 .nav-pills .nav-link.active.blue,.nav-pills .show>.nav-link.blue{
@@ -56,6 +57,7 @@
 
 
 .nav-pills .nav-link.yellow,.nav-pills .show>.nav-link.yellow{
+  cursor: pointer;
     display: block;
   padding: 0.5rem 1rem;
   color: #747474;
@@ -63,6 +65,7 @@
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;; 
 }
 .nav-pills .nav-link.blue,.nav-pills .show>.nav-link.blue{
+  cursor: pointer;
     display: block;
   padding: 0.5rem 1rem;
   color: #747474;
@@ -70,6 +73,7 @@
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;; 
 }
 .nav-pills .nav-link.parme,.nav-pills .show>.nav-link.parme{
+  cursor: pointer;
     display: block;
   padding: 0.5rem 1rem;
   color: #747474;
@@ -77,6 +81,7 @@
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;; 
 }
 .nav-pills .nav-link.blanche,.nav-pills .show>.nav-link.blanche{
+  cursor: pointer;
     display: block;
   padding: 0.5rem 1rem;
   color: #747474;
@@ -84,6 +89,7 @@
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;; 
 }
 .nav-pills .nav-link.rose,.nav-pills .show>.nav-link.rose{
+  cursor: pointer;
     display: block;
   padding: 0.5rem 1rem;
   color: #747474;
@@ -91,6 +97,7 @@
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;; 
 }
 .nav-pills .nav-link.vert,.nav-pills .show>.nav-link.vert{
+  cursor: pointer;
     display: block;
   padding: 0.5rem 1rem;
   color: #747474;
@@ -98,6 +105,7 @@
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;; 
 }
 .nav-pills .nav-link.orange,.nav-pills .show>.nav-link.orange{
+  cursor: pointer;
     display: block;
   padding: 0.5rem 1rem;
   color: #747474;

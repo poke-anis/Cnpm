@@ -271,7 +271,8 @@ const FormBleueDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+{   declaData.Fabriquant_I_P === "Oui"?       
+<Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
               Date
             </Form.Label>
@@ -282,7 +283,7 @@ const FormBleueDecla = React.forwardRef((props,ref) => {
                 defaultValue={declaData.Date_Fabriquant_I_P}
               />
             </Col>
-          </Form.Group>
+          </Form.Group>:null}
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Avez-vous pris le soin de vérifier la relation de causalité?

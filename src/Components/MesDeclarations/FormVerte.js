@@ -114,6 +114,32 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               <Form.Control  readOnly defaultValue={declaData.Sexe} />
             </Col>
           </Form.Group>
+          {declaData.Sexe === "Feminin"?
+                      <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                      <Form.Label column sm="5">
+                        Enceinte
+                      </Form.Label>
+                      <Col sm="7">
+                        <Form.Control
+                          
+                          readOnly
+                          defaultValue={declaData.Enceinte}
+                        />
+                      </Col>
+                    </Form.Group>
+                    :declaData.Enceinte === "Oui"?       
+                       <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Label column sm="5">
+                      Dernière date des règles
+                    </Form.Label>
+                    <Col sm="7">
+                      <Form.Control
+                        
+                        readOnly
+                        defaultValue={declaData.Derniere_D_R}
+                      />
+                    </Col>
+                  </Form.Group>:null}
           </BigBox>
           <BigBox>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
@@ -440,20 +466,23 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
+
           </BigBox>
           <BigBox>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-            Lequel
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={declaData.Lequel}
-              />
-            </Col>
-          </Form.Group>
+          {declaData.Traitement_C === "Oui"?
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Label column sm="5">
+                    Lequel
+                    </Form.Label>
+                    <Col sm="7">
+                      <Form.Control
+                        
+                        readOnly
+                        defaultValue={declaData.Lequel}
+                      />
+                    </Col>
+                  </Form.Group>
+          :null}
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Gravité
@@ -466,10 +495,11 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
+          {declaData.Gravite === "Décès"?
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Date de décès
-                        </Form.Label>
+            </Form.Label>
             <Col sm="7">
               <Form.Control
                 
@@ -477,7 +507,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
                 defaultValue={declaData.Date_D_D}
               />
             </Col>
-          </Form.Group>
+          </Form.Group>:null}
           {/* //auto6 */}
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
@@ -505,6 +535,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
+{declaData.Medicament === "Oui"?
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Lequel
@@ -516,7 +547,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
                 defaultValue={declaData.Lequel_M}
               />
             </Col>
-          </Form.Group>
+          </Form.Group>:null}
 
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">

@@ -85,7 +85,7 @@ const FormPink = (props) => {
        );
        formData.append(
         'typeOfFiches',
-        'Pink'
+        'Rose'
         );
        files.forEach((el,index)=>{
          formData.append(
@@ -190,6 +190,7 @@ const FormPink = (props) => {
 <InputSelect name=" " 
                 id="Frequence_U_U"             
                 options={[
+                  "",
               "Jour",
               "Semaine",
                "mois"]}
@@ -207,7 +208,7 @@ formik={formik}
 <InputText name="Autre" id="Utilisation_S_P" formik={formik} />
 <InputSelect name="Exposition particulière au : " 
 id="Exposition_P"
-options={["Usage professionnel","Usage normal","Mésusage"]} 
+options={["","Usage professionnel","Usage normal","Mésusage"]} 
 formik={formik}
 ></InputSelect>
 </BigBox>
@@ -239,7 +240,7 @@ formik={formik}
 <InputText name="Traitement" id="Traitement" formik={formik} />
 <InputSelect name="Evolution :" 
 id="Evolution"
-options={["Disparition", "En cours","Inconnue","Dècés"]} 
+options={["","Disparition", "En cours","Inconnue","Dècés"]} 
 formik={formik}
  />    
 {        formik.values.Evolution === "Décès"?            

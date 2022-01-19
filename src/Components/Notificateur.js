@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { useFormik,Field,FormikProvider,FieldArray } from 'formik';
+import { Formik,Field } from 'formik';
 import {
     Form,
   Row,
   Col,
+  Button,
 } from "react-bootstrap";
 import { InputText,InputCheck,InputNumber,InputRadio,InputSelect } from './Declarations/FormikInputs';
 import styled from 'styled-components'
 import axiosConfig from "./axios"
 import cookie ,{ useCookies } from 'react-cookie'
-
+import * as Yup from "yup";
+import swal from "sweetalert";
 var User = styled.div`
 display: flex;
 flex-direction: column;
@@ -50,9 +52,11 @@ width : 100%;
 const Notificateur = (props) =>{
   const [cookies, setCookie, removeCookie] = useCookies('token_key');
   const [modification,setModification] = useState(false)
+  const [modificationPass,setModificationPass] = useState(false)
 const {Espace} = props
   const [infos, setInfos] = useState()
   const id = cookies['id']
+
   useEffect(() => {
 
     axiosConfig.get(`infos/${id}`)
@@ -61,26 +65,21 @@ const {Espace} = props
         setInfos(res.data)
       })
   }
+
+// setFieldValue('Prenom',infos.Prenom)
+// setFieldValue('Profession',infos.Profession)
+// setFieldValue('Telephone',infos.Telephone)
+// setFieldValue('Adresse_Professionnelle',infos.Adresse_Professionnelle)
+// setFieldValue('Type_Exercice',infos.Type_Exercice)
+
     , []);
+   
 
 
 return (
+  infos?
   <Formik
-    initialValues={{
-      Email: "",
-      Password: "",
-      Email: "",
-      Username: "",
-      Nom: "",
-      Prenom: "",
-      Profession: "",
-      Telephone: "",
-      Adresse_Professionnelle: "",
-      Type_Exercice: "",
-      CPassword: "",
-      Specifier: "",
-      Espace: "Professionnel",
-    }}
+    initialValues={infos}
     validationSchema={Yup.object({
       Nom: Yup.string().required("Le nom est requis"),
       Prenom: Yup.string().required("Le Prenom  est requis"),
@@ -91,22 +90,47 @@ return (
         then: Yup.string().required("La Profession est requise"),
         otherwise: Yup.string(),
       }),
-      Username: Yup.string().required("La nom d'utilisateur est requis"),
       Email: Yup.string().email("Invalid email address").required("Required"),
-      Password: Yup.string().required("Le mot de passe est requis"),
-
+      
+      Password: Yup.string().when("modificationPass", {
+        is: (modificationPass) === true,
+        then: Yup.string().required("Le mot de passe est requis"),
+        otherwise: Yup.string(),
+      }),
       Type_Exercice: Yup.string().required("Le Type d'execrice est requis"),
       Adresse_Professionnelle: Yup.string().required(
-        "L'Adresse Professionnelle est requise"
+        "L'adresse professionnelle est requise"
       ),
-      CPassword: Yup.string().oneOf(
-        [Yup.ref("Password"), null],
-        "Les mots de passe ne correspondent pas"
-      ),
+      CPassword: Yup.string().when("modificationPass", {
+        is: (modificationPass) =>true,
+        then: Yup.string().oneOf(
+          [Yup.ref("Password"), null],
+          "Les mots de passe ne correspondent pas"
+        ),
+        otherwise: Yup.string(),
+      }),
+
     })}
     onSubmit={(values, { setSubmitting }) => {
       setTimeout(() => {
-        props.submitForm(values);
+        axiosConfig
+        .post(`/update/${id}`, values)
+        .then((res) => {
+  
+          if (res.data.result === "success") {
+            localStorage.setItem("token_key", res.data.token);
+            swal("Success!", res.data.message, "success").then((value) => {
+              setModification(false)
+              setModificationPass(false)
+            });
+          } else if (res.data.result === "error") {
+            swal("Error!", res.data.message, "error");
+          }
+        })
+        .catch((error) => {
+  
+          return swal("Error!", error.message, "error");
+        });
         setSubmitting(false);
       }, 400);
     }}
@@ -119,6 +143,7 @@ return (
       touched,
       isValid,
       errors,
+      setFieldValue,
     }) => (
       <User>
         <Titre style={{ width: "50%" }}>Information du Notificateur</Titre>
@@ -139,8 +164,13 @@ return (
               </Form.Label>
               <Col sm="9">
                 <Form.Control
+                type="text"
+                name="Nom"
+                onChange={handleChange}
+                onSubmit={(e)=> setFieldValue('Nom',infos.Nom)}
+                  value={infos.Nom}
                   readOnly={modification === true ? false : true}
-                  defaultValue={infos.Nom}
+                  
                 />
               </Col>
             </Form.Group>
@@ -155,6 +185,10 @@ return (
               </Form.Label>
               <Col sm="9">
                 <Form.Control
+                                  type="text"
+                                  name="Prenom"
+                                  onChange={handleChange}
+
                   readOnly={modification === true ? false : true}
                   defaultValue={infos.Prenom}
                 />
@@ -170,6 +204,10 @@ return (
               </Form.Label>
               <Col sm="9">
                 <Form.Control
+                                  type="text"
+                                  name="Telephone"
+                                  onChange={handleChange}
+
                   readOnly={modification === true ? false : true}
                   defaultValue={infos.Telephone}
                 />
@@ -185,6 +223,9 @@ return (
               </Form.Label>
               <Col sm="9">
                 <Form.Control
+                                  onChange={handleChange}
+                                  type="text"
+                                  name="Email"
                   readOnly={modification === true ? false : true}
                   defaultValue={infos.Email}
                 />
@@ -201,10 +242,28 @@ return (
                     Profession
                   </Form.Label>
                   <Col sm="9">
-                    <Form.Control
-                      readOnly={modification === true ? false : true}
-                      defaultValue={infos.Profession}
-                    />
+                    {modification ?
+                                        <Form.Select
+                                        onChange={handleChange}
+
+                                        name="Profession"
+                                        readOnly={modification === true ? false : true}
+                                        defaultValue={infos.Profession}
+                                      >
+                                    <option></option>
+                                    <option value="Médecin">Médecin</option>
+                                    <option value="Pharmacien">Pharmacien</option>
+                                    <option value="Dentiste">Dentiste</option>
+                                    <option value="Paramedical">Paramedical</option>
+                                    <option value="Sage femme">Sage femme</option>
+                                    <option value="Autre">Autre</option>
+                                    </Form.Select> :
+                                    <Form.Control
+
+                                    readOnly={true}
+                                    defaultValue={infos.Profession}
+                                  />}
+
                   </Col>
                 </Form.Group>
 
@@ -217,10 +276,23 @@ return (
                     Type d’exercice
                   </Form.Label>
                   <Col sm="9">
+                  {modification ?
+                                                      
+                                                      <Form.Select
+                                                      onChange={handleChange}
+                                                      name="Type_Exercice"
+                                                          readOnly={modification === true ? false : true}
+                                                          defaultValue={infos.Type_Exercice}
+                                                        >
+                  <option></option>
+                  <option value="Public">Public</option>
+                  <option value="Privé">Privé</option>
+                                                      </Form.Select>:
                     <Form.Control
+
                       readOnly={modification === true ? false : true}
                       defaultValue={infos.Type_Exercice}
-                    />
+                    />}
                   </Col>
                 </Form.Group>
                 <Form.Group
@@ -233,12 +305,15 @@ return (
                   </Form.Label>
                   <Col sm="9">
                     <Form.Control
+                                      onChange={handleChange}
+                                      name="Adresse_Professionnelle"
+
                       readOnly={modification === true ? false : true}
                       defaultValue={infos.Adresse_Professionnelle}
                     />
                   </Col>
                 </Form.Group>
-                {modification == true ?<div>
+                {modificationPass == true ?<div>
                   <Form.Group
                   as={Row}
                   controlId="Password"
@@ -249,7 +324,10 @@ return (
                   </Form.Label>
                   <Col sm="9">
                     <Form.Control
-                      readOnly={modification === true ? false : true}
+                                      onChange={handleChange}
+                                      type="password"
+                                      name="Password"
+                      readOnly={modificationPass === true ? false : true}
                       defaultValue={infos.Password}
                     />
                   </Col>
@@ -264,20 +342,34 @@ return (
                   </Form.Label>
                   <Col sm="9">
                     <Form.Control
-                      readOnly={modification === true ? false : true}
+                                      onChange={handleChange}
+                                      type="password"
+                                      name="CPassword"
+                      readOnly={modificationPass === true ? false : true}
                       defaultValue={infos.CPassword}
                     />
                   </Col>
                 </Form.Group>
 
                 </div>:null}
-              </>
+                {modification?
+         <Button style={{margin:'10px'}} onClick={()=>setModification(false)} >Annuler</Button>
+                                :modificationPass === false ? <Button style={{margin:'10px'}} onClick={()=>setModification(true)} >Modifier les informations</Button>
+                              :null}
+                {modificationPass?
+         <Button style={{margin:'10px'}} onClick={()=>setModificationPass(false)} >Annuler</Button>
+                                : modification === false?<Button style={{margin:'10px'}} onClick={()=>setModificationPass(true)} >Modifier le mot de passe</Button>
+                              :null}
+              </>   
             ) : null}
+            {modification || modificationPass?
+          <Button style={{margin:'10px'}} type="submit"  onClick={()=>console.log(errors)
+          }>Confirmer</Button>:null}
           </Form>
         ) : null}
       </User>
     )}
-  </Formik>
+  </Formik>: "Veuillez patienter"
 );
 }
 

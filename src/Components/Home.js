@@ -94,7 +94,7 @@ useEffect(() => {
     setModalShow(true);
   };
   return(
-    <div style={{width:"100%",display:"flex",justifyContent:"space-between",flexWrap:"wrap",alignItems:"baseline"}}>
+    <div style={{width:"100%",display:"flex",justifyContent:"space-between",flexWrap:"wrap"}}>
 {cnpmAlertes.length >= 1 && cnpmAlertes instanceof Array? 
   
     cnpmAlertes.map((elem,ind) =>
@@ -125,9 +125,10 @@ useEffect(() => {
         ) : null}
       </Card.Text>
     </Card.Body>
-    <Card.Footer>
+    <Card.Footer style={{display:"flex",justifyContent:"space-between"}}>
       <Button
         variant="primary"
+      
         onClick={() => {
           afficherForm(elem);
         }}
@@ -248,7 +249,7 @@ useEffect(() => {
         ) : null}
       </Card.Text>
     </Card.Body>
-    <Card.Footer>
+    <Card.Footer style={{display:"flex",justifyContent:"space-between"}}>
       <Button
         variant="primary"
         onClick={() => {

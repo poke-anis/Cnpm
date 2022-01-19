@@ -185,7 +185,7 @@ var formik = useFormik({
         <InputSelect
           name="Type d'incident :"
           id="Type_I"
-          options={["Incident Mineur", "Incident Majeur", "Incident Grave"]}
+          options={["","Incident Mineur", "Incident Majeur", "Incident Grave"]}
           formik={formik}
 
         />

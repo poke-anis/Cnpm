@@ -249,6 +249,13 @@ const FormParme = (props) => {
                 "Non",
               ]}
             />
+                        {formik.values.Fabriquant_I_I === "Oui" ? (
+              <InputText
+                name="Quelle attitude a-t-il préconisé :"
+                id="Attitude_P"
+                formik={formik}
+              />
+            ) : null}
           </BigBox>
           </FlexBox>
           <div style={{display:"flex"}}> <Button type="submit" variant="primary">Confirmer</Button><ProgressBar animated now={progress} style={{width:'50%',margin:'10px'}}/></div>

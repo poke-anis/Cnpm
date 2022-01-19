@@ -285,7 +285,7 @@ const FormVerte = (props) => {
           <Nav.Item
             as={() => {
               return (
-                <Button variant="warning" type="Button"
+                <Button variant="primary" type="Button"
                   onClick={() => {
                     setPlantes([...Plantes, Plantes.length + 1]);
                   }}
