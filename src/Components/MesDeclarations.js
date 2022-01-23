@@ -24,7 +24,9 @@ height: 100vmax;
 `
 
 
+var optionstime = {year: "numeric", month: "long", day: "numeric",hour:"numeric",minute:"numeric"};
 
+const mailContent=" Votre formulaire est en cours de traitement par la Cnpm"
 
 const containerDeclarations=(props) =>{
 
@@ -47,10 +49,20 @@ return(
 }
 
 const MesDeclarationsCnpm = (props) =>{
+  const Etat =[
+    { label: "Non Vu", value: 'false' },
+    { label: "Vu", value: 'true' },
+    { label: "Traité", value: "Traité" },
+    { label: "En cours", value: "En cours" },
+
+  ]
+  const [selectedValueEtat ,setSelectedValueEtat] = useState("")
+  const [selectedValueEtatToSend ,setSelectedValueEtatToSend] = useState([])
+  const [numberOfPages ,setNumberOfPages] = useState(0)
+
   const [print,setPrint] = useState(false)
   const [changement,setChangement] = useState(false)
   const {token_key,TypeExecrice} = props
-  console.log(TypeExecrice)
   const [decla,setDecla] = useState([])
     const [currentPage,setCurrentPage]= useState(1)
     const [declanum,setDeclanum]= useState(0)
@@ -66,7 +78,7 @@ const MesDeclarationsCnpm = (props) =>{
     }
     const getDecla = (currentPage) => {
 
-     axiosConfig.get(`/secure/getfichestype?pagination=${'5'}&page=${currentPage}&typeOfFiches=[${TypeExecrice.map((el)=>`"${el}"`)}]`)
+     axiosConfig.get(`/secure/getfichestype?pagination=${'5'}&page=${currentPage}&typeOfFiches=[${TypeExecrice.map((el)=>`"${el}"`)}]&status=[${selectedValueEtatToSend.map((el)=>`"${el}"`)}]`)
       .then(res => {
         setDecla(res.data);
         })
@@ -74,9 +86,13 @@ const MesDeclarationsCnpm = (props) =>{
     }
     const getDeclacount = () => {
 
-     axiosConfig.get(`/secure/getfichestypenbr?typeOfFiches=[${TypeExecrice.map((el)=>`"${el}"`)}]`)
+     axiosConfig.get(`/secure/getfichestypenbr?typeOfFiches=[${TypeExecrice.map((el)=>`"${el}"`)}]&status=[${selectedValueEtatToSend.map((el)=>`"${el}"`)}]`)
       .then(res => {
         setDeclanum(res.data);
+                if (res.data % 5 === 0)
+        setNumberOfPages(Math.floor(res.data / 5))
+      else
+      {setNumberOfPages(Math.floor(res.data / 5) + 1)}
         })
         getDecla(currentPage)
     }
@@ -91,11 +107,7 @@ const MesDeclarationsCnpm = (props) =>{
 
       getDecla(finalPage);
     }
-    let numberOfPages = 0;
-    if (declanum % 5 === 0)
-      numberOfPages = Math.floor(declanum / 5);
-    else
-      numberOfPages = Math.floor(declanum / 5) + 1;
+
 
       const ThemeColor = (props) =>{
         if (props == undefined) {
@@ -143,16 +155,38 @@ const MesDeclarationsCnpm = (props) =>{
           return "Fiche de déclaration Patient";
         }
       };
-  const changestatus = (id,status,key)=>{
-  
-   axiosConfig.put(`/modfichesData/${id}?status=${status}`)
-    .then(res => {
+      const changestatus = (id,status,status_Type,Email,Username)=>{
  
-      })
-
-      const change = setTimeout(() => {
-        setChangement(!changement);
-      }, 200);}
+        if(status_Type === null){
+          axiosConfig.put(`/secure/modfichesData/${id}?status=${status}`)
+          .then(res => {
+            })
+            const change = setTimeout(() => {
+              setChangement(!changement);
+            }, 200) 
+            if(Email && status){
+              axiosConfig.post(`/send/?name=Cnpm&email=${Email}&messageHtml=Bonjour%0D%0A${Username}%0D%0A${mailContent}`)
+              .then((response)=>{
+                if (response.data.msg === 'success'){
+                    alert("Email sent, awesome!");
+                   
+                }else if(response.data.msg === 'fail'){
+                    alert("Oops, something went wrong. Try again")
+                }
+                })
+            }
+        
+        }else{
+          axiosConfig.put(`/secure/modfichesData/${id}?status=${status}&status_Type=${status_Type}`)
+          .then(res => {
+         
+            })
+            const change = setTimeout(() => {
+              setChangement(!changement);
+            }, 100)
+        }
+        
+          }
       const handleClick = (e,props,key) => {
         e.preventDefault();
         
@@ -160,7 +194,7 @@ const MesDeclarationsCnpm = (props) =>{
         useEffect(() => {
           getDeclacount()
         
-        }, [])
+        }, [changement,selectedValueEtatToSend])
         const componentRef = useRef();
         const CompRender = (props) => {
           if (props === undefined) {
@@ -195,27 +229,194 @@ const MesDeclarationsCnpm = (props) =>{
 
           handlePrint()},300) 
         } 
-return(
-  <div>
-           <Col md={9} className="g-0" >
-    {decla.length !== 0  ? decla.map((val,key)=>{
-          var date =new Date(val.DateAdded)
-  return(
-    
-       <Card key={key} style={{marginBottom: '20px',marginTop: '20px',width:'100%'}}>
-        <Card.Header style={{width:'100%',display:'flex'}}>{date.toLocaleString()}<Badge pill bg={ThemeColor(val.typeOfFiches)} style={{marginLeft:'auto',color: 'black',lineHeight: '2'}}> {typeOfFiches(val.typeOfFiches)}</Badge></Card.Header>
-        <Card.Body style={{display:"flex",flexWrap:"wrap",justifyContent:'space-between'}}>
-          <Card.Title style={{width:"100%"}} >{val.Cases.Nom} {val.Cases.Prenom}</Card.Title>
-          <Switch onChange={()=>changestatus(val._id,!val.status,key)} checked={val.status} />
 
-        </Card.Body>
-        <Card.Footer style={{display:"flex",flexWrap:"wrap",justifyContent:'space-between',alignItems:"flex-start"}}>
-        <Button variant="secondary" style={{height:"40px"}} onClick={(e)=>{handleClick(e,val.typeOfFiches,key)}}>Afficher</Button>
-          <Button onClick={(e)=>{HandlePrint(e,val.typeOfFiches,key)}}><FaPrint/></Button> 
-        </Card.Footer>
-      </Card> )
-    }) :null}
-</Col>
+        const onChangeEtat = (value) => {
+          setSelectedValueEtat(value)
+          if(value.length === 0)
+          {
+            setSelectedValueEtatToSend([])
+          }
+          else{
+            setSelectedValueEtatToSend(value)
+          }
+        
+        
+        };
+
+return(
+  <div style={{width:'100%',height:"100%",display:"flex",flexWrap:"wrap"}}>
+
+
+  {
+    clicked === false ?
+    <div style={{height:"100%",width:"20%",paddingTop:"30px",backgroundColor: "#272727"}} >
+      <div style={{color:"white"}}>Filtre:</div>
+  <div style={{color:"white"}}>Par Etat:</div>
+  <CreatableSelect
+    options={Etat} 
+  name="ETAT"
+  onChange={(val) =>
+   true ? onChangeEtat(val.map((c) => c.value)) : onChangeEtat(val.value)
+  }
+  isMulti
+  isClearable
+  
+  />
+  </div>:null
+    }
+
+{
+  clicked === false ?null:<Button onClick={()=>{setClicked(false)}} style={{position: "fixed",top: "350px",right: "20px"}}>Retour</Button>
+  }
+{
+  clicked === false ?  <div           style={{
+    width: "65%",
+    display: "flex",
+    
+    paddingLeft: "20px",
+  }}>
+          <Col md={10} className="g-0">
+            {decla.length !== 0
+              ? decla
+                //   .filter((singledecla) =>
+                //     selectedValue == ""
+                //       ? singledecla
+                //       : selectedValue.some((val) =>
+                //           val.includes(singledecla.typeOfFiches)
+                //         )
+                //       ? singledecla
+                //       : null
+                //   ).filter((singledecla) =>
+                //   selectedValueEtat == ""
+                //     ? singledecla
+                //     : selectedValueEtat.some((val) =>
+                //         val.includes(singledecla.status_Type||singledecla.status)
+                //       )
+                //     ? singledecla
+                //     : null
+                // )
+                  .map((val, key) => {
+                    var date = new Date(val.DateAdded);
+                    return (
+                      <Card
+                        key={key}
+                        style={{
+                          marginBottom: "20px",
+                          marginTop: "20px",
+                          width: "100%",
+                          height: "15%",
+                        }}
+                      >
+                        <Card.Header style={{ width: "100%", display: "flex" }}>
+                          {date.toLocaleString("fr-FR",optionstime)}
+                          <Badge
+                            pill
+                            bg={ThemeColor(val.typeOfFiches)}
+                            style={{
+                              marginLeft: "auto",
+                              color: "black",
+                              lineHeight: "2",
+                            }}
+                          >
+                            {" "}
+                            {typeOfFiches(val.typeOfFiches)}
+                          </Badge>
+                        </Card.Header>
+                        <Card.Body
+                          style={{
+                            display: "flex",
+                            flexWrap: "wrap",
+                            justifyContent: "space-between",
+                            alignItems: "flex-start",
+                          }}
+                        >
+                          <Card.Title>
+                            {val.Cases.Nom} {val.Cases.Prenom}
+                          </Card.Title>
+
+                          {/*           <ReactToPrint
+        trigger={() => <Button>Print this out!</Button>}
+        content={() => componentRef.current}
+      /> */}
+                          <div
+                            style={{ display: "flex", flexDirection: "column" }}
+                          >
+                            <div style={{ display: "flex" }}>
+                              <Switch
+                                onChange={() =>
+                                  changestatus(
+                                    val._id,
+                                    !val.status,
+                                    null,
+                                    val.creator.Email,
+                                    val.creator.Username
+                                  )
+                                }
+                                checked={val.status}
+                              />
+                              <p>Vu</p>
+                            </div>
+                            {val.status === true ? (
+                              <select
+                                style={{ marginTop: "5px" }}
+                                onChange={(el) =>
+                                  changestatus(
+                                    val._id,
+                                    val.status,
+                                    el.target.value
+                                  )
+                                }
+                                value={val.status_Type}
+                                id={"Statut"}
+                              >
+                                {["","En cours", "Traité"].map((content, key) => {
+                                  return (
+                                    <option
+                                      name={`${content}`}
+                                      value={`${content}`}
+                                      key={key}
+                                    >
+                                      {`${content}`}
+                                    </option>
+                                  );
+                                })}
+                              </select>
+                            ) : null}
+                          </div>
+                        </Card.Body>
+                        <Card.Footer
+                          style={{
+                             display: "flex",
+                            flexWrap: "wrap",
+                            justifyContent: "space-between",
+                            alignItems: "flex-start", 
+                          }}
+                        >
+                          <Button
+                            variant="secondary"
+                            style={{ height: "40px" }}
+                            onClick={(e) => {
+                              handleClick(e, val.typeOfFiches, key);
+                            }}
+                          >
+                            Afficher
+                          </Button>
+                          <Button
+                            onClick={(e) => {
+                              HandlePrint(e, val.typeOfFiches, key);
+                            }}
+                          >
+                            <FaPrint />
+                          </Button>
+                        </Card.Footer>
+                      </Card>
+                    );
+                  })
+              : null}
+            {print ? (
+              <div style={{ display: "none" }}>{CompRender(print)}</div>
+            ) : null}
+          </Col>
 
   {
     declanum > 5 &&
@@ -228,7 +429,13 @@ return(
     >
     </PaginationPage>
  }
+ </div>:CompRender(clicked)
+  } 
+
+
+
  </div>
+
 )
 
 
