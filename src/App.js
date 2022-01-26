@@ -32,7 +32,7 @@ return(
   <Navbar variant="dark" className="sticky-top Navcolor">
   {isloged === 'false' ?
     <Container>
-      <Navbar.Brand href="#home">CNMP</Navbar.Brand>
+      <Navbar.Brand href="#home">CNPM</Navbar.Brand>
       <Nav className="me-auto" style={{width:'100%'}}>
         <Nav.Link href="/">Accueil</Nav.Link>
         <Nav.Link href="/Seconnecter">Se connecter</Nav.Link>
@@ -43,7 +43,7 @@ return(
   :
   isloged === 'Mods' ? 
     <Container>
-      <Navbar.Brand href="">CNMP</Navbar.Brand>
+      <Navbar.Brand href="">CNPM</Navbar.Brand>
       <Nav className="me-auto" style={{width:'100%'}}>
       <Nav.Link href="/">Accueil</Nav.Link>
       <Nav.Link
@@ -60,7 +60,7 @@ return(
     </Container>
 :isloged === 'User' ? 
   <Container>
-    <Navbar.Brand href="/">CNMP</Navbar.Brand>
+    <Navbar.Brand href="/">CNPM</Navbar.Brand>
     <Nav className="me-auto">
     <Nav.Link href="/">Accueil</Nav.Link>
       <Nav.Link
@@ -82,7 +82,7 @@ return(
  : isloged=== 'Cnpm'?
  <Container>
    <Nav className="me-auto">
-    <Navbar.Brand href="/">CNMP</Navbar.Brand>
+    <Navbar.Brand href="/">CNPM</Navbar.Brand>
     <Nav.Link href="/">Accueil</Nav.Link>
  <Nav.Link
         href="/MesDeclaration"

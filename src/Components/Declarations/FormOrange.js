@@ -19,12 +19,23 @@ border: 2px solid #dee2e6;
 padding:10px;
 
 `
-const Titre = styled.h1`
+const TitreBig = styled.h1`
 text-align: center;
 border: 3px black solid;
 margin:10px;
 padding:5px;
 width:100%;
+`
+const Titre = styled.h1`
+   width: 100%; 
+   border-bottom: 1px solid #000; 
+   line-height: 0.1em;
+   margin: 10px 0 20px; 
+   padding-top:10px;
+`
+const InsideTitre = styled.span`
+    background:#fff; 
+    padding:0 10px; 
 `
 const FlexBox = styled.div`
 display: flex;
@@ -199,8 +210,8 @@ const FormOrange = (props) => {
   return (
     <Form  validated={validated}  onSubmit={formik.handleSubmit}>
       <FormikProvider value={formik}>
-      <Titre>Fiche Compléments alimentaires</Titre>
-        <Titre>Informations du patient</Titre>
+      <TitreBig>Fiche Compléments alimentaires</TitreBig>
+        <Titre><InsideTitre>Informations du patient</InsideTitre></Titre>
         <FlexBox>
           <BigBox>
             <InputText name="Nom :" id="Nom" formik={formik} />
@@ -233,7 +244,7 @@ const FormOrange = (props) => {
           </BigBox>
         </FlexBox>
 
-        <Titre>Identification du produit</Titre> 
+        <Titre><InsideTitre>Identification du produit</InsideTitre></Titre> 
         <Tab.Container id="left-tabs-example" defaultActiveKey="Produit#1">
         <Nav variant="tabs"  >
           {Produits.map((el, index) => {
@@ -289,7 +300,7 @@ const FormOrange = (props) => {
         <InputText name="Délai de survenue :" id="Delai_D_S" formik={formik} />
         </BigBox>
         </FlexBox>
-        <Titre>Conduite adoptée</Titre>
+        <Titre><InsideTitre>Conduite adoptée</InsideTitre></Titre>
         <FlexBox>
         <BigBox>
 
@@ -325,7 +336,7 @@ formik={formik}
                 </BigBox>
                 </FlexBox>
 
-        <Titre>Consommations associées</Titre>
+        <Titre><InsideTitre>Consommations associées</InsideTitre></Titre>
         <FlexBox>
           <BigBox>
         <InputRadio name="Médicament :" 

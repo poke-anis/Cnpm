@@ -15,12 +15,23 @@ border: 2px solid #dee2e6;
 padding:10px;
 
 `
-const Titre = styled.h1`
+const TitreBig = styled.h1`
 text-align: center;
 border: 3px black solid;
 margin:10px;
 padding:5px;
 width:100%;
+`
+const Titre = styled.h1`
+   width: 100%; 
+   border-bottom: 1px solid #000; 
+   line-height: 0.1em;
+   margin: 10px 0 20px; 
+   padding-top:10px;
+`
+const InsideTitre = styled.span`
+    background:#fff; 
+    padding:0 10px; 
 `
 const FlexBox = styled.div`
 display: flex;
@@ -113,10 +124,10 @@ var formik = useFormik({
   return (
 
     <Form  validated={validated}  onSubmit={formik.handleSubmit} >
-            <Titre>Fiche de Matériovigilance</Titre>
+            <TitreBig>Fiche de Matériovigilance</TitreBig>
 
     <FormikProvider value={formik}>
-        <Titre>Identification du produit</Titre>
+        <Titre> <InsideTitre> Identification du produit</InsideTitre></Titre>
         <FlexBox>
     <BigBox>
         <InputText
@@ -180,7 +191,7 @@ var formik = useFormik({
 
 </BigBox>
     </FlexBox>
-        <Titre>Description du problème</Titre>
+        <Titre><InsideTitre> Description du problème</InsideTitre> </Titre>
         <BigBox>
         <InputSelect
           name="Type d'incident :"

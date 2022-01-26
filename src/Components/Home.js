@@ -10,9 +10,10 @@ const Content = styled.div`
   display: flex;
   align-content: center;
   justify-content: space-around;
-
+  border:5px black;
   width: 100%;
   height: 100%;
+  background-color:#EAEAEA;
 `;
 
 function ModalForm(props) {
@@ -292,12 +293,12 @@ const Home = () => {
  
   return (
     <Content>
-      <div style={{width:"50%",minHeight:"100%",paddingLeft:'30px',paddingRight:'30px',backgroundColor:"#00BCD4"}}>
-      <h1 style={{ width: "100%", textAlign: "center" }}>Alertes</h1>
+      <div style={{width:"50%",Height:"100%",paddingLeft:'30px',paddingRight:'30px',borderRight:"1px solid #d8d8d8"}}>
+      <h1 style={{ width: "100%", textAlign: "center",borderBottom: "1px solid #d8d8d8", margin:"10px 0 20px" ,lineHeight: "0.1em", paddingTop:"20px"}}> <span style={{background:"#EAEAEA",padding:"0 10px"}}> Alertes</span></h1>
         <Alertes/>
       </div>
-      <div style={{width:"50%",minHeight:"100%",paddingLeft:'30px',paddingRight:'30px',backgroundColor:"#009688"}}>
-      <h1 style={{ width: "100%", textAlign: "center" }}>Actualités</h1>
+      <div style={{width:"50%",Height:"100%",paddingLeft:'30px',paddingRight:'30px',borderLeft:"1px solid #d8d8d8"}}>
+      <h1 style={{width: "100%", textAlign: "center",borderBottom: "1px solid #d8d8d8", margin:"10px 0 20px" ,lineHeight: "0.1em", paddingTop:"20px"}}><span style={{background:"#EAEAEA",padding:"0 10px"}}>Actualités </span></h1>
         <News/>      
         </div>
 

@@ -173,6 +173,7 @@ return (
                   
                 />
               </Col>
+              {errors.Nom}
             </Form.Group>
             <Form.Group
             
@@ -193,6 +194,7 @@ return (
                   defaultValue={infos.Prenom}
                 />
               </Col>
+              {errors.Prenom}
             </Form.Group>
             <Form.Group
               as={Row}
@@ -212,6 +214,7 @@ return (
                   defaultValue={infos.Telephone}
                 />
               </Col>
+              {errors.Telephone}
             </Form.Group>
             <Form.Group
               as={Row}
@@ -230,6 +233,7 @@ return (
                   defaultValue={infos.Email}
                 />
               </Col>
+              {errors.Email}
             </Form.Group>
             {Espace === "Professionnel" ? (
               <>

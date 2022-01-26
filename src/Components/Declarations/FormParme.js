@@ -15,12 +15,23 @@ border: 2px solid #dee2e6;
 padding:10px;
 
 `
-const Titre = styled.h1`
+const TitreBig = styled.h1`
 text-align: center;
 border: 3px black solid;
 margin:10px;
 padding:5px;
 width:100%;
+`
+const Titre = styled.h1`
+   width: 100%; 
+   border-bottom: 1px solid #000; 
+   line-height: 0.1em;
+   margin: 10px 0 20px; 
+   padding-top:10px;
+`
+const InsideTitre = styled.span`
+    background:#fff; 
+    padding:0 10px; 
 `
 const FlexBox = styled.div`
 display: flex;
@@ -109,9 +120,11 @@ const FormParme = (props) => {
   return (
     <Form  validated={validated}  onSubmit={formik.handleSubmit}>
       <FormikProvider value={formik}>
-      <Titre>Fiche de Réactovigilance</Titre>
+      <TitreBig>Fiche de Réactovigilance</TitreBig>
       <Titre>
+      <InsideTitre>
               Le Dispositif médical de diagnostic in vitro (DMDIV) concerné
+              </InsideTitre>
             </Titre>
         <FlexBox>
           <BigBox>
@@ -210,8 +223,10 @@ const FormParme = (props) => {
                       </BigBox>
         </FlexBox>
             <Titre>
+            <InsideTitre>
               Circonstances et conséquences de l’incident ou du risque
               d’incident
+              </InsideTitre>
             </Titre>
             <FlexBox>
             <BigBox>

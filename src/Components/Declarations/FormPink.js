@@ -16,12 +16,23 @@ border: 2px solid #dee2e6;
 padding:10px;
 
 `
-const Titre = styled.h1`
+const TitreBig = styled.h1`
 text-align: center;
 border: 3px black solid;
 margin:10px;
 padding:5px;
 width:100%;
+`
+const Titre = styled.h1`
+   width: 100%; 
+   border-bottom: 1px solid #000; 
+   line-height: 0.1em;
+   margin: 10px 0 20px; 
+   padding-top:10px;
+`
+const InsideTitre = styled.span`
+    background:#fff; 
+    padding:0 10px; 
 `
 const FlexBox = styled.div`
 display: flex;
@@ -132,8 +143,8 @@ const FormPink = (props) => {
   return (
     <Form  validated={validated}  onSubmit={formik.handleSubmit}>
             <FormikProvider value={formik}>
-            <Titre>Fiche de Cosmétovigilance</Titre>
-      <Titre>Informations du patient</Titre>
+            <TitreBig>Fiche de Cosmétovigilance</TitreBig>
+      <Titre><InsideTitre>Informations du patient</InsideTitre></Titre>
       <FlexBox>
     <BigBox>
     <InputText name="Nom :" id="Nom" formik={formik} />
@@ -156,7 +167,7 @@ const FormPink = (props) => {
     </BigBox>
     </FlexBox>
 
-<Titre>PRODUIT/INGRÉDIENT</Titre>
+<Titre><InsideTitre>PRODUIT/INGRÉDIENT</InsideTitre></Titre>
 <FlexBox>
     <BigBox>
 
@@ -182,7 +193,7 @@ const FormPink = (props) => {
 
     </BigBox>
     </FlexBox>
-<Titre>UTILISATION DU PRODUIT</Titre>
+<Titre><InsideTitre>UTILISATION DU PRODUIT</InsideTitre></Titre>
     <FlexBox>
     <BigBox>
 <InputDate name="Date de première utilisation :" id="Date_D_P_U" formik={formik} />
@@ -217,7 +228,7 @@ formik={formik}
 
 
 
-<Titre>Localisation de l'effect indésirable</Titre>
+<Titre><InsideTitre>Localisation de l'effect indésirable</InsideTitre></Titre>
 <FlexBox>
     <BigBox>
 <InputText name="Zone d'application du produit" id="Zone_A_P" formik={formik} />

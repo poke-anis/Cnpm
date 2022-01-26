@@ -29,13 +29,24 @@ const BigBox = styled.div`
   border: 2px solid #dee2e6;
   padding: 10px;
 `;
+const TitreBig = styled.h1`
+text-align: center;
+border: 3px black solid;
+margin:10px;
+padding:5px;
+width:100%;
+`
 const Titre = styled.h1`
-  text-align: center;
-  border: 3px black solid;
-  margin: 10px;
-  padding: 5px;
-  width: 100%;
-`;
+   width: 100%; 
+   border-bottom: 1px solid #000; 
+   line-height: 0.1em;
+   margin: 10px 0 20px; 
+   padding-top:10px;
+`
+const InsideTitre = styled.span`
+    background:#fff; 
+    padding:0 10px; 
+`
 const FlexBox = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -290,7 +301,7 @@ const FormBlanche = (props) => {
   return (
     <Form  validated={validated} onSubmit={formik.handleSubmit}>
       <FormikProvider value={formik}>
-        <Titre>Fiche de Vaccinovigilance</Titre>
+        <TitreBig>Fiche de Vaccinovigilance</TitreBig>
 
         <FlexBox>
           <BigBox>
@@ -370,7 +381,7 @@ const FormBlanche = (props) => {
             <InputText name="Poids (Kg) :" id="Poids" formik={formik} />
           </BigBox>
         </FlexBox>
-        <Titre>Vaccin(s) administré(s)</Titre>
+        <Titre><InsideTitre>Vaccin(s) administré(s)</InsideTitre></Titre>
         <Tab.Container id="left-tabs-example" defaultActiveKey="Vaccin#1">
           <Nav variant="tabs">
             {Vaccins.map((el, index) => {
@@ -410,7 +421,7 @@ const FormBlanche = (props) => {
             })}
           </Tab.Content>
           </Tab.Container>
-        <Titre>Solvant(s)</Titre>
+        <Titre><InsideTitre>Solvant(s)</InsideTitre></Titre>
         <Tab.Container id="left-tabs-example" defaultActiveKey="Solvant#1">
           <Nav variant="tabs">
             {Solvants.map((el, index) => {

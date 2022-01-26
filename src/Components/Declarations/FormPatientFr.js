@@ -22,12 +22,23 @@ border: 2px solid #dee2e6;
 padding:10px;
 
 `
-const Titre = styled.h1`
+const TitreBig = styled.h1`
 text-align: center;
 border: 3px black solid;
 margin:10px;
 padding:5px;
 width:100%;
+`
+const Titre = styled.h1`
+   width: 100%; 
+   border-bottom: 1px solid #000; 
+   line-height: 0.1em;
+   margin: 10px 0 20px; 
+   padding-top:10px;
+`
+const InsideTitre = styled.span`
+    background:#fff; 
+    padding:0 10px; 
 `
 const FlexBox = styled.div`
 display: flex;
@@ -178,9 +189,9 @@ const FormJaune = (props) => {
   return (
     <Form  validated={validated}  onSubmit={formik.handleSubmit}>
             <FormikProvider value={formik}>
-            <Titre>Fiche Patient</Titre>
+            <TitreBig>Fiche Patient</TitreBig>
 
-      <Titre> Informations patient</Titre>
+      <Titre><InsideTitre>Informations patient</InsideTitre></Titre>
       <FlexBox>
     <BigBox>
     <InputText name="Nom :" id="Nom" formik={formik} />
@@ -204,7 +215,7 @@ const FormJaune = (props) => {
     </BigBox>
     </FlexBox>
 
-<Titre>Description de la réaction indésirable</Titre>
+<Titre><InsideTitre>Description de la réaction indésirable</InsideTitre></Titre>
 <Tab.Container id="left-tabs-example" defaultActiveKey="Reaction#1">
         <Nav variant="tabs"  >
           {Reactions.map((el, index) => {
@@ -257,7 +268,7 @@ const FormJaune = (props) => {
 
 
 
-<Titre>Traitement de la réaction indésirable</Titre>
+<Titre><InsideTitre>Traitement de la réaction indésirable</InsideTitre></Titre>
 <FlexBox>
       <BigBox>
 <InputRadio name="Nature du traitement:" 

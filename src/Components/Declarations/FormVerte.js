@@ -18,12 +18,23 @@ border: 2px solid #dee2e6;
 padding:10px;
 
 `
-const Titre = styled.h1`
+const TitreBig = styled.h1`
 text-align: center;
 border: 3px black solid;
 margin:10px;
 padding:5px;
 width:100%;
+`
+const Titre = styled.h1`
+   width: 100%; 
+   border-bottom: 1px solid #000; 
+   line-height: 0.1em;
+   margin: 10px 0 20px; 
+   padding-top:10px;
+`
+const InsideTitre = styled.span`
+    background:#fff; 
+    padding:0 10px; 
 `
 const FlexBox = styled.div`
 display: flex;
@@ -229,9 +240,9 @@ const FormVerte = (props) => {
 
   return (
     <Form  validated={validated}  onSubmit={formik.handleSubmit}>
-      <Titre>Fiche de Phytovigilance</Titre>
+      <TitreBig>Fiche de Phytovigilance</TitreBig>
       <FormikProvider value={formik}>
-        <Titre>Informations du patient</Titre>
+        <Titre><InsideTitre>Informations du patient</InsideTitre></Titre>
         <FlexBox>
           <BigBox>
             <InputText name="Nom :" id="Nom" formik={formik} />
@@ -264,7 +275,7 @@ const FormVerte = (props) => {
           </BigBox>
         </FlexBox>
 
-        <Titre>Identification du produit</Titre>
+        <Titre><InsideTitre>Identification du produit</InsideTitre></Titre>
         <InputText name="Nom de marque :" id="Nom_D_M" formik={formik} />
 
                   <InputFile
@@ -272,7 +283,7 @@ const FormVerte = (props) => {
   id={`Photo_P`}
   onFileChange={onFileChange}
 />
-        <Titre>Identification de la (les) plante(s)</Titre>
+        <Titre><InsideTitre>Identification de la (les) plante(s)</InsideTitre></Titre>
         <Tab.Container id="left-tabs-example" defaultActiveKey="Plante#1">
         <Nav variant="tabs"  >
           {Plantes.map((el, index) => {
@@ -327,7 +338,7 @@ const FormVerte = (props) => {
         <InputText name="Délai d’apparition :" id="Delai_A" formik={formik} />
         </BigBox>
         </FlexBox>
-        <Titre>Conduite adoptée</Titre>
+        <Titre><InsideTitre>Conduite adoptée</InsideTitre></Titre>
         <FlexBox>
         <BigBox>
 
@@ -363,7 +374,7 @@ formik={formik}
                 </BigBox>
                 </FlexBox>
 
-        <Titre>Consommations associées</Titre>
+        <Titre><InsideTitre>Consommations associées</InsideTitre></Titre>
         <FlexBox>
           <BigBox>
         <InputRadio name="Médicament :" 

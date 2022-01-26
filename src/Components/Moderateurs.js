@@ -18,6 +18,7 @@ import SelectField from './React-select'
 import { useCookies } from 'react-cookie'
 import JoditEditor from "jodit-react";
 import parse from 'html-react-parser';
+import * as Yup from "yup";
 
 const Content = styled.div`
 
@@ -88,11 +89,16 @@ const UserManagment = (props) => {
   const [changement,setChangement] = useState(false)
   const [clicked,setClicked] = useState(false)
   const [cnpmUsers,setCnpmUsers] = useState([])
+  const validationSchema  = Yup.object({
+    Username: Yup.string().required("Le nom d'utilisateur est requis"),
+
+  })
   const  formik = useFormik({
     initialValues: {
       Username: '',
       Nom: ''},
- 
+      validationSchema,
+
     onSubmit: values => {
       axiosConfig.post(`/Create/`,values)
       .then(res => {
@@ -203,6 +209,8 @@ return(
     <th>+</th>
     <th style={{padding:"15px"}}><Form.Group as={Row}  controlId="Username">
    <Form.Control   onChange={formik.handleChange} name="Username" type="text"  />
+   {formik.errors.Username}
+
 </Form.Group></th>
 <th style={{padding:"15px"}}><Form.Group as={Row}  controlId="Nom">
    <Form.Control  onChange={formik.handleChange} name="Nom" type="text"  />
@@ -227,11 +235,16 @@ const Alert = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies('token_key');
     const [clicked,setClicked] = useState(false)
     const [cnpmAlertes,setCnpmAlertes] = useState('')
+    const validationSchema  = Yup.object({
+      titre: Yup.string().required("Le Titre est requis"),
+
+    })
       const  formik = useFormik({
+        
     initialValues: {
       titre: '',
       description: 'Text'},
- 
+      validationSchema,
     onSubmit: values => {
       const formData = new FormData();
       formData.append("body", JSON.stringify(values));
@@ -315,7 +328,7 @@ return(
                       <Figure.Image
                         width={100}
                         style={{objectFit: 'contain'}}
-                        alt="171x180"
+                        alt="rafraichir la page"
                         src={`data:${el.mimetype};base64,${el.buffer}`}
                       />
                     </Figure>):null}</th> 
@@ -330,6 +343,7 @@ return(
 
 <th style={{padding:"15px",maxWidth:'100px'}}> <Form.Group as={Row}  controlId="titre">
    <Form.Control   onChange={formik.handleChange} name="titre" type="text" />
+   {formik.errors.titre}
 </Form.Group></th>
 <th style={{padding:"15px",maxWidth:'400px'}}><div style={{overflowX:'auto',margin:'0em'}}></div><Button variant="secondary" style={{width:'100%',display:'flex',justifyContent:'center'}} onClick={() => setModalShow(true)}>
 <FaEdit/>
@@ -358,11 +372,16 @@ const News = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies('token_key');
     const [clicked,setClicked] = useState(false)
     const [cnpmNews,setCnpmNews] = useState('')
+    const validationSchema  = Yup.object({
+      titre: Yup.string().required("Le Titre est requis"),
+  
+    })
       const  formik = useFormik({
     initialValues: {
       titre: '',
       description: 'Text'},
- 
+      validationSchema,
+
     onSubmit: values => {
       const formData = new FormData();
       formData.append("body", JSON.stringify(values));
@@ -461,6 +480,8 @@ return(
 
 <th style={{padding:"15px",maxWidth:'100px'}}> <Form.Group as={Row}  controlId="titre">
    <Form.Control   onChange={formik.handleChange} name="titre" type="text" />
+   {formik.errors.titre}
+
 </Form.Group></th>
 <th style={{padding:"15px",maxWidth:'400px'}}><div style={{overflowX:'auto',margin:'0em'}}></div><Button variant="secondary" style={{width:'100%',display:'flex',justifyContent:'center'}} onClick={() => setModalShow(true)}>
 <FaEdit/>
