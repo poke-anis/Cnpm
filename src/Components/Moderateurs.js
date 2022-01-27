@@ -243,7 +243,8 @@ const Alert = (props) => {
         
     initialValues: {
       titre: '',
-      description: 'Text'},
+      lien:'',
+      description: ''},
       validationSchema,
     onSubmit: values => {
       const formData = new FormData();
@@ -295,8 +296,9 @@ const Alert = (props) => {
         axiosConfig.get(`/getalertes/`)
         .then(res => {
             setCnpmAlertes(res.data);
+            console.log(res.data)
+
           })
-          
 
     },[changement])
 
@@ -309,6 +311,7 @@ return(
     <tr>
       <th>#</th>
       <th>Nom de l'Alerte</th>
+      <th>Lien</th>
       <th>Description</th>
       <th>Image</th>
       <th>Createur</th>
@@ -323,6 +326,7 @@ return(
           <tr key={key}>
           <th>{key+1}</th>
           <th>{el.titre}</th>
+          <th><a href={el.Lien} >{el.Lien}</a></th>
           <th>{parse(el.description)}</th>
           <th>{el.image? el.image.map((el,index)=><Figure key={index}>
                       <Figure.Image
@@ -344,6 +348,10 @@ return(
 <th style={{padding:"15px",maxWidth:'100px'}}> <Form.Group as={Row}  controlId="titre">
    <Form.Control   onChange={formik.handleChange} name="titre" type="text" />
    {formik.errors.titre}
+</Form.Group></th>
+<th style={{padding:"15px",maxWidth:'100px'}}> <Form.Group as={Row}  controlId="lien">
+   <Form.Control   onChange={formik.handleChange} name="lien" type="text" />
+   {formik.errors.lien}
 </Form.Group></th>
 <th style={{padding:"15px",maxWidth:'400px'}}><div style={{overflowX:'auto',margin:'0em'}}></div><Button variant="secondary" style={{width:'100%',display:'flex',justifyContent:'center'}} onClick={() => setModalShow(true)}>
 <FaEdit/>
@@ -379,7 +387,8 @@ const News = (props) => {
       const  formik = useFormik({
     initialValues: {
       titre: '',
-      description: 'Text'},
+      lien: '',
+      description: ''},
       validationSchema,
 
     onSubmit: values => {
@@ -446,6 +455,7 @@ return(
     <tr>
       <th>#</th>
       <th>Nom de l'Actualité</th>
+      <th>Lien</th>
       <th>Description</th>
       <th>Image</th>
       <th>Createur</th>
@@ -460,6 +470,7 @@ return(
           <tr key={key}>
           <th>{key+1}</th>
           <th>{el.titre}</th>
+          <th><a href={el.Lien} >{el.Lien}</a></th>
           <th>{parse(el.description)}</th>
           <th>{el.image? el.image.map((el,index)=><Figure key={index}>
                       <Figure.Image
@@ -483,6 +494,11 @@ return(
    {formik.errors.titre}
 
 </Form.Group></th>
+<th style={{padding:"15px",maxWidth:'100px'}}> <Form.Group as={Row}  controlId="lien">
+   <Form.Control   onChange={formik.handleChange} name="lien" type="text" />
+   {formik.errors.lien}
+</Form.Group></th>
+
 <th style={{padding:"15px",maxWidth:'400px'}}><div style={{overflowX:'auto',margin:'0em'}}></div><Button variant="secondary" style={{width:'100%',display:'flex',justifyContent:'center'}} onClick={() => setModalShow(true)}>
 <FaEdit/>
       </Button>

@@ -124,6 +124,10 @@ useEffect(() => {
             onHide={() => setModalShow(false)}
           />
         ) : null}
+        {elem.Lien
+      ?  <a href={elem.Lien} >Source</a> 
+      
+      : null}
       </Card.Text>
     </Card.Body>
     <Card.Footer style={{display:"flex",justifyContent:"space-between"}}>
@@ -248,6 +252,10 @@ useEffect(() => {
             onHide={() => setModalShow(false)}
           />
         ) : null}
+        {elem.Lien
+      ?  <a href={elem.Lien} >Source</a> 
+      
+      : null}
       </Card.Text>
     </Card.Body>
     <Card.Footer style={{display:"flex",justifyContent:"space-between"}}>
