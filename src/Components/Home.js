@@ -124,8 +124,8 @@ useEffect(() => {
             onHide={() => setModalShow(false)}
           />
         ) : null}
-        {elem.Lien
-      ?  <a href={elem.Lien} >Source</a> 
+        {elem.lien
+      ?  <a href={elem.lien} >Source</a> 
       
       : null}
       </Card.Text>
@@ -252,8 +252,8 @@ useEffect(() => {
             onHide={() => setModalShow(false)}
           />
         ) : null}
-        {elem.Lien
-      ?  <a href={elem.Lien} >Source</a> 
+        {elem.lien
+      ?  <a href={elem.lien} >Source</a> 
       
       : null}
       </Card.Text>

@@ -326,7 +326,7 @@ return(
           <tr key={key}>
           <th>{key+1}</th>
           <th>{el.titre}</th>
-          <th><a href={el.Lien} >{el.Lien}</a></th>
+          <th><a href={el.lien} >{el.lien}</a></th>
           <th>{parse(el.description)}</th>
           <th>{el.image? el.image.map((el,index)=><Figure key={index}>
                       <Figure.Image
@@ -470,7 +470,7 @@ return(
           <tr key={key}>
           <th>{key+1}</th>
           <th>{el.titre}</th>
-          <th><a href={el.Lien} >{el.Lien}</a></th>
+          <th><a href={el.lien} >{el.lien}</a></th>
           <th>{parse(el.description)}</th>
           <th>{el.image? el.image.map((el,index)=><Figure key={index}>
                       <Figure.Image
