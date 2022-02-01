@@ -4,7 +4,6 @@ import {
 import styled from 'styled-components'
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import swal from "sweetalert";
 import { useCookies } from 'react-cookie'
 import axiosConfig from "./axios"
 var AuthBox = styled.div`
