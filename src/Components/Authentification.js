@@ -6,6 +6,8 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { useCookies } from 'react-cookie'
 import axiosConfig from "./axios"
+import swal from "sweetalert";
+
 var AuthBox = styled.div`
 
 text-align: left;
