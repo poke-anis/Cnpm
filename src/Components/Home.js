@@ -3,7 +3,6 @@ import React, { useState, useEffect, createContext } from "react";
 import axiosConfig from "./axios";
 import styled from "styled-components";
 import parse from "html-react-parser";
-import { FixedSizeList } from "react-window";
 import PaginationPage from './Pagination home'
 import logo from '../Assets/logo.png'
 
