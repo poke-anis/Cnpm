@@ -27,9 +27,8 @@
     "react-select": "^5.2.1",
     "react-switch": "^6.0.0",
     "react-to-print": "^2.14.3",
-    "react-window": "^1.8.6",
     "styled-components": "^5.3.3",
-    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.3.10",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^1.1.2",
     "yup": "^0.32.11"

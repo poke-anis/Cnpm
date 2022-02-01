@@ -4,7 +4,7 @@ import {Figure} from "react-bootstrap"
 import {
   Col,
   Row,
-    
+  ProgressBar,
   Form,} from "react-bootstrap";
 import {
   InputText,
@@ -56,14 +56,15 @@ const FormParmeDecla = React.forwardRef((props,ref) => {
         setProgress(percentCompleted);
       }})
     .then(res => {
-      setdeclaPic(res.data);
+      if(res.data.length !==0){setdeclaPic(res.data[0].images);}
       })
   
   }, [])
   return (
-    <Form ref={ref}>
+    <Form ref={ref} style={{margin :"50px"}}>
       {declaData.length === 0 ? (
-        <div>Loading...</div>
+                          <ProgressBar animated now={progress} />
+
       ) : (
         <div>
                     <FlexBox>
@@ -80,9 +81,11 @@ const FormParmeDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
-          {declaPic === undefined ? (
-                <div>Loading...</div>
-              ) : (
+          {declaPic === [] & progress < 100 ? (
+                  <ProgressBar animated now={progress} />
+                ) :declaPic === undefined?  
+                null:
+ (
                 declaPic
                   .filter((el, key) => el.fieldname === `Photo_R`)
                   .map((el, key) => (
@@ -96,9 +99,11 @@ const FormParmeDecla = React.forwardRef((props,ref) => {
                     </Figure>
                   ))
               )}
-              {declaPic === undefined ? (
-                <div>Loading...</div>
-              ) : (
+              {declaPic === [] & progress < 100 ? (
+                  <ProgressBar animated now={progress} />
+                ) :declaPic === undefined?  
+                null:
+ (
                 declaPic
                   .filter((el, key) => el.fieldname === `Photo_R_E`)
                   .map((el, key) => (
@@ -148,7 +153,8 @@ const FormParmeDecla = React.forwardRef((props,ref) => {
               <Form.Control  readOnly defaultValue={declaData.Numero_S_L} />
             </Col>
           </Form.Group>
-          {1==2 & declaPic === undefined ? <div>Loading...</div>
+          {1==2 & declaPic === undefined ?                   <ProgressBar animated now={progress} />
+
   :
                   <img
                     src={`data:${declaPic.mimetype};base64,${declaPic.buffer}`}
@@ -305,14 +311,7 @@ const FormParmeDecla = React.forwardRef((props,ref) => {
           </Col>
         </Form.Group>
           :null}
-          {declaPic === undefined ? (
-            <div>Loading...</div>
-          ) : (
-            <img
-              src={`data:${declaPic.mimetype};base64,${declaPic.buffer}`}
-              alt=""
-            />
-          )}
+
           </BigBox>
           </FlexBox>
         </div>

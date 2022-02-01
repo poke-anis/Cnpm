@@ -194,7 +194,7 @@ const FormJaune = (props) => {
       <Titre><InsideTitre>Informations patient</InsideTitre></Titre>
       <FlexBox>
     <BigBox>
-    <InputText name="Nom :" id="Nom" formik={formik} />
+    <InputText name="Nom :" id="Nom" formik={formik} maxlength={3}/>
     <InputText name="Prénom :" id="Prenom" formik={formik} />
     <InputNumber name="Tél/Fax/Mobile :" id="Tel" formik={formik} />
     <InputNumber name="Age :" id="Age" formik={formik} />

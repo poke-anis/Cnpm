@@ -15,13 +15,13 @@ flex-direction: column;
 
 const InputText =(props) =>{
 
-    const {name,formik,id} = props
+    const {name,formik,id,maxlength} = props
     return (
         <Box>
 
 <Form.Group  md="4" controlId="validationCustom01">
 <Form.Label>{name}</Form.Label>
-    <Form.Control required name={id} as={FastField} type="text"  onChange={formik.handleChange}/>
+    <Form.Control maxlength={maxlength} required name={id} as={FastField} type="text"  onChange={formik.handleChange}/>
 
     </Form.Group>
         </Box>

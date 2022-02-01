@@ -97,9 +97,10 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
   return (
     <Form>
       {declaData.length === 0 ? (
-        <div>Loading...</div>
+                          <ProgressBar animated now={progress} />
+
       ) : (
-        <div ref={ref}>
+        <div ref={ref} style={{margin :"50px"}}>
           <FlexBox>
             <BigBox>
               <Form.Group
@@ -229,7 +230,8 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                   Reaction {index + 1}
                 </h1>
                 {/* // Auto1 */}
-                {el.Type_D_L_R.map((elem, index2) => (
+                { el.Type_D_L_R != null &&
+                el.Type_D_L_R.map((elem, index2) => (
                   <div key={elem}>
                     <Form.Group
                       as={Row}
@@ -261,9 +263,10 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                   </div>
                 ))}
 
-                {declaPic === [] ? (
+                {declaPic === [] & progress < 100 ? (
                   <ProgressBar animated now={progress} />
-                ) : (
+                ) :declaPic === undefined?  
+                null: (
                   declaPic
                     .filter((el, key) => el.fieldname === `Photo_R_${index}`)
                     .map((el, key) => (
@@ -302,9 +305,10 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                   </Col>
                 </Form.Group>
 
-                {declaPic === [] ? (
+                {declaPic === [] & progress < 100 ? (
                   <ProgressBar animated now={progress} />
-                ) : (
+                ) :declaPic === undefined?  
+                null: (
                   declaPic
                     .filter((el, key) => el.fieldname === `Photo_M_${index}`)
                     .map((el, key) => (
@@ -330,9 +334,10 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                     <Form.Control readOnly defaultValue={el.Numero_D_L} />
                   </Col>
                 </Form.Group>
-                {declaPic === [] ? (
+                {declaPic === [] & progress < 100 ? (
                   <ProgressBar animated now={progress} />
-                ) : (
+                ) :declaPic === undefined?  
+                null: (
                   declaPic
                     .filter((el, key) => el.fieldname === `Photo_L_${index}`)
                     .map((el, key) => (
@@ -349,7 +354,8 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
               </BigBox>
               <BigBox>
                 {/* //auto2 */}
-                {el.Type_Voie_A.map((elem, index2) => (
+                {el.Type_Voie_A != null &&
+                el.Type_Voie_A.map((elem, index2) => (
                   <div key={index2}>
                     <Form.Group
                       as={Row}
@@ -519,7 +525,8 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
               ) : null}
 
               {/* Auto3 */}
-              {declaData.Type_A.map((elem, index2) => (
+              {declaData.Type_A != null &&
+              declaData.Type_A.map((elem, index2) => (
                 <div key={elem}>
                   <Form.Group
                     as={Row}

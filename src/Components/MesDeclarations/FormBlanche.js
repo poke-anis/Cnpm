@@ -5,6 +5,7 @@ import {
   Col,
   Row,
   Form,
+  ProgressBar
 } from "react-bootstrap";
 import styled from "styled-components";
 import axiosConfig from "../axios";
@@ -46,8 +47,8 @@ useEffect(() => {
       setProgress(percentCompleted);
     }})
   .then(res => {
-    setdeclaPic(res.data);
-    })
+    if(res.data.length !==0){setdeclaPic(res.data[0].images);}
+  })
 
 }, [])
 
@@ -56,9 +57,10 @@ useEffect(() => {
       
         
       {declaData.length === 0 ? (
-        <div>Loading...</div>
+                          <ProgressBar animated now={progress} />
+
       ) : (
-        <div ref={ref}>
+        <div ref={ref} style={{margin :"50px"}}>
           <FlexBox>
           <BigBox>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
@@ -178,9 +180,10 @@ useEffect(() => {
                 />
               </Col>
             </Form.Group>
-            {declaPic === undefined ? (
-                <div>Loading...</div>
-              ) : (
+            {declaPic === [] & progress < 100 ? (
+                  <ProgressBar animated now={progress} />
+                ) :declaPic === undefined?  
+                null: (
                 declaPic
                   .filter((el, key) => el.fieldname === `Photo_D_V_${index}`)
                   .map((el, key) => (
@@ -280,9 +283,10 @@ useEffect(() => {
                 />
               </Col>
             </Form.Group>
-            {declaPic === undefined ? 
-                <div>Loading...</div>
-               : (
+            {declaPic === [] & progress < 100 ? (
+                  <ProgressBar animated now={progress} />
+                ) :declaPic === undefined?  
+                null:(
                 declaPic
                   .filter((el, key) => el.fieldname === `Photo_L_V_${index}`)
                   .map((el, key) => 
@@ -332,9 +336,10 @@ useEffect(() => {
               />
             </Col>
           </Form.Group>
-          {declaPic === undefined ? (
-                <div>Loading...</div>
-              ) : (
+          {declaPic === [] & progress < 100 ? (
+                  <ProgressBar animated now={progress} />
+                ) :declaPic === undefined?  
+                null: (
                 declaPic
                   .filter((el, key) => el.fieldname === `Photo_T_S_${index}`)
                   .map((el, key) => (
@@ -372,9 +377,10 @@ useEffect(() => {
               />
             </Col>
           </Form.Group>
-          {declaPic === undefined ? (
-                <div>Loading...</div>
-              ) : (
+          {declaPic === [] & progress < 100 ? (
+                  <ProgressBar animated now={progress} />
+                ) :declaPic === undefined?  
+                null: (
                 declaPic
                   .filter((el, key) => el.fieldname === `Photo_L_S_${index}`)
                   .map((el, key) => (
@@ -434,7 +440,8 @@ useEffect(() => {
           <BigBox>
 
             {/* Auto8 */}
-          {declaData.Type_Manifestation_P_V_I.map((elem,index2)=>
+          {declaData.Type_Manifestation_P_V_I != null &&
+          declaData.Type_Manifestation_P_V_I.map((elem,index2)=>
   <div key={elem}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
@@ -564,7 +571,8 @@ useEffect(() => {
             </Col>
           </Form.Group>
           {/* Auto3 */}
-          {declaData.Type_A.map((elem,index2)=>
+          {declaData.Type_A != null &&
+          declaData.Type_A.map((elem,index2)=>
   <div key={elem}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">

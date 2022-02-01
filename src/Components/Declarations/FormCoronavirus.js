@@ -364,7 +364,7 @@ const FormCoronavirus = (props) => {
               <option value="Relizane">Relizane</option>
             </Form.Select>
 
-          <InputText name="Nom :" id="Nom" formik={formik} />
+          <InputText name="Nom :" id="Nom" formik={formik} maxlength={3}/>
           <InputText name="Prénom :" id="Prenom" formik={formik} />
           <InputNumber name="Tél/Fax/Mobile :" id="Tel" formik={formik} />
 

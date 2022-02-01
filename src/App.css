@@ -1,6 +1,6 @@
 .App{
 display:grid;
-grid-template-rows: 25% 7% auto;
+grid-template-rows: 25% 7% auto 5%;
 }
 
 .Navcolor{

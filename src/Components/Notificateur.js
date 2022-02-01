@@ -59,7 +59,7 @@ const {Espace} = props
 
   useEffect(() => {
 
-    axiosConfig.get(`infos/${id}`)
+    axiosConfig.get(`/secure/infos/${id}`)
       .then(function (res) {
  
         setInfos(res.data)
@@ -114,7 +114,7 @@ return (
     onSubmit={(values, { setSubmitting }) => {
       setTimeout(() => {
         axiosConfig
-        .post(`/update/${id}`, values)
+        .post(`/secure/update/${id}`, values)
         .then((res) => {
   
           if (res.data.result === "success") {

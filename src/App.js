@@ -8,12 +8,14 @@ import Authentication from "./Components/Authentification";
 import AuthenticationCnpm from "./Components/AuthentificationCnpm";
 import Register from "./Components/Register";
 import EnTete from "./Components/Header";
+import BasDePage from "./Components/BasDePage";
 import Formulaire from "./Components/Formulaire";
 import MesDeclarations from "./Components/MesDeclarations";
 import "./Components/Moderateurs.js"
 import Notificateur from "./Components/Notificateur";
 import Moderateurs from "./Components/Moderateurs"
 import Home from "./Components/Home"
+import Support from "./Components/Support"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./Components/Button.css"
 import 'normalize.css'
@@ -104,6 +106,8 @@ function App() {
   const [cookies, removeCookie] = useCookies("token_key");
   const [Espace, setEspace] = useState(cookies.Espace);
   const [isloged, setIsloged] = useState(cookies.token_key !== 'undefined' && cookies.token_key ? cookies.UserType : 'false');
+  const [modalShow, setModalShow] = useState(false);
+
   const navigate = useNavigate();
   const readCookie = () => {
     if (cookies.token_key !== 'undefined' && cookies.token_key ) {
@@ -182,7 +186,14 @@ function App() {
           
          
         </Routes>
-
+        <BasDePage setModalShow={setModalShow}/>
+        {modalShow ? (
+      <Support
+        
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+    ) : null}
       </userContext.Provider>
     </Body>
   );

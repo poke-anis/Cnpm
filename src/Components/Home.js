@@ -5,6 +5,7 @@ import styled from "styled-components";
 import parse from "html-react-parser";
 import { FixedSizeList } from "react-window";
 import PaginationPage from './Pagination home'
+import logo from '../Assets/logo.png'
 
 const Content = styled.div`
   display: flex;
@@ -95,61 +96,70 @@ useEffect(() => {
     setModalShow(true);
   };
   return(
-    <div style={{width:"100%",display:"flex",justifyContent:"space-between",flexWrap:"wrap"}}>
-{cnpmAlertes.length >= 1 && cnpmAlertes instanceof Array? 
-  
-    cnpmAlertes.map((elem,ind) =>
-    <Card style={{ width: "45%",marginBottom:"10px",marginLeft:"10px"}} key={ind}>
-    {elem.image instanceof Array
-      ? elem.image.map((el, index) => (
-          <Card.Img
-            key={index}
-            style={{ objectFit: "contain" }}
-            variant="top"
-            width={100}
-            height={100}
-            src={`data:${el.mimetype};base64,${el.buffer}`}
-          />
-        ))
-      : null}
+    <div style={{width:"100%",display:"flex",justifyContent:"space-between",flexDirection:"Column"}}>
+        <div style={{width:"100%",display:"flex",justifyContent:"space-between",flexWrap:"wrap"}}>
+        {cnpmAlertes.length >= 1 && cnpmAlertes instanceof Array? 
 
-    <Card.Body>
-      <Card.Title>{elem.titre}</Card.Title>
-      <Card.Text>
-        {modalShow ? (
-          <ModalForm
-            key={ind}
-            values={valeurmodal}
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-          />
-        ) : null}
-        {elem.lien
-      ?  <a href={elem.lien} >Source</a> 
-      
-      : null}
-      </Card.Text>
-    </Card.Body>
-    <Card.Footer style={{display:"flex",justifyContent:"space-between"}}>
-      <Button
-        variant="primary"
-      
-        onClick={() => {
-          afficherForm(elem);
-        }}
-      >
-        Afficher
-      </Button>{" "}
-      {elem.creator[0].Nom}
-    </Card.Footer>
-  </Card>
-    )
+cnpmAlertes.map((elem,ind) =>
+<Card style={{ width: "45%",marginBottom:"10px",marginLeft:"10px"}} key={ind}>
+{elem.image.length > 1
+  ? elem.image.map((el, index) => (
+      <Card.Img
+        key={index}
+        style={{ objectFit: "contain" }}
+        variant="top"
+        width={100}
+        height={100}
+        src={`data:${el.mimetype};base64,${el.buffer}`}
+      />
+    ))
+  : <Card.Img
 
+  style={{ objectFit: "contain" }}
+  variant="top"
+  width={100}
+  height={100}
+  src={logo}
+/>}
+
+<Card.Body>
+  <Card.Title>{elem.titre}</Card.Title>
+  <Card.Text>
+    {modalShow ? (
+      <ModalForm
+        key={ind}
+        values={valeurmodal}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+    ) : null}
+    {elem.lien
+  ?  <a href={elem.lien} >Source</a> 
   
- : (
-  <p>Rien a afficher</p>
+  : null}
+  </Card.Text>
+</Card.Body>
+<Card.Footer style={{display:"flex",justifyContent:"space-between"}}>
+  <Button
+    variant="primary"
+  
+    onClick={() => {
+      afficherForm(elem);
+    }}
+  >
+    Afficher
+  </Button>{" "}
+  {elem.creator[0].Nom}
+</Card.Footer>
+</Card>
+)
+: (
+<p>Rien a afficher</p>
 )}
 
+        </div>
+
+<div style={{display:"flex",justifyContent:"flex-end"}}>
 { cnpmAlertesCount > 5 &&
   <PaginationPage
   
@@ -160,7 +170,7 @@ useEffect(() => {
     tenChange={tenChange}
   >
   </PaginationPage>}
-
+  </div>
   </div>
 )
 
@@ -223,12 +233,15 @@ useEffect(() => {
     setModalShow(true);
   };
   return(
+    <div style={{width:"100%",display:"flex",justifyContent:"space-between",flexDirection:"Column"}}>
+
     <div style={{width:"100%",display:"flex",justifyContent:"space-between",flexWrap:"wrap",alignItems:"baseline"}}>
+
 {cnpmNews.length >= 1 && cnpmNews instanceof Array? 
   
     cnpmNews.map((elem,ind) =>
     <Card style={{ width: "45%",marginBottom:"10px",marginLeft:"10px"}} key={ind}>
-    {elem.image instanceof Array
+    {elem.image.length > 1
       ? elem.image.map((el, index) => (
           <Card.Img
             key={index}
@@ -239,7 +252,14 @@ useEffect(() => {
             src={`data:${el.mimetype};base64,${el.buffer}`}
           />
         ))
-      : null}
+      : <Card.Img
+
+      style={{ objectFit: "contain" }}
+      variant="top"
+      width={100}
+      height={100}
+      src={logo}
+    />}
 
     <Card.Body>
       <Card.Title>{elem.titre}</Card.Title>
@@ -276,6 +296,8 @@ useEffect(() => {
  : (
   <p>Rien a afficher</p>
 )}
+</div>
+<div style={{display:"flex",justifyContent:"flex-end"}}>
 
 { cnpmNewsCount > 5 &&
   <PaginationPage
@@ -287,7 +309,7 @@ useEffect(() => {
     tenChange={tenChange}
   >
   </PaginationPage>}
-
+</div>
   </div>
 )
 

@@ -4,7 +4,7 @@ import {Figure} from "react-bootstrap"
 import {
   Col,
   Row,
-    
+  ProgressBar,
   Form,
 } from "react-bootstrap";
 import {
@@ -61,16 +61,17 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
         setProgress(percentCompleted);
       }})
     .then(res => {
-      setdeclaPic(res.data);
+      if(res.data.length !==0){setdeclaPic(res.data[0].images);}
       })
   
   }, [])
   return (
     <Form>
       {declaData.length === 0 ? (
-        <div>Loading...</div>
+                          <ProgressBar animated now={progress} />
+
       ) : (
-        <div ref={ref}>
+        <div ref={ref} style={{margin :"50px"}}>
           <FlexBox>
 <BigBox>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
@@ -195,9 +196,11 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
-          {declaPic === undefined ? (
-                <div>Loading...</div>
-              ) : (
+          {declaPic === [] & progress < 100 ? (
+                  <ProgressBar animated now={progress} />
+                ) :declaPic === undefined?  
+                null:
+ (
                 declaPic
                   .filter((el, key) => el.fieldname === `Photo_P_${index}`)
                   .map((el, key) => (
@@ -247,9 +250,11 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
-          {declaPic === undefined ? (
-                <div>Loading...</div>
-              ) : (
+          {declaPic === [] & progress < 100 ? (
+                  <ProgressBar animated now={progress} />
+                ) :declaPic === undefined?  
+                null:
+ (
                 declaPic
                   .filter((el, key) => el.fieldname === `Photo_L_${index}`)
                   .map((el, key) => (
@@ -332,7 +337,8 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
           <BigBox>
 
            {/* // Auto1 */}
-          {declaData.Type_D_L_R.map((elem,index2)=>
+          {declaData.Type_D_L_R != null &&
+          declaData.Type_D_L_R.map((elem,index2)=>
   <div key={elem}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
@@ -363,9 +369,11 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
 
 
 
-          {declaPic === undefined ? (
-                <div>Loading...</div>
-              ) : (
+          {declaPic === [] & progress < 100 ? (
+                  <ProgressBar animated now={progress} />
+                ) :declaPic === undefined?  
+                null:
+ (
                 declaPic
                   .filter((el, key) => el.fieldname === `Photo_E_I`)
                   .map((el, key) => (
@@ -383,7 +391,8 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
 
 
 {/* Auto3 */}
-          {declaData.Type_A.map((elem,index2)=>
+          {declaData.Type_A != null &&
+          declaData.Type_A.map((elem,index2)=>
   <div key={elem}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
@@ -671,14 +680,7 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
             </Col>
           </Form.Group>
           
-          {declaPic === undefined ? (
-            <div>Loading...</div>
-          ) : (
-            <img
-              src={`data:${declaPic.mimetype};base64,${declaPic.buffer}`}
-              alt=""
-            />
-          )}
+
           </BigBox>
           </FlexBox>
         </div>
