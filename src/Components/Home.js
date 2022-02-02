@@ -56,7 +56,7 @@ const Alertes = (props) => {
 
 }
 const getAlertes = (currentPage) => {
-  axiosConfig.get(`/getalertespgn?pagination=${'5'}&page=${currentPage}`).then((res) => {
+  axiosConfig.get(`/getalertespgn?pagination=${'4'}&page=${currentPage}`).then((res) => {
     setCnpmAlertes(res.data);
   },
   );
@@ -82,10 +82,10 @@ const tenChange = (pageNumber, isposOrneg) => {
     getAlertes(finalPage);
 }
 let numberOfPages = 0;
-if (cnpmAlertesCount % 5 === 0)
-  numberOfPages = Math.floor(cnpmAlertesCount / 5);
+if (cnpmAlertesCount % 4 === 0)
+  numberOfPages = Math.floor(cnpmAlertesCount / 4);
 else
-  numberOfPages = Math.floor(cnpmAlertesCount / 5) + 1;
+  numberOfPages = Math.floor(cnpmAlertesCount / 4) + 1;
 
 useEffect(() => {
   getAlertescount()
@@ -95,13 +95,13 @@ useEffect(() => {
     setModalShow(true);
   };
   return(
-    <div style={{width:"100%",display:"flex",justifyContent:"space-between",flexDirection:"Column"}}>
+    <div style={{width:"100%",height:"80%",display:"flex",justifyContent:"space-between",flexDirection:"Column"}}>
         <div style={{width:"100%",display:"flex",justifyContent:"space-between",flexWrap:"wrap"}}>
         {cnpmAlertes.length >= 1 && cnpmAlertes instanceof Array? 
 
 cnpmAlertes.map((elem,ind) =>
 <Card style={{ width: "45%",marginBottom:"10px",marginLeft:"10px"}} key={ind}>
-{elem.image.length > 1
+{elem.image.length >= 1
   ? elem.image.map((el, index) => (
       <Card.Img
         key={index}
@@ -159,7 +159,7 @@ cnpmAlertes.map((elem,ind) =>
         </div>
 
 <div style={{display:"flex",justifyContent:"flex-end"}}>
-{ cnpmAlertesCount > 5 &&
+{ cnpmAlertesCount > 4 &&
   <PaginationPage
   
     pages={numberOfPages}
@@ -193,7 +193,7 @@ const News = (props) => {
 
 }
 const getNews = (currentPage) => {
-  axiosConfig.get(`/getnewspgn?pagination=${'5'}&page=${currentPage}`).then((res) => {
+  axiosConfig.get(`/getnewspgn?pagination=${'4'}&page=${currentPage}`).then((res) => {
     setCnpmNews(res.data);
   },
   );
@@ -219,10 +219,10 @@ const tenChange = (pageNumber, isposOrneg) => {
     getNews(finalPage);
 }
 let numberOfPages = 0;
-if (cnpmNewsCount % 5 === 0)
-  numberOfPages = Math.floor(cnpmNewsCount / 5);
+if (cnpmNewsCount % 4 === 0)
+  numberOfPages = Math.floor(cnpmNewsCount / 4);
 else
-  numberOfPages = Math.floor(cnpmNewsCount / 5) + 1;
+  numberOfPages = Math.floor(cnpmNewsCount / 4) + 1;
 
 useEffect(() => {
   getNewscount()
@@ -232,7 +232,7 @@ useEffect(() => {
     setModalShow(true);
   };
   return(
-    <div style={{width:"100%",display:"flex",justifyContent:"space-between",flexDirection:"Column"}}>
+    <div style={{width:"100%",display:"flex",height:"80%",justifyContent:"space-between",flexDirection:"Column"}}>
 
     <div style={{width:"100%",display:"flex",justifyContent:"space-between",flexWrap:"wrap",alignItems:"baseline"}}>
 
@@ -240,7 +240,7 @@ useEffect(() => {
   
     cnpmNews.map((elem,ind) =>
     <Card style={{ width: "45%",marginBottom:"10px",marginLeft:"10px"}} key={ind}>
-    {elem.image.length > 1
+    {elem.image.length >= 1
       ? elem.image.map((el, index) => (
           <Card.Img
             key={index}
@@ -298,7 +298,7 @@ useEffect(() => {
 </div>
 <div style={{display:"flex",justifyContent:"flex-end"}}>
 
-{ cnpmNewsCount > 5 &&
+{ cnpmNewsCount > 4 &&
   <PaginationPage
   
     pages={numberOfPages}
@@ -322,11 +322,11 @@ const Home = () => {
  
   return (
     <Content>
-      <div style={{width:"50%",Height:"100%",paddingLeft:'30px',paddingRight:'30px',borderRight:"1px solid #d8d8d8"}}>
+      <div style={{width:"50%",minHeight:"100%",paddingLeft:'30px',paddingRight:'30px',borderRight:"1px solid #d8d8d8"}}>
       <h1 style={{ width: "100%", textAlign: "center",borderBottom: "1px solid #d8d8d8", margin:"10px 0 20px" ,lineHeight: "0.1em", paddingTop:"20px"}}> <span style={{background:"#EAEAEA",padding:"0 10px"}}> Alertes</span></h1>
         <Alertes/>
       </div>
-      <div style={{width:"50%",Height:"100%",paddingLeft:'30px',paddingRight:'30px',borderLeft:"1px solid #d8d8d8"}}>
+      <div style={{width:"50%",minHeight:"100%",paddingLeft:'30px',paddingRight:'30px',borderLeft:"1px solid #d8d8d8"}}>
       <h1 style={{width: "100%", textAlign: "center",borderBottom: "1px solid #d8d8d8", margin:"10px 0 20px" ,lineHeight: "0.1em", paddingTop:"20px"}}><span style={{background:"#EAEAEA",padding:"0 10px"}}>Actualités </span></h1>
         <News/>      
         </div>

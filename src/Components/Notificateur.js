@@ -167,10 +167,8 @@ return (
                 type="text"
                 name="Nom"
                 onChange={handleChange}
-                onSubmit={(e)=> setFieldValue('Nom',infos.Nom)}
-                  value={infos.Nom}
                   readOnly={modification === true ? false : true}
-                  
+                  defaultValue={infos.Nom}
                 />
               </Col>
               {errors.Nom}
