@@ -65,6 +65,7 @@ return(
         <Nav.Link
       as={Link} to="/Mods">Panneau de Gestion</Nav.Link>
         <Nav.Link
+        onClick={Deco}
         style={{marginLeft:'auto'}}>
           Se deconnecter
         </Nav.Link>
@@ -110,7 +111,7 @@ return(
       </Nav.Link>
       
       <Nav.Link
-      as={Link} onClick={Deco} style={{marginLeft:'auto'}}>
+      onClick={Deco} style={{marginLeft:'auto'}}>
         Se deconnecter
       </Nav.Link>
       </Nav>
@@ -155,13 +156,7 @@ function App() {
         <Navigationbar isloged={isloged}  Deco={Deco}/>
 
         <Routes>
-        {/*   {isloged === "User" || isloged === "Mods"? (
-            <Route path="/" element={<Navigate to="/Profile" />} />
-          ) : isloged === "Cnpm"?
-          <Route path="/" element={<Navigate to="/MesDeclaration" />} />:
-          
-            <Route path="/" element={<Navigate to="/Seconnecter" />} />
-          } */}
+
 <Route path="/" element={<Home/>}/>
 {isloged === 'false' ?
 <>

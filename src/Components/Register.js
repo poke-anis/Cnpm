@@ -13,9 +13,9 @@ var AuthBox = styled.div`
 
 text-align: left;
 display:flex;
-flex-direction:column;
+padding-left: 20px;
 align-items:center;
-padding-top:50px;
+
 `
 
 const BigBox = styled.div`
@@ -38,6 +38,7 @@ const FlexBox2 = styled.div`
   justify-content: space-around;
   width: 100%;
   flex-direction: column;
+  padding: 5px;
 `;
 
 const userContext = createContext({ token: null });
@@ -100,7 +101,7 @@ const Pro = (props) =>{
     }) => 
     (
       
-      <div >
+      <div style={{width:"70%"}}>
         <Form onSubmit={handleSubmit}>
           <FlexBox>
             <BigBox>
@@ -111,6 +112,7 @@ const Pro = (props) =>{
                   name="Nom"
                   value={values.Nom}
                   onChange={handleChange}
+                  isInvalid={!!errors.Nom}
                   isValid={touched.Nom && !errors.Nom}
                 />
               </Form.Group>
@@ -168,9 +170,7 @@ const Pro = (props) =>{
                     />
                   </Form.Group>
                 ) : null}
-                <Form.Control.Feedback type="invalid">
-                  {errors.Profession || errors.Specifier}
-                </Form.Control.Feedback>
+
               </Form.Group>
              
               <Form.Group md="3" controlId="Type_Exercice">
@@ -189,10 +189,10 @@ const Pro = (props) =>{
                   <option value="Privé">Privé</option>
                 </Form.Select>
 
-                <Form.Control.Feedback type="invalid">
-                  {errors.Type_Exercice}
-                </Form.Control.Feedback>
+
               </Form.Group>
+              </BigBox>
+            <BigBox>
               <Form.Group md="3" controlId="Adresse_Professionnelle">
                 <Form.Label>Adresse Professionnelle</Form.Label>
                 <Form.Control
@@ -204,12 +204,8 @@ const Pro = (props) =>{
                   isValid={touched.Adresse_Professionnelle && !errors.Adresse_Professionnelle}
                 />
 
-                <Form.Control.Feedback type="invalid">
-                  {errors.Adresse_Professionnelle}
-                </Form.Control.Feedback>
               </Form.Group>
-            </BigBox>
-            <BigBox>
+
               <Form.Group md="4" controlId="E-mail">
                 <Form.Label>E-mail</Form.Label>
                 <InputGroup hasValidation>
@@ -224,17 +220,13 @@ const Pro = (props) =>{
                     isInvalid={errors.Email}
                     isValid={touched.Email && !errors.Email}
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.Email}
-                  </Form.Control.Feedback>
+
                 </InputGroup>
               </Form.Group>
               <Form.Group md="4" controlId="validationFormikUsername">
                 <Form.Label>Nom d'utilisateur</Form.Label>
                 <InputGroup hasValidation>
-                  <InputGroup.Text id="inputGroupPrepend">
-                    @
-                  </InputGroup.Text>
+
                   <Form.Control
                     variant="primary"
                     type="text"
@@ -294,7 +286,7 @@ const Pro = (props) =>{
 
 const GrandPublic = (props) =>{
   return(
-    <div>
+    <div style={{width:"70%"}}>
     <Formik
     initialValues={{
       Email: "",
@@ -349,6 +341,7 @@ const GrandPublic = (props) =>{
                   name="Nom"
                   value={values.Nom}
                   onChange={handleChange}
+                  isInvalid={!!errors.Nom}
                   isValid={touched.Nom && !errors.Nom}
                 />
               </Form.Group>
@@ -484,7 +477,8 @@ function Register(props) {
 
   return (
     <AuthBox>
-      <label htmlFor="Etes vous ?">
+      <div style={{width:"30%",height:"100%",borderRight: "1px solid #d8d8d8",textAlign: "center"}}>
+      <label htmlFor="Etes vous ?" >
         S'inscrire en tant que :
         <Form.Check
           value={userType}
@@ -507,7 +501,7 @@ function Register(props) {
           }}
         />
       </label>
-
+      </div>
       {userType === "Pro" ? (
         <Pro submitForm={submitForm} />
       ) : userType === "GrandPublic" ? (
