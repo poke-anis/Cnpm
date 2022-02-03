@@ -33,7 +33,7 @@ padding:10px;
 `
 const TitreBig = styled.h1`
 text-align: center;
-border: 3px black solid;
+background-color: #FFFFFF;
 margin:10px;
 padding:5px;
 width:100%;
@@ -303,6 +303,7 @@ const FormCoronavirus = (props) => {
     <Form  validated={validated}  onSubmit={formik.handleSubmit}>
       <FormikProvider value={formik}>
         <TitreBig>Fiche de déclaration coronavirus</TitreBig>
+        <Titre><InsideTitre>Informations malade</InsideTitre></Titre>
       <FlexBox>
           <BigBox>
             <label htmlFor="Wilaya">Wilaya</label>
@@ -466,9 +467,10 @@ const FormCoronavirus = (props) => {
             })}
           </Tab.Content>
           </Tab.Container>
+          <Titre><InsideTitre>Manifestation(s) post-vaccinale(s) indésirable(s)</InsideTitre></Titre>
         <FlexBox>
   <BigBox>
-  <label htmlFor="Type_Manifestation_P_V_I">Manifestation(s) post-vaccinale(s) indésirable(s)</label>
+  <label htmlFor="Type_Manifestation_P_V_I">Manifestation(s) post-vaccinale(s) indésirable(s):</label>
 
         <Auto8 id={``} formik={formik} values={formik.values.Type_Manifestation_P_V_I}/>
         <InputRadio

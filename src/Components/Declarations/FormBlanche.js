@@ -31,7 +31,7 @@ const BigBox = styled.div`
 `;
 const TitreBig = styled.h1`
 text-align: center;
-border: 3px black solid;
+background-color: #FFFFFF;
 margin:10px;
 padding:5px;
 width:100%;
@@ -61,6 +61,7 @@ const Vaccin = (props) => {
 
   return (
     <FormikProvider value={formik}>
+      
       <FlexBox>
         <BigBox>
           <InputText
@@ -302,7 +303,7 @@ const FormBlanche = (props) => {
     <Form  validated={validated} onSubmit={formik.handleSubmit}>
       <FormikProvider value={formik}>
         <TitreBig>Fiche de Vaccinovigilance</TitreBig>
-
+        <Titre><InsideTitre>Informations malade</InsideTitre></Titre>
         <FlexBox>
           <BigBox>
             <label htmlFor="Wilaya">Wilaya</label>
@@ -462,9 +463,10 @@ const FormBlanche = (props) => {
             })}
           </Tab.Content>
           </Tab.Container>
+          <Titre><InsideTitre>Manifestation(s) post-vaccinale(s) indésirable(s)</InsideTitre></Titre>
         <FlexBox>
           <BigBox>
-          <label htmlFor="Type_Manifestation_P_V_I">Manifestation(s) post-vaccinale(s) indésirable(s)</label>
+          <label htmlFor="Type_Manifestation_P_V_I">Manifestation(s) post-vaccinale(s) indésirable(s):</label>
 
             <Auto8
               id={``}
@@ -501,7 +503,7 @@ const FormBlanche = (props) => {
             <InputRadio
               name="Evolution :"
               id="Evolution"
-              radioContent={["Disparition", "En cours", "Inconnue", "Deces"]}
+              radioContent={["Disparition", "En cours", "Inconnue", "Décès"]}
               formik={formik}
             />
           <label htmlFor="Antecedents_D_M">Antécédents du malade/Histoire de la maladie ou commentaires</label>

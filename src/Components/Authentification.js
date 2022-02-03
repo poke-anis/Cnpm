@@ -41,7 +41,7 @@ function Authentication(props)
           
           onLogin(res.data.token,res.data.id,res.data.UserType,res.data.Espace)
           swal("Success!", res.data.message, "success").then(value => {
-            navigate("/Profile")
+            navigate("/Declaration")
           });
         } else if (res.data.result === "error") {
           swal("Error!", res.data.message, "error");

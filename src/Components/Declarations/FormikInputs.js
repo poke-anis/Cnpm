@@ -21,7 +21,7 @@ const InputText =(props) =>{
 
 <Form.Group  md="4" controlId="validationCustom01">
 <Form.Label>{name}</Form.Label>
-    <Form.Control maxlength={maxlength} required name={id} as={FastField} type="text"  onChange={formik.handleChange}/>
+    <Form.Control maxLength={maxlength} required name={id} as={FastField} type="text"  onChange={formik.handleChange}/>
 
     </Form.Group>
         </Box>

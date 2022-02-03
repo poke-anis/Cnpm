@@ -17,7 +17,7 @@ padding:10px;
 `
 const TitreBig = styled.h1`
 text-align: center;
-border: 3px black solid;
+background-color: #AAF1F7;
 margin:10px;
 padding:5px;
 width:100%;

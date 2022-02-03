@@ -20,7 +20,8 @@ padding:10px;
 `
 const TitreBig = styled.h1`
 text-align: center;
-border: 3px black solid;
+background-color: #E1FCE3;
+
 margin:10px;
 padding:5px;
 width:100%;
@@ -276,13 +277,14 @@ const FormVerte = (props) => {
         </FlexBox>
 
         <Titre><InsideTitre>Identification du produit</InsideTitre></Titre>
+        <BigBox>
         <InputText name="Nom de marque :" id="Nom_D_M" formik={formik} />
 
                   <InputFile
   name='Photo du Produit (Si possible) :'
   id={`Photo_P`}
   onFileChange={onFileChange}
-/>
+/></BigBox>
         <Titre><InsideTitre>Identification de la (les) plante(s)</InsideTitre></Titre>
         <Tab.Container id="left-tabs-example" defaultActiveKey="Plante#1">
         <Nav variant="tabs"  >
