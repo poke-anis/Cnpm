@@ -13,12 +13,11 @@ import axiosConfig from "./axios";
 import cookie, { useCookies } from "react-cookie";
 import * as Yup from "yup";
 import swal from "sweetalert";
+import {AnimatePresence, motion} from 'framer-motion/dist/framer-motion'
+
 var User = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 100%;
+
 `;
 const Box = styled.div`
   display: flex;
@@ -32,13 +31,15 @@ const BigBox = styled.div`
   width: 49%;
   border: 2px solid #dee2e6;
 `;
-const Titre = styled.h1`
-  text-align: center;
+const Titre = styled(motion.h1)`
 
   padding: 5px;
   width: 100%;
 `;
 const Inputstyled = styled(Field)`
+  margin: 5px;
+`;
+const Formanim = styled(motion.Form)`
   margin: 5px;
 `;
 const FlexBox = styled.div`
@@ -145,12 +146,19 @@ const Notificateur = (props) => {
         setFieldValue,
       }) => (
         <User>
-          <Titre style={{ width: "50%" }}>Information du Notificateur</Titre>
+          <Titre 
+          initial={{ x: -500,opacity: 0 }}
+          animate={{ x: 0,opacity: 1 }}
+          transition={{ ease: "easeOut", duration: 2 }}
+          style={{ width: "50%" }}>Information du Notificateur</Titre>
           {infos ? (
-            <Form
+            <Formanim
+            initial={{x: 1000}}
+          animate={{x: 0}}
+          transition={{ duration: 3 }}
               onSubmit={handleSubmit}
               className="container-fluid"
-              style={{ width: "60%" }}
+              style={{ width: "100%" }}
             >
               <Form.Group
                 value={values.Nom}
@@ -418,7 +426,7 @@ const Notificateur = (props) => {
                   Confirmer
                 </Button>
               ) : null}
-            </Form>
+            </Formanim>
           ) : null}
         </User>
       )}

@@ -4,7 +4,8 @@ import "./Button.css";
 import styled from "styled-components";
 import FormContent from "./FormContent";
 import { Nav, Button, Tab } from "react-bootstrap";
-const Content = styled.div`
+import {AnimatePresence, motion} from 'framer-motion/dist/framer-motion'
+const Content = styled(motion.div)`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -13,7 +14,7 @@ const Content = styled.div`
 const Container = styled.div`
   display: flex;
 `;
-const LeftContent = styled.div`
+const LeftContent = styled(motion.div)`
   width: 20%;
   margin-right: 50px;
   border-right: 2px solid #dee2e6;
@@ -32,7 +33,11 @@ const Formulaire = (props) => {
   return (
     <Container>
       <Tab.Container id="left-tabs-example" defaultActiveKey={tab}>
-        <LeftContent className="LeftContent">
+        <LeftContent 
+                  initial={{ x: -400,opacity: 0 }}
+                  animate={{ x: 0,opacity: 1 }}
+                  transition={{ ease: "easeOut", duration: 2 }}
+        className="LeftContent">
           <h4 style={{ textAlign: "center",color:"white"}}>Type de declaration</h4>
 
             {Espace === "Professionnel"? 
@@ -350,7 +355,11 @@ const Formulaire = (props) => {
           
           
         </LeftContent>
-        <Content>
+        <Content
+                  initial={{ x: 1000,opacity: 0 }}
+                  animate={{ x: 0,opacity: 1 }}
+                  transition={{ ease: "easeOut", duration: 2 }}
+        >
           <Tab.Content style={{ width: "100%" }}>
             <Tab.Pane eventKey="Jaune">
               <FormContent Tab={tab} userID={userID} />
