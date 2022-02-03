@@ -304,8 +304,9 @@ const Filtre = (props, isMulti) => {
                           />
                           <p>Vu</p>
                         </div>
-                        {val.status === true ? (
+                        
                           <select
+                          disabled={val.status === true ? false : true}
                             style={{ marginTop: "5px" }}
                             onChange={(el) =>
                               changestatus(val._id, val.status, el.target.value)
@@ -325,7 +326,7 @@ const Filtre = (props, isMulti) => {
                               );
                             })}
                           </select>
-                        ) : null}
+                        
                       </div>
                     </Card.Body>
                     <Card.Footer

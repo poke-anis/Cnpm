@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Field } from "formik";
 import { Form, Row, Col, Button } from "react-bootstrap";
-import {
-  InputText,
-  InputCheck,
-  InputNumber,
-  InputRadio,
-  InputSelect,
-} from "./Declarations/FormikInputs";
+
 import styled from "styled-components";
 import axiosConfig from "./axios";
 import cookie, { useCookies } from "react-cookie";
@@ -37,11 +31,11 @@ const Titre = styled(motion.h1)`
   padding: 5px;
   width: 100%;
 `;
-const Inputstyled = styled(Field)`
+
+const FormAnim = styled(motion.div)`
   margin: 5px;
-`;
-const Formanim = styled(motion.Form)`
-  margin: 5px;
+  width: 100%;
+border-left: 1px solid #d8d8d8;
 `;
 const FlexBox = styled.div`
   display: flex;
@@ -153,10 +147,12 @@ const Notificateur = (props) => {
           transition={{ ease: "easeOut", duration: 2 }}
           style={{ width: "50%" }}>Information du Notificateur</Titre>
           {infos ? (
-            <Formanim
+            <FormAnim
             initial={{y: 1000}}
           animate={{y: 0}}
-          transition={{ duration: 3 }}
+          transition={{ duration: 2 }}>
+            <Form
+            
               onSubmit={handleSubmit}
               className="container-fluid"
               style={{ width: "100%" }}
@@ -427,13 +423,14 @@ const Notificateur = (props) => {
                   Confirmer
                 </Button>
               ) : null}
-            </Formanim>
+            </Form>
+            </FormAnim>
           ) : null}
         </User>
       )}
     </Formik>
   ) : (
-    "Veuillez patienter"
+    <div style={{height:"100%"}}></div>
   );
 };
 
