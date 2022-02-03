@@ -17,6 +17,7 @@ import {AnimatePresence, motion} from 'framer-motion/dist/framer-motion'
 
 var User = styled.div`
   display: flex;
+overflow-x:hidden;
 
 `;
 const Box = styled.div`
@@ -153,8 +154,8 @@ const Notificateur = (props) => {
           style={{ width: "50%" }}>Information du Notificateur</Titre>
           {infos ? (
             <Formanim
-            initial={{x: 1000}}
-          animate={{x: 0}}
+            initial={{y: 1000}}
+          animate={{y: 0}}
           transition={{ duration: 3 }}
               onSubmit={handleSubmit}
               className="container-fluid"

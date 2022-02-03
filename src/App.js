@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext } from "react";
-import { Route, Routes, useNavigate, Navigate } from "react-router-dom";
+import { Route, Routes, useNavigate, Link } from "react-router-dom";
 import "./App.css";
 import { Navbar, Nav, Container, } from "react-bootstrap";
 import { useCookies } from "react-cookie";
@@ -36,10 +36,15 @@ return(
     <Container>
       <Navbar.Brand href="#home">CNPM</Navbar.Brand>
       <Nav className="me-auto" style={{width:'100%'}}>
-        <Nav.Link href="/">Accueil</Nav.Link>
-        <Nav.Link href="/Seconnecter">Se connecter</Nav.Link>
-        <Nav.Link href="/Register">S'inscrire</Nav.Link>
-        <Nav.Link href="/SeconnecterCnpm"  style={{marginLeft:'auto'}}>Cnpm Login</Nav.Link>
+        <Nav.Link
+      as={Link}
+      as={Link} to="/">Accueil</Nav.Link>
+        <Nav.Link
+      as={Link} to="/Seconnecter">Se connecter</Nav.Link>
+        <Nav.Link
+      as={Link} to="/Register">S'inscrire</Nav.Link>
+        <Nav.Link
+       to="/SeconnecterCnpm"  style={{marginLeft:'auto'}}>Cnpm Login</Nav.Link>
       </Nav>
     </Container>
   :
@@ -47,15 +52,20 @@ return(
     <Container>
       <Navbar.Brand href="">CNPM</Navbar.Brand>
       <Nav className="me-auto" style={{width:'100%'}}>
-      <Nav.Link href="/">Accueil</Nav.Link>
       <Nav.Link
- href="/MesDeclaration"
+      as={Link} to="/">Accueil</Nav.Link>
+      <Nav.Link
+      as={Link}
+ to="/MesDeclaration"
         >
           Afficher les declaration
         </Nav.Link>
-        <Nav.Link href="/Profile">Profile</Nav.Link>
-        <Nav.Link href="/Mods">Panneau de Gestion</Nav.Link>
-        <Nav.Link onClick={Deco} style={{marginLeft:'auto'}}>
+        <Nav.Link
+      as={Link} to="/Profile">Profile</Nav.Link>
+        <Nav.Link
+      as={Link} to="/Mods">Panneau de Gestion</Nav.Link>
+        <Nav.Link
+        style={{marginLeft:'auto'}}>
           Se deconnecter
         </Nav.Link>
       </Nav>
@@ -64,19 +74,24 @@ return(
   <Container>
     <Navbar.Brand href="/">CNPM</Navbar.Brand>
     <Nav className="me-auto">
-    <Nav.Link href="/">Accueil</Nav.Link>
+    <Nav.Link
+      as={Link} to="/">Accueil</Nav.Link>
       <Nav.Link
-        href="/Declaration"
+      as={Link}
+        to="/Declaration"
       >
         Faire une declaration
       </Nav.Link>
       {/* <Nav.Link
+      as={Link}
         href="/MesDeclaration"
       >
         Afficher les declaration
       </Nav.Link> */}
-      <Nav.Link href="/Profile">Profile</Nav.Link>
-      <Nav.Link onClick={Deco} style={{marginLeft:'auto'}}>
+      <Nav.Link
+      as={Link} to="/Profile">Profile</Nav.Link>
+      <Nav.Link
+       onClick={Deco} style={{marginLeft:'auto'}}>
         Se deconnecter
       </Nav.Link>
     </Nav>
@@ -85,14 +100,17 @@ return(
  <Container>
    <Nav className="me-auto">
     <Navbar.Brand href="/">CNPM</Navbar.Brand>
-    <Nav.Link href="/">Accueil</Nav.Link>
+    <Nav.Link
+      as={Link} to="/">Accueil</Nav.Link>
  <Nav.Link
-        href="/MesDeclaration"
+      as={Link}
+        to="/MesDeclaration"
       >
         Afficher les declaration
       </Nav.Link>
       
-      <Nav.Link onClick={Deco} style={{marginLeft:'auto'}}>
+      <Nav.Link
+      as={Link} onClick={Deco} style={{marginLeft:'auto'}}>
         Se deconnecter
       </Nav.Link>
       </Nav>

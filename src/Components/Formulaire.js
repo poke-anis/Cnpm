@@ -10,9 +10,11 @@ const Content = styled(motion.div)`
   display: flex;
   justify-content: center;
   padding: 50px;
+  
 `;
 const Container = styled.div`
   display: flex;
+  
 `;
 const LeftContent = styled(motion.div)`
   width: 20%;
