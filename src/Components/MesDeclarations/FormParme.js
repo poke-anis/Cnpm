@@ -153,14 +153,24 @@ const FormParmeDecla = React.forwardRef((props,ref) => {
               <Form.Control  readOnly defaultValue={declaData.Numero_S_L} />
             </Col>
           </Form.Group>
-          {1==2 & declaPic === undefined ?                   <ProgressBar animated now={progress} />
-
-  :
-                  <img
-                    src={`data:${declaPic.mimetype};base64,${declaPic.buffer}`}
-                    alt=""
-                  />
-              }
+          {declaPic === [] & progress < 100 ? (
+                  <ProgressBar animated now={progress} />
+                ) :declaPic === undefined?  
+                null:
+ (
+                declaPic
+                  .filter((el, key) => el.fieldname === `Photo_S_L`)
+                  .map((el, key) => (
+                    <Figure key={key}>
+                      <Figure.Image
+                        width={171}
+                        height={180}
+                        alt="171x180"
+                        src={`data:${el.mimetype};base64,${el.buffer}`}
+                      />
+                    </Figure>
+                  ))
+              )}
               </BigBox>
               <BigBox>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
