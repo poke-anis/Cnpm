@@ -64,8 +64,25 @@ const Reaction = (props)=>{
 />
 
 <InputDate name="Date d’apparition :" id={`Reactions[${id}].Date_A`} formik={formik} />
-<InputText name="Médicament(s) DCI (mettre le nom de marque) :" id={`Reactions[${id}].Medciament_DCI`} formik={formik} />
-<InputText name="Nom du laboratoire :" id={`Reactions[${id}].Nom_D_L`} formik={formik} />
+
+</BigBox>
+</FlexBox>
+
+
+      </FormikProvider>
+      
+  )
+}
+
+const Medicament = (props)=>{
+  const {id,formik,onFileChange} = props
+
+  return(
+      <FormikProvider value={formik}>
+  <FlexBox>
+    <BigBox>
+    <InputText name="Médicament(s) DCI (mettre le nom de marque) :" id={`Medicaments[${id}].Medciament_DCI`} formik={formik} />
+<InputText name="Nom du laboratoire :" id={`Medicaments[${id}].Nom_D_L`} formik={formik} />
 
     <InputFile
   name="Photo du Médicament (Si possible) :"
@@ -74,7 +91,7 @@ const Reaction = (props)=>{
 />
 
 
-<InputText name="N° de lot :" id={`Reactions[${id}].Numero_D_L`} formik={formik} />
+<InputText name="N° de lot :" id={`Medicaments[${id}].Numero_D_L`} formik={formik} />
 
       </BigBox>
       <BigBox>
@@ -86,11 +103,11 @@ const Reaction = (props)=>{
 
 <label htmlFor="Description_D_L_R">Voie d’administration</label>
 
-  <Auto2 id={`Reactions[${id}].`} formik={formik} values={formik.values.Reactions[id].Type_Voie_A}/>
-<InputText name="Posologie :" id={`Reactions[${id}].Posologie`} formik={formik} />
-<InputDate name="Date d’administration (Début):" id={`Reactions[${id}].Date_A_D`} formik={formik} />
-<InputDate name="Date d’administration (Fin):" id={`Reactions[${id}].Date_A_F`} formik={formik} />
-<InputText name="Raison d’emploi (indication) :" id={`Reactions[${id}].Raison_E`} formik={formik} />
+  <Auto2 id={`Medicaments[${id}].`} formik={formik} values={formik.values.Medicaments[id].Type_Voie_A}/>
+<InputText name="Posologie :" id={`Medicaments[${id}].Posologie`} formik={formik} />
+<InputDate name="Date d’administration (Début):" id={`Medicaments[${id}].Date_A_D`} formik={formik} />
+<InputDate name="Date d’administration (Fin):" id={`Medicaments[${id}].Date_A_F`} formik={formik} />
+<InputText name="Raison d’emploi (indication) :" id={`Medicaments[${id}].Raison_E`} formik={formik} />
 </BigBox>
 </FlexBox>
 
@@ -99,8 +116,6 @@ const Reaction = (props)=>{
       
   )
 }
-
-
 
 const FormJaune = (props) => {
   const {userID} = props
@@ -118,6 +133,8 @@ const FormJaune = (props) => {
       Reactions: [{
         Type_D_L_R: [],
         Date_A: "",
+      }],
+      Medicaments:[{
         Medciament_DCI: "",
         Numero_D_L: "",
         Type_Voie_A: [],
@@ -125,7 +142,7 @@ const FormJaune = (props) => {
         Date_A_D: "",
         Date_A_F: "",
         Raison_E: "",
-      },],
+      }],
       Nature_D_T: "",
       Descriptif_D_T: "",
       Evolution: "",
@@ -184,6 +201,7 @@ const FormJaune = (props) => {
       }
       const [validated, setValidated] = useState(false);
   const [Reactions,setReactions] = useState([1])
+  const [Medicaments,setMedicaments] = useState([1])
   return (
     <Form  validated={validated} onSubmit={formik.handleSubmit}>
             <FormikProvider value={formik}>
@@ -264,6 +282,56 @@ const FormJaune = (props) => {
         </Tab.Content>
         </Tab.Container>
 
+        <Titre><InsideTitre>Medicament(s)</InsideTitre></Titre>
+<Tab.Container id="left-tabs-example" defaultActiveKey="Medicament#1">
+        <Nav variant="tabs"  >
+          {Medicaments.map((el, index) => {
+            return (
+              <Nav.Item key={index}>
+                <Nav.Link eventKey={`Medicament#${el}`}>Medicament#{el}</Nav.Link>
+              </Nav.Item>
+            );
+          })}
+          <Nav.Item
+            as={() => {
+              return (
+                <Button 
+                  onClick={() => {
+                    formik.values.Medicaments[Medicaments.length] = {
+                      Type_D_L_R: "",
+                      Date_A: "",
+                      Medciament_DCI: "",
+                      Numero_D_L: "",
+                      Type_Voie_A: "",
+                      Posologie: "",
+                      Date_A_D: "",
+                      Date_A_F: "",
+                      Raison_E: "",
+                    };
+                    setMedicaments([...Medicaments, Medicaments.length + 1]);
+
+ 
+                  }}
+                >
+                  +
+                </Button>
+              );
+            }}
+          />
+        </Nav>
+<Tab.Content >
+          {Medicaments.map((el, index) => {
+
+            return (
+              <Tab.Pane eventKey={`Medicament#${el}`} key={index}>
+                    <Medicament formik={formik} id={index} className={`Medicament#${el}`} onFileChange={onFileChange}/>
+              </Tab.Pane>
+            );
+          })}
+
+
+        </Tab.Content>
+        </Tab.Container>
 
 
 <Titre><InsideTitre>Traitement de la réaction indésirable</InsideTitre></Titre>
