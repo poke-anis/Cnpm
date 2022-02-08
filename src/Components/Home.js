@@ -273,7 +273,7 @@ useEffect(() => {
   
   : null}
   {" "}
-  {elem.creator[0].Nom}
+
       {elem.creator[0].Nom}
     </Card.Footer>
   </Card>

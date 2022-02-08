@@ -226,9 +226,9 @@ const FormJaune = (props) => {
           <Nav.Item
             as={() => {
               return (
-                <Button type="button"
+                <Button 
                   onClick={() => {
-                    formik.values.Reaction[Reactions.length] = {
+                    formik.values.Reactions[Reactions.length] = {
                       Type_D_L_R: "",
                       Date_A: "",
                       Medciament_DCI: "",
