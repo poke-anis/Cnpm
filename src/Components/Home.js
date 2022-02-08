@@ -132,22 +132,15 @@ cnpmAlertes.map((elem,ind) =>
         onHide={() => setModalShow(false)}
       />
     ) : null}
-    {elem.lien
-  ?  <a href={elem.lien} >Source</a> 
-  
-  : null}
+{elem.description}
   </Card.Text>
 </Card.Body>
 <Card.Footer style={{display:"flex",justifyContent:"space-between"}}>
-  <Button
-    variant="primary"
+{elem.lien
+  ?  <a href={elem.lien} >Source</a> 
   
-    onClick={() => {
-      afficherForm(elem);
-    }}
-  >
-    Afficher
-  </Button>{" "}
+  : null}
+  {" "}
   {elem.creator[0].Nom}
 </Card.Footer>
 </Card>
@@ -271,21 +264,16 @@ useEffect(() => {
             onHide={() => setModalShow(false)}
           />
         ) : null}
-        {elem.lien
-      ?  <a href={elem.lien} >Source</a> 
-      
-      : null}
+{elem.description}
       </Card.Text>
     </Card.Body>
     <Card.Footer style={{display:"flex",justifyContent:"space-between"}}>
-      <Button
-        variant="primary"
-        onClick={() => {
-          afficherForm(elem);
-        }}
-      >
-        Afficher
-      </Button>{" "}
+    {elem.lien
+  ?  <a href={elem.lien} >Source</a> 
+  
+  : null}
+  {" "}
+  {elem.creator[0].Nom}
       {elem.creator[0].Nom}
     </Card.Footer>
   </Card>

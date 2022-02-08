@@ -55,24 +55,24 @@ const editor = useRef(null)
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-        Description
+        Description (100 caractères max)
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-{/*       <Form.Group  controlId="description">
-   <Form.Control  onChange={formik.handleChange} value={formik.values.description} name="description" as="textarea" />
-</Form.Group>  */}
-<div>{parse(formik.values.description)}
-</div>
+      <Form.Group  controlId="description">
+   <Form.Control maxLength="100" onChange={formik.handleChange} value={formik.values.description} name="description" as="textarea" />
+</Form.Group>  
+{/* <div>{parse(formik.values.description)}
+</div> */}
 
 
-<JoditEditor
+{/* <JoditEditor
           
           value={formik.values.description}
         
           onBlur={(el)=>{helpers.setTouched(el)}}
           onChange={(el)=>{helpers.setValue(el)}}
-  />
+  /> */}
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
@@ -182,10 +182,10 @@ return(
   <thead>
     <tr>
       <th>#</th>
-      <th>Username</th>
+      <th>Nom d'utilisateur</th>
       <th>Nom</th>
       <th>Mot de passe</th>
-      <th>fonction</th>
+      <th>Fonction(s)</th>
       <th>Options</th>
     </tr>
   </thead>

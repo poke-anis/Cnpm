@@ -38,13 +38,13 @@ return(
       <Nav className="me-auto" style={{width:'100%'}}>
         <Nav.Link
       as={Link}
-      as={Link} to="/">Accueil</Nav.Link>
+      as={Link} href="/" to="/">Accueil</Nav.Link>
         <Nav.Link
-      as={Link} to="/Seconnecter">Se connecter</Nav.Link>
+      as={Link} to="/Seconnecter"  href="/Seconnecter">Se connecter</Nav.Link>
         <Nav.Link
-      as={Link} to="/Register">S'inscrire</Nav.Link>
+      as={Link} to="/Register" href="/Register">S'inscrire</Nav.Link>
         <Nav.Link
-       to="/SeconnecterCnpm"  style={{marginLeft:'auto'}}>Cnpm Login</Nav.Link>
+       to="/SeconnecterCnpm"  href="/SeconnecterCnpm" style={{marginLeft:'auto'}}>Cnpm Login</Nav.Link>
       </Nav>
     </Container>
   :
@@ -53,17 +53,18 @@ return(
       <Navbar.Brand href="">CNPM</Navbar.Brand>
       <Nav className="me-auto" style={{width:'100%'}}>
       <Nav.Link
-      as={Link} to="/">Accueil</Nav.Link>
+      as={Link} to="/" href="/=">Accueil</Nav.Link>
       <Nav.Link
       as={Link}
+      href="/MesDeclaration"
  to="/MesDeclaration"
         >
           Afficher les declaration
         </Nav.Link>
         <Nav.Link
-      as={Link} to="/Profile">Profile</Nav.Link>
+      as={Link} to="/Profile" href="/Profile">Profile</Nav.Link>
         <Nav.Link
-      as={Link} to="/Mods">Panneau de Gestion</Nav.Link>
+      as={Link} to="/Mods" href="/Mods">Panneau de Gestion</Nav.Link>
         <Nav.Link
         onClick={Deco}
         style={{marginLeft:'auto'}}>
@@ -76,10 +77,11 @@ return(
     <Navbar.Brand href="/">CNPM</Navbar.Brand>
     <Nav className="me-auto">
     <Nav.Link
-      as={Link} to="/">Accueil</Nav.Link>
+      as={Link}  href="/" to="/">Accueil</Nav.Link>
       <Nav.Link
       as={Link}
         to="/Declaration"
+        href="/Declaration"
       >
         Faire une declaration
       </Nav.Link>
@@ -90,7 +92,7 @@ return(
         Afficher les declaration
       </Nav.Link> */}
       <Nav.Link
-      as={Link} to="/Profile">Profile</Nav.Link>
+      as={Link} to="/Profile" href="/Profile">Profile</Nav.Link>
       <Nav.Link
        onClick={Deco} style={{marginLeft:'auto'}}>
         Se deconnecter
@@ -106,6 +108,7 @@ return(
  <Nav.Link
       as={Link}
         to="/MesDeclaration"
+        href="/MesDeclaration"
       >
         Afficher les declaration
       </Nav.Link>
