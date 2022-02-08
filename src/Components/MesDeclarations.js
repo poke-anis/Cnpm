@@ -307,7 +307,7 @@ const MesDeclarationsCnpm = (props) => {
           <div
             style={{
               width: "65%",
-              display: "flex",
+
               paddingLeft: "20px",
             }}
           >

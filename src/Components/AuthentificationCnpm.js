@@ -41,6 +41,7 @@ function AuthenticationCnpm(props)
           swal("Success!", res.data.message, "success").then(value => {
             
             navigate("/")
+            window.location.reload(false)
           });
         } else if (res.data.result === "error") {
           swal("Error!", res.data.message, "error");
