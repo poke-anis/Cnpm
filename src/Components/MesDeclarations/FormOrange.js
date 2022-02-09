@@ -569,18 +569,7 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>:null}
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-            Lequel
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={declaData.Lequel_M}
-              />
-            </Col>
-          </Form.Group>
+
 
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
