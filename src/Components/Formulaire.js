@@ -248,7 +248,7 @@ const Formulaire = (props) => {
                 </span>
               </Nav.Link>
             </Nav.Item> 
-            </Nav>:Espace === "GrandPublic"? 
+            </Nav>:Espace === "Grand Public"? 
             
             <Nav variant="pills" className="flex-column">
 <Nav.Item style={{ width: "100%", height: "100%" }}>

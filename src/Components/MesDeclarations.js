@@ -776,7 +776,7 @@ var val = decla[Object.values(clicked)[0]]
                               
                             </div>
                             <div style={{ display: "flex",justifyContent:"space-between",color:"white",paddingBottom:"10px" }}>
-                            <p>Etat :</p>
+                            <p style={{width:"35%"}}>Etat :</p>
                             {val.status === true ? (
                               <select
                                 style={{ marginTop: "5px" }}
