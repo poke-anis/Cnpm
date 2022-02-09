@@ -119,7 +119,7 @@ const FormOrange = (props) => {
       Profession: '',
       Activite_S: '',
       Regime_A_V: '',
-      Produits:{ 
+      Produits:[{ 
         Nom_C_C: '',
         Fabricant: '',
         Fournisseur: '',
@@ -130,7 +130,7 @@ const FormOrange = (props) => {
         Motif_D_C: '',
         Dose_C: '',
         Lieu_A: '',
-    },
+    }],
     Description_D_L_R:'',
     Photo_E_I:'',
     Type_A:'',
@@ -259,6 +259,7 @@ const FormOrange = (props) => {
               return (
                 <Button  variant="light"type="Button"
                   onClick={() => {
+
                     setProduits([...Produits, Produits.length + 1]);
                   }}
                 >
