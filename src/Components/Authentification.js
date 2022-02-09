@@ -41,10 +41,11 @@ function Authentication(props)
           
           onLogin(res.data.token,res.data.id,res.data.UserType,res.data.Espace)
           swal("Success!", res.data.message, "success").then(value => {
-            navigate("/Declaration")
             const change = setTimeout(() => {
               window.location.reload(false)
             }, 400);
+            navigate("/")
+
            
           });
         } else if (res.data.result === "error") {
