@@ -141,6 +141,7 @@ function App() {
   };
   function Deco(props) {
     removeCookie("token_key");
+    removeCookie("Espace");
     removeCookie("UserType");
     removeCookie("id");
     setIsloged('false');
