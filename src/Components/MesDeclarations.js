@@ -33,7 +33,7 @@ var optionstime = {
   minute: "numeric",
 };
 
-const mailContent = " Votre formulaire est en cours de traitement par la Cnpm";
+const mailContent = " Votre formulaire est en cours de traitement par le Cnpm";
 
 const containerDeclarations = (props) => {
   const { token_key, TypeExecrice, UserType } = props.cookie;

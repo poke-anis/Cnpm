@@ -43,6 +43,7 @@ const Inputstyled = styled(Field)`
   margin: 5px;
 `;
 const FlexBox = styled.div`
+margin-top:10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
