@@ -112,7 +112,8 @@ return(
       >
         Afficher les declaration
       </Nav.Link>
-      
+      <Nav.Link
+      as={Link} to="/Mods" href="/Mods">Panneau de Gestion</Nav.Link>
       <Nav.Link
       onClick={Deco} style={{marginLeft:'auto'}}>
         Se deconnecter
@@ -184,23 +185,27 @@ function App() {
       />
       <Route path="/Register" element={<Register useNavigate={useNavigate}/>} />
       </>
-:isloged === 'User'||isloged === 'Mods' ||isloged === 'Cnpm'? 
+:isloged === 'User'? 
 <>
-<Route path="/Mods" element={<Moderateurs cookie={cookies} />} />
+
 <Route
   path="/Declaration"
   element={<Formulaire Espace={Espace} userID={cookies.id}/>}
 />
+<Route path="/Profile" element={<Notificateur Espace={Espace}/>} />
+</>
+:isloged === 'Mods' ||isloged === 'Cnpm'?
+<>
+<Route path="/Mods" element={<Moderateurs cookie={cookies} />} />
 <Route
   path="/MesDeclaration"
   element={<MesDeclarations  cookie={cookies} />}
 />
 <Route path="/Profile" element={<Notificateur Espace={Espace}/>} />
 </>
-:null}
-
-
-          
+:
+null}
+        
          
         </Routes>
         <BasDePage setModalShow={setModalShow}/>
