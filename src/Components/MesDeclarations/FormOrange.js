@@ -407,6 +407,7 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
+          {declaData.Description_A != null &&
                     <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
                     <Form.Label column sm="5">
                     :
@@ -419,6 +420,7 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
                       />
                     </Col>
                   </Form.Group>
+                  }
                   </div>
   )}
 
