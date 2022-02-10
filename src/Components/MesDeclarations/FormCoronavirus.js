@@ -449,6 +449,9 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
+          { declaData.Description_Manifestation_P_V_I != null &&
+                declaData.Description_Manifestation_P_V_I.map((elem2, index3) => (
+
                     <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
                     <Form.Label column sm="5">
                     :
@@ -457,10 +460,11 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
                       <Form.Control
                         
                         readOnly
-                        defaultValue={declaData.Description_Manifestation_P_V_I[index2]}
+                        defaultValue={elem2}
                       />
                     </Col>
                   </Form.Group>
+                ))}
                   </div>
   )}
 
@@ -579,6 +583,8 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
+          { declaData.Description_A != null &&
+                declaData.Description_A.map((elem2, index3) => (
                     <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
                     <Form.Label column sm="5">
                     :
@@ -587,10 +593,11 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
                       <Form.Control
                         
                         readOnly
-                        defaultValue={declaData.Description_A[index2]}
+                        defaultValue={elem2}
                       />
                     </Col>
                   </Form.Group>
+                ))}
                   </div>
   )}
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">

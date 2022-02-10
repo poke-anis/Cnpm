@@ -430,6 +430,8 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
+          { declaData.Description_E_I != null &&
+                declaData.Description_E_I.map((elem2, index3) => (
                     <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
                     <Form.Label column sm="5">
                     :
@@ -438,10 +440,12 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
                       <Form.Control
                         
                         readOnly
-                        defaultValue={declaData.Description_E_I[index2]}
+                        defaultValue={elem2}
                       />
                     </Col>
                   </Form.Group>
+                ))}
+
                   </div>
   )}
 
