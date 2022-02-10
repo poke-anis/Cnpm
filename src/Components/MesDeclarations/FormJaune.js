@@ -253,12 +253,14 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                       <Form.Label column sm="5">
                         :
                       </Form.Label>
+                      { el.Type_D_L_R != null &&
+                el.Type_D_L_R.map((elem, index3) => (
                       <Col sm="7">
                         <Form.Control
                           readOnly
-                          defaultValue={el.Description_D_L_R[index2]}
+                          defaultValue={elem}
                         />
-                      </Col>
+                      </Col>))}
                     </Form.Group>
                   </div>
                 ))}
