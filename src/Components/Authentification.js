@@ -17,21 +17,21 @@ align-items:center;
 padding-top:100px;
 `
 
-
+function onLogin(token,id,UserType,Espace,setCookie,setIsloged) {
+  setCookie('token_key', token, { path: '/' });
+  setCookie('id', id, { path: '/' });
+  setCookie('UserType', UserType, { path: '/' });
+  setCookie('Espace', Espace, { path: '/' });
+  setIsloged(UserType)
+};
 
 function Authentication(props) 
 {
   const [cookies, setCookie, removeCookie] = useCookies('token_key');
-  const [Espace, setEspace] = useState("");
+
   const { isloged, setIsloged } = useContext(props.userContext)
   const navigate = props.useNavigate()
-  function onLogin(token,id,UserType,Espace) {
-    setCookie('token_key', token, { path: '/' });
-    setCookie('id', id, { path: '/' });
-    setCookie('UserType', UserType, { path: '/' });
-    setCookie('Espace', Espace, { path: '/' });
-    setIsloged(UserType)
-  };
+
   let submitForm = (values, history) => {
     axiosConfig
       .post("/login", values)
@@ -39,7 +39,7 @@ function Authentication(props)
 
         if (res.data.result === "success") {
           
-          onLogin(res.data.token,res.data.id,res.data.UserType,res.data.Espace)
+          onLogin(res.data.token,res.data.id,res.data.UserType,res.data.Espace,setCookie,setIsloged)
           swal("Success!", res.data.message, "success").then(value => {
             const change = setTimeout(() => {
               window.location.reload(false)

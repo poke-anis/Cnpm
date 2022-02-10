@@ -18,6 +18,10 @@ import Switch from "react-switch";
 import CreatableSelect from "react-select/creatable";
 import Swal from 'sweetalert2'
 
+const components = {
+  DropdownIndicator: null,
+};
+
 const Content = styled.div`
   display: flex;
   justify-content: center;
@@ -33,7 +37,7 @@ var optionstime = {
   minute: "numeric",
 };
 
-const mailContent = " Votre formulaire est en cours de traitement par le Cnpm";
+const mailContent = `"<p style="margin-left:0; margin-right:0; text-align:start"><span style="font-size:11pt"><span style="font-size:14pt">Cher exp&eacute;diteur,</span><br /><span style="font-size:14pt">Merci d&#39;avoir contact&eacute; le Centre National de Pharmacovigilance et de Mat&eacute;riovigilance (CNPM) Alg&eacute;rie. Nous accusons bonne r&eacute;ception &agrave; votre d&eacute;claration.<br />Nous la prenons en charge et reviendrons vers vous, si n&eacute;cessaire<br />Bien cordialement</span></span></p><p style="margin-left:0; margin-right:0; text-align:start"><span style="font-size:14pt">CNPM</span></p>"`
 
 const containerDeclarations = (props) => {
   const { token_key, TypeExecrice, UserType } = props.cookie;
@@ -56,6 +60,9 @@ const MesDeclarationsCnpm = (props) => {
     { label: "En cours", value: "En cours" },
   ];
   const [selectedValueEtat, setSelectedValueEtat] = useState("");
+  const [selectedValueSearch, setSelectedValueSearch] = useState("");
+  const [selectedValueSearchToSend, setSelectedValueSearchToSend] = useState([]);
+
   const [selectedValueEtatToSend, setSelectedValueEtatToSend] = useState([]);
   const [numberOfPages, setNumberOfPages] = useState(0);
 
@@ -206,7 +213,7 @@ const MesDeclarationsCnpm = (props) => {
   };
   useEffect(() => {
     getDeclacount();
-  }, [changement, selectedValueEtatToSend]);
+  }, [changement, selectedValueEtatToSend,selectedValueSearchToSend]);
   const componentRef = useRef();
   const CompRender = (props) => {
     if (props === undefined) {
@@ -260,6 +267,15 @@ const MesDeclarationsCnpm = (props) => {
     const change = setTimeout(() => {
       handlePrint();
     }, 300);
+  };
+
+  const onChangeSearch = (value) => {
+    setSelectedValueSearch(value);
+    if (value.length === 0) {
+      setSelectedValueSearchToSend([]);
+    } else {
+      setSelectedValueSearchToSend(value);
+    }
   };
 
   const onChangeEtat = (value) => {
@@ -511,6 +527,8 @@ const MesDeclarations = (props, isMulti) => {
   const [selectedValueEtat, setSelectedValueEtat] = useState("");
   const [selectedValueEtatToSend, setSelectedValueEtatToSend] = useState([]);
   const [numberOfPages, setNumberOfPages] = useState(0);
+  const [selectedValueSearch, setSelectedValueSearch] = useState("");
+  const [selectedValueSearchToSend, setSelectedValueSearchToSend] = useState([]);
 
   const Etat = [
     { label: "Non Vu", value: "false" },
@@ -548,7 +566,7 @@ const MesDeclarations = (props, isMulti) => {
       .get(
         `/secure/getfichestype?pagination=${"5"}&page=${currentPage}&typeOfFiches=[${selectedValueToSend.map(
           (el) => `"${el}"`
-        )}]&status=[${selectedValueEtatToSend.map((el) => `"${el}"`)}]`
+        )}]&status=[${selectedValueEtatToSend.map((el) => `"${el}"`)}]&search="${selectedValueSearchToSend}"`
       )
       .then((res) => {
         setDecla(res.data);
@@ -559,7 +577,7 @@ const MesDeclarations = (props, isMulti) => {
       .get(
         `/secure/getfichestypenbr?typeOfFiches=[${selectedValueToSend.map(
           (el) => `"${el}"`
-        )}]&status=[${selectedValueEtatToSend.map((el) => `"${el}"`)}]`
+        )}]&status=[${selectedValueEtatToSend.map((el) => `"${el}"`)}]&search="${selectedValueSearchToSend}"`
       )
       .then((res) => {
         setDeclanum(res.data);
@@ -630,7 +648,8 @@ const MesDeclarations = (props, isMulti) => {
 
   useEffect(() => {
     getDeclacount();
-  }, [changement, selectedValue, selectedValueEtatToSend]);
+    console.log('test')
+  }, [changement, selectedValue, selectedValueEtatToSend,selectedValueSearchToSend]);
 
   const onChange = (value) => {
     setSelectedValue(value);
@@ -648,7 +667,16 @@ const MesDeclarations = (props, isMulti) => {
       setSelectedValueEtatToSend(value);
     }
   };
+  const onChangeSearch = (value) => {
 
+    setSelectedValueSearch(value);
+    if (value.length === 0) {
+      setSelectedValueSearchToSend([]);
+    } else {
+      console.log(value)
+      setSelectedValueSearchToSend(value);
+    }
+  };
   var componentRef = useRef();
 
   const handlePrint = useReactToPrint({
@@ -734,7 +762,24 @@ var val = decla[Object.values(clicked)[0]]
               isMulti
               isClearable
             />
+                        <div style={{ color: "white" }}>Recherche:</div>
+            <CreatableSelect
+              components={components}
+              placeholder='Introduisez  le(s) mot-clé(s) desirer et appuyez sur entrer'
+              name="Search"
+              onChange={(val) =>
+                true
+                  ? onChangeSearch(val.map((c) => c.value))
+                  : onChangeSearch(val.value)
+              }
+
+
+              onChangeSearch
+              isMulti
+              isClearable
+            />
           </div>
+          
           <Filtre
             setClicked={setClicked}
             decla={decla}

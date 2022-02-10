@@ -126,11 +126,11 @@ return(
 
 
 function App() {
-  const [cookies, removeCookie] = useCookies("token_key");
+  const [cookies,setCookie, removeCookie] = useCookies("token_key");
   const [Espace, setEspace] = useState(cookies.Espace);
   const [isloged, setIsloged] = useState(cookies.token_key !== 'undefined' && cookies.token_key ? cookies.UserType : 'false');
   const [modalShow, setModalShow] = useState(false);
-
+  const [changement,setChangement] = useState("");
   const navigate = useNavigate();
   const readCookie = () => {
     if (cookies.token_key !== 'undefined' && cookies.token_key ) {
@@ -149,9 +149,15 @@ function App() {
     navigate("/");
   }
   useEffect(() => {
-    readCookie();
     
-  }, []);
+    console.log(Espace)
+    if(cookies.Espace !== Espace )
+    {
+      setCookie('Espace', Espace, { path: '/' });
+    }else{
+      readCookie();
+    }
+  }, [Espace]);
 
 
   return (
@@ -201,7 +207,7 @@ function App() {
   path="/MesDeclaration"
   element={<MesDeclarations  cookie={cookies} />}
 />
-<Route path="/Profile" element={<Notificateur Espace={Espace}/>} />
+<Route path="/Profile" element={<Notificateur Espace={Espace} setEspace={setEspace}/>} />
 </>
 :
 null}

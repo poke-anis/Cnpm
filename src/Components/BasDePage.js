@@ -6,7 +6,8 @@ const Bar = styled.footer`
 background-color:#034EA2;
 color : white;
 font-size: 0.7rem;
-
+grid-row-start: 4;
+grid-row-end: 5;
 `
 
 const  Titre = styled.div`

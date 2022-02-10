@@ -227,7 +227,7 @@ useEffect(() => {
   return(
     <div style={{width:"100%",display:"flex",height:"80%",justifyContent:"space-between",flexDirection:"Column"}}>
 
-    <div style={{width:"100%",display:"flex",justifyContent:"space-between",flexWrap:"wrap",alignItems:"baseline"}}>
+    <div style={{width:"100%",display:"flex",justifyContent:"space-between",flexWrap:"wrap"}}>
 
 {cnpmNews.length >= 1 && cnpmNews instanceof Array? 
   

@@ -45,8 +45,8 @@ const FlexBox = styled.div`
 `;
 const Notificateur = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies("token_key");
-  const [Espace, setEspace] = useState(cookies.Espace);
-  const [update, setupdate] = useState(true);
+  const {Espace,setEspace} = props
+  const [update, setupdate] = useState(false);
   const [modification, setModification] = useState(false);
   const [modificationPass, setModificationPass] = useState(false);
 
@@ -56,25 +56,27 @@ const Notificateur = (props) => {
 
   useEffect(
     () => {
+      console.log('zegdsgdfwg')
+      const change = setTimeout(() => {
       axiosConfig.get(`/secure/infos/${id}`).then(function (res) {
-        setCookie("Espace", res.data.Espace, { path: "/" })
-        setEspace(res.data.Espace)
-        setInfos(res.data);
+        setInfos({...res.data,number:Math.random()});
+        
+      }, 200);
+
       });
     },
 
-    // setFieldValue('Prenom',infos.Prenom)
-    // setFieldValue('Profession',infos.Profession)
-    // setFieldValue('Telephone',infos.Telephone)
-    // setFieldValue('Adresse_Professionnelle',infos.Adresse_Professionnelle)
-    // setFieldValue('Type_Exercice',infos.Type_Exercice)
+  
 
-    []
+    [Espace,update]
   );
+
 
   return infos ? (
     <Formik
+    enableReinitialize
       initialValues={infos}
+      enableReinitialize
       validationSchema={Yup.object({
         Nom: Yup.string().required("Le nom est requis"),
         Prenom: Yup.string().required("Le Prenom  est requis"),
@@ -112,12 +114,14 @@ const Notificateur = (props) => {
             .post(`/secure/update/${id}`, values)
             .then((res) => {
               if (res.data.result === "success") {
-                localStorage.setItem("token_key", res.data.token);
+                
+                
                 swal("Success!", res.data.message, "success").then((value) => {
                   setModification(false);
                   setModificationPass(false);
-                  setTimeout(() => {
-                  window.location.reload(false)}, 400);
+                  setEspace(values.Espace)
+                  setupdate(!update)
+                  
                 });
               } else if (res.data.result === "error") {
                 swal("Error!", res.data.message, "error");
@@ -172,7 +176,7 @@ const Notificateur = (props) => {
                     name="Nom"
                     onChange={handleChange}
                     readOnly={modification === true ? false : true}
-                    defaultValue={infos.Nom}
+                    defaultValue={values.Nom}
                   />
                 </Col>
                 {errors.Nom}
@@ -191,7 +195,7 @@ const Notificateur = (props) => {
                     name="Prenom"
                     onChange={handleChange}
                     readOnly={modification === true ? false : true}
-                    defaultValue={infos.Prenom}
+                    defaultValue={values.Prenom}
                   />
                 </Col>
                 {errors.Prenom}
@@ -210,7 +214,7 @@ const Notificateur = (props) => {
                     name="Telephone"
                     onChange={handleChange}
                     readOnly={modification === true ? false : true}
-                    defaultValue={infos.Telephone}
+                    defaultValue={values.Telephone}
                   />
                 </Col>
                 {errors.Telephone}
@@ -229,7 +233,7 @@ const Notificateur = (props) => {
                     type="text"
                     name="Email"
                     readOnly={modification === true ? false : true}
-                    defaultValue={infos.Email}
+                    defaultValue={values.Email}
                   />
                 </Col>
                 {errors.Email}
@@ -249,13 +253,13 @@ const Notificateur = (props) => {
                       onChange={handleChange}
                       name="Espace"
                       readOnly={modification === true ? false : true}
-                      defaultValue={infos.Espace}
+                      defaultValue={values.Espace}
                     >
                       <option value="Professionnel">Professionnel</option>
                       <option value="Grand Public">Grand Public</option>
                     </Form.Select>
                   ) : (
-                    <Form.Control readOnly={true} defaultValue={infos.Espace} />
+                    <Form.Control readOnly={true} defaultValue={values.Espace} />
                   )}
                 </Col>
               </Form.Group>
@@ -276,7 +280,7 @@ const Notificateur = (props) => {
                           onChange={handleChange}
                           name="Profession"
                           readOnly={modification === true ? false : true}
-                          defaultValue={infos.Profession}
+                          defaultValue={values.Profession}
                         >
                           <option></option>
                           <option value="Médecin">Médecin</option>
@@ -289,7 +293,7 @@ const Notificateur = (props) => {
                       ) : (
                         <Form.Control
                           readOnly={true}
-                          defaultValue={infos.Profession}
+                          defaultValue={values.Profession}
                         />
                       )}
                     </Col>
@@ -309,7 +313,7 @@ const Notificateur = (props) => {
                           onChange={handleChange}
                           name="Type_Exercice"
                           readOnly={modification === true ? false : true}
-                          defaultValue={infos.Type_Exercice}
+                          defaultValue={values.Type_Exercice}
                         >
                           <option></option>
                           <option value="Public">Public</option>
@@ -318,7 +322,7 @@ const Notificateur = (props) => {
                       ) : (
                         <Form.Control
                           readOnly={modification === true ? false : true}
-                          defaultValue={infos.Type_Exercice}
+                          defaultValue={values.Type_Exercice}
                         />
                       )}
                     </Col>
@@ -336,7 +340,7 @@ const Notificateur = (props) => {
                         onChange={handleChange}
                         name="Adresse_Professionnelle"
                         readOnly={modification === true ? false : true}
-                        defaultValue={infos.Adresse_Professionnelle}
+                        defaultValue={values.Adresse_Professionnelle}
                       />
                     </Col>
                   </Form.Group>
@@ -360,7 +364,7 @@ const Notificateur = (props) => {
                             type="password"
                             name="Password"
                             readOnly={modificationPass === true ? false : true}
-                            defaultValue={infos.Password}
+                            defaultValue={values.Password}
                           />
                         </Col>
                       </Form.Group>
@@ -378,7 +382,7 @@ const Notificateur = (props) => {
                             type="password"
                             name="CPassword"
                             readOnly={modificationPass === true ? false : true}
-                            defaultValue={infos.CPassword}
+                            defaultValue={values.CPassword}
                           />
                         </Col>
                       </Form.Group>
