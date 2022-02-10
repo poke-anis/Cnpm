@@ -250,12 +250,14 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                       className="mb-3"
                       controlId="formPlaintextEmail"
                     >
-                      <Form.Label column sm="5">
-                        :
-                      </Form.Label>
+
                       { el.Type_D_L_R != null &&
                 el.Description_D_L_R.map((elem2, index3) => (
+                  
                       <Col sm="7">
+                                              <Form.Label column sm="5">
+                        :
+                      </Form.Label>
                         <Form.Control
                           readOnly
                           defaultValue={elem2}
