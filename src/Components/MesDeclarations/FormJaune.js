@@ -222,9 +222,9 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
               </Form.Group>
             </BigBox>
           </FlexBox>
-
+          <FlexBox >
           {declaData.Reactions.map((el, index) => (
-            <FlexBox key={index}>
+            
               <BigBox>
                 <h1 style={{ width: "100%", textAlign: "center" }}>
                   Reaction {index + 1}
@@ -297,8 +297,9 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                
               </BigBox>
 
-            </FlexBox>
+            
           ))}
+          </FlexBox>
           {declaData.Medicaments.map((el, index) => (
             <FlexBox key={index}>
               <BigBox>
