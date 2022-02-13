@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext } from "react";
-import { Route, Routes, useNavigate, Link } from "react-router-dom";
+import { Route, Routes, useNavigate, Link,useParams } from "react-router-dom";
 import "./App.css";
 import { Navbar, Nav, Container, } from "react-bootstrap";
 import { useCookies } from "react-cookie";
@@ -15,6 +15,8 @@ import "./Components/Moderateurs.js"
 import Notificateur from "./Components/Notificateur";
 import Moderateurs from "./Components/Moderateurs"
 import Home from "./Components/Home"
+import PasswordForget from "./Components/PasswordForget"
+import PasswordChange from "./Components/PasswordChange"
 import Support from "./Components/Support"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./Components/Button.css"
@@ -31,13 +33,17 @@ function Navigationbar (props) {
  const  {isloged,Deco}= props
 
 return(
-  <Navbar variant="dark" className="sticky-top Navcolor">
+  <Navbar collapseOnSelect  expand="lg" sticky="top" className="Navcolor" variant='dark'>
+     <Container>
+
+ <Navbar.Brand to="/" href="#home">CNPM</Navbar.Brand>
+   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
   {isloged === 'false' ?
-    <Container>
-      <Navbar.Brand href="#home">CNPM</Navbar.Brand>
+      
       <Nav className="me-auto" style={{width:'100%'}}>
         <Nav.Link
-      as={Link}
+
       as={Link} href="/" to="/">Accueil</Nav.Link>
         <Nav.Link
       as={Link} to="/Seconnecter"  href="/Seconnecter">Se connecter</Nav.Link>
@@ -46,11 +52,10 @@ return(
         <Nav.Link
        to="/SeconnecterCnpm"  href="/SeconnecterCnpm" style={{marginLeft:'auto'}}>Cnpm Login</Nav.Link>
       </Nav>
-    </Container>
+  
   :
   isloged === 'Mods' ? 
-    <Container>
-      <Navbar.Brand href="">CNPM</Navbar.Brand>
+      
       <Nav className="me-auto" style={{width:'100%'}}>
       <Nav.Link
       as={Link} to="/" href="/=">Accueil</Nav.Link>
@@ -71,11 +76,8 @@ return(
           Se deconnecter
         </Nav.Link>
       </Nav>
-    </Container>
 :isloged === 'User' ? 
-  <Container>
-    <Navbar.Brand href="/">CNPM</Navbar.Brand>
-    <Nav className="me-auto">
+    <Nav className="me-auto" style={{width:'100%'}}>
     <Nav.Link
       as={Link}  href="/" to="/">Accueil</Nav.Link>
       <Nav.Link
@@ -98,13 +100,10 @@ return(
         Se deconnecter
       </Nav.Link>
     </Nav>
-  </Container>
  : isloged=== 'Cnpm'?
- <Container>
-   <Nav className="me-auto">
-    <Navbar.Brand href="/">CNPM</Navbar.Brand>
+   <Nav className="me-auto" style={{width:'100%'}}>
     <Nav.Link
-      as={Link} to="/">Accueil</Nav.Link>
+      as={Link} to="/" href="/">Accueil</Nav.Link>
  <Nav.Link
       as={Link}
         to="/MesDeclaration"
@@ -119,7 +118,9 @@ return(
         Se deconnecter
       </Nav.Link>
       </Nav>
-  </Container>:null}
+  :null}
+  </Navbar.Collapse>
+    </Container>
 </Navbar>
   )
 }
@@ -171,6 +172,8 @@ function App() {
 <Route path="/" element={<Home/>}/>
 {isloged === 'false' ?
 <>
+<Route path="/PasswordForget" element={<PasswordForget />} />
+<Route path="/PasswordChange/:token" element={<PasswordChange useParams={useParams}/>} />
           <Route
           path="/Seconnecter"
           element={
@@ -208,6 +211,7 @@ function App() {
   element={<MesDeclarations  cookie={cookies} />}
 />
 <Route path="/Profile" element={<Notificateur Espace={Espace} setEspace={setEspace}/>} />
+
 </>
 :
 null}

@@ -1,6 +1,8 @@
 .App{
-display:grid;
-grid-template-rows: 25% 7% auto 5%;
+    display: flex;
+    flex-flow: column;
+      height: 100%;
+
 }
 
 .Navcolor{

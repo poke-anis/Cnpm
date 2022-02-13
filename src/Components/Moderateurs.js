@@ -21,7 +21,7 @@ import parse from 'html-react-parser';
 import * as Yup from "yup";
 
 const Content = styled.div`
-
+flex-grow : 1;
 padding: 50px;
 `
 

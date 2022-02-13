@@ -10,7 +10,7 @@ import axiosConfig from "./axios";
 import { InputRadio } from "./Declarations/FormikInputs";
 
 var AuthBox = styled.div`
-
+flex-grow : 1;
 text-align: left;
 display:flex;
 padding-left: 20px;

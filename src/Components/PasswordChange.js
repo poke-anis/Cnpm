@@ -1,12 +1,15 @@
-import React, { useContext,createContext } from 'react'
+import { useState } from "react";
+
 import {   
   Form,Button } from 'react-bootstrap'
 import styled from 'styled-components'
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import swal from "sweetalert";
 import { useCookies } from 'react-cookie'
 import axiosConfig from "./axios"
+import swal from "sweetalert";
+import { useParams } from "react-router-dom";
+
 var AuthBox = styled.div`
 flex-grow : 1;
 text-align: left;
@@ -18,30 +21,16 @@ padding-top:100px;
 
 
 
-function AuthenticationCnpm(props) 
+function PasswordChange(props) 
 {
-  const [cookies, setCookie, removeCookie] = useCookies('token_key');
-
-  const { isloged, setIsloged } = useContext(props.userContext)
-  const navigate = props.useNavigate()
-  function onLogin(token,id,UserType,TypeExecrice) {
-    setCookie('token_key', token, { path: '/' });
-    setCookie('id', id, { path: '/' });
-    setCookie('UserType', UserType, { path: '/' });
-    setCookie('TypeExecrice', TypeExecrice, { path: '/' });
-    setIsloged(UserType)
-  };
+const {useParams}= props
+const token = useParams()
   let submitForm = (values, history) => {
     axiosConfig
-      .post("/loginCnpm", values)
+      .post(`/reset?resetPasswordToken=${token.token}`, values)
       .then(res => {
         if (res.data.result === "success") {
-         
-          onLogin(res.data.token,res.data.id,res.data.UserType,res.data.Type_Exercice)
           swal("Success!", res.data.message, "success").then(value => {
-            
-            navigate("/")
-            window.location.reload(false)
           });
         } else if (res.data.result === "error") {
           swal("Error!", res.data.message, "error");
@@ -56,12 +45,16 @@ function AuthenticationCnpm(props)
 return (
   <AuthBox>
     <Formik
-      initialValues={{ Username: "", Password: "" }}
+      initialValues={{ Password: "",CPassword:"" }}
       validationSchema={Yup.object({
-        Username: Yup.string().required("Nom d'utilisateur invalide"),
         Password: Yup.string().required("Le mot de passe est requis"),
+        CPassword: Yup.string().oneOf(
+          [Yup.ref("Password"), null],
+          "Les mots de passe ne correspondent pas"
+        ),
       })}
       onSubmit={(values, { setSubmitting }) => {
+
         submitForm(values);
         setSubmitting(false);
       }}
@@ -74,30 +67,28 @@ return (
 
       }) => (
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="formBasicUsername">
-            <label>Username</label>
-            <Form.Control
-            name="Username"
-              type="text"
-              placeholder="Identifiant"
-              value={values.Username}
-              onChange={handleChange}
-            />
-          </Form.Group>
-
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <label>Mot de passe</label>
             <Form.Control
             name="Password"
-              type="password"
-              placeholder="Mot de passe"
+              type="Password"
+              placeholder="Identifiant"
               value={values.Password}
               onChange={handleChange}
             />
           </Form.Group>
-{/*           <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Rester connecté" />
-          </Form.Group> */}
+          <Form.Group className="mb-3" controlId="formBasicCPassword">
+            <label>Confirmer</label>
+            <Form.Control
+            name="CPassword"
+              type="Password"
+              placeholder="Identifiant"
+              value={values.CPassword}
+              onChange={handleChange}
+            />
+          </Form.Group>
+
+
           <Button variant="primary" type="submit">
             Entrer
           </Button>
@@ -108,4 +99,4 @@ return (
 );
 }
 
-export default AuthenticationCnpm;
+export default PasswordChange;

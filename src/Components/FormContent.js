@@ -12,6 +12,7 @@ import FormCoronavirus from './Declarations/FormCoronavirus'
 
 
 const FormContent = (props) =>{
+    
     const {Tab,userID} = props
     return(
 

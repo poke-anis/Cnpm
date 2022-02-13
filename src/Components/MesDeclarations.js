@@ -26,7 +26,7 @@ const Content = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  flex-grow : 1;
 `;
 
 var optionstime = {
@@ -37,7 +37,12 @@ var optionstime = {
   minute: "numeric",
 };
 
-const mailContent = `"<p style="margin-left:0; margin-right:0; text-align:start"><span style="font-size:11pt"><span style="font-size:14pt">Cher exp&eacute;diteur,</span><br /><span style="font-size:14pt">Merci d&#39;avoir contact&eacute; le Centre National de Pharmacovigilance et de Mat&eacute;riovigilance (CNPM) Alg&eacute;rie. Nous accusons bonne r&eacute;ception &agrave; votre d&eacute;claration.<br />Nous la prenons en charge et reviendrons vers vous, si n&eacute;cessaire<br />Bien cordialement</span></span></p><p style="margin-left:0; margin-right:0; text-align:start"><span style="font-size:14pt">CNPM</span></p>"`
+const mailContent = JSON.stringify(`<p>Cher exp&eacute;diteur,<br />
+Merci d'avoir contact&eacute; le Centre National de Pharmacovigilance et de Mat&eacute;riovigilance (CNPM) Alg&eacute;rie. Nous accusons bonne r&eacute;ception &agrave; votre d&eacute;claration.<br />
+Nous la prenons en charge et reviendrons vers vous, si n&eacute;cessaire<br />
+Bien cordialement</p>
+
+<p>CNPM</p>`)
 
 const containerDeclarations = (props) => {
   const { token_key, TypeExecrice, UserType } = props.cookie;
@@ -185,7 +190,7 @@ const MesDeclarationsCnpm = (props) => {
         .then(
         axiosConfig
           .post(
-            `/send/?name=Cnpm&email=${Email}&messageHtml=Bonjour%0D%0A${Username}%0D%0A${mailContent}`
+            `/send/?name=Cnpm&email=${Email}&messageHtml="Bonjour%0D%0A${Username}%0D%0A${mailContent}"`
           )
           .then((response) => {
             if (response.data.msg === "success") {
@@ -291,7 +296,6 @@ const MesDeclarationsCnpm = (props) => {
     <div
       style={{
         width: "100%",
-        height: "100%",
         display: "flex",
         flexWrap: "wrap",
       }}
@@ -300,7 +304,6 @@ const MesDeclarationsCnpm = (props) => {
         <>
           <div
             style={{
-              height: "100%",
               width: "20%",
               paddingTop: "30px",
               backgroundColor: "#272727",
@@ -491,7 +494,6 @@ const MesDeclarationsCnpm = (props) => {
         <>
           <div
             style={{
-              height: "100%",
               width: "20%",
               paddingTop: "30px",
               backgroundColor: "#272727",
@@ -648,7 +650,7 @@ const MesDeclarations = (props, isMulti) => {
 
   useEffect(() => {
     getDeclacount();
-    console.log('test')
+  
   }, [changement, selectedValue, selectedValueEtatToSend,selectedValueSearchToSend]);
 
   const onChange = (value) => {
@@ -690,8 +692,11 @@ const MesDeclarations = (props, isMulti) => {
         .then((res) => {});
       const change = setTimeout(() => {
         setChangement(!changement);
+        console.log('tesssst')
       }, 200);
+      
       if (Email && status) {
+        
         Swal.fire({
 
           title: 'Chargement',
@@ -700,9 +705,10 @@ const MesDeclarations = (props, isMulti) => {
           
         }).then(Swal.showLoading())
         .then(
+          
         axiosConfig
           .post(
-            `/send/?name=Cnpm&email=${Email}&messageHtml=Bonjour%0D%0A${Username}%0D%0A${mailContent}`
+            `/send/?name=Cnpm&email=${Email}&messageHtml=${mailContent}`
           )
           .then((response) => {
             if (response.data.msg === "success") {
@@ -726,12 +732,12 @@ const MesDeclarations = (props, isMulti) => {
 
 var val = decla[Object.values(clicked)[0]]
   return (
-    <div style={{ width: "100%", height: "100%", display: "flex" }}>
+    <div style={{ width: "100%", display: "flex" }}>
       {clicked === false ? (
         <>
           <div
             style={{
-              height: "100%",
+
               width: "20%",
               paddingTop: "30px",
               backgroundColor: "#272727",

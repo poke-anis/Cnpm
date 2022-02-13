@@ -12,7 +12,7 @@ import {AnimatePresence, motion} from 'framer-motion/dist/framer-motion'
 var User = styled.div`
   display: flex;
 overflow-x:hidden;
-
+flex-grow : 1;
 `;
 const Box = styled.div`
   display: flex;

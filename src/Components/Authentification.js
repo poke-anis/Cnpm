@@ -7,9 +7,10 @@ import { Formik } from 'formik';
 import { useCookies } from 'react-cookie'
 import axiosConfig from "./axios"
 import swal from "sweetalert";
+import { Route, Routes, useNavigate, Link,useParams } from "react-router-dom";
 
 var AuthBox = styled.div`
-
+flex-grow : 1;
 text-align: left;
 display:flex;
 flex-direction:column;
@@ -110,6 +111,7 @@ return (
         </Form>
       )}
     </Formik>
+    <Link to="/PasswordForget">Mot de passe Oublié</Link>
   </AuthBox>
 );
 }

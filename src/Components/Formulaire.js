@@ -1,24 +1,53 @@
 import React, { useState } from "react";
-// import "../Components/theme_1638455751035.";
 import "./Button.css";
 import styled from "styled-components";
 import FormContent from "./FormContent";
 import { Nav, Button, Tab } from "react-bootstrap";
 import {AnimatePresence, motion} from 'framer-motion/dist/framer-motion'
+import {device} from '../MediaQuery'
+import { useMediaQuery } from 'react-responsive'
 const Content = styled(motion.div)`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 50px;
   
+  flex-grow : 1;
+  @media ${device.mobileS} {
+    font-size: 2.3vw;
+  }
+
+  @media ${device.tablet} {
+    font-size: 1.8vw;
+    padding: 50px;
+  }
+  @media ${device.laptop} {
+    font-size: 1.2vw;
+  }
+  @media ${device.desktop} {
+    font-size: 1.4vw;
+  }
 `;
 const Container = styled.div`
   display: flex;
   
 `;
 const LeftContent = styled(motion.div)`
-  width: 20%;
-  margin-right: 50px;
+
+  @media ${device.mobileS} {
+    font-size: 2.5vw;
+  }
+
+  @media ${device.tablet} {
+    font-size: 1.8vw;
+    width: 20%;
+    margin-right: 50px;
+  }
+  @media ${device.laptop} {
+    font-size: 1.2vw;
+  }
+  @media ${device.desktop} {
+    font-size: 1.4vw;
+  }
   border-right: 2px solid #dee2e6;
   background-color: #272727;
 `;
@@ -29,13 +58,34 @@ const Butt = styled(Button)`
 `;
 
 const Formulaire = (props) => {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 1224px)'
+  })
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
   const { Espace,userID } = props;
   console.log(Espace)
   const [tab, setTab] = useState(Espace === "Professionnel" ?"Jaune":"Rose");
+
+const getVariant = ()=>{
+if(isTabletOrMobile)
+{return ""}
+  else{
+    return  "flex-column"
+  };
+}
+const getVariant2 = ()=>{
+  if(isTabletOrMobile)
+  {return "tabs"}
+    else{
+      return  "pills"
+    };
+  }
+
   return (
     <Container>
       <Tab.Container id="left-tabs-example" defaultActiveKey={tab}>
         <LeftContent 
+        
                   initial={{ x: -400,opacity: 0 }}
                   animate={{ x: 0,opacity: 1 }}
                   transition={{ ease: "easeOut", duration: 2 }}
@@ -358,13 +408,14 @@ const Formulaire = (props) => {
           
         </LeftContent>
         <Content
+        
                   initial={{ x: 1000,opacity: 0 }}
                   animate={{ x: 0,opacity: 1 }}
                   transition={{ ease: "easeOut", duration: 2 }}
         >
           <Tab.Content style={{ width: "100%" }}>
             <Tab.Pane eventKey="Jaune">
-              <FormContent Tab={tab} userID={userID} />
+              <FormContent Tab={tab} userID={userID}  />
             </Tab.Pane>
             <Tab.Pane eventKey="Bleue" mountOnEnter>
               <FormContent Tab={tab} userID={userID} />
