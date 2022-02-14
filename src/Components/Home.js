@@ -105,7 +105,7 @@ cnpmAlertes.map((elem,ind) =>
   ? elem.image.map((el, index) => (
       <Card.Img
         key={index}
-        style={{ objectFit: "contain" }}
+        style={{ objectFit: "cover" }}
         variant="top"
         width={100}
         height={100}
@@ -114,7 +114,7 @@ cnpmAlertes.map((elem,ind) =>
     ))
   : <Card.Img
 
-  style={{ objectFit: "contain" }}
+  style={{ objectFit: "cover" }}
   variant="top"
   width={100}
   height={100}

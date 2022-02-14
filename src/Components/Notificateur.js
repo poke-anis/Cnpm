@@ -81,7 +81,11 @@ const Notificateur = (props) => {
         Nom: Yup.string().required("Le nom est requis"),
         Prenom: Yup.string().required("Le Prenom  est requis"),
         Telephone: Yup.number().required("Le numero de Telephone est requis"),
-        Profession: Yup.string().required("La Profession est requise"),
+        Profession: Yup.string().when("Espace",
+        { is: "Professionnel",
+          then: Yup.string().required("La Profession est requise"),
+          otherwise: Yup.string(),
+        }),
         Espace: Yup.string().required("L'espace est requis"),
         Specifier: Yup.string().when("Profession", {
           is: "Autre",
@@ -95,10 +99,17 @@ const Notificateur = (props) => {
           then: Yup.string().required("Le mot de passe est requis"),
           otherwise: Yup.string(),
         }),
-        Type_Exercice: Yup.string().required("Le Type d'execrice est requis"),
-        Adresse_Professionnelle: Yup.string().required(
-          "L'adresse professionnelle est requise"
-        ),
+        Type_Exercice: Yup.string().when("Espace",
+        { is: "Professionnel",
+          then: Yup.string().required("Le Type d'execrice est requis"),
+          otherwise: Yup.string(),
+        }),
+        Adresse_Professionnelle: Yup.string().when("Espace",
+        { is: "Professionnel",
+        then: Yup.string().required("L'adresse professionnelle est requise"),
+        otherwise: Yup.string(),
+      }),
+
         CPassword: Yup.string().when("modificationPass", {
           is: (modificationPass) => true,
           then: Yup.string().oneOf(
@@ -109,6 +120,7 @@ const Notificateur = (props) => {
         }),
       })}
       onSubmit={(values, { setSubmitting }) => {
+        console.log('test')
         setTimeout(() => {
           axiosConfig
             .post(`/secure/update/${id}`, values)
@@ -264,7 +276,7 @@ const Notificateur = (props) => {
                 </Col>
               </Form.Group>
 
-              {Espace === "Professionnel" ? (
+              {values.Espace === "Professionnel" ? (
                 <>
                   <Form.Group
                     as={Row}

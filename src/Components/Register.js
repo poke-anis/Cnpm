@@ -11,10 +11,10 @@ import { InputRadio } from "./Declarations/FormikInputs";
 
 var AuthBox = styled.div`
 flex-grow : 1;
-text-align: left;
+
 display:flex;
 padding-left: 20px;
-align-items:center;
+
 
 `
 
@@ -390,9 +390,7 @@ const GrandPublic = (props) =>{
               <Form.Group md="4" controlId="validationFormikUsername">
                 <Form.Label>Nom d'utilisateur</Form.Label>
                 <InputGroup hasValidation>
-                  <InputGroup.Text id="inputGroupPrepend">
-                    @
-                  </InputGroup.Text>
+
                   <Form.Control
                     variant="primary"
                     type="text"
@@ -477,7 +475,7 @@ function Register(props) {
 
   return (
     <AuthBox>
-      <div style={{width:"30%",height:"100%",borderRight: "1px solid #d8d8d8",textAlign: "center"}}>
+      <div style={{width:"30%",height:"100%",borderRight: "1px solid #d8d8d8",paddingLeft:"4%"}}>
       <label htmlFor="Etes vous ?" >
         S'inscrire en tant que :
         <Form.Check

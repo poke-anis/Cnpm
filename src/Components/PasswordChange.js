@@ -23,6 +23,7 @@ padding-top:100px;
 
 function PasswordChange(props) 
 {
+  const navigate = props.useNavigate()
 const {useParams}= props
 const token = useParams()
   let submitForm = (values, history) => {
@@ -31,6 +32,7 @@ const token = useParams()
       .then(res => {
         if (res.data.result === "success") {
           swal("Success!", res.data.message, "success").then(value => {
+            navigate("/Seconnecter")
           });
         } else if (res.data.result === "error") {
           swal("Error!", res.data.message, "error");
@@ -68,7 +70,7 @@ return (
       }) => (
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <label>Mot de passe</label>
+            <label>Nouveau mot de passe</label>
             <Form.Control
             name="Password"
               type="Password"
@@ -78,7 +80,7 @@ return (
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCPassword">
-            <label>Confirmer</label>
+            <label>Confirmer le mot de passe</label>
             <Form.Control
             name="CPassword"
               type="Password"

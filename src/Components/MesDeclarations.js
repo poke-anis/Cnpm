@@ -16,7 +16,7 @@ import Filtre from "./Filtre";
 import PaginationPage from "./Pagination";
 import Switch from "react-switch";
 import CreatableSelect from "react-select/creatable";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 const components = {
   DropdownIndicator: null,
@@ -26,7 +26,7 @@ const Content = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  flex-grow : 1;
+  flex-grow: 1;
 `;
 
 var optionstime = {
@@ -42,7 +42,7 @@ Merci d'avoir contact&eacute; le Centre National de Pharmacovigilance et de Mat&
 Nous la prenons en charge et reviendrons vers vous, si n&eacute;cessaire<br />
 Bien cordialement</p>
 
-<p>CNPM</p>`)
+<p>CNPM</p>`);
 
 const containerDeclarations = (props) => {
   const { token_key, TypeExecrice, UserType } = props.cookie;
@@ -66,7 +66,9 @@ const MesDeclarationsCnpm = (props) => {
   ];
   const [selectedValueEtat, setSelectedValueEtat] = useState("");
   const [selectedValueSearch, setSelectedValueSearch] = useState("");
-  const [selectedValueSearchToSend, setSelectedValueSearchToSend] = useState([]);
+  const [selectedValueSearchToSend, setSelectedValueSearchToSend] = useState(
+    []
+  );
 
   const [selectedValueEtatToSend, setSelectedValueEtatToSend] = useState([]);
   const [numberOfPages, setNumberOfPages] = useState(0);
@@ -181,24 +183,24 @@ const MesDeclarationsCnpm = (props) => {
       }, 200);
       if (Email && status) {
         Swal.fire({
+          title: "Chargement",
 
-          title: 'Chargement',
-  
-          showSpinner: true
-          
-        }).then(Swal.showLoading())
-        .then(
-        axiosConfig
-          .post(
-            `/send/?name=Cnpm&email=${Email}&messageHtml="Bonjour%0D%0A${Username}%0D%0A${mailContent}"`
-          )
-          .then((response) => {
-            if (response.data.msg === "success") {
-              Swal.fire("Success!", 'Message envoyé', "success")
-            } else if (response.data.msg === "fail") {
-              Swal.fire("Error!", "Veuillez ressayer", "error");
-            }
-          }))
+          showSpinner: true,
+        })
+          .then(Swal.showLoading())
+          .then(
+            axiosConfig
+              .post(
+                `/send/?name=Cnpm&email=${Email}&messageHtml="Bonjour%0D%0A${Username}%0D%0A${mailContent}"`
+              )
+              .then((response) => {
+                if (response.data.msg === "success") {
+                  Swal.fire("Success!", "Message envoyé", "success");
+                } else if (response.data.msg === "fail") {
+                  Swal.fire("Error!", "Veuillez ressayer", "error");
+                }
+              })
+          );
       }
     } else {
       axiosConfig
@@ -218,7 +220,7 @@ const MesDeclarationsCnpm = (props) => {
   };
   useEffect(() => {
     getDeclacount();
-  }, [changement, selectedValueEtatToSend,selectedValueSearchToSend]);
+  }, [changement, selectedValueEtatToSend, selectedValueSearchToSend]);
   const componentRef = useRef();
   const CompRender = (props) => {
     if (props === undefined) {
@@ -530,7 +532,9 @@ const MesDeclarations = (props, isMulti) => {
   const [selectedValueEtatToSend, setSelectedValueEtatToSend] = useState([]);
   const [numberOfPages, setNumberOfPages] = useState(0);
   const [selectedValueSearch, setSelectedValueSearch] = useState("");
-  const [selectedValueSearchToSend, setSelectedValueSearchToSend] = useState([]);
+  const [selectedValueSearchToSend, setSelectedValueSearchToSend] = useState(
+    []
+  );
 
   const Etat = [
     { label: "Non Vu", value: "false" },
@@ -551,7 +555,6 @@ const MesDeclarations = (props, isMulti) => {
   ];
   const [changement, setChangement] = useState(false);
 
-  const { token_key, TypeExecrice, UserType } = props.cookie;
   const [decla, setDecla] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [declanum, setDeclanum] = useState(0);
@@ -568,7 +571,9 @@ const MesDeclarations = (props, isMulti) => {
       .get(
         `/secure/getfichestype?pagination=${"5"}&page=${currentPage}&typeOfFiches=[${selectedValueToSend.map(
           (el) => `"${el}"`
-        )}]&status=[${selectedValueEtatToSend.map((el) => `"${el}"`)}]&search="${selectedValueSearchToSend}"`
+        )}]&status=[${selectedValueEtatToSend.map(
+          (el) => `"${el}"`
+        )}]&search="${selectedValueSearchToSend}"`
       )
       .then((res) => {
         setDecla(res.data);
@@ -579,7 +584,9 @@ const MesDeclarations = (props, isMulti) => {
       .get(
         `/secure/getfichestypenbr?typeOfFiches=[${selectedValueToSend.map(
           (el) => `"${el}"`
-        )}]&status=[${selectedValueEtatToSend.map((el) => `"${el}"`)}]&search="${selectedValueSearchToSend}"`
+        )}]&status=[${selectedValueEtatToSend.map(
+          (el) => `"${el}"`
+        )}]&search="${selectedValueSearchToSend}"`
       )
       .then((res) => {
         setDeclanum(res.data);
@@ -602,7 +609,6 @@ const MesDeclarations = (props, isMulti) => {
 
     getDecla(finalPage);
   };
-
 
   const CompRender = (props) => {
     if (props === undefined) {
@@ -650,8 +656,12 @@ const MesDeclarations = (props, isMulti) => {
 
   useEffect(() => {
     getDeclacount();
-  
-  }, [changement, selectedValue, selectedValueEtatToSend,selectedValueSearchToSend]);
+  }, [
+    changement,
+    selectedValue,
+    selectedValueEtatToSend,
+    selectedValueSearchToSend,
+  ]);
 
   const onChange = (value) => {
     setSelectedValue(value);
@@ -670,12 +680,11 @@ const MesDeclarations = (props, isMulti) => {
     }
   };
   const onChangeSearch = (value) => {
-
     setSelectedValueSearch(value);
     if (value.length === 0) {
       setSelectedValueSearchToSend([]);
     } else {
-      console.log(value)
+      console.log(value);
       setSelectedValueSearchToSend(value);
     }
   };
@@ -692,31 +701,27 @@ const MesDeclarations = (props, isMulti) => {
         .then((res) => {});
       const change = setTimeout(() => {
         setChangement(!changement);
-        console.log('tesssst')
+        console.log("tesssst");
       }, 200);
-      
-      if (Email && status) {
-        
-        Swal.fire({
 
-          title: 'Chargement',
-  
-          showSpinner: true
-          
-        }).then(Swal.showLoading())
-        .then(
-          
-        axiosConfig
-          .post(
-            `/send/?name=Cnpm&email=${Email}&messageHtml=${mailContent}`
-          )
-          .then((response) => {
-            if (response.data.msg === "success") {
-              Swal.fire("Success!", 'Message envoyé', "success")
-            } else if (response.data.msg === "fail") {
-              Swal.fire("Error!", "Veuillez ressayer", "error");
-            }
-          }))
+      if (Email && status) {
+        Swal.fire({
+          title: "Chargement",
+
+          showSpinner: true,
+        })
+          .then(Swal.showLoading())
+          .then(
+            axiosConfig
+              .post(`/send/?name=Cnpm&email=${Email}&messageHtml=Cnpm`)
+              .then((response) => {
+                if (response.data.msg === "success") {
+                  Swal.fire("Success!", "Message envoyé", "success");
+                } else if (response.data.msg === "fail") {
+                  Swal.fire("Error!", "Veuillez ressayer", "error");
+                }
+              })
+          );
       }
     } else {
       axiosConfig
@@ -730,14 +735,13 @@ const MesDeclarations = (props, isMulti) => {
     }
   };
 
-var val = decla[Object.values(clicked)[0]]
+  var val = decla[Object.values(clicked)[0]];
   return (
     <div style={{ width: "100%", display: "flex" }}>
       {clicked === false ? (
         <>
           <div
             style={{
-
               width: "20%",
               paddingTop: "30px",
               backgroundColor: "#272727",
@@ -768,24 +772,22 @@ var val = decla[Object.values(clicked)[0]]
               isMulti
               isClearable
             />
-                        <div style={{ color: "white" }}>Recherche:</div>
+            <div style={{ color: "white" }}>Recherche:</div>
             <CreatableSelect
               components={components}
-              placeholder='Introduisez  le(s) mot-clé(s) desirer et appuyez sur entrer'
+              placeholder="Introduisez  le(s) mot-clé(s) desirer et appuyez sur entrer"
               name="Search"
               onChange={(val) =>
                 true
                   ? onChangeSearch(val.map((c) => c.value))
                   : onChangeSearch(val.value)
               }
-
-
               onChangeSearch
               isMulti
               isClearable
             />
           </div>
-          
+
           <Filtre
             setClicked={setClicked}
             decla={decla}
@@ -804,71 +806,92 @@ var val = decla[Object.values(clicked)[0]]
               paddingTop: "30px",
               backgroundColor: "#272727",
               marginRight: "10px",
-
             }}
           >
-                          <div
-                            style={{ display: "flex", flexDirection: "column",paddingLeft:"30px",paddingRight:"10px" }}
-                          >
-                            <div style={{ display: "flex",justifyContent:"space-between",color:"white",paddingBottom:"10px" }}>
-                            <p>Vu :</p>
-                              <Switch
-                                onChange={() =>
-                                  changestatus(
-                                    val._id,
-                                    !val.status,
-                                    null,
-                                    val.creator.Email,
-                                    val.creator.Username
-                                  )
-                                }
-                                checked={val.status}
-                              />
-                              
-                            </div>
-                            <div style={{ display: "flex",justifyContent:"space-between",color:"white",paddingBottom:"10px" }}>
-                            <p style={{width:"35%"}}>Etat :</p>
-                            {val.status === true ? (
-                              <select
-                                style={{ marginTop: "5px" }}
-                                onChange={(el) =>
-                                  changestatus(
-                                    val._id,
-                                    val.status,
-                                    el.target.value
-                                  )
-                                }
-                                value={val.status_Type}
-                                id={"Statut"}
-                              >
-                                {["","En cours", "Traité"].map((content, key) => {
-                                  return (
-                                    <option
-                                      name={`${content}`}
-                                      value={`${content}`}
-                                      key={key}
-                                    >
-                                      {`${content}`}
-                                    </option>
-                                  );
-                                })}
-                              </select>
-                            ) : <p>Le formulaire n'a pas encore été vu</p>}
-                            </div>
-                          </div>
-                          <div style={{ display: "flex",justifyContent:"space-between",color:"white",paddingLeft:"30px",paddingRight:"10px" }}>
-                          <p>Imprimer :</p>
-            <Button
-              onClick={(e) => {
-                handlePrint();
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                paddingLeft: "30px",
+                paddingRight: "10px",
               }}
             >
-              <FaPrint />
-            </Button>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  color: "white",
+                  paddingBottom: "10px",
+                }}
+              >
+                <p>Vu :</p>
+                <Switch
+                  onChange={() =>
+                    changestatus(
+                      val._id,
+                      !val.status,
+                      null,
+                      val.creator.Email,
+                      val.creator.Username
+                    )
+                  }
+                  checked={val.status}
+                />
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  color: "white",
+                  paddingBottom: "10px",
+                }}
+              >
+                <p style={{ width: "35%" }}>Etat :</p>
+                {val.status === true ? (
+                  <select
+                    style={{ marginTop: "5px" }}
+                    onChange={(el) =>
+                      changestatus(val._id, val.status, el.target.value)
+                    }
+                    value={val.status_Type}
+                    id={"Statut"}
+                  >
+                    {["", "En cours", "Traité"].map((content, key) => {
+                      return (
+                        <option
+                          name={`${content}`}
+                          value={`${content}`}
+                          key={key}
+                        >
+                          {`${content}`}
+                        </option>
+                      );
+                    })}
+                  </select>
+                ) : (
+                  <p>Le formulaire n'a pas encore été vu</p>
+                )}
+              </div>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                color: "white",
+                paddingLeft: "30px",
+                paddingRight: "10px",
+              }}
+            >
+              <p>Imprimer :</p>
+              <Button
+                onClick={(e) => {
+                  handlePrint();
+                }}
+              >
+                <FaPrint />
+              </Button>
             </div>
           </div>
-
-
 
           {clicked === false ? null : CompRender(clicked)}
           <Button

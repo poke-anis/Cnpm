@@ -4,7 +4,7 @@ import { Card, Badge, Button, Col, Row } from "react-bootstrap";
 import axiosConfig from "./axios";
 import "./Button.css";
 import Switch from "react-switch";
-import { FaPrint, } from "react-icons/fa";
+import { FaPrint } from "react-icons/fa";
 import { useReactToPrint, ReactToPrint } from "react-to-print";
 import FormJaune from "./MesDeclarations/FormJaune";
 import FormBleue from "./MesDeclarations/FormBleue";
@@ -14,7 +14,7 @@ import FormVerte from "./MesDeclarations/FormVerte";
 import FormOrange from "./MesDeclarations/FormOrange";
 import FormBlanche from "./MesDeclarations/FormBlanche";
 import FormCoronavirus from "./MesDeclarations/FormCoronavirus";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 var optionstime = {
   year: "numeric",
@@ -23,8 +23,6 @@ var optionstime = {
   hour: "numeric",
   minute: "numeric",
 };
-
-
 
 // const Switch = ({ isOn, handleToggle,nbr }) => {
 //   console.log(nbr)
@@ -124,24 +122,22 @@ const Filtre = (props, isMulti) => {
       }, 200);
       if (Email && status) {
         Swal.fire({
+          title: "Chargement",
 
-          title: 'Chargement',
-  
-          showSpinner: true
-          
-        }).then(Swal.showLoading())
-        .then(
-        axiosConfig
-          .post(
-            `/send/?name=Cnpm&email=${Email}&messageHtml=Cnpm`
-          )
-          .then((response) => {
-            if (response.data.msg === "success") {
-              Swal.fire("Success!", 'Message envoyé', "success")
-            } else if (response.data.msg === "fail") {
-              Swal.fire("Error!", "Veuillez ressayer", "error");
-            }
-          }))
+          showSpinner: true,
+        })
+          .then(Swal.showLoading())
+          .then(
+            axiosConfig
+              .post(`/send/?name=Cnpm&email=${Email}&messageHtml=Cnpm`)
+              .then((response) => {
+                if (response.data.msg === "success") {
+                  Swal.fire("Success!", "Message envoyé", "success");
+                } else if (response.data.msg === "fail") {
+                  Swal.fire("Error!", "Veuillez ressayer", "error");
+                }
+              })
+          );
       }
     } else {
       axiosConfig
@@ -228,136 +224,117 @@ const Filtre = (props, isMulti) => {
     /> */}
       <Col md={10} className="g-0">
         {decla.length !== 0
-          ? decla
-              //   .filter((singledecla) =>
-              //     selectedValue == ""
-              //       ? singledecla
-              //       : selectedValue.some((val) =>
-              //           val.includes(singledecla.typeOfFiches)
-              //         )
-              //       ? singledecla
-              //       : null
-              //   ).filter((singledecla) =>
-              //   selectedValueEtat == ""
-              //     ? singledecla
-              //     : selectedValueEtat.some((val) =>
-              //         val.includes(singledecla.status_Type||singledecla.status)
-              //       )
-              //     ? singledecla
-              //     : null
-              // )
-              .map((val, key) => {
-                var date = new Date(val.DateAdded);
-                return (
-                  <Card
-                    key={key}
-                    style={{
-                      marginBottom: "20px",
-                      marginTop: "20px",
-                      width: "100%",
-                      height: "15%",
-                    }}
-                  >
-                    <Card.Header style={{ width: "100%", display: "flex" }}>
-                      {date.toLocaleString("fr-FR", optionstime)}
-                      <Badge
-                        pill
-                        bg={ThemeColor(val.typeOfFiches)}
-                        style={{
-                          marginLeft: "auto",
-                          color: "black",
-                          lineHeight: "2",
-                        }}
-                      >
-                        {" "}
-                        {typeOfFiches(val.typeOfFiches)}
-                      </Badge>
-                    </Card.Header>
-                    <Card.Body
+          ? decla.map((val, key) => {
+              var date = new Date(val.DateAdded);
+              return (
+                <Card
+                  key={key}
+                  style={{
+                    marginBottom: "20px",
+                    marginTop: "20px",
+                    width: "100%",
+                    height: "15%",
+                  }}
+                >
+                  <Card.Header style={{ width: "100%", display: "flex" }}>
+                    {date.toLocaleString("fr-FR", optionstime)}
+                    <Badge
+                      pill
+                      bg={ThemeColor(val.typeOfFiches)}
                       style={{
-                        display: "flex",
-                        flexWrap: "wrap",
-                        justifyContent: "space-between",
-                        alignItems: "flex-start",
+                        marginLeft: "auto",
+                        color: "black",
+                        lineHeight: "2",
                       }}
                     >
-                      <Card.Title>
-                        {val.Cases.Nom} {val.Cases.Prenom}
-                      </Card.Title>
+                      {" "}
+                      {typeOfFiches(val.typeOfFiches)}
+                    </Badge>
+                  </Card.Header>
+                  <Card.Body
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <Card.Title>
+                      {val.Cases.Nom} {val.Cases.Prenom}
+                    </Card.Title>
 
-                      {/*           <ReactToPrint
+                    {/*           <ReactToPrint
         trigger={() => <Button>Print this out!</Button>}
         content={() => componentRef.current}
       /> */}
-                      <div style={{ display: "flex", flexDirection: "column" }}>
-                        <div style={{ display: "flex" }}>
-                          <Switch
-                            onChange={() =>
-                              changestatus(
-                                val._id,
-                                !val.status,
-                                null,
-                                val.creator.Email,
-                                val.creator.Username
-                              )
-                            }
-                            checked={val.status}
-                          />
-                          <p>Vu</p>
-                        </div>
-                        
-                          <select
-                          disabled={val.status === true ? false : true}
-                            style={{ marginTop: "5px" }}
-                            onChange={(el) =>
-                              changestatus(val._id, val.status, el.target.value)
-                            }
-                            value={val.status_Type}
-                            id={"Statut"}
-                          >
-                            {["", "En cours", "Traité"].map((content, key) => {
-                              return (
-                                <option
-                                  name={`${content}`}
-                                  value={`${content}`}
-                                  key={key}
-                                >
-                                  {`${content}`}
-                                </option>
-                              );
-                            })}
-                          </select>
-                        
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                      <div style={{ display: "flex" }}>
+                        <Switch
+                          onChange={() =>
+                            changestatus(
+                              val._id,
+                              !val.status,
+                              null,
+                              val.creator.Email,
+                              val.creator.Username
+                            )
+                          }
+                          checked={val.status}
+                        />
+                        <p>Vu</p>
                       </div>
-                    </Card.Body>
-                    <Card.Footer
-                      style={{
-                        display: "flex",
-                        flexWrap: "wrap",
-                        justifyContent: "space-between",
-                        alignItems: "flex-start",
+
+                      <select
+                        disabled={val.status === true ? false : true}
+                        style={{ marginTop: "5px" }}
+                        onChange={(el) =>
+                          changestatus(val._id, val.status, el.target.value)
+                        }
+                        value={val.status_Type}
+                        id={"Statut"}
+                      >
+                        {["", "En cours", "Traité"].map((content, key) => {
+                          return (
+                            <option
+                              name={`${content}`}
+                              value={`${content}`}
+                              key={key}
+                            >
+                              {`${content}`}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+                  </Card.Body>
+                  <Card.Footer
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <Button
+                      variant="secondary"
+                      style={{ height: "40px" }}
+                      onClick={(e) => {
+                        handleClick(e, val.typeOfFiches, key);
                       }}
                     >
-                      <Button
-                        variant="secondary"
-                        style={{ height: "40px" }}
-                        onClick={(e) => {
-                          handleClick(e, val.typeOfFiches, key);
-                        }}
-                      >
-                        Afficher
-                      </Button>
-                      <Button
-                        onClick={(e) => {
-                          HandlePrint(e, val.typeOfFiches, key);
-                        }}
-                      >
-                        <FaPrint />
-                      </Button>
-                    </Card.Footer>
-                  </Card>
-                );
-              })
+                      Afficher
+                    </Button>
+                    <Button
+                      onClick={(e) => {
+                        HandlePrint(e, val.typeOfFiches, key);
+                      }}
+                    >
+                      <FaPrint />
+                    </Button>
+                  </Card.Footer>
+                </Card>
+              );
+            })
           : null}
         {print ? (
           <div style={{ display: "none" }}>{CompRender(print)}</div>
