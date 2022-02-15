@@ -25,7 +25,7 @@ import {device} from './MediaQuery'
 import { useMediaQuery } from 'react-responsive'
 var Navba = styled(Navbar)`
   @media ${device.mobileS} {
-    font-size: 2.9vw;
+    font-size: 2.5vw;
   }
 
   @media ${device.tablet} {
