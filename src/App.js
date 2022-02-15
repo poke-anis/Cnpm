@@ -22,6 +22,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Components/Button.css";
 import "normalize.css";
 import {device} from './MediaQuery'
+import { useMediaQuery } from 'react-responsive'
 var Navba = styled(Navbar)`
   @media ${device.mobileS} {
     font-size: 2.9vw;
@@ -40,15 +41,22 @@ var Navba = styled(Navbar)`
 `;
 
 const userContext = createContext("");
-
 function Navigationbar(props) {
-  const { isloged, Deco } = props;
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1024px)' })
 
+  const { isloged, Deco } = props;
+  const getSticky = ()=>{
+    if(isTabletOrMobile)
+    {return ""}
+      else{
+        return  "top"
+      };
+    }
   return (
     <Navba
       collapseOnSelect
       expand="lg"
-      sticky="top"
+      sticky={getSticky()}
       className="Navcolor"
       variant="dark"
       
