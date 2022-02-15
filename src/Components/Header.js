@@ -11,20 +11,7 @@ const  Titre = styled.div`
 display: flex;
 flex-direction: row;
 justify-content:space-around;
-@media ${device.mobileS} {
-    font-size: 2.5vw;
-  }
-
-  @media ${device.tablet} {
-    font-size: 2vw;
-  
-  }
-  @media ${device.laptop} {
-    font-size: 2.2vw;
-  }
-  @media ${device.desktop} {
-    font-size: 2vw;
-  }`
+`
 
 const Logo =styled.img`
 object-fit: contain;
@@ -54,14 +41,14 @@ const EnTete = ()=>{
             <Titre>
             <Logo src={logo} alt="logo"/>
             <div  style={{display:'flex',flexDirection:'column',justifyContent:'center'}}>
-            <p>              
+            <h5>              
                 REPUBLIQUE ALGERIENNE DEMOCRATIQUE ET POPULAIRE 
                 MINISTERE DE LA SANTE 
-            </p>
-            <p>
+            </h5>
+            <h6>
                 Centre National de Pharmacovigilance et de Matériovigilance
                 Professeur ABDELKADER HELALI
-            </p>
+            </h6>
             </div>
             </Titre>
 

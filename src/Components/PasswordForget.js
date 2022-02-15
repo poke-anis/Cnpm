@@ -7,15 +7,13 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { useCookies } from 'react-cookie'
 import axiosConfig from "./axios"
-import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 var AuthBox = styled.div`
 flex-grow : 1;
 text-align: left;
 display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:space-around;
+
 `
 
 
@@ -25,25 +23,45 @@ function Passwordreset(props)
 
 
   let submitForm = (values, history) => {
+    Swal.fire({
+      title: "Chargement",
+      heightAuto: false,
+      showSpinner: true,
+    })
+      .then(Swal.showLoading())
+      .then(
     axiosConfig
       .post("/forgotPassword", values)
       .then(res => {
         if (res.data.result === "success") {
-          swal("Success!", res.data.message, "success").then(value => {
-          });
+          Swal.fire(
+            {
+              title: "Success!",
+              text: res.data.message,
+              heightAuto: false,
+              icon: 'success',
+            })
         } else if (res.data.result === "error") {
-          swal("Error!", res.data.message, "error");
+          Swal.fire(            {
+            title: "Error!",
+            text: res.data.message,
+            heightAuto: false,
+            icon: 'error',
+          }) 
         }
       })
       .catch(error => {
 
-        return swal("Error!", error.message, "error");
-      });
+        return Swal.fire("Error!", error.message, "error");
+      })
+      );
   };
 
 return (
   <AuthBox>
-    <p style={{width:"60%"}}>Inserrez votre adresse mail ,vous recevrez par la suite un email contenant votre lien de réinitialisation du mot de passe.</p>
+    <div style={{width:"30%",height:"100%",borderRight: "1px solid #d8d8d8",paddingLeft:"4%",paddingRight:"4%",paddingTop:"2%"}}>
+    <p >Inserrez votre adresse mail ,vous recevrez par la suite un email contenant votre lien de réinitialisation du mot de passe.</p>
+    </div>
     <Formik
       initialValues={{ Email: "" }}
       validationSchema={Yup.object({
@@ -62,7 +80,7 @@ return (
         values,
 
       }) => (
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} style={{paddingLeft:"5%",paddingTop:"2%"}}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             
             <label>Adresse E-mail</label>

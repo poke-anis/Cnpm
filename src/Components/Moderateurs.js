@@ -26,10 +26,7 @@ padding: 50px;
 `
 
 const LeftContent = styled.div`
-grid-column-start:1;
-grid-column-end:2;
-grid-row-start:3;
-grid-row-end:4;
+
 margin-Right: 50px;
 border-right: 2px solid #dee2e6;
 `

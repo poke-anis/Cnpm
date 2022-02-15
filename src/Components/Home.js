@@ -1,4 +1,4 @@
-import { Card, Button, Modal } from "react-bootstrap";
+import { Card, Button, Modal,Row,Col } from "react-bootstrap";
 import React, { useState, useEffect, createContext } from "react";
 import axiosConfig from "./axios";
 import styled from "styled-components";
@@ -95,12 +95,13 @@ useEffect(() => {
     setModalShow(true);
   };
   return(
-    <div style={{width:"100%",height:"80%",display:"flex",justifyContent:"space-between",flexDirection:"Column"}}>
-        <div style={{width:"100%",display:"flex",justifyContent:"space-between",flexWrap:"wrap"}}>
+    <div >
+        <Row xs={1} md={2} className="g-4">
         {cnpmAlertes.length >= 1 && cnpmAlertes instanceof Array? 
 
 cnpmAlertes.map((elem,ind) =>
-<Card style={{ width: "45%",marginBottom:"10px",marginLeft:"10px"}} key={ind}>
+<Col>
+<Card style={{marginBottom:"10px",marginLeft:"10px"}} key={ind}>
 {elem.image.length >= 1
   ? elem.image.map((el, index) => (
       <Card.Img
@@ -144,12 +145,13 @@ cnpmAlertes.map((elem,ind) =>
   {elem.creator[0].Nom}
 </Card.Footer>
 </Card>
+</Col>
 )
 : (
 <p>Rien a afficher</p>
 )}
-
-        </div>
+</Row>
+        
 
 <div style={{display:"flex",justifyContent:"flex-end"}}>
 { cnpmAlertesCount > 4 &&
@@ -225,14 +227,15 @@ useEffect(() => {
     setModalShow(true);
   };
   return(
-    <div style={{width:"100%",display:"flex",height:"80%",justifyContent:"space-between",flexDirection:"Column"}}>
+    <div s>
 
-    <div style={{width:"100%",display:"flex",justifyContent:"space-between",flexWrap:"wrap"}}>
+<Row xs={1} md={2} className="g-4">
 
 {cnpmNews.length >= 1 && cnpmNews instanceof Array? 
   
     cnpmNews.map((elem,ind) =>
-    <Card style={{ width: "45%",marginBottom:"10px",marginLeft:"10px"}} key={ind}>
+    <Col>
+    <Card style={{marginBottom:"10px",marginLeft:"10px"}} key={ind}>
     {elem.image.length >= 1
       ? elem.image.map((el, index) => (
           <Card.Img
@@ -277,13 +280,14 @@ useEffect(() => {
       {elem.creator[0].Nom}
     </Card.Footer>
   </Card>
+  </Col>
     )
 
   
  : (
   <p>Rien a afficher</p>
 )}
-</div>
+</Row>
 <div style={{display:"flex",justifyContent:"flex-end"}}>
 
 { cnpmNewsCount > 4 &&

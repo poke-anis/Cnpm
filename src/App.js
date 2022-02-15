@@ -24,22 +24,28 @@ import "normalize.css";
 import {device} from './MediaQuery'
 import { useMediaQuery } from 'react-responsive'
 var Navba = styled(Navbar)`
-  @media ${device.mobileS} {
-    font-size: 2.5vw;
+
+`;
+const Body = styled.div`
+@media ${device.mobileS} {
+  p{
+    font-size: 2.8vw;
+  }
   }
 
   @media ${device.tablet} {
-    font-size: 1.8vw;
-
+    p{
+    font-size: 2vw;
+  }
   }
   @media ${device.laptop} {
-    font-size: 1.2vw;
+    p{
+    font-size: 1.0vw;}
   }
   @media ${device.desktop} {
-    font-size: 1.4vw;
-  }
-`;
-
+    p{
+    font-size: 1.8vw;}
+  }`
 const userContext = createContext("");
 function Navigationbar(props) {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1024px)' })
@@ -179,7 +185,7 @@ function App() {
   }, [Espace]);
 
   return (
-    <div className="App">
+    <Body className="App">
       <userContext.Provider value={{ isloged, setIsloged }}>
         <EnTete></EnTete>
         <Navigationbar isloged={isloged} Deco={Deco} />
@@ -248,7 +254,7 @@ function App() {
           <Support show={modalShow} onHide={() => setModalShow(false)} />
         ) : null}
       </userContext.Provider>
-    </div>
+    </Body>
   );
 }
 
