@@ -16,7 +16,7 @@ text-align: left;
 display:flex;
 flex-direction:column;
 align-items:center;
-padding-top:100px;
+padding-top:10%;
 `
 
 

@@ -20,9 +20,9 @@ const BasDePage = (props)=>{
     const {setModalShow}= props
     return (
         <Bar>
-            <Titre>
+            <Titre  style={{display:'flex',justifyContent:'space-around',flexWrap:"wrap"}}>
             <div>Cnpm 2022</div>
-            <div style={{display:'flex',flexDirection:'column',justifyContent:'center',width:"20%"}}>
+            <div >
             <div onClick={()=>setModalShow(true)}>En cas de problème technique avec le site veuillez nous contacter en cliquant ici </div>
             </div>
             </Titre>

@@ -296,7 +296,7 @@ const Alert = (props) => {
         axiosConfig.get(`/getalertes/`)
         .then(res => {
             setCnpmAlertes(res.data);
-            console.log(res.data)
+
 
           })
 

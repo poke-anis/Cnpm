@@ -56,7 +56,7 @@ const Notificateur = (props) => {
 
   useEffect(
     () => {
-      console.log('zegdsgdfwg')
+
       const change = setTimeout(() => {
       axiosConfig.get(`/secure/infos/${id}`).then(function (res) {
         setInfos({...res.data,number:Math.random()});
@@ -120,7 +120,7 @@ const Notificateur = (props) => {
         }),
       })}
       onSubmit={(values, { setSubmitting }) => {
-        console.log('test')
+
         setTimeout(() => {
           axiosConfig
             .post(`/secure/update/${id}`, values)

@@ -9,7 +9,7 @@ export default function SelectField(props) {
 
   const [field, state, { setValue, setTouched }] = useField(props.field.name);
   const onChange = (value) => {
-    console.log(value)
+
     /*     value.forEach(el=>{ setValue([...value,el.value])}) */
 
     setValue(value);

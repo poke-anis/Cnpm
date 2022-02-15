@@ -15,7 +15,7 @@ text-align: left;
 display:flex;
 flex-direction:column;
 align-items:center;
-padding-top:100px;
+justify-content:space-around;
 `
 
 
@@ -43,6 +43,7 @@ function Passwordreset(props)
 
 return (
   <AuthBox>
+    <p style={{width:"60%"}}>Inserrez votre adresse mail ,vous recevrez par la suite un email contenant votre lien de réinitialisation du mot de passe.</p>
     <Formik
       initialValues={{ Email: "" }}
       validationSchema={Yup.object({
@@ -63,6 +64,7 @@ return (
       }) => (
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
+            
             <label>Adresse E-mail</label>
             <Form.Control
             name="Email"

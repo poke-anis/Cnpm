@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext } from "react";
-import { Route, Routes, useNavigate, Link, useParams } from "react-router-dom";
+import { Route, Routes, useNavigate, Link, useParams,Navigate } from "react-router-dom";
 import "./App.css";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { useCookies } from "react-cookie";
@@ -21,8 +21,23 @@ import Support from "./Components/Support";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Components/Button.css";
 import "normalize.css";
+import {device} from './MediaQuery'
+var Navba = styled(Navbar)`
+  @media ${device.mobileS} {
+    font-size: 2.9vw;
+  }
 
-var Body = styled.div``;
+  @media ${device.tablet} {
+    font-size: 1.8vw;
+
+  }
+  @media ${device.laptop} {
+    font-size: 1.2vw;
+  }
+  @media ${device.desktop} {
+    font-size: 1.4vw;
+  }
+`;
 
 const userContext = createContext("");
 
@@ -30,12 +45,13 @@ function Navigationbar(props) {
   const { isloged, Deco } = props;
 
   return (
-    <Navbar
+    <Navba
       collapseOnSelect
       expand="lg"
       sticky="top"
       className="Navcolor"
       variant="dark"
+      
     >
       <Container>
         <Navbar.Brand to="/" href="#home">
@@ -114,7 +130,7 @@ function Navigationbar(props) {
           ) : null}
         </Navbar.Collapse>
       </Container>
-    </Navbar>
+    </Navba>
   );
 }
 
@@ -146,7 +162,7 @@ function App() {
     navigate("/");
   }
   useEffect(() => {
-    console.log(Espace);
+
     if (cookies.Espace !== Espace) {
       setCookie("Espace", Espace, { path: "/" });
     } else {
@@ -155,13 +171,13 @@ function App() {
   }, [Espace]);
 
   return (
-    <Body className="App">
+    <div className="App">
       <userContext.Provider value={{ isloged, setIsloged }}>
         <EnTete></EnTete>
         <Navigationbar isloged={isloged} Deco={Deco} />
 
         <Routes>
-          <Route path="/" element={<Home />} />
+          
           {isloged === "false" ? (
             <>
               <Route path="/PasswordForget" element={<PasswordForget />} />
@@ -216,13 +232,15 @@ function App() {
               />
             </>
           ) : null}
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
         <BasDePage setModalShow={setModalShow} />
         {modalShow ? (
           <Support show={modalShow} onHide={() => setModalShow(false)} />
         ) : null}
       </userContext.Provider>
-    </Body>
+    </div>
   );
 }
 

@@ -684,7 +684,7 @@ const MesDeclarations = (props, isMulti) => {
     if (value.length === 0) {
       setSelectedValueSearchToSend([]);
     } else {
-      console.log(value);
+
       setSelectedValueSearchToSend(value);
     }
   };
@@ -701,7 +701,7 @@ const MesDeclarations = (props, isMulti) => {
         .then((res) => {});
       const change = setTimeout(() => {
         setChangement(!changement);
-        console.log("tesssst");
+
       }, 200);
 
       if (Email && status) {
