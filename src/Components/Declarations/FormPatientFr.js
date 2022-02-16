@@ -56,7 +56,7 @@ const Reaction = (props)=>{
   <FlexBox>
     <BigBox>
     <label htmlFor="Description_D_L_R">Description de la réaction</label>
-<Auto1 isMulti={true} id={`Reactions[${id}].`} formik={formik} values={formik.values.Reactions[`${id}`].Type_D_L_R}/>
+<Auto9 isMulti={true} id={`Reactions[${id}].`} formik={formik} values={formik.values.Reactions[`${id}`].Type_D_L_R}/>
   <InputFile
   name='Photo de la reaction (Si possible) :'
   id={`Photo_R_${id}`}

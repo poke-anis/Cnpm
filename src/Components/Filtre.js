@@ -15,6 +15,7 @@ import FormOrange from "./MesDeclarations/FormOrange";
 import FormBlanche from "./MesDeclarations/FormBlanche";
 import FormCoronavirus from "./MesDeclarations/FormCoronavirus";
 import Swal from "sweetalert2";
+import FormPatient from "./MesDeclarations/FormPatient";
 
 var optionstime = {
   year: "numeric",
