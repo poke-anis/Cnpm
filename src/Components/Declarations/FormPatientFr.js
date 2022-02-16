@@ -203,6 +203,7 @@ const FormJaune = (props) => {
 
       }
       const [validated, setValidated] = useState(false);
+      const [Medicaments,setMedicaments] = useState([1])
 
   const [Reactions,setReactions] = useState([1])
   return (
@@ -285,6 +286,56 @@ const FormJaune = (props) => {
         </Tab.Content>
         </Tab.Container>
 
+        <Titre><InsideTitre>Medicament(s)</InsideTitre></Titre>
+<Tab.Container id="left-tabs-example" defaultActiveKey="Medicament#1">
+        <Nav variant="tabs"  >
+          {Medicaments.map((el, index) => {
+            return (
+              <Nav.Item key={index}>
+                <Nav.Link eventKey={`Medicament#${el}`}>Medicament#{el}</Nav.Link>
+              </Nav.Item>
+            );
+          })}
+          <Nav.Item
+            as={() => {
+              return (
+                <Button 
+                  onClick={() => {
+                    formik.values.Medicaments[Medicaments.length] = {
+                      Type_D_L_R: "",
+                      Date_A: "",
+                      Medciament_DCI: "",
+                      Numero_D_L: "",
+                      Type_Voie_A: "",
+                      Posologie: "",
+                      Date_A_D: "",
+                      Date_A_F: "",
+                      Raison_E: "",
+                    };
+                    setMedicaments([...Medicaments, Medicaments.length + 1]);
+
+ 
+                  }}
+                >
+                  +
+                </Button>
+              );
+            }}
+          />
+        </Nav>
+<Tab.Content >
+          {Medicaments.map((el, index) => {
+
+            return (
+              <Tab.Pane eventKey={`Medicament#${el}`} key={index}>
+                    <Medicament formik={formik} id={index} className={`Medicament#${el}`} onFileChange={onFileChange}/>
+              </Tab.Pane>
+            );
+          })}
+
+
+        </Tab.Content>
+        </Tab.Container>
 
 
 <Titre><InsideTitre>Traitement de la réaction indésirable</InsideTitre></Titre>

@@ -644,6 +644,13 @@ const MesDeclarations = (props, isMulti) => {
           ref={componentRef}
         />
       );
+    }    else if (Object.keys(props)[0] === "Patient") {
+      return (
+        <FormPatient
+          decla={decla[Object.values(props)[0]]}
+          ref={componentRef}
+        />
+      );
     }
   };
 
