@@ -24,29 +24,8 @@ var optionstime = {
   minute: "numeric",
 };
 
-// const Switch = ({ isOn, handleToggle,nbr }) => {
-//   console.log(nbr)
-//   return (
-//     <div key={nbr} id={`${nbr}`}>
-//       <input
 
-//         checked={isOn}
-//         onChange={handleToggle}
-//         className="react-switch-checkbox"
-//         id={`react-switch-new`}
-//         type="checkbox"
-//       />
-//       <label
 
-//       style={{ background: isOn && '#06D6A0' }}
-//         className="react-switch-label"
-//         htmlFor={`react-switch-new`}
-//       >
-//         <span className={`react-switch-button`} />
-//       </label>
-//     </div>
-//   );
-// };
 
 const Filtre = (props, isMulti) => {
   const [print, setPrint] = useState(false);
@@ -189,6 +168,13 @@ const Filtre = (props, isMulti) => {
     } else if (Object.keys(props)[0] === "Coronavirus") {
       return (
         <FormCoronavirus
+          decla={decla[Object.values(props)[0]]}
+          ref={componentRef}
+        />
+      );
+    }else if (Object.keys(props)[0] === "Patient") {
+      return (
+        <FormPatient
           decla={decla[Object.values(props)[0]]}
           ref={componentRef}
         />

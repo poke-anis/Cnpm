@@ -55,41 +55,16 @@ const Reaction = (props)=>{
       <FormikProvider value={formik}>
   <FlexBox>
     <BigBox>
-    <label htmlFor="Type_D_L_R">Description de la réaction</label>
-<Auto9 isMulti={false} id={`Reactions[${id}].`} formik={formik} values={formik.values.Reactions[`${id}`].Type_D_L_R}/>
+    <label htmlFor="Description_D_L_R">Description de la réaction</label>
+<Auto1 isMulti={true} id={`Reactions[${id}].`} formik={formik} values={formik.values.Reactions[`${id}`].Type_D_L_R}/>
   <InputFile
   name='Photo de la reaction (Si possible) :'
   id={`Photo_R_${id}`}
   onFileChange={onFileChange}
 />
 
-<InputDate name="Date de servenue de la réaction :" id={`Reactions[${id}].Date_A`} formik={formik} />
-<InputText name="Médicament(s) DCI (mettre le nom de marque) :" id={`Reactions[${id}].Medciament_DCI`} formik={formik} />
+<InputDate name="Date d’apparition :" id={`Reactions[${id}].Date_A`} formik={formik} />
 
-    <InputFile
-  name="Photo du Médicament (Si possible) :"
-  id={`Photo_M_${id}`}
-  onFileChange={onFileChange}
-/>
-
-
-<InputText name="N° de lot :" id={`Reactions[${id}].Numero_D_L`} formik={formik} />
-
-      </BigBox>
-      <BigBox>
-      <InputFile
-  name="Photo du lot (Si possible) :"
-  id={`Photo_L_${id}`}
-  onFileChange={onFileChange}
-/>
-
-<label htmlFor="Type_Voie_A">Voie d’administration</label>
-
-  <Auto2 id={`Reaction[${id}].`} formik={formik} values={formik.values.Reactions[id].Type_Voie_A}/>
-<InputText name="Dose/jour utilisée :" id={`Reactions[${id}].Posologie`} formik={formik} />
-<InputDate name="Date d’administration (Début):" id={`Reactions[${id}].Date_A_D`} formik={formik} />
-<InputDate name="Date d’administration (Fin):" id={`Reactions[${id}].Date_A_F`} formik={formik} />
-<InputText name="Raison d’emploi (indication) :" id={`Reactions[${id}].Raison_E`} formik={formik} />
 </BigBox>
 </FlexBox>
 
@@ -99,6 +74,48 @@ const Reaction = (props)=>{
   )
 }
 
+const Medicament = (props)=>{
+  const {id,formik,onFileChange} = props
+
+  return(
+      <FormikProvider value={formik}>
+  <FlexBox>
+    <BigBox>
+    <InputText name="Médicament(s) DCI (mettre le nom de marque) :" id={`Medicaments[${id}].Medciament_DCI`} formik={formik} />
+<InputText name="Nom du laboratoire :" id={`Medicaments[${id}].Nom_D_L`} formik={formik} />
+
+    <InputFile
+  name="Photo du Médicament (Si possible) :"
+  id={`Photo_M_${id}`}
+  onFileChange={onFileChange}
+/>
+
+
+<InputText name="N° de lot :" id={`Medicaments[${id}].Numero_D_L`} formik={formik} />
+
+      </BigBox>
+      <BigBox>
+      <InputFile
+  name="Photo du lot (Si possible) :"
+  id={`Photo_L_${id}`}
+  onFileChange={onFileChange}
+/>
+
+<label htmlFor="Description_D_L_R">Voie d’administration</label>
+
+  <Auto2 id={`Medicaments[${id}].`} formik={formik} values={formik.values.Medicaments[id].Type_Voie_A}/>
+<InputText name="Posologie :" id={`Medicaments[${id}].Posologie`} formik={formik} />
+<InputDate name="Date d’administration (Début):" id={`Medicaments[${id}].Date_A_D`} formik={formik} />
+<InputDate name="Date d’administration (Fin):" id={`Medicaments[${id}].Date_A_F`} formik={formik} />
+<InputText name="Raison d’emploi (indication) :" id={`Medicaments[${id}].Raison_E`} formik={formik} />
+</BigBox>
+</FlexBox>
+
+
+      </FormikProvider>
+      
+  )
+}
 
 
 const FormJaune = (props) => {
@@ -116,15 +133,17 @@ const FormJaune = (props) => {
       Poids: "",
       Reactions: [{
         Type_D_L_R: [],
-        Date_S_R: "",
+        Date_A: "",
+      }],
+      Medicaments:[{
         Medciament_DCI: "",
         Numero_D_L: "",
-        Type_Voie_A: "",
+        Type_Voie_A: [],
         Posologie: "",
         Date_A_D: "",
         Date_A_F: "",
         Raison_E: "",
-      },],
+      }],
       Nature_D_T: "",
       Descriptif_D_T: "",
       Evolution: "",

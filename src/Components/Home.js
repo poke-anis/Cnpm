@@ -73,9 +73,9 @@ const getAlertescount = () => {
  }
 const tenChange = (pageNumber, isposOrneg) => {
   var finalPage;
-  if (isposOrneg > 0) //+10 clicked
+  if (isposOrneg > 0) 
     finalPage = pageNumber + 10;
-  else //-10 clicked
+  else 
     finalPage = pageNumber - 10;
     setCurrentPage(finalPage)
 
@@ -205,9 +205,9 @@ const getNewscount = () => {
  }
 const tenChange = (pageNumber, isposOrneg) => {
   var finalPage;
-  if (isposOrneg > 0) //+10 clicked
+  if (isposOrneg > 0) 
     finalPage = pageNumber + 10;
-  else //-10 clicked
+  else 
     finalPage = pageNumber - 10;
     setCurrentPage(finalPage)
 

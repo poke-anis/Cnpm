@@ -5,6 +5,7 @@ import { FaPrint, FaPlus, FaRegTimesCircle } from "react-icons/fa";
 import { useReactToPrint, ReactToPrint } from "react-to-print";
 import { Card, Badge, Button, Col } from "react-bootstrap";
 import FormJaune from "./MesDeclarations/FormJaune";
+import FormPatient from "./MesDeclarations/FormPatient";
 import FormBleue from "./MesDeclarations/FormBleue";
 import FormParme from "./MesDeclarations/FormParme";
 import FormRose from "./MesDeclarations/FormPink";
@@ -118,9 +119,9 @@ const MesDeclarationsCnpm = (props) => {
   const tenChange = (pageNumber, isposOrneg) => {
     var finalPage;
     if (isposOrneg > 0)
-      //+10 clicked
+      
       finalPage = pageNumber + 10;
-    //-10 clicked
+    
     else finalPage = pageNumber - 10;
     setCurrentPage(finalPage);
 
@@ -264,6 +265,14 @@ const MesDeclarationsCnpm = (props) => {
         />
       );
     }
+    else if (Object.keys(props)[0] === "Patient") {
+      return (
+        <FormPatient
+          decla={decla[Object.values(props)[0]]}
+          ref={componentRef}
+        />
+      );
+    }
   };
 
   const handlePrint = useReactToPrint({
@@ -335,23 +344,7 @@ const MesDeclarationsCnpm = (props) => {
             <Col md={10} className="g-0">
               {decla.length !== 0
                 ? decla
-                    //   .filter((singledecla) =>
-                    //     selectedValue == ""
-                    //       ? singledecla
-                    //       : selectedValue.some((val) =>
-                    //           val.includes(singledecla.typeOfFiches)
-                    //         )
-                    //       ? singledecla
-                    //       : null
-                    //   ).filter((singledecla) =>
-                    //   selectedValueEtat == ""
-                    //     ? singledecla
-                    //     : selectedValueEtat.some((val) =>
-                    //         val.includes(singledecla.status_Type||singledecla.status)
-                    //       )
-                    //     ? singledecla
-                    //     : null
-                    // )
+                   
                     .map((val, key) => {
                       var date = new Date(val.DateAdded);
                       return (
@@ -601,9 +594,9 @@ const MesDeclarations = (props, isMulti) => {
   const tenChange = (pageNumber, isposOrneg) => {
     var finalPage;
     if (isposOrneg > 0)
-      //+10 clicked
+      
       finalPage = pageNumber + 10;
-    //-10 clicked
+    
     else finalPage = pageNumber - 10;
     setCurrentPage(finalPage);
 

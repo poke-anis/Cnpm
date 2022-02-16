@@ -1,14 +1,13 @@
 
 
 import Pagination from 'react-bootstrap/Pagination'
-// import "../theme_1638455751035.css";
+
 import "./Pagination.css"
 
 const PaginationPage = (props) => {
     const pageLinks = [];
     const {currentPage,pages} = props;
-    //Start will point to strating page which is multiple of 10 for current page
-    //If currentpage is 18 than it will show 10 to 10+11 pages as link to move
+    
     let start=(currentPage)-(currentPage%10);
     if(start<=0)
         start=1;
