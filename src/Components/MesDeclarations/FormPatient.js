@@ -388,6 +388,8 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                         <Form.Control readOnly defaultValue={elem} />
                       </Col>
                     </Form.Group>
+                    { declaData.Description_Voie_A != null &&
+                declaData.Description_Voie_A.map((elem2, index3) => (
                     <Form.Group
                       as={Row}
                       className="mb-3"
@@ -399,10 +401,11 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                       <Col sm="7">
                         <Form.Control
                           readOnly
-                          defaultValue={el.Description_Voie_A[index2]}
+                          defaultValue={elem2}
                         />
                       </Col>
                     </Form.Group>
+                        ))}
                   </div>
                 ))}
 

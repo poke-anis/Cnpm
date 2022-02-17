@@ -94,7 +94,7 @@ const Plante = (props)=>{
 
                   <InputFile
   name='Photo (Si possible) :'
-  id={`Photo_D_N`}
+  id={`Photo_D_N${id}`}
   onFileChange={onFileChange}
 />
   
