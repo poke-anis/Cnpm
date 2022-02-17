@@ -258,7 +258,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
                 null:
  (
                 declaPic
-                  .filter((el, key) => el.fieldname === `Photo_D_N${index}`)
+                  .filter((el, key) => el.fieldname === `Photo_D_N_${index}`)
                   .map((el, key) => (
                     <Figure key={key}>
                       <Figure.Image
