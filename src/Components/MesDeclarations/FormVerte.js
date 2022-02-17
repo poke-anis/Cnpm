@@ -572,6 +572,8 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
 
 
           </BigBox>
+          </FlexBox>
+          <FlexBox>
           <BigBox>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
