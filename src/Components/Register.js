@@ -475,7 +475,7 @@ function Register(props) {
 
   return (
     <AuthBox>
-      <div style={{height:"100%",borderRight: "1px solid #d8d8d8",paddingLeft:"2%"}}>
+      <div style={{height:"100%",borderRight: "1px solid #d8d8d8",paddingLeft:"2%",paddingRight:"2%"}}>
       <label htmlFor="Etes vous ?" >
         S'inscrire en tant que :
         <Form.Check

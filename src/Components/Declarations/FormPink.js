@@ -74,7 +74,7 @@ const FormPink = (props) => {
       Zone_A_P: '',
       Site_R: '',
       Description_Z_C: '',
-      Description_E_I: '',
+      Description_E_I: [],
       Traitement: '',
       Evolution: '',
       Sequelles: '',

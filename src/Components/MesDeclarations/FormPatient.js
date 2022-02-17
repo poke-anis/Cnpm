@@ -487,46 +487,39 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                   />
                 </Col>
               </Form.Group>
-              <Form.Group
-                as={Row}
-                className="mb-3"
-                controlId="formPlaintextEmail"
-              >
-                <Form.Label column sm="5">
-                  Evolution
-                </Form.Label>
-                <Col sm="7">
-                  <Form.Control readOnly defaultValue={declaData.Evolution} />
-                </Col>
-              </Form.Group>
-              {declaData.Evolution === "Décès en relation avec la prise du médicament" ? (
-              <Form.Group
-              as={Row}
-              className="mb-3"
-              controlId="formPlaintextEmail"
-            >
-              <Form.Label column sm="5">
-              Décès en relation avec la prise du médicament
-              </Form.Label>
-              <Col sm="7">
-                <Form.Control readOnly defaultValue={declaData.Evolution_D} />
-              </Col>
-            </Form.Group>
-              ) : null}
-              {declaData.Evolution === "Guérison" ? (
-              <Form.Group
-              as={Row}
-              className="mb-3"
-              controlId="formPlaintextEmail"
-            >
-              <Form.Label column sm="5">
-              Guérison
-              </Form.Label>
-              <Col sm="7">
-                <Form.Control readOnly defaultValue={declaData.Evolution_G} />
-              </Col>
-            </Form.Group>
-              ) : null}
+              {declaData.Type_Evolution != null &&
+          declaData.Type_Evolution.map((elem,index2)=>
+  <div key={elem}>
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+            <Form.Label column sm="5">
+            Description de l'evolution
+            </Form.Label>
+            <Col sm="7">
+              <Form.Control
+                
+                readOnly
+                defaultValue={elem}
+              />
+            </Col>
+          </Form.Group>
+          { declaData.Description_Evolution != null &&
+                declaData.Description_Evolution.map((elem2, index3) => (
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Label column sm="5">
+                    :
+                    </Form.Label>
+                    <Col sm="7">
+                      <Form.Control
+                        
+                        readOnly
+                        defaultValue={elem2}
+                      />
+                    </Col>
+                  </Form.Group>
+                ))}
+
+                  </div>
+  )}
 
             </BigBox>
             <BigBox>
@@ -575,7 +568,8 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                       <Form.Control readOnly defaultValue={elem} />
                     </Col>
                   </Form.Group>
-
+                  { declaData.Description_A != null &&
+                declaData.Description_A.map((elem2, index3) => (
                   <Form.Group
                     as={Row}
                     className="mb-3"
@@ -587,10 +581,11 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                     <Col sm="7">
                       <Form.Control
                         readOnly
-                        defaultValue={declaData.Description_A[index2]}
+                        defaultValue={elem2}
                       />
                     </Col>
                   </Form.Group>
+                  ))}
                 </div>
               ))}
 

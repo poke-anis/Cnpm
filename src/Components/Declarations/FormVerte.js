@@ -126,6 +126,12 @@ const Plante = (props)=>{
           checkContent={["Début", "Fin"]}
           formik={formik}
         />
+                
+        <Field
+        name={`Plantes${id}.Date_D_U`}
+             component={SelectField}
+          options={Mode_D_P}
+        />
         <InputText
           name="Raison d'utilisation de la plante médicinale :"
           id={`Plantes${id}.Raison_U_P_M`}
@@ -325,7 +331,7 @@ const FormVerte = (props) => {
         <FlexBox>
         <BigBox>
 
-        <label htmlFor="Description_E_I">Description de l’effet indésirable </label>
+        <label htmlFor="Type_D_L_R">Description de l’effet indésirable </label>
         <Auto1 isMulti={false} id={``} formik={formik} values={formik.values.Type_D_L_R}/>
         <label htmlFor="Type_A">Antécédents et terrain du patient  </label>
         <Auto3 id={``} formik={formik} values={formik.values.Type_A}/>

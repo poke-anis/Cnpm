@@ -5,6 +5,7 @@ import {Nav,Button,Tab,ProgressBar,Form} from 'react-bootstrap'
 import styled from 'styled-components'
 import axiosConfig from "../axios"
 import Auto9 from './Auto9'
+import Auto10 from './Auto10'
 import Auto2 from './Auto2'
 import Auto3 from './Auto3'
 import swal from "sweetalert";
@@ -360,25 +361,9 @@ const FormJaune = (props) => {
 </Box>
 </BigBox>
 <BigBox>
-<InputRadio name="Evolution :" 
-                id="Evolution"             
-                radioContent={[
-              "Guérison",
-              "Sujet non encore rétabli",
-              "Décès en relation avec la prise du médicament",
-              "Inconnue"]}
-                formik={formik} /> 
-{formik.values.Evolution === "Guérison"?
-<InputSelect name="" 
-id="Evolution_G"
-options={["","En cours","Sans séquelles","Avec séquelles"]} 
-formik={formik}/>
-:formik.values.Evolution === "Décès en relation avec la prise du médicament"?
-<InputSelect name="" 
-id="Evolution_D"
-options={["","Oui","Non","Inconnue"]} 
-formik={formik}/>:null
-}     
+<label htmlFor="Type_Evolution">Evolution</label>
+
+<Auto10 id={``} formik={formik} values={formik.values.Type_Evolution}/>
        
 <InputRadio name="Conséquences sur la vie quotidienne :" 
 id="Conséquences_S_V_Q"

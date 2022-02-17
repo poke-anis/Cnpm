@@ -322,6 +322,18 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
           </Form.Group>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
+            Dates d’utilisation 
+            </Form.Label>
+            <Col sm="7">
+              <Form.Control
+                
+                readOnly
+                defaultValue={el.Date_D_U}
+              />
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+            <Form.Label column sm="5">
             Raison d'utilisation de la plante médicinale
             </Form.Label>
             <Col sm="7">
@@ -408,6 +420,8 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
+          { declaData.Description_A != null &&
+                declaData.Description_A.map((elem2, index3) => (
                     <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
                     <Form.Label column sm="5">
                     :
@@ -420,6 +434,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
                       />
                     </Col>
                   </Form.Group>
+                   ))}
                   </div>
   )}
 
@@ -521,6 +536,10 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
             </Col>
           </Form.Group>:null}
           {/* //auto6 */}
+
+          {declaData.Type_Evolution != null &&
+          declaData.Type_Evolution.map((elem,index2)=>
+  <div key={elem}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Evolution
@@ -529,10 +548,29 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               <Form.Control
                 
                 readOnly
-                defaultValue={declaData.Evolution}
+                defaultValue={elem}
               />
             </Col>
           </Form.Group>
+          { declaData.Description_Evolution != null &&
+                declaData.Description_Evolution.map((elem2, index3) => (
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Label column sm="5">
+                    :
+                    </Form.Label>
+                    <Col sm="7">
+                      <Form.Control
+                        
+                        readOnly
+                        defaultValue={elem2}
+                      />
+                    </Col>
+                  </Form.Group>
+                ))}
+                  </div>
+  )}
+
+
           </BigBox>
           <BigBox>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
