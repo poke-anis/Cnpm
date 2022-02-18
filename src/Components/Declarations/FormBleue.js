@@ -71,7 +71,7 @@ var formik = useFormik({
       Frequence_I:''
     },
 
-    onSubmit: values => {
+    onSubmit: (values,{resetForm}) => {
 
  const formData = new FormData();
  setValidated(true);
@@ -103,6 +103,9 @@ var formik = useFormik({
 .then((res) => {
   if (res.data.result === "success") {
     swal("Success!", res.data.message, "success").then(value => {
+      setValidated(false);
+
+      resetForm({values:''})
     });
   } else if (res.data.result === "error") {
     swal("Error!", res.data.message, "error");

@@ -118,6 +118,7 @@ const UserManagment = (props) => {
     { label: "Cosmétovigilance", value: "Rose"},
     { label: "Phytovigilance", value: "Verte"},
     { label: "Complèment alimentaire", value: "Orange"},
+    { label: "Patient", value: "Patient"},
   ]; 
     
 const handleEdit = (props)=>{
@@ -168,6 +169,8 @@ const handledelete = (props)=>{
         return "Phytovigilance";
       } else if (props === "Coronavirus") {
         return "Coronavirus";
+      } else if (props === "¨Patient") {
+        return "Patient";
       }
     };
 

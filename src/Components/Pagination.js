@@ -8,10 +8,10 @@ const PaginationPage = (props) => {
     const pageLinks = [];
     const {currentPage,pages} = props;
     
-    let start=(currentPage)-(currentPage%10);
+    let start=(currentPage)-(currentPage%6);
     if(start<=0)
         start=1;
-    for (let i = start; i <= start+11 && i <= pages; i++) {
+    for (let i = start; i <= start+5 && i <= pages; i++) {
         pageLinks.push(
             <Pagination.Item key={i} active={currentPage === i} onClick={() => props.nextPage(i)}> 
                 
@@ -32,7 +32,24 @@ const PaginationPage = (props) => {
                   
                 </Pagination.Item>
             }
+              
+              {
+                currentPage > 5 &&
+                <Pagination.Item className="addbuttons" onClick={() => props.fiveChange(currentPage,-1)}> 
+                    
+                        - 5
+                  
+                </Pagination.Item>
+            }
             {pageLinks}
+            {
+                (currentPage + 5) < pages &&
+                <Pagination.Item className="addbuttons" onClick={() => props.fiveChange(currentPage,1)}
+                > 
+                        + 5
+                    
+                </Pagination.Item>
+            }
             {
                 (currentPage + 10) < pages &&
                 <Pagination.Item className="addbuttons" onClick={() => props.tenChange(currentPage,1)}

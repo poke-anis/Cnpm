@@ -88,7 +88,7 @@ const Plante = (props)=>{
           <BigBox>
         <InputText
           name="Nom,Vernaculaire et Nom scientifique (si connu) :"
-          id={`Plantes${id}.Nom_V_N_S`}
+          id={`Plantes[${id}].Nom_V_N_S`}
           formik={formik}
         />
 
@@ -101,13 +101,13 @@ const Plante = (props)=>{
         <label htmlFor="Parties utilisées">Parties utilisées</label>
         <Field
              component={SelectField}
-             name={`Plantes${id}.Partie_U`}
+             name={`Plantes[${id}].Partie_U`}
           options={Partie_U}
         />
         <label htmlFor="Dose">Dose</label>
 
         <Field
-        name={`Plantes${id}.Dose`}
+        name={`Plantes[${id}].Dose`}
              component={SelectField}
           options={Dose}
         />
@@ -115,26 +115,33 @@ const Plante = (props)=>{
 <BigBox>
         <label htmlFor="Mode de préparation">Mode de préparation</label>
         <Field
-        name={`Plantes${id}.Mode_D_P`}
+        name={`Plantes[${id}].Mode_D_P`}
              component={SelectField}
           options={Mode_D_P}
         />
-
-        <InputCheck
+                                  {formik.values.Plantes[id].Mode_D_P === "Autre" ? (
+              <InputText
+                name="Lequel:"
+                id={`Plantes[${id}].Lequel_M_D_P`}
+                formik={formik}
+              />
+            ) : null}
+        <InputRadio
           name="Dates d’utilisation :"
-          id={`Plantes${id}.Date_U`}
-          checkContent={["Début", "Fin"]}
+          id={`Plantes[${id}].Date_U`}
+          radioContent={["Début", "Fin"]}
           formik={formik}
         />
                 
-        <Field
-        name={`Plantes${id}.Date_D_U`}
+        <InputDate
+
+        id={`Plantes[${id}].Date_D_U`}
              component={SelectField}
-          options={Mode_D_P}
+             formik={formik}
         />
         <InputText
           name="Raison d'utilisation de la plante médicinale :"
-          id={`Plantes${id}.Raison_U_P_M`}
+          id={`Plantes[${id}].Raison_U_P_M`}
           formik={formik}
         />
         </BigBox>
@@ -172,13 +179,13 @@ const FormVerte = (props) => {
         Raison_U_P_M: '',
       }],
       Description_E_I:'',
-      Type_A:'',
+      Type_A:[],
       Date_A: '',
       Delai_A: '',
       Arret_D_L_P: '',
       Traitement_C: '',
       Lequel: '',
-      Type_Evolution: '',
+      Type_Evolution: [],
       Date_D_D: '',
       Medicament: '',
       Lequel_M: '',
@@ -194,7 +201,7 @@ const FormVerte = (props) => {
 
     },
 
-    onSubmit: (values) => {
+    onSubmit: (values,{resetForm}) => {
       setValidated(true);
 
       const formData = new FormData();
@@ -226,6 +233,9 @@ const FormVerte = (props) => {
      .then((res) => {
       if (res.data.result === "success") {
         swal("Success!", res.data.message, "success").then(value => {
+          setValidated(false);
+
+          resetForm({values:''})
         });
       } else if (res.data.result === "error") {
         swal("Error!", res.data.message, "error");

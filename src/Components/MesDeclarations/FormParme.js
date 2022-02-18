@@ -82,13 +82,26 @@ const FormParmeDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
+          {declaData.Dispositif_M_D_I_V === "Autre"?
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+            <Form.Label column sm="5">
+            Lequel
+            </Form.Label>
+            <Col sm="7">
+              <Form.Control
+                
+                readOnly
+                defaultValue={declaData.Lequel_D_M_D_I_V}
+              />
+            </Col>
+          </Form.Group>:null}
           {declaPic === [] & progress < 100 ? (
                   <ProgressBar animated now={progress} />
                 ) :declaPic === undefined?  
                 null:
  (
                 declaPic
-                  .filter((el, key) => el.fieldname === `Photo_R`)
+                  .filter((el, key) => el.fieldname === `Photo_P`)
                   .map((el, key) => (
                     <Figure key={key}>
                       <Figure.Image
@@ -106,7 +119,7 @@ const FormParmeDecla = React.forwardRef((props,ref) => {
                 null:
  (
                 declaPic
-                  .filter((el, key) => el.fieldname === `Photo_R_E`)
+                  .filter((el, key) => el.fieldname === `Photo_N`)
                   .map((el, key) => (
                     <Figure key={key}>
                       <Figure.Image

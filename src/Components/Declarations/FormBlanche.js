@@ -157,6 +157,13 @@ const Solvant = (props) => {
             options={["","Du même vaccin", "Autre"]}
             formik={formik}
           />
+                      {formik.values.Solvants[id].Type_S === "Autre" ? (
+              <InputText
+                name="Lequel:"
+                id={`Solvants[${id}].Lequel_S`}
+                formik={formik}
+              />
+            ) : null}
 
           <InputFile
             name="Photo du Solvant (Si possible) :"
@@ -257,7 +264,7 @@ const FormBlanche = (props) => {
       Prise_C_M: "",
     },
 
-    onSubmit: (values) => {
+    onSubmit: (values,{resetForm}) => {
       const formData = new FormData();
       setValidated(true);
 
@@ -280,6 +287,9 @@ const FormBlanche = (props) => {
         .then((res) => {
           if (res.data.result === "success") {
             swal("Success!", res.data.message, "success").then(value => {
+              setValidated(false);
+
+              resetForm({values:''})
             });
           } else if (res.data.result === "error") {
             swal("Error!", res.data.message, "error");
@@ -396,7 +406,7 @@ const FormBlanche = (props) => {
               as={() => {
                 return (
                   <Button
-                    variant="primary"
+                    
                     onClick={() => {
                       setVaccins([...Vaccins, Vaccins.length + 1]);
                     }}

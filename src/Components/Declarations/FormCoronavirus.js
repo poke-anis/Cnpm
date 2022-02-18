@@ -246,7 +246,7 @@ const FormCoronavirus = (props) => {
       Prise_C_M_M: "",
     },
 
-    onSubmit: (values) => {
+    onSubmit: (values,{resetForm}) => {
 
       const formData = new FormData();
       setValidated(true);
@@ -278,6 +278,9 @@ const FormCoronavirus = (props) => {
      .then((res) => {
       if (res.data.result === "success") {
         swal("Success!", res.data.message, "success").then(value => {
+          setValidated(false);
+
+          resetForm({values:''})
         });
       } else if (res.data.result === "error") {
         swal("Error!", res.data.message, "error");

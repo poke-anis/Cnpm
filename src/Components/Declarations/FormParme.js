@@ -67,7 +67,7 @@ const FormParme = (props) => {
     },
 
   
-    onSubmit: (values) => {
+    onSubmit: (values,{resetForm}) => {
 
       const formData = new FormData();
       setValidated(true);
@@ -142,22 +142,26 @@ const FormParme = (props) => {
                 "Autre",
               ]}
             />
-            {formik.values.Dispositif_M_D_I_V === 'Réactif'? 
-            
+                                  {formik.values.Dispositif_M_D_I_V === "Autre" ? (
+              <InputText
+                name="Lequel:"
+                id={`Lequel_D_M_D_I_V`}
+                formik={formik}
+              />
+            ) : null}
+            <p>Photo du produit </p>
             <InputFile
-        name="Photo_R"
-        id="Photo_R"
+        name="Photo_P"
+        id="Photo_P"
         onFileChange={onFileChange}
       /> 
-/*             <div>
-        <Form.Control type="file" id={`Photo_R`} name='Photo_R' onChange={onFileChange} />
-            </div> */:
-  formik.values.Dispositif_M_D_I_V === 'Récipient pour échantillon'? 
+            <p>Photo de la notice </p>
+
   <InputFile
-  name="Photo_R_E"
-  id="Photo_R_E"
+  name="Photo_N"
+  id="Photo_N"
   onFileChange={onFileChange}
-/> :null}
+/> 
             <InputText
               name="Nom commercial/Modèle/Type/Référence :"
               id="Nom_C"
@@ -210,7 +214,7 @@ const FormParme = (props) => {
               id="Date_D_M_S"
               formik={formik}
             />
-            <InputDate
+            <InputText
               name="Nom, adresse du distributeur :"
               id="Nom_A_D"
               formik={formik}

@@ -131,7 +131,7 @@ const FormOrange = (props) => {
         Dose_C: '',
         Lieu_A: '',
     }],
-    Description_D_L_R:'',
+    Description_D_L_R:[],
     Photo_E_I:'',
     Type_A:'',
       Date_A: '',
@@ -139,7 +139,7 @@ const FormOrange = (props) => {
       Arret_D_C_A: '',
       Traitement_C: '',
       Lequel: '',
-      Type_Evolution: '',
+      Type_Evolution: [],
       Date_D_D: '',
       Medicament: '',
       Lequel_M: '',
@@ -153,7 +153,7 @@ const FormOrange = (props) => {
       Autres_P: '',
     },
 
-    onSubmit: values => {
+    onSubmit: (values,{resetForm}) => {
 
       const formData = new FormData();
       setValidated(true);
@@ -186,6 +186,9 @@ const FormOrange = (props) => {
      .then((res) => {
       if (res.data.result === "success") {
         swal("Success!", res.data.message, "success").then(value => {
+          setValidated(false);
+
+          resetForm({values:''})
         });
       } else if (res.data.result === "error") {
         swal("Error!", res.data.message, "error");

@@ -308,6 +308,19 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
+          {el.Mode_D_P === "Autre"?
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+            <Form.Label column sm="5">
+            Lequel
+            </Form.Label>
+            <Col sm="7">
+              <Form.Control
+                
+                readOnly
+                defaultValue={el.Lequel_M_D_P}
+              />
+            </Col>
+          </Form.Group>:null}
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Dates d’utilisation 
@@ -322,7 +335,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
           </Form.Group>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
-            Dates d’utilisation 
+            : 
             </Form.Label>
             <Col sm="7">
               <Form.Control

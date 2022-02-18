@@ -336,6 +336,19 @@ useEffect(() => {
               />
             </Col>
           </Form.Group>
+          {el.Type_S === "Autre"?
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+            <Form.Label column sm="5">
+            Lequel
+            </Form.Label>
+            <Col sm="7">
+              <Form.Control
+                
+                readOnly
+                defaultValue={el.Lequel_S}
+              />
+            </Col>
+          </Form.Group>:null}
           {declaPic === [] & progress < 100 ? (
                   <ProgressBar animated now={progress} />
                 ) :declaPic === undefined?  
@@ -629,7 +642,7 @@ useEffect(() => {
                       <Form.Control
                         
                         readOnly
-                        defaultValue={declaData.Lequel}
+                        defaultValue={declaData.Lequel_C_M}
                       />
                     </Col>
                   </Form.Group>

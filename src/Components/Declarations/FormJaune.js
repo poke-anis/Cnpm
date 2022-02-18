@@ -132,12 +132,14 @@ const FormJaune = (props) => {
       Poids: "",
       Reactions: [{
         Type_D_L_R: [],
+        Description_D_L_R:[],
         Date_A: "",
       }],
       Medicaments:[{
         Medciament_DCI: "",
         Numero_D_L: "",
         Type_Voie_A: [],
+        Description_Voie_A: [],
         Posologie: "",
         Date_A_D: "",
         Date_A_F: "",
@@ -152,7 +154,7 @@ const FormJaune = (props) => {
       Facteurs_R_A: "",
     },
 
-    onSubmit: (values) => {
+    onSubmit: (values,{resetForm}) => {
       const formData = new FormData();
       setValidated(true);
 
@@ -183,6 +185,9 @@ const FormJaune = (props) => {
      .then((res) => {
       if (res.data.result === "success") {
         swal("Success!", res.data.message, "success").then(value => {
+          setValidated(false);
+
+          resetForm({values:''})
         });
       } else if (res.data.result === "error") {
         swal("Error!", res.data.message, "error");
@@ -247,15 +252,8 @@ const FormJaune = (props) => {
                 <Button 
                   onClick={() => {
                     formik.values.Reactions[Reactions.length] = {
-                      Type_D_L_R: "",
+                      Type_D_L_R: [],
                       Date_A: "",
-                      Medciament_DCI: "",
-                      Numero_D_L: "",
-                      Type_Voie_A: "",
-                      Posologie: "",
-                      Date_A_D: "",
-                      Date_A_F: "",
-                      Raison_E: "",
                     };
                     setReactions([...Reactions, Reactions.length + 1]);
 
@@ -298,11 +296,9 @@ const FormJaune = (props) => {
                 <Button 
                   onClick={() => {
                     formik.values.Medicaments[Medicaments.length] = {
-                      Type_D_L_R: "",
-                      Date_A: "",
                       Medciament_DCI: "",
                       Numero_D_L: "",
-                      Type_Voie_A: "",
+                      Type_Voie_A: [],
                       Posologie: "",
                       Date_A_D: "",
                       Date_A_F: "",

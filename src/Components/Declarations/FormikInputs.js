@@ -97,7 +97,7 @@ const InputRadio = (props) => {
           </label>
         ) : null}
                 {formik.values[id] === "Oui" && id === 'Prise_C_M'? (
-          <InputText name="Lequel ?:" id="Lequel" formik={formik} />
+          <InputText name="Lequel ?:" id="Lequel_C_M" formik={formik} />
         ) : null}
         {formik.values[id] === "Feminin" ? (
           <InputRadio
