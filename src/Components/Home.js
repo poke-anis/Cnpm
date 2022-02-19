@@ -95,13 +95,13 @@ useEffect(() => {
     setModalShow(true);
   };
   return(
-    <div >
+    <div style={{flexGrow:"1"}}>
         <Row xs={1} md={2} className="g-4">
         {cnpmAlertes.length >= 1 && cnpmAlertes instanceof Array? 
 
 cnpmAlertes.map((elem,ind) =>
-<Col>
-<Card style={{marginBottom:"10px",marginLeft:"10px"}} key={ind}>
+<Col  >
+<Card style={{marginBottom:"10px",marginLeft:"10px",height:"100%"}} key={ind}>
 {elem.image.length >= 1
   ? elem.image.map((el, index) => (
       <Card.Img
@@ -122,9 +122,9 @@ cnpmAlertes.map((elem,ind) =>
   src={logo}
 />}
 
-<Card.Body>
-  <Card.Title>{elem.titre}</Card.Title>
-  <Card.Text>
+<Card.Body >
+  <Card.Title  >{elem.titre}</Card.Title>
+  <Card.Text style={{textOverflow:"ellipsis",overflow:"hidden"}} >
     {modalShow ? (
       <ModalForm
         key={ind}
@@ -227,15 +227,15 @@ useEffect(() => {
     setModalShow(true);
   };
   return(
-    <div s>
+    <div style={{flexGrow:"1"}} >
 
-<Row xs={1} md={2} className="g-4">
+<Row xs={1} md={2} className="g-4" >
 
 {cnpmNews.length >= 1 && cnpmNews instanceof Array? 
   
     cnpmNews.map((elem,ind) =>
-    <Col>
-    <Card style={{marginBottom:"10px",marginLeft:"10px"}} key={ind}>
+    <Col >
+    <Card style={{marginBottom:"10px",marginLeft:"10px",height:"100%"}} key={ind}>
     {elem.image.length >= 1
       ? elem.image.map((el, index) => (
           <Card.Img
@@ -258,7 +258,7 @@ useEffect(() => {
 
     <Card.Body>
       <Card.Title>{elem.titre}</Card.Title>
-      <Card.Text>
+      <Card.Text  style={{textOverflow:"ellipsis",overflow: "hidden"}}>
         {modalShow ? (
           <ModalForm
             key={ind}
@@ -314,11 +314,11 @@ const Home = () => {
  
   return (
     <Content>
-      <div style={{width:"50%",minHeight:"100%",paddingLeft:'30px',paddingRight:'30px',borderRight:"1px solid #d8d8d8"}}>
+      <div style={{width:"50%",height:"100%",paddingLeft:'30px',paddingRight:'30px',borderRight:"1px solid #d8d8d8",display:"flex",flexDirection:"column"}}>
       <h1 style={{ width: "100%", textAlign: "center",borderBottom: "1px solid #d8d8d8", margin:"10px 0 20px" ,lineHeight: "0.1em", paddingTop:"20px"}}> <span style={{background:"#EAEAEA",padding:"0 10px"}}> Alertes</span></h1>
         <Alertes/>
       </div>
-      <div style={{width:"50%",minHeight:"100%",paddingLeft:'30px',paddingRight:'30px',borderLeft:"1px solid #d8d8d8"}}>
+      <div style={{width:"50%",height:"100%",paddingLeft:'30px',paddingRight:'30px',borderLeft:"1px solid #d8d8d8",display:"flex",flexDirection:"column"}}>
       <h1 style={{width: "100%", textAlign: "center",borderBottom: "1px solid #d8d8d8", margin:"10px 0 20px" ,lineHeight: "0.1em", paddingTop:"20px"}}><span style={{background:"#EAEAEA",padding:"0 10px"}}>Actualités </span></h1>
         <News/>      
         </div>
