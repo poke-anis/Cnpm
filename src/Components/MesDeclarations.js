@@ -613,7 +613,7 @@ const MesDeclarations = (props, isMulti) => {
             <div style={{ color: "white" }}>Recherche:</div>
             <CreatableSelect
               components={components}
-              placeholder="Introduisez  le(s) mot-clé(s) desirer et appuyez sur entrer"
+              placeholder="Introduisez  le(s) mot-clé(s) desirés et appuyez sur entrer"
               name="Search"
               onChange={(val) =>
                 true
