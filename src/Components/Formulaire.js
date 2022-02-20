@@ -312,7 +312,7 @@ const getVariant2 = ()=>{
                 setTab("Rose");
               }}
             >
-              Fiche de Cosmétovigilance
+              Fiche de Produits cosmétiques
               <span
                 className="badge badge-pill bg-rose"
                 style={{
@@ -362,7 +362,7 @@ const getVariant2 = ()=>{
                 setTab("Verte");
               }}
             >
-              Fiche de Phytovigilance
+              Fiche de Produits médicinales
               <span
                 className="badge badge-pill bg-vert"
                 style={{
@@ -388,7 +388,7 @@ const getVariant2 = ()=>{
                 setTab("PatientFr");
               }}
             >
-              Fiche Patient
+              Fiche Medicaments
               <span
                 className="badge badge-pill bg-blanche"
                 style={{
