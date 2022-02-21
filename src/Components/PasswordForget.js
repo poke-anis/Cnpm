@@ -60,7 +60,7 @@ function Passwordreset(props)
 return (
   <AuthBox>
     <div style={{width:"30%",height:"100%",borderRight: "1px solid #d8d8d8",paddingLeft:"4%",paddingRight:"4%",paddingTop:"2%"}}>
-    <p >Inserrez votre adresse mail ,vous recevrez par la suite un email contenant votre lien de réinitialisation du mot de passe.</p>
+    <p>Inserrez votre adresse mail, vous recevrez par la suite un email contenant votre lien de réinitialisation du mot de passe.</p>
     </div>
     <Formik
       initialValues={{ Email: "" }}

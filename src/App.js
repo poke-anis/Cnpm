@@ -29,7 +29,7 @@ var Navba = styled(Navbar)`
 const Body = styled.div`
 @media ${device.mobileS} {
   p{
-    font-size: 2.8vw;
+    font-size: 2.9vw;
   }
   }
 
