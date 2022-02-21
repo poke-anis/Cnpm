@@ -95,7 +95,7 @@ const FormParmeDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>:null}
-          {declaPic === [] & progress < 100 ? (
+          {progress < 100 ? (
                   <ProgressBar animated now={progress} />
                 ) :declaPic === undefined?  
                 null:
@@ -113,7 +113,7 @@ const FormParmeDecla = React.forwardRef((props,ref) => {
                     </Figure>
                   ))
               )}
-              {declaPic === [] & progress < 100 ? (
+              {progress < 100 ? (
                   <ProgressBar animated now={progress} />
                 ) :declaPic === undefined?  
                 null:
@@ -167,7 +167,7 @@ const FormParmeDecla = React.forwardRef((props,ref) => {
               <Form.Control  readOnly defaultValue={declaData.Numero_S_L} />
             </Col>
           </Form.Group>
-          {declaPic === [] & progress < 100 ? (
+          {progress < 100 ? (
                   <ProgressBar animated now={progress} />
                 ) :declaPic === undefined?  
                 null:

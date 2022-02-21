@@ -43,6 +43,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
 useEffect(() => {
   axiosConfig.get(`/secure/getImages/${decla._id}`, {
     onDownloadProgress: (progressEvent) => {
+      console.log(progressEvent)
       let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
       setProgress(percentCompleted);
     }})
@@ -180,7 +181,7 @@ useEffect(() => {
                 />
               </Col>
             </Form.Group>
-            {declaPic === [] & progress < 100 ? (
+            {progress < 100 ? (
                   <ProgressBar animated now={progress} />
                 ) :declaPic === undefined?  
                 null: (
@@ -283,7 +284,7 @@ useEffect(() => {
                 />
               </Col>
             </Form.Group>
-            {declaPic === [] & progress < 100 ? (
+            {progress < 100 ? (
                   <ProgressBar animated now={progress} />
                 ) :declaPic === undefined?  
                 null:(
@@ -349,7 +350,7 @@ useEffect(() => {
               />
             </Col>
           </Form.Group>:null}
-          {declaPic === [] & progress < 100 ? (
+          {progress < 100 ? (
                   <ProgressBar animated now={progress} />
                 ) :declaPic === undefined?  
                 null: (
@@ -390,7 +391,7 @@ useEffect(() => {
               />
             </Col>
           </Form.Group>
-          {declaPic === [] & progress < 100 ? (
+          {progress < 100 ? (
                   <ProgressBar animated now={progress} />
                 ) :declaPic === undefined?  
                 null: (

@@ -145,7 +145,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
                   <Form.Control  readOnly defaultValue={el.Type_D_V} />
                 </Col>
               </Form.Group>
-              {declaPic === [] & progress < 100 ? (
+              {progress < 100 ? (
                   <ProgressBar animated now={progress} />
                 ) :declaPic === undefined?  
                 null: (
@@ -260,7 +260,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
                   />
                 </Col>
               </Form.Group>
-              {declaPic === [] & progress < 100 ? (
+              {progress < 100 ? (
                   <ProgressBar animated now={progress} />
                 ) :declaPic === undefined?  
                 null: (
@@ -318,7 +318,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
                   />
                 </Col>
               </Form.Group>
-              {declaPic === [] & progress < 100 ? (
+              {progress < 100 ? (
                   <ProgressBar animated now={progress} />
                 ) :declaPic === undefined?  
                 null:
@@ -368,7 +368,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
                   />
                 </Col>
               </Form.Group>
-              {declaPic === [] & progress < 100 ? (
+              {progress < 100 ? (
                   <ProgressBar animated now={progress} />
                 ) :declaPic === undefined?  
                 null:

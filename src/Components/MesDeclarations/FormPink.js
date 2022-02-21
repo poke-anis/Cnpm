@@ -178,7 +178,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
             </Col>
           </Form.Group>
           
-          {declaPic === [] & progress < 100 ? (
+          {progress < 100 ? (
                   <ProgressBar animated now={progress} />
                 ) :declaPic === undefined?  
                 null:
@@ -212,7 +212,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
-          {declaPic === [] & progress < 100 ? (
+          {progress < 100 ? (
                   <ProgressBar animated now={progress} />
                 ) :declaPic === undefined?  
                 null:
@@ -451,7 +451,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
 
 
 
-          {declaPic === [] & progress < 100 ? (
+          {progress < 100 ? (
                   <ProgressBar animated now={progress} />
                 ) :declaPic === undefined?  
                 null:

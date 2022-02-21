@@ -43,8 +43,9 @@ const EnTete = ()=>{
             <div  style={{display:'flex',flexDirection:'column',justifyContent:'center'}}>
             <h5>              
                 REPUBLIQUE ALGERIENNE DEMOCRATIQUE ET POPULAIRE 
-                MINISTERE DE LA SANTE 
+                
             </h5>
+            <h5>MINISTERE DE LA SANTE</h5>
             <h6>
                 Centre National de Pharmacovigilance et de Matériovigilance
                 Professeur ABDELKADER HELALI
