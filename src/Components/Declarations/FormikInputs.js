@@ -44,7 +44,8 @@ const InputCheck =(props) =>{
 
     return (
         <Box>
-            <label>{name}
+            <label>{name}</label>
+
             
                 {checkContent.map((content,index) =>{
                 return(
@@ -57,7 +58,6 @@ const InputCheck =(props) =>{
             </div>
             )
 })}
-</label>
 </Box> 
         
     )

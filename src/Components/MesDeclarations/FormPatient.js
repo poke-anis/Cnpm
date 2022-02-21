@@ -242,7 +242,7 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                         Description de la réaction
                       </Form.Label>
                       <Col sm="7">
-                        <Form.Control readOnly defaultValue={namereturn(elem)} />
+                        <Form.Control readOnly defaultValue={decla.typeOfApp === "Mobile" ? namereturn(elem):elem} />
                       </Col>
                     </Form.Group>
 

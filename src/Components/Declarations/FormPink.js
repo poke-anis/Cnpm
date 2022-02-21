@@ -69,7 +69,7 @@ const FormPink = (props) => {
       Frequence_U: '',
       Duree_U_P: '',
       Date_S_E_I: '',
-      Utilisation_S_P: '',
+      Utilisation_S_P: [],
       Exposition_P: '',
       Zone_A_P: '',
       Site_R: '',
@@ -201,14 +201,7 @@ const FormPink = (props) => {
     <BigBox>
 <InputDate name="Date de première utilisation :" id="Date_D_P_U" formik={formik} />
 <InputText name="Fréquence d'utilisation (par jour/semaine/mois) :" id="Frequence_U" formik={formik} />
-<InputSelect name=" " 
-                id="Frequence_U_U"             
-                options={[
-                  "",
-              "Jour",
-              "Semaine",
-               "mois"]}
-                formik={formik} />  
+
 <InputText name="Durée d'utilisation du produit :" id="Duree_U_P" formik={formik} />
 </BigBox>
 <BigBox>
@@ -219,9 +212,9 @@ id="Utilisation_S_P"
 checkContent={["Autre produit cosmétique","Médicament","Complément alimentaire","Plante médicinale","Autre"]} 
 formik={formik}
  />
- {formik.values.Utilisation_S_P==="Autre"?
- <InputText name="Autre" id="Autre_U_S_P" formik={formik} />
- :null}
+ {formik.values.Utilisation_S_P.filter((el) => el === "Autre" ).map(el =>
+  <InputText name="Autre" id="Autre_U_S_P" formik={formik} />
+ ) }
 
 <InputSelect name="Exposition particulière au : " 
 id="Exposition_P"

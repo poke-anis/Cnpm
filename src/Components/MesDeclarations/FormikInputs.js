@@ -105,7 +105,7 @@ const InputRadio = (props) => {
                 {formik.values[id] === "Oui" && id === 'Prise_C_M'? (
           <InputDate name="Lequel ?:" id="Prise_C_M_M" formik={formik} />
         ) : null}
-        {formik.values[id] === "Féminin" ? (
+        {formik.values[id] === "Feminin" ? (
           <InputRadio
             name="Enceinte :"
             id="Enceinte"

@@ -300,18 +300,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="5">
-              Frequence_U_U
-            </Form.Label>
-            <Col sm="7">
-              <Form.Control
-                
-                readOnly
-                defaultValue={declaData.Frequence_U_U}
-              />
-            </Col>
-          </Form.Group>
+
 
         
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
@@ -365,6 +354,20 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               />
             </Col>
           </Form.Group>
+          {declaData.Utilisation_S_P === "Autre"?
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Label column sm="5">
+                    Utilisation simultanée de produit
+                    </Form.Label>
+                    <Col sm="7">
+                      <Form.Control
+                        
+                        readOnly
+                        defaultValue={declaData.Autre_U_S_P}
+                      />
+                    </Col>
+                  </Form.Group>:null}
+
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Exposition particulière au produit

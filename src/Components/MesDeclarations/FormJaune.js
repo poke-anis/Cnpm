@@ -166,7 +166,7 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                   <Form.Control readOnly defaultValue={declaData.Sexe} />
                 </Col>
               </Form.Group>
-              {declaData.Sexe === "Féminin" ? (
+              {declaData.Sexe === "Feminin" ? (
                 <Form.Group
                   as={Row}
                   className="mb-3"
@@ -242,7 +242,7 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                         Description de la réaction
                       </Form.Label>
                       <Col sm="7">
-                        <Form.Control readOnly defaultValue={namereturn(elem)} />
+                        <Form.Control readOnly defaultValue={decla.typeOfApp === "Mobile" ? namereturn(elem):elem} />
                       </Col>
                     </Form.Group>
 
@@ -269,7 +269,7 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                   </div>
                 ))}
 
-                {progress < 100 ? (
+                {declaPic === [] & progress < 100 ? (
                   <ProgressBar animated now={progress} />
                 ) :declaPic === undefined?  
                 null: (
@@ -324,7 +324,7 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                   </Col>
                 </Form.Group>
 
-                {progress < 100 ? (
+                {declaPic === [] & progress < 100 ? (
                   <ProgressBar animated now={progress} />
                 ) :declaPic === undefined?  
                 null: (
@@ -353,7 +353,7 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                     <Form.Control readOnly defaultValue={el.Numero_D_L} />
                   </Col>
                 </Form.Group>
-                {progress < 100 ? (
+                {declaPic === [] & progress < 100 ? (
                   <ProgressBar animated now={progress} />
                 ) :declaPic === undefined?  
                 null: (
