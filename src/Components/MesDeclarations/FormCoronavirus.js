@@ -286,7 +286,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
                   <Form.Control
                     
                     readOnly
-                    defaultValue={el.Num_D_Lot}
+                    defaultValue={el.Numero_D_L_V}
                   />
                 </Col>
               </Form.Group>
@@ -328,7 +328,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
   </FlexBox>
           ))}
 
-          {declaData.Solvants.map((el, index) => (
+{/*           {declaData.Solvants.map((el, index) => (
                     <FlexBox key={index}>
                     <BigBox>
               <h1> style={{width:"100%",textAlign:"center"}}Solvant {index+1}</h1>
@@ -460,7 +460,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
               </Form.Group>
               </BigBox>
           </FlexBox>
-          ))}
+          ))} */}
                     <FlexBox>
           <BigBox>
             {/* Auto8 */}

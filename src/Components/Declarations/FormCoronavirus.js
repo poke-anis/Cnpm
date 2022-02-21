@@ -122,7 +122,7 @@ const Vaccin = (props) => {
 
       <InputText
         name="N° de lot :"
-        id={`Vaccins[${id}].Numero_D_L`}
+        id={`Vaccins[${id}].Numero_D_L_V`}
         formik={formik}
       />
 
@@ -429,7 +429,7 @@ const FormCoronavirus = (props) => {
             })}
           </Tab.Content>
           </Tab.Container>
-        <Titre><InsideTitre>Solvant(s)</InsideTitre></Titre>
+{/*         <Titre><InsideTitre>Solvant(s)</InsideTitre></Titre>
         <Tab.Container id="left-tabs-example" defaultActiveKey="Solvant#1">
           <Nav variant="tabs">
             {Solvants.map((el, index) => {
@@ -469,7 +469,7 @@ const FormCoronavirus = (props) => {
               );
             })}
           </Tab.Content>
-          </Tab.Container>
+          </Tab.Container> */}
           <Titre><InsideTitre>Manifestation(s) post-vaccinale(s) indésirable(s)</InsideTitre></Titre>
         <FlexBox>
   <BigBox>
