@@ -592,21 +592,6 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                 </div>
               ))}
 
-              <Form.Group
-                as={Row}
-                className="mb-3"
-                controlId="formPlaintextEmail"
-              >
-                <Form.Label column sm="5">
-                  Les facteurs de risques associés
-                </Form.Label>
-                <Col sm="7">
-                  <Form.Control
-                    readOnly
-                    defaultValue={declaData.Facteurs_R_A}
-                  />
-                </Col>
-              </Form.Group>
             </BigBox>
           </FlexBox>
         </div>
