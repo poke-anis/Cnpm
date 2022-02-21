@@ -128,8 +128,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
               <Form.Control  readOnly defaultValue={declaData.Sexe} />
             </Col>
           </Form.Group>
-          </BigBox>
-          </FlexBox>
+
           {declaData.Sexe === "Féminin" ? (
                 <Form.Group
                   as={Row}
@@ -160,6 +159,8 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
                   </Col>
                 </Form.Group>
               ) : null}  
+                        </BigBox>
+          </FlexBox>
           {declaData.Vaccins.map((el, index) => (
             <FlexBox key={index}>
             <BigBox>
