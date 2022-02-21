@@ -26,6 +26,7 @@ const Box = styled.div`
   width: 45%;
 `;
 const BigBox = styled.div`
+  padding:10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
