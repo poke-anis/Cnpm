@@ -49,7 +49,7 @@ const FormParmeDecla = React.forwardRef((props,ref) => {
   const { decla } = props;
   const [progress,setProgress] = useState(0)
   const [declaData, setDeclaData] = useState(decla.Cases);
-  const [declaPic, setdeclaPic] = useState();
+  const [declaPic, setdeclaPic] = useState([]);
   useEffect(() => {
     axiosConfig.get(`/secure/getImages/${decla._id}`, {
       onDownloadProgress: (progressEvent) => {
