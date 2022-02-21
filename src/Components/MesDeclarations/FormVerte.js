@@ -115,7 +115,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               <Form.Control  readOnly defaultValue={declaData.Sexe} />
             </Col>
           </Form.Group>
-          {declaData.Sexe === "Feminin"?
+          {declaData.Sexe === "Féminin"?
                       <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
                       <Form.Label column sm="5">
                         Enceinte

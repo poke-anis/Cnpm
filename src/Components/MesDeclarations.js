@@ -3,7 +3,7 @@ import axiosConfig from "./axios";
 import styled from "styled-components";
 import { FaPrint, FaPlus, FaRegTimesCircle } from "react-icons/fa";
 import { useReactToPrint, ReactToPrint } from "react-to-print";
-import { Card, Badge, Button, Col } from "react-bootstrap";
+import { Card, Badge, Button, Col,ProgressBar } from "react-bootstrap";
 
 import FormJaune from "./MesDeclarations/FormJaune";
 import FormPatient from "./MesDeclarations/FormPatient";
@@ -143,6 +143,7 @@ const CardDeclarations = (props) => {
     setChangement,
     CompRender,
     print,
+    progress,
   } = props;
   return (
     <div
@@ -265,7 +266,7 @@ const CardDeclarations = (props) => {
                 </Card>
               );
             })
-          : null}
+          : <ProgressBar animated now={progress} />}
         {print ? (
           <div style={{ display: "none" }}>{CompRender(print)}</div>
         ) : null}
@@ -340,7 +341,7 @@ const MesDeclarations = (props, isMulti) => {
   const [decla, setDecla] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [declanum, setDeclanum] = useState(0);
-
+  const [progress,setProgress] = useState(0)
   const [clicked, setClicked] = useState(false);
 
   const nextpage = (pageNumber) => {
@@ -357,7 +358,11 @@ const MesDeclarations = (props, isMulti) => {
           )}]&status=[${selectedValueEtatToSend.map(
             (el) => `"${el}"`
           )}]&search="${selectedValueSearchToSend}"`
-        )
+        ,{
+          onDownloadProgress: (progressEvent) => {
+            let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            setProgress(percentCompleted);
+          }})
         .then((res) => {
           setDecla(res.data);
         });
@@ -369,7 +374,11 @@ const MesDeclarations = (props, isMulti) => {
           )}]&status=[${selectedValueEtatToSend.map(
             (el) => `"${el}"`
           )}]&search="${selectedValueSearchToSend}"`
-        )
+        ,{
+          onDownloadProgress: (progressEvent) => {
+            let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            setProgress(percentCompleted);
+          }})
         .then((res) => {
           setDecla(res.data);
         });
@@ -634,6 +643,7 @@ const MesDeclarations = (props, isMulti) => {
             CompRender={CompRender}
             setChangement={setChangement}
             changement={changement}
+            progress={progress}
           />
           {/*           <Filtre
             setClicked={setClicked}

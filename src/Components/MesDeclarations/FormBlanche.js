@@ -43,7 +43,6 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
 useEffect(() => {
   axiosConfig.get(`/secure/getImages/${decla._id}`, {
     onDownloadProgress: (progressEvent) => {
-      console.log(progressEvent)
       let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
       setProgress(percentCompleted);
     }})
@@ -114,7 +113,7 @@ useEffect(() => {
           </Form.Group>
           </BigBox>
           <BigBox>
-            {declaData.Sexe === "Feminin"?
+            {declaData.Sexe === "Féminin"?
                       <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
                       <Form.Label column sm="5">
                         Enceinte

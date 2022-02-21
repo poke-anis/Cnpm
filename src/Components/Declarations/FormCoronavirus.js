@@ -378,7 +378,7 @@ const FormCoronavirus = (props) => {
           <InputRadio
             name="Sexe :"
             id="Sexe"
-            radioContent={["Masculin", "Feminin"]}
+            radioContent={["Masculin", "Féminin"]}
             formik={formik}
           />
       <InputDate

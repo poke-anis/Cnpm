@@ -166,7 +166,7 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                   <Form.Control readOnly defaultValue={declaData.Sexe} />
                 </Col>
               </Form.Group>
-              {declaData.Sexe === "Feminin" ? (
+              {declaData.Sexe === "Féminin" ? (
                 <Form.Group
                   as={Row}
                   className="mb-3"

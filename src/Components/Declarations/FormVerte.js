@@ -270,7 +270,7 @@ const FormVerte = (props) => {
             <InputRadio
               name="Sexe :"
               id="Sexe"
-              radioContent={["Masculin", "Feminin"]}
+              radioContent={["Masculin", "Féminin"]}
               formik={formik}
             />
                       </BigBox>

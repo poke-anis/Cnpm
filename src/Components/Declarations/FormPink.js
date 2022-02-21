@@ -162,7 +162,7 @@ const FormPink = (props) => {
                 id="Sexe"             
                 radioContent={[
               "Masculin",
-              "Feminin"]}
+              "Féminin"]}
                 formik={formik} />       
     <InputText name="Taille (cm) :" id="Taille" formik={formik} />
     <InputText name="Poids (Kg) :" id="Poids" formik={formik} />

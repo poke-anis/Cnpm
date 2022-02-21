@@ -385,7 +385,7 @@ const FormBlanche = (props) => {
             <InputRadio
               name="Sexe :"
               id="Sexe"
-              radioContent={["Masculin", "Feminin"]}
+              radioContent={["Masculin", "Féminin"]}
               formik={formik}
             />
             <InputText name="Taille (cm) :" id="Taille" formik={formik} />
