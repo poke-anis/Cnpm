@@ -206,7 +206,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
                   <Form.Control
                     
                     readOnly
-                    defaultValue={el.Fabricant}
+                    defaultValue={el.Fabricant_V}
                   />
                 </Col>
               </Form.Group>

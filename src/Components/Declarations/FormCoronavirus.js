@@ -78,7 +78,7 @@ const Vaccin = (props) => {
 />
       <InputText
         name="Fabricant :"
-        id={`Vaccins[${id}].Fabricant`}
+        id={`Vaccins[${id}].Fabricant_V`}
         formik={formik}
       />
       <InputDate
