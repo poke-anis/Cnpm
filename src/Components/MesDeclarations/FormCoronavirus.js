@@ -321,7 +321,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
                   <Form.Control
                     
                     readOnly
-                    defaultValue={el.Date_D_Peremption}
+                    defaultValue={el.Date_D_P_V}
                   />
                 </Col>
               </Form.Group>

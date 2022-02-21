@@ -133,7 +133,7 @@ const Vaccin = (props) => {
 />
       <InputDate
         name="Date de Péremption :"
-        id={`Vaccins[${id}].Date_D_P`}
+        id={`Vaccins[${id}].Date_D_P_V`}
         formik={formik}
       />
             </BigBox>
