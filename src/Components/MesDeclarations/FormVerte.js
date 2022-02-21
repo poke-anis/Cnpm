@@ -115,32 +115,36 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
               <Form.Control  readOnly defaultValue={declaData.Sexe} />
             </Col>
           </Form.Group>
-          {declaData.Sexe === "Féminin"?
-                      <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                      <Form.Label column sm="5">
-                        Enceinte
-                      </Form.Label>
-                      <Col sm="7">
-                        <Form.Control
-                          
-                          readOnly
-                          defaultValue={declaData.Enceinte}
-                        />
-                      </Col>
-                    </Form.Group>
-                    :declaData.Enceinte === "Oui"?       
-                       <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                    <Form.Label column sm="5">
-                      Dernière date des règles
-                    </Form.Label>
-                    <Col sm="7">
-                      <Form.Control
-                        
-                        readOnly
-                        defaultValue={declaData.Derniere_D_R}
-                      />
-                    </Col>
-                  </Form.Group>:null}
+          {declaData.Sexe === "Féminin" ? (
+                <Form.Group
+                  as={Row}
+                  className="mb-3"
+                  controlId="formPlaintextEmail"
+                >
+                  <Form.Label column sm="5">
+                    Enceinte
+                  </Form.Label>
+                  <Col sm="7">
+                    <Form.Control readOnly defaultValue={declaData.Enceinte} />
+                  </Col>
+                </Form.Group>): null}
+{                declaData.Enceinte === "Oui" ? (
+                <Form.Group
+                  as={Row}
+                  className="mb-3"
+                  controlId="formPlaintextEmail"
+                >
+                  <Form.Label column sm="5">
+                    Dernière date des règles
+                  </Form.Label>
+                  <Col sm="7">
+                    <Form.Control
+                      readOnly
+                      defaultValue={declaData.Derniere_D_R}
+                    />
+                  </Col>
+                </Form.Group>
+              ) : null}  
           </BigBox>
           <BigBox>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
