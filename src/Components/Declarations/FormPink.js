@@ -219,7 +219,10 @@ id="Utilisation_S_P"
 checkContent={["Autre produit cosmétique","Médicament","Complément alimentaire","Plante médicinale","Autre"]} 
 formik={formik}
  />
-<InputText name="Autre" id="Utilisation_S_P" formik={formik} />
+ {formik.values.Utilisation_S_P==="Autre"?
+ <InputText name="Autre" id="Autre_U_S_P" formik={formik} />
+ :null}
+
 <InputSelect name="Exposition particulière au : " 
 id="Exposition_P"
 options={["","Usage professionnel","Usage normal","Mésusage"]} 
@@ -259,9 +262,9 @@ formik={formik}
  />    
 {        formik.values.Evolution === "Décès"?            
         <InputDate name="Date de décès :" id="Date_D_D" formik={formik} />:null}
-<InputCheck name="Séquelles :"     
+<InputRadio name="Séquelles :"     
 id="Sequelles"
-checkContent={["Oui","Non"]} 
+radioContent={["Oui","Non"]} 
 formik={formik}
  />
  {        formik.values.Sequelles === "Oui"?            

@@ -522,7 +522,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
                       <Form.Control
                         
                         readOnly
-                        defaultValue={declaData.Lequel}
+                        defaultValue={declaData.Lequel_T}
                       />
                     </Col>
                   </Form.Group>

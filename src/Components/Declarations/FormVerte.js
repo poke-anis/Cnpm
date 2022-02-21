@@ -360,9 +360,9 @@ const FormVerte = (props) => {
         <FlexBox>
         <BigBox>
 
-        <InputCheck name="Arrêt de la phytothérapie :" 
+        <InputRadio name="Arrêt de la phytothérapie :" 
 id="Arret_D_L_P"
-checkContent={["Oui","Non"]} 
+radioContent={["Oui","Non"]} 
 formik={formik}
  />
         <InputRadio name="Traitement correcteur :" 
