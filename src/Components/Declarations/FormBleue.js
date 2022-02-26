@@ -5,7 +5,7 @@ import {Button,ProgressBar,Form} from 'react-bootstrap'
 import styled from 'styled-components'
 import axiosConfig from "../axios"
 import swal from "sweetalert";
-
+import Compressor from 'compressorjs';
 const BigBox = styled.div`
 display: flex;
 flex-direction: column;
@@ -85,9 +85,11 @@ var formik = useFormik({
     'Bleue'
     );
   files.forEach((el,index)=>{
+    console.log(el)
     formData.append(
   `${el.file_id}`,
   el.uploaded_file.file
+  , `${el.uploaded_file.file.name}`
   );
 })
 
@@ -119,7 +121,9 @@ var formik = useFormik({
   let id = event.target.id;
 
   let file = event.target.files[0];
-    setFiles([...files, { file_id: id, uploaded_file: {file} }]);
+  new Compressor(file,{
+    quality: 0.4,
+    success: (file) => { setFiles([...files, { file_id: id, uploaded_file: { file } } ]) }})
 
  }
  const [validated, setValidated] = useState(false);

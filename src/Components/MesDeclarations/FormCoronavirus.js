@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useFormik, Field, FormikProvider, FieldArray } from "formik";
 import {} from "react-bootstrap"
 import {
   Figure,
@@ -8,23 +7,11 @@ import {
   Form,
   ProgressBar
 } from "react-bootstrap";
-import {
-  InputText,
-  InputCheck,
-  InputNumber,
-  InputRadio,
-  InputDate,
-  InputSelect,
-  InputFile,
-} from "./FormikInputs";
+
 import styled from "styled-components";
 import axiosConfig from "../axios";
 
-const Box = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 45%;
-`;
+
 const BigBox = styled.div`
   padding:10px;
   display: flex;
@@ -33,16 +20,7 @@ const BigBox = styled.div`
   width: 49%;
   border: 2px solid #dee2e6;
 `;
-const Titre = styled.h1`
-  text-align: center;
-  border: 3px black solid;
-  margin: 10px;
-  padding: 5px;
-  width: 100%;
-`;
-const Inputstyled = styled(Field)`
-  margin: 5px;
-`;
+
 const FlexBox = styled.div`
 margin-top:10px;
   display: flex;
@@ -184,7 +162,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
                 declaPic
                   .filter((el, key) => el.fieldname === `Photo_D_V_${index}`)
                   .map((el, key) => (
-                    <Figure>
+                    <Figure key={key}>
                       <Figure.Image
                         width={171}
                         height={180}
@@ -299,7 +277,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
                 declaPic
                   .filter((el, key) => el.fieldname === `Photo_L_D_V_${index}`)
                   .map((el, key) => (
-                    <Figure>
+                    <Figure key={key}>
                       <Figure.Image
                         width={171}
                         height={180}
@@ -468,7 +446,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
             {/* Auto8 */}
           {declaData.Type_Manifestation_P_V_I != null &&
           declaData.Type_Manifestation_P_V_I.map((elem,index2)=>
-  <div key={elem}>
+  <div key={index2}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
               Manifestation(s) post-vaccinale(s) indésirable(s)
@@ -484,7 +462,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
           { declaData.Description_Manifestation_P_V_I != null &&
                 declaData.Description_Manifestation_P_V_I.map((elem2, index3) => (
 
-                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" key={index3}>
                     <Form.Label column sm="5">
                     :
                     </Form.Label>
@@ -603,7 +581,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
           {declaData.Type_A != null &&
           declaData.Type_A.map((elem,index2)=>
   <div key={elem}>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail"  key={index2}>
             <Form.Label column sm="5">
               Antécédents du malade/Histoire de la maladie ou commentaires
             </Form.Label>
@@ -617,7 +595,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
           </Form.Group>
           { declaData.Description_A != null &&
                 declaData.Description_A.map((elem2, index3) => (
-                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail"  key={index3}>
                     <Form.Label column sm="5">
                     :
                     </Form.Label>

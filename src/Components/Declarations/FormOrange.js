@@ -9,7 +9,7 @@ import {Tab,Nav,Button,ProgressBar,Form} from 'react-bootstrap'
 import Auto1 from './Auto1'
 import Auto3 from './Auto3'
 import Auto6 from './Auto6'
-
+import Compressor from 'compressorjs';
 const BigBox = styled.div`
 display: flex;
 flex-direction: column;
@@ -170,6 +170,7 @@ const FormOrange = (props) => {
          formData.append(
        `${el.file_id}`,
        el.uploaded_file.file
+       , `${el.uploaded_file.file.name}`
        );
      })
      
@@ -202,7 +203,9 @@ const FormOrange = (props) => {
        let id = event.target.id;
      
        let file = event.target.files[0];
-         setFiles([...files, { file_id: id, uploaded_file: {file} }]);
+       new Compressor(file,{
+        quality: 0.4,
+        success: (file) => { setFiles([...files, { file_id: id, uploaded_file: { file } } ]) }})
 
       }
      

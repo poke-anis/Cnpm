@@ -1,7 +1,6 @@
-import { useFormik,Field,FormikProvider,FieldArray } from 'formik';
+import { Field } from 'formik';
 import styled from 'styled-components'
-import {
-  Form, Button, InputGroup } from "react-bootstrap";
+
 const Inputstyled = styled(Field)`
 margin:5px;
 `
@@ -70,7 +69,7 @@ const InputCheck =(props) =>{
 
 
 const InputRadio = (props) => {
-  const { name, formik, id, radioContent, Sexe } = props;
+  const { name, formik, id, radioContent } = props;
 
   return (
     <Box>

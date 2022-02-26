@@ -146,7 +146,7 @@ const Auto8 =(props)=>{
         { label: "Conjonctivite", value: "Conjonctivite" },
         { label: "Hémorragie sous conjontivale", value: "Hémorragie sous conjontivale" },
       ];
-      var {id,formik,onFileChange,values} = props
+      var {id,values} = props
       var idf = `${id}Type_Manifestation_P_V_I`
       var idf2 = `${id}Description_Manifestation_P_V_I`
   const varreturn = (value) => {
@@ -227,99 +227,7 @@ const Auto8 =(props)=>{
                   />
                 </label>
               );
-            }):
-
-/* formik.values.Manifestation_P_V_I.filter(word.value === 'Point_I')?
-<label htmlFor="Point_I">Au point d'injection
-        <Field
-             component={SelectField}
-             name={`Point_I`}
-          options={Point_I}
-        /></label>:
-        formik.values.Description_D_L_R.filter(word.value === 'Systemiques')?
-<label htmlFor="Systemiques">Systemiques
-        <Field
-             component={SelectField}
-             name={`Systemiques`}
-          options={Systemiques}
-        /></label>:
-        formik.values.Description_D_L_R.filter(word.value === 'Infectieux')?
-<label htmlFor="Infectieux">Infectieux
-        <Field
-             component={SelectField}
-             name={`Infectieux`}
-          options={Infectieux}
-        /></label>:
-        formik.values.Description_D_L_R.filter(word.value === 'Neurologiques')?
-<label htmlFor="Neurologiques">Neurologiques
-        <Field
-             component={SelectField}
-             name={`Neurologiques`}
-          options={Neurologiques}
-        /></label>:
-        formik.values.Description_D_L_R.filter(word.value === 'Digestifs')?
-<label htmlFor="Digestifs">Digestifs
-        <Field
-             component={SelectField}
-             name={`Digestifs`}
-          options={Digestifs}
-        /></label>:
-        formik.values.Description_D_L_R.filter(word.value === 'Cardio_vasculaires')?
-<label htmlFor="Cardio_vasculaires">Cardio_vasculaires
-        <Field
-             component={SelectField}
-             name={`Cardio_vasculaires`}
-          options={Cardio_vasculaires}
-        /></label>:
-        formik.values.Description_D_L_R.filter(word.value === 'Respiratoires')?
-<label htmlFor="Respiratoires">Respiratoires
-        <Field
-             component={SelectField}
-             name={`Respiratoires`}
-          options={Respiratoires}
-        /></label>:
-        formik.values.Description_D_L_R.filter(word.value === 'Allergiques')?
-<label htmlFor="Allergiques">Allergiques
-        <Field
-             component={SelectField}
-             name={`Allergiques`}
-          options={Allergiques}
-        />
-                {formik.values.Allergiques.filter(word.value === 'Réaction allergique/ anaphylactique/ oedeme de quinck ')?
-        <InputCheck name=":" 
-id="Reaction_A_A_O"
-checkContent={[">3jours","au-delà de l'articulation la plus proche"]} 
-formik={formik}
- />:null}
-        </label>:
-        formik.values.Description_D_L_R.filter(word.value === 'Sphere_ORL')?
-<label htmlFor="Sphere_ORL">Sphere_ORL
-        <Field
-             component={SelectField}
-             name={`Sphere_ORL`}
-          options={Sphere_ORL}
-        /></label>:
-        formik.values.Description_D_L_R.filter(word.value === 'Biologiques')?
-<label htmlFor="Biologiques">Biologiques
-        <Field
-             component={SelectField}
-             name={`Biologiques`}
-          options={Biologiques}
-        /></label>:
-        formik.values.Description_D_L_R.filter(word.value === 'Musculo_squelettique')?
-<label htmlFor="Musculo_squelettique">Musculo_squelettique
-        <Field
-             component={SelectField}
-             name={`Musculo_squelettique`}
-          options={Musculo_squelettique}
-        /></label>:
-        formik.values.Description_D_L_R.filter(word.value === 'Ophtalmologiques') ?
-<label htmlFor="Ophtalmologiques">Ophtalmologiques
-        <Field
-             component={SelectField}
-             name={`Ophtalmologiques`}
-          options={Ophtalmologiques}
-        /></label> */null}
+            }):null}
 </FlexBox>
     )
 }

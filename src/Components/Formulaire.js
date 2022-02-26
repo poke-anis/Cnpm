@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import FormContent from "./FormContent";
 import { Nav, Button, Tab } from "react-bootstrap";
-import {AnimatePresence, motion} from 'framer-motion/dist/framer-motion'
+import { motion} from 'framer-motion/dist/framer-motion'
 import {device} from '../MediaQuery'
 import { useMediaQuery } from 'react-responsive'
 const Content = styled(motion.div)`
@@ -52,10 +52,7 @@ const LeftContent = styled(motion.div)`
   background-color: #272727;
 `;
 
-const Butt = styled(Button)`
-  width: 100%;
-  margin-bottom: 3px;
-`;
+
 
 const Formulaire = (props) => {
   const isDesktopOrLaptop = useMediaQuery({
@@ -66,20 +63,7 @@ const Formulaire = (props) => {
 
   const [tab, setTab] = useState(Espace === "Professionnel" ?"Jaune":"Rose");
 
-const getVariant = ()=>{
-if(isTabletOrMobile)
-{return ""}
-  else{
-    return  "flex-column"
-  };
-}
-const getVariant2 = ()=>{
-  if(isTabletOrMobile)
-  {return "tabs"}
-    else{
-      return  "pills"
-    };
-  }
+
 
   return (
     <Container>

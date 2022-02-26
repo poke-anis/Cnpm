@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useFormik,Field,FormikProvider } from 'formik';
-import { InputText,InputCheck,InputNumber,InputRadio,InputDate,InputFile } from './FormikInputs';
+import { InputText,InputNumber,InputRadio,InputDate,InputFile } from './FormikInputs';
 import styled from 'styled-components'
 import axiosConfig from "../axios"
 import SelectField from './React-select'
@@ -9,6 +9,7 @@ import Auto1 from './Auto1'
 import Auto3 from './Auto3'
 import Auto6 from './Auto6'
 import swal from "sweetalert";
+import Compressor from 'compressorjs';
 const BigBox = styled.div`
 display: flex;
 flex-direction: column;
@@ -218,6 +219,7 @@ const FormVerte = (props) => {
          formData.append(
        `${el.file_id}`,
        el.uploaded_file.file
+       , `${el.uploaded_file.file.name}`
        );
      })
      
@@ -249,7 +251,9 @@ const FormVerte = (props) => {
        let id = event.target.id;
      
        let file = event.target.files[0];
-         setFiles([...files, { file_id: id, uploaded_file: {file} }]);
+       new Compressor(file,{
+        quality: 0.4,
+        success: (file) => { setFiles([...files, { file_id: id, uploaded_file: { file } } ]) }})
 
       }
 

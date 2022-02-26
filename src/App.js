@@ -157,7 +157,6 @@ function App() {
       : "false"
   );
   const [modalShow, setModalShow] = useState(false);
-  const [changement, setChangement] = useState("");
   const navigate = useNavigate();
   const readCookie = () => {
     if (cookies.token_key !== "undefined" && cookies.token_key) {

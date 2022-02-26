@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useContext, createContext } from "react";
+import React, { useState , createContext } from "react";
 
 import { Form, Button, InputGroup } from "react-bootstrap";
 import styled from "styled-components";
 import * as Yup from "yup";
-import { Formik, useField,FormikProvider } from "formik";
+import { Formik } from "formik";
 import swal from "sweetalert";
 
 import axiosConfig from "./axios";
-import { InputRadio } from "./Declarations/FormikInputs";
 
 var AuthBox = styled.div`
 flex-grow : 1;
@@ -50,7 +49,6 @@ const Pro = (props) =>{
     initialValues={{
       Email: "",
       Password: "",
-      Email: "",
       Username: "",
       Nom: "",
       Prenom: "",

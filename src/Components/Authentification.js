@@ -1,4 +1,4 @@
-import React, { useContext ,useState} from 'react'
+import React, { useContext} from 'react'
 import {   
   Form,Button } from 'react-bootstrap'
 import styled from 'styled-components'
@@ -7,7 +7,7 @@ import { Formik } from 'formik';
 import { useCookies } from 'react-cookie'
 import axiosConfig from "./axios"
 import swal from "sweetalert";
-import { Route, Routes, useNavigate, Link,useParams } from "react-router-dom";
+import {  Link } from "react-router-dom";
 
 var AuthBox = styled.div`
 flex-grow : 1;

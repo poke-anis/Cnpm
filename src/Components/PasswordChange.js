@@ -1,14 +1,11 @@
-import { useState } from "react";
 
 import {   
   Form,Button } from 'react-bootstrap'
 import styled from 'styled-components'
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { useCookies } from 'react-cookie'
 import axiosConfig from "./axios"
 import swal from "sweetalert";
-import { useParams } from "react-router-dom";
 
 var AuthBox = styled.div`
 flex-grow : 1;

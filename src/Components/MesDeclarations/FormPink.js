@@ -7,11 +7,7 @@ import {
   ProgressBar,
   Form,
 } from "react-bootstrap";
-import {
-  InputText,
-  InputCheck,
 
-} from "./FormikInputs";
 import styled from "styled-components";
 import axiosConfig from "../axios";
 
@@ -23,16 +19,7 @@ const BigBox = styled.div`
   width: 49%;
   border: 2px solid #dee2e6;
 `;
-const Titre = styled.h1`
-  text-align: center;
-  border: 3px black solid;
-  margin: 10px;
-  padding: 5px;
-  width: 100%;
-`;
-const Inputstyled = styled(Field)`
-  margin: 5px;
-`;
+
 const FlexBox = styled.div`
 margin-top:10px;
   display: flex;
@@ -425,7 +412,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
           {declaData.Type_E_I != null &&
           declaData.Type_E_I.map((elem,index2)=>
   <div key={elem}>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail"  key={index2}>
             <Form.Label column sm="5">
             Description de l'effet indésirable
             </Form.Label>
@@ -439,7 +426,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
           </Form.Group>
           { declaData.Description_E_I != null &&
                 declaData.Description_E_I.map((elem2, index3) => (
-                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail"  key={index3}>
                     <Form.Label column sm="5">
                     :
                     </Form.Label>
@@ -546,7 +533,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
           {declaData.Type_A != null &&
           declaData.Type_A.map((elem,index2)=>
   <div key={elem}>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail"  key={index2}>
             <Form.Label column sm="5">
             Antécédents et terrain du patient 
             </Form.Label>
@@ -560,7 +547,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
           </Form.Group>
           { declaData.Description_A != null &&
                 declaData.Description_A.map((elem2, index3) => (
-                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail"  key={index3}>
                     <Form.Label column sm="5">
                     :
                     </Form.Label>

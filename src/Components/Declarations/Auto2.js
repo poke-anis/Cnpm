@@ -43,7 +43,7 @@ const Auto2 =(props)=>{
         { label: "Transdermique", value: "Transdermique" },
         { label: "Intradermique", value: "Intradermique" },
       ];
-      var {id,formik,onFileChange,values} = props
+      var {id,values} = props
       var idf = `${id}Type_Voie_A`
       var idf2 = `${id}Description_Voie_A`
   const varreturn = (value) => {
@@ -80,31 +80,6 @@ const Auto2 =(props)=>{
                 </label>
               );
             }):
-
-
-
- /*        {formik.values.Voie_A ?
-        formik.values.Voie_A.filter((word)=>word.value === 'Orale')?
-<label htmlFor="Orale">Orale
-        <Field
-             component={SelectField}
-             name={`Orale`}
-          options={Orale}
-        /></label>:
-        formik.values.Voie_A.filter((word)=>word.value === 'Intraveineuse')?
-<label htmlFor="Intraveineuse">Intraveineuse
-        <Field
-             component={SelectField}
-             name={`Intraveineuse`}
-          options={Intraveineuse}
-        /></label>:
-        formik.values.Voie_A.filter((word)=>word.value === 'Cutanee')?
-<label htmlFor="Cutanee">Au point d'injection
-        <Field
-             component={SelectField}
-             name={`Cutanee`}
-          options={Cutanee}
-        /></label>:null */
         null}
 </FlexBox>
     )

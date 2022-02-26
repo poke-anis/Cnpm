@@ -31,7 +31,7 @@ const Auto6 =(props)=>{
         { label: "sans rapport avec l'effet", value: "sans rapport avec l'effet" },
 
       ];
-      var {id,formik,onFileChange,values} = props
+      var {id,values} = props
       var idf = `${id}Type_Evolution`
       var idf2 = `${id}Description_Evolution`
   const varreturn = (value) => {
@@ -62,22 +62,7 @@ const Auto6 =(props)=>{
                   />
                 </label>
               );
-            }):
-
-/* formik.values.Evolution.filter(word.value === 'Guérison')?
-<label htmlFor="Guérison">Guérison
-        <Field
-             component={SelectField}
-             name={`Guérison`}
-          options={Guérison}
-        /></label>:
-        formik.values.Evolution.filter(word.value === 'Décès')?
-<label htmlFor="Décès">Décès
-        <Field
-             component={SelectField}
-             name={`Décès`}
-          options={Décès}
-        /></label> */null}
+            }):null}
 </FlexBox>
     )
 }

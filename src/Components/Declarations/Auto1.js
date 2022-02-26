@@ -145,7 +145,7 @@ const Auto1 =(props)=>{
         { label: "Conjonctivite", value: "Conjonctivite" },
         { label: "Hémorragie sous conjontivale", value: "Hémorragie sous conjontivale" },
       ];
-    var {id,formik,onFileChange,values} = props
+    var {id,values} = props
     var idf = `${id}Type_D_L_R`
     var idf2 = `${id}Description_D_L_R`
 const varreturn = (value) => {

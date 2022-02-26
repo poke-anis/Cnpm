@@ -1,5 +1,4 @@
 import React, { useState ,useEffect} from "react";
-import { Field } from "formik";
 import {Figure} from 'react-bootstrap'
 import {
   Col,
@@ -17,16 +16,7 @@ const BigBox = styled.div`
   width: 49%;
   border: 2px solid #dee2e6;
 `;
-const Titre = styled.h1`
-  text-align: center;
-  border: 3px black solid;
-  margin: 10px;
-  padding: 5px;
-  width: 100%;
-`;
-const Inputstyled = styled(Field)`
-  margin: 5px;
-`;
+
 const FlexBox = styled.div`
 margin-top:10px;
   display: flex;
@@ -191,7 +181,7 @@ useEffect(() => {
                 declaPic
                   .filter((el, key) => el.fieldname === `Photo_D_V_${index}`)
                   .map((el, key) => (
-                    <Figure>
+                    <Figure key={key}>
                       <Figure.Image
                         width={171}
                         height={180}
@@ -294,7 +284,7 @@ useEffect(() => {
                 declaPic
                   .filter((el, key) => el.fieldname === `Photo_L_V_${index}`)
                   .map((el, key) => 
-                    <Figure>
+                    <Figure key={key}>
                       <Figure.Image
                         width={171}
                         height={180}
@@ -360,7 +350,7 @@ useEffect(() => {
                 declaPic
                   .filter((el, key) => el.fieldname === `Photo_T_S_${index}`)
                   .map((el, key) => (
-                    <Figure>
+                    <Figure key={key}>
                       <Figure.Image
                         width={171}
                         height={180}
@@ -401,7 +391,7 @@ useEffect(() => {
                 declaPic
                   .filter((el, key) => el.fieldname === `Photo_L_S_${index}`)
                   .map((el, key) => (
-                    <Figure>
+                    <Figure key={key}>
                       <Figure.Image
                         width={171}
                         height={180}
@@ -459,7 +449,7 @@ useEffect(() => {
             {/* Auto8 */}
           {declaData.Type_Manifestation_P_V_I != null &&
           declaData.Type_Manifestation_P_V_I.map((elem,index2)=>
-  <div key={elem}>
+  <div key={index2}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
               Manifestation(s) post-vaccinale(s) indésirable(s)
@@ -475,7 +465,7 @@ useEffect(() => {
           { declaData.Description_Manifestation_P_V_I != null &&
                 declaData.Description_Manifestation_P_V_I.map((elem2, index3) => (
 
-                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" key={index3}>
                     <Form.Label column sm="5">
                     :
                     </Form.Label>
@@ -594,7 +584,7 @@ useEffect(() => {
           {/* Auto3 */}
           {declaData.Type_A != null &&
           declaData.Type_A.map((elem,index2)=>
-  <div key={elem}>
+  <div key={index2}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
               Antécédents du malade/Histoire de la maladie ou commentaires
@@ -609,7 +599,7 @@ useEffect(() => {
           </Form.Group>
           { declaData.Description_A != null &&
                 declaData.Description_A.map((elem2, index3) => (
-                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" key={index3}>
                     <Form.Label column sm="5">
                     :
                     </Form.Label>

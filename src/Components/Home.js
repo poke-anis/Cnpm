@@ -1,5 +1,5 @@
 import { Card, Button, Modal,Row,Col } from "react-bootstrap";
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect } from "react";
 import axiosConfig from "./axios";
 import styled from "styled-components";
 import parse from "html-react-parser";
@@ -90,18 +90,15 @@ else
 useEffect(() => {
   getAlertescount()
   }, []);
-  const afficherForm = (props) => {
-    setValeurmodal(props);
-    setModalShow(true);
-  };
+
   return(
     <div style={{flexGrow:"1"}}>
         <Row xs={1} md={2} className="g-4">
         {cnpmAlertes.length >= 1 && cnpmAlertes instanceof Array? 
 
 cnpmAlertes.map((elem,ind) =>
-<Col  >
-<Card style={{marginBottom:"10px",marginLeft:"10px",height:"100%"}} key={ind}>
+<Col  key={ind}>
+<Card style={{marginBottom:"10px",marginLeft:"10px",height:"100%"}} >
 {elem.image.length >= 1
   ? elem.image.map((el, index) => (
       <Card.Img
@@ -222,10 +219,7 @@ else
 useEffect(() => {
   getNewscount()
   }, []);
-  const afficherForm = (props) => {
-    setValeurmodal(props);
-    setModalShow(true);
-  };
+
   return(
     <div style={{flexGrow:"1"}} >
 
@@ -234,8 +228,8 @@ useEffect(() => {
 {cnpmNews.length >= 1 && cnpmNews instanceof Array? 
   
     cnpmNews.map((elem,ind) =>
-    <Col >
-    <Card style={{marginBottom:"10px",marginLeft:"10px",height:"100%"}} key={ind}>
+    <Col key={ind}>
+    <Card style={{marginBottom:"10px",marginLeft:"10px",height:"100%"}} >
     {elem.image.length >= 1
       ? elem.image.map((el, index) => (
           <Card.Img

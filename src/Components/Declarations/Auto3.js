@@ -90,13 +90,13 @@ const Auto3 =(props)=>{
         { label: "Rougeur du visage", value: "Rougeur du visage" },
         { label: "Picotement laryngé", value: "Picotement laryngé" },
       ];
-      const Sphere_ORL = [,
+      const Sphere_ORL = [
         { label: "Rhinite à répétition", value: "Rhinite à répétition" },
         { label: "Angine à répétition", value: "Angine à répétition" },
         { label: "Epistaxis à répétition ", value: "Epistaxis à répétition " },
         { label: "Otalgie / otite", value: "Otalgie / otite" },
       ];
-      const Endocriniens = [,
+      const Endocriniens = [
         { label: "Diabéte type 1", value: "Diabéte type 1" },
         { label: "Diabéte type 2", value: "Diabéte type 2" },
         { label: "Hyperthyroidie", value: "Hyperthyroidie" },
@@ -115,7 +115,7 @@ const Auto3 =(props)=>{
         { label: "Cataracte", value: "Cataracte" },
         { label: "Hémorragie sous conjontivale", value: "Hémorragie sous conjontivale" },
       ];
-      var {id,formik,onFileChange,values} = props
+      var {id,values} = props
       var idf = `${id}Type_A`
       var idf2 = `${id}Description_A`
   const varreturn = (value) => {
@@ -162,70 +162,7 @@ const Auto3 =(props)=>{
                 </label>
               );
             })
-/* {
-        formik.values.Antecedents_D_M.filter(word.value === 'Neurologiques')?
-<label htmlFor="Neurologiques">Neurologiques
-        <Field
-             component={SelectField}
-             name={`Neurologiques`}
-          options={Neurologiques}
-        /></label>:
-        formik.values.Antecedents_D_M.filter(word.value === 'Digestifs')?
-<label htmlFor="Digestifs">Digestifs
-        <Field
-             component={SelectField}
-             name={`Digestifs`}
-          options={Digestifs}
-        /></label>:
-        formik.values.Antecedents_D_M.filter(word.value === 'Cardio_vasculaires')?
-<label htmlFor="Cardio_vasculaires">Cardio_vasculaires
-        <Field
-             component={SelectField}
-             name={`Cardio_vasculaires`}
-          options={Cardio_vasculaires}
-        /></label>:
-        formik.values.Antecedents_D_M.filter(word.value === 'Respiratoires')?
-<label htmlFor="Respiratoires">Respiratoires
-        <Field
-             component={SelectField}
-             name={`Respiratoires`}
-          options={Respiratoires}
-        /></label>:
-        formik.values.Antecedents_D_M.filter(word.value === 'Allergiques')?
-<label htmlFor="Allergiques">Allergiques
-        <Field
-             component={SelectField}
-             name={`Allergiques`}
-          options={Allergiques}
-        /></label>:
-        formik.values.Antecedents_D_M.filter(word.value === 'Sphere_ORL')?
-<label htmlFor="Sphere_ORL">Sphere_ORL
-        <Field
-             component={SelectField}
-             name={`Sphere_ORL`}
-          options={Sphere_ORL}
-        /></label>:        
-        formik.values.Antecedents_D_M.filter(word.value === 'Endocriniens')?
-        <label htmlFor="Endocriniens">Endocriniens
-                <Field
-                     component={SelectField}
-                     name={`Endocriniens`}
-                  options={Endocriniens}
-                /></label>:
-        formik.values.Antecedents_D_M.filter(word.value === 'Musculo_squelettique')?
-<label htmlFor="Musculo_squelettique">Musculo_squelettique
-        <Field
-             component={SelectField}
-             name={`Musculo_squelettique`}
-          options={Musculo_squelettique}
-        /></label>:
-        formik.values.Antecedents_D_M.filter(word.value === 'Ophtalmologiques') ?
-<label htmlFor="Ophtalmologiques">Ophtalmologiques
-        <Field
-             component={SelectField}
-             name={`Ophtalmologiques`}
-          options={Ophtalmologiques}
-        /></label> */
+
         :null}
 </FlexBox>
     )

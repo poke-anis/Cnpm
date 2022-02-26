@@ -1,8 +1,7 @@
-import Select from "react-select";
 import { useField } from "formik";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-import CreatableSelect, { useCreatable } from "react-select/creatable";
+import CreatableSelect from "react-select/creatable";
 
 export default function SelectField(props) {
   const [selectedValue, setSelectedValue] = useState();

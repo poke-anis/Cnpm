@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Field } from "formik";
 import {Figure} from "react-bootstrap"
 import {
   Col,
@@ -7,11 +6,7 @@ import {
   Form,
   ProgressBar
 } from "react-bootstrap";
-import {
-  InputText,
-  InputCheck,
 
-} from "./FormikInputs";
 import styled from "styled-components";
 import axiosConfig from "../axios";
 
@@ -23,16 +18,7 @@ const BigBox = styled.div`
   width: 49%;
   border: 2px solid #dee2e6;
 `;
-const Titre = styled.h1`
-  text-align: center;
-  border: 3px black solid;
-  margin: 10px;
-  padding: 5px;
-  width: 100%;
-`;
-const Inputstyled = styled(Field)`
-  margin: 5px;
-`;
+
 const FlexBox = styled.div`
 margin-top:10px;
   display: flex;
@@ -85,7 +71,7 @@ const FormBleueDecla = React.forwardRef((props,ref) => {
                 declaPic
                   .filter((el, key) => el.fieldname === `Photo_P`)
                   .map((el, key) => (
-                    <Figure>
+                    <Figure key={key}>
                       <Figure.Image
                         width={171}
                         height={180}
@@ -138,7 +124,7 @@ const FormBleueDecla = React.forwardRef((props,ref) => {
                 declaPic
                   .filter((el, key) => el.fieldname === `Photo_L`)
                   .map((el, key) => (
-                    <Figure>
+                    <Figure key={key}>
                       <Figure.Image
                         width={171}
                         height={180}

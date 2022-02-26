@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axiosConfig from "./axios";
 import styled from "styled-components";
-import { FaPrint, FaPlus, FaRegTimesCircle } from "react-icons/fa";
+import { FaPrint } from "react-icons/fa";
 import { useReactToPrint, ReactToPrint } from "react-to-print";
 import { Card, Badge, Button, Col,ProgressBar } from "react-bootstrap";
 

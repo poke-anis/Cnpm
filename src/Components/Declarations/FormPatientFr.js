@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useFormik,FormikProvider } from 'formik';
-import { InputText,InputNumber,InputRadio,InputDate,InputSelect,InputFile } from './FormikInputs';
+import { InputText,InputNumber,InputRadio,InputDate,InputFile } from './FormikInputs';
 import {Nav,Button,Tab,ProgressBar,Form} from 'react-bootstrap'
 import styled from 'styled-components'
 import axiosConfig from "../axios"
@@ -9,6 +9,7 @@ import Auto10 from './Auto10'
 import Auto2 from './Auto2'
 import Auto3 from './Auto3'
 import swal from "sweetalert";
+import Compressor from 'compressorjs';
 const Box = styled.div`
 display: flex;
 flex-direction: column;
@@ -172,6 +173,7 @@ const FormJaune = (props) => {
          formData.append(
        `${el.file_id}`,
        el.uploaded_file.file
+       , `${el.uploaded_file.file.name}`
        );
      })
      
@@ -203,7 +205,9 @@ const FormJaune = (props) => {
        let id = event.target.id;
      
        let file = event.target.files[0];
-         setFiles([...files, { file_id: id, uploaded_file: {file} }]);
+       new Compressor(file,{
+        quality: 0.4,
+        success: (file) => { setFiles([...files, { file_id: id, uploaded_file: { file } } ]) }})
 
       }
       const [validated, setValidated] = useState(false);

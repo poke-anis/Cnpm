@@ -114,7 +114,7 @@ const Auto5 =(props)=>{
         { label: "Conjonctivite", value: "Conjonctivite" },
         { label: "Hémorragie sous conjontivale", value: "Hémorragie sous conjontivale" },
       ];
-      var {id,formik,onFileChange,values} = props
+      var {id,values} = props
       var idf = `${id}Type_E_I`
       var idf2 = `${id}Description_E_I`
   const varreturn = (value) => {
@@ -161,70 +161,7 @@ const Auto5 =(props)=>{
                   />
                 </label>
               );
-            }):
-/*         formik.values.Effets_I.filter(word.value === 'Systemiques')?
-<label htmlFor="Systemiques">Systemiques
-        <Field
-             component={SelectField}
-             name={`Systemiques`}
-          options={Systemiques}
-        /></label>:
-        formik.values.Effets_I.filter(word.value === 'Neurologiques')?
-<label htmlFor="Neurologiques">Neurologiques
-        <Field
-             component={SelectField}
-             name={`Neurologiques`}
-          options={Neurologiques}
-        /></label>:
-        formik.values.Effets_I.filter(word.value === 'Digestifs')?
-<label htmlFor="Digestifs">Digestifs
-        <Field
-             component={SelectField}
-             name={`Digestifs`}
-          options={Digestifs}
-        /></label>:
-        formik.values.Effets_I.filter(word.value === 'Cardio_vasculaires')?
-<label htmlFor="Cardio_vasculaires">Cardio_vasculaires
-        <Field
-             component={SelectField}
-             name={`Cardio_vasculaires`}
-          options={Cardio_vasculaires}
-        /></label>:
-        formik.values.Effets_I.filter(word.value === 'Respiratoires')?
-<label htmlFor="Respiratoires">Respiratoires
-        <Field
-             component={SelectField}
-             name={`Respiratoires`}
-          options={Respiratoires}
-        /></label>:
-        formik.values.Effets_I.filter(word.value === 'Allergiques')?
-<label htmlFor="Allergiques">Allergiques
-        <Field
-             component={SelectField}
-             name={`Allergiques`}
-          options={Allergiques}
-        /></label>:
-        formik.values.Effets_I.filter(word.value === 'Sphere_ORL')?
-<label htmlFor="Sphere_ORL">Sphere_ORL
-        <Field
-             component={SelectField}
-             name={`Sphere_ORL`}
-          options={Sphere_ORL}
-        /></label>:
-        formik.values.Effets_I.filter(word.value === 'Biologiques')?
-<label htmlFor="Biologiques">Biologiques
-        <Field
-             component={SelectField}
-             name={`Biologiques`}
-          options={Biologiques}
-        /></label>:
-        formik.values.Effets_I.filter(word.value === 'Ophtalmologiques') ?
-<label htmlFor="Ophtalmologiques">Ophtalmologiques
-        <Field
-             component={SelectField}
-             name={`Ophtalmologiques`}
-          options={Ophtalmologiques}
-        /></label> */null}
+            }):null}
 </FlexBox>
     )
 }

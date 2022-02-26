@@ -9,7 +9,6 @@ import {
 } from "react-bootstrap";
 import {
   InputText,
-  InputCheck,
   InputNumber,
   InputRadio,
   InputDate,
@@ -21,7 +20,7 @@ import axiosConfig from "../axios";
 import Auto8 from './Auto8'
 import Auto3 from './Auto3'
 import swal from "sweetalert";
-
+import Compressor from 'compressorjs';
 const BigBox = styled.div`
 display: flex;
 flex-direction: column;
@@ -142,61 +141,7 @@ const Vaccin = (props) => {
   );
 };
 
-const Solvant = (props) => {
-  const { id, formik ,onFileChange} = props;
 
-  return (
-    <FormikProvider value={formik}>
-       <FlexBox>
-  <BigBox>
-      <InputSelect
-        name="Solvant :"
-        id={`Solvants[${id}].Solvant`}
-        options={["","Du même vaccin", "Autre"]}
-        formik={formik}
-      />
-                <InputFile
-  name='Photo du Solvant (Si possible) :'
-  id={`Photo_S_${id+1}`}
-  onFileChange={onFileChange}
-/>
-      <InputText
-        name="Fabricant :"
-        id={`Solvants[${id}].Fabricant`}
-        formik={formik}
-      />
-      <InputText
-        name="N° de lot :"
-        id={`Solvants[${id}].Numero_D_L`}
-        formik={formik}
-      />
-      </BigBox>
-<BigBox>
-                <InputFile
-  name='Photo du lot (Si possible) :'
-  id={`Photo_L_D_S_${id+1}`}
-  onFileChange={onFileChange}
-/>
-      <InputDate
-        name="Date de péremption :"
-        id={`Solvants[${id}].Date_D_P`}
-        formik={formik}
-      />
-      <InputDate
-        name="Date de reconstitution :"
-        id={`Solvants[${id}].Date_D_R`}
-        formik={formik}
-      />
-      <InputText
-        name="Heure de reconstitution :"
-        id={`Solvants[${id}].Heure_D_R`}
-        formik={formik}
-      />
-      </BigBox>
-         </FlexBox>
-    </FormikProvider>
-  );
-};
 
 const FormCoronavirus = (props) => {
   const {userID} = props
@@ -295,11 +240,12 @@ const FormCoronavirus = (props) => {
      
        let file = event.target.files[0];
        formik.setFieldValue(id ,file)
-         setFiles([...files, { file_id: id, uploaded_file: {file} }]);
+       new Compressor(file,{
+        quality: 0.4,
+        success: (file) => { setFiles([...files, { file_id: id, uploaded_file: { file } } ]) }})
 
       }
   const [Vaccins,setVaccins] = useState([1])
-  const [Solvants,setSolvants] = useState([1])
   const [validated, setValidated] = useState(false);
 
   return (
@@ -429,47 +375,7 @@ const FormCoronavirus = (props) => {
             })}
           </Tab.Content>
           </Tab.Container>
-{/*         <Titre><InsideTitre>Solvant(s)</InsideTitre></Titre>
-        <Tab.Container id="left-tabs-example" defaultActiveKey="Solvant#1">
-          <Nav variant="tabs">
-            {Solvants.map((el, index) => {
-              return (
-                <Nav.Item key={index}>
-                  <Nav.Link eventKey={`Solvant#${el}`}>Solvant#{el}</Nav.Link>
-                </Nav.Item>
-              );
-            })}
-            <Nav.Item
-              as={() => {
-                return (
-                  <Button
-                  variant="primary"
-                    type="Button"
-                    onClick={() => {
-                      setSolvants([...Solvants, Solvants.length + 1]);
-                    }}
-                  >
-                    +
-                  </Button>
-                );
-              }}
-            />
-          </Nav>
-          <Tab.Content >
-            {Solvants.map((el, index) => {
-              return (
-                <Tab.Pane eventKey={`Solvant#${el}`} key={index}>
-                  <Solvant
-                  onFileChange={onFileChange}
-                    formik={formik}
-                    id={index}
-                    className={`Solvants#${el}`}
-                  />
-                </Tab.Pane>
-              );
-            })}
-          </Tab.Content>
-          </Tab.Container> */}
+
           <Titre><InsideTitre>Manifestation(s) post-vaccinale(s) indésirable(s)</InsideTitre></Titre>
         <FlexBox>
   <BigBox>

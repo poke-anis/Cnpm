@@ -1,7 +1,7 @@
 import { Field,FastField } from 'formik';
 import styled from 'styled-components'
 import {
-  Form, Button, InputGroup } from "react-bootstrap";
+  Form, Button } from "react-bootstrap";
 import { MdAddAPhoto } from "react-icons/md";
 
 const Inputstyled = styled(Field)`
@@ -21,7 +21,7 @@ const InputText =(props) =>{
 
 <Form.Group  md="4" controlId="validationCustom01">
 <Form.Label>{name}</Form.Label>
-    <Form.Control maxLength={maxlength} required name={id} as={FastField} type="text"  onChange={formik.handleChange}/>
+    <Form.Control maxLength={maxlength}  name={id} as={FastField} type="text"  onChange={formik.handleChange}/>
 
     </Form.Group>
         </Box>
@@ -66,7 +66,7 @@ const InputCheck =(props) =>{
 
 const InputRadio = (props) => {
 
-  const { name, formik, id, radioContent, Sexe } = props;
+  const { name, formik, id, radioContent } = props;
 
 
 
@@ -193,7 +193,7 @@ const InputSelect = (props) => {
 
 const InputFile = (props) => {
 
-  const { name, formik, id ,onFileChange} = props;
+  const { name, id ,onFileChange} = props;
   return (
     <Box>
        <label>{name}

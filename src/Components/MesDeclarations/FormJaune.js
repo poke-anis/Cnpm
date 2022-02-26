@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useFormik, Field, FormikProvider, FieldArray } from "formik";
 import {Figure} from "react-bootstrap"
 import {
   Col,
@@ -7,15 +6,7 @@ import {
   ProgressBar,
   Form,
 } from "react-bootstrap";
-import {
-  InputText,
-  InputCheck,
-  InputNumber,
-  InputRadio,
-  InputDate,
-  InputSelect,
-  InputFile,
-} from "./FormikInputs";
+
 import styled from "styled-components";
 import axiosConfig from "../axios";
 
@@ -28,16 +19,7 @@ const BigBox = styled.div`
   width: 49%;
   border: 2px solid #dee2e6;
 `;
-const Titre = styled.h1`
-  text-align: center;
-  border: 3px black solid;
-  margin: 10px;
-  padding: 5px;
-  width: 100%;
-`;
-const Inputstyled = styled(Field)`
-  margin: 5px;
-`;
+
 const FlexBox = styled.div`
 margin-top:10px;
   display: flex;
@@ -225,14 +207,14 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
           <FlexBox >
           {declaData.Reactions.map((el, index) => (
             
-              <BigBox>
+              <BigBox key={index}>
                 <h1 style={{ width: "100%", textAlign: "center" }}>
                   Reaction {index + 1}
                 </h1>
                 {/* // Auto1 */}
                 { el.Type_D_L_R != null &&
                 el.Type_D_L_R.map((elem, index2) => (
-                  <div key={elem}>
+                  <div k key={index2}>
                     <Form.Group
                       as={Row}
                       className="mb-3"
@@ -250,6 +232,7 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                       { el.Description_D_L_R != null &&
                 el.Description_D_L_R.map((elem2, index3) => (
                   <Form.Group
+                  key={index3}
                   as={Row}
                   className="mb-3"
                   controlId="formPlaintextEmail"
@@ -391,6 +374,7 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                     {el.Description_Voie_A != null &&
                 el.Description_Voie_A.map((elem2, index2) => (
                     <Form.Group
+                    key={index2}
                       as={Row}
                       className="mb-3"
                       controlId="formPlaintextEmail"
@@ -548,7 +532,7 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
               {/* Auto3 */}
               {declaData.Type_A != null &&
               declaData.Type_A.map((elem, index2) => (
-                <div key={elem}>
+                <div key={index2}>
                   <Form.Group
                     as={Row}
                     className="mb-3"

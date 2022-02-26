@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useFormik,Field,FormikProvider } from 'formik';
+import { useFormik,FormikProvider } from 'formik';
 import { InputText,InputCheck,InputNumber,InputRadio,InputDate,InputSelect,InputFile } from './FormikInputs';
 import axiosConfig from "../axios"
 import styled from 'styled-components'
@@ -7,6 +7,7 @@ import Auto5 from './Auto5'
 import Auto3 from './Auto3'
 import {Button,ProgressBar,Form} from 'react-bootstrap'
 import swal from "sweetalert";
+import Compressor from 'compressorjs';
 const BigBox = styled.div`
 display: flex;
 flex-direction: column;
@@ -102,6 +103,7 @@ const FormPink = (props) => {
          formData.append(
        `${el.file_id}`,
        el.uploaded_file.file
+       , `${el.uploaded_file.file.name}`
        );
      })
      
@@ -134,7 +136,9 @@ const FormPink = (props) => {
        let id = event.target.id;
      
        let file = event.target.files[0];
-         setFiles([...files, { file_id: id, uploaded_file: {file} }]);
+       new Compressor(file,{
+        quality: 0.4,
+        success: (file) => { setFiles([...files, { file_id: id, uploaded_file: { file } } ]) }})
 
       }
      
@@ -212,8 +216,8 @@ id="Utilisation_S_P"
 checkContent={["Autre produit cosmétique","Médicament","Complément alimentaire","Plante médicinale","Autre"]} 
 formik={formik}
  />
- {formik.values.Utilisation_S_P.filter((el) => el === "Autre" ).map(el =>
-  <InputText name="Autre" id="Autre_U_S_P" formik={formik} />
+ {formik.values.Utilisation_S_P.filter((el) => el === "Autre" ).map((el,index) =>
+  <InputText name="Autre" id="Autre_U_S_P" formik={formik} key={index}/>
  ) }
 
 <InputSelect name="Exposition particulière au : " 

@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import { Field,} from "formik";
+
 import {Figure} from "react-bootstrap"
 import {
 
@@ -8,15 +8,7 @@ import {
   ProgressBar,
   Form,
 } from "react-bootstrap";
-import {
-  InputText,
-  InputCheck,
-  InputNumber,
-  InputRadio,
-  InputDate,
-  InputSelect,
-  InputFile,
-} from "./FormikInputs";
+
 import styled from "styled-components";
 import axiosConfig from "../axios";
 
@@ -28,16 +20,7 @@ const BigBox = styled.div`
   width: 49%;
   border: 2px solid #dee2e6;
 `;
-const Titre = styled.h1`
-  text-align: center;
-  border: 3px black solid;
-  margin: 10px;
-  padding: 5px;
-  width: 100%;
-`;
-const Inputstyled = styled(Field)`
-  margin: 5px;
-`;
+
 const FlexBox = styled.div`
 margin-top:10px;
   display: flex;
@@ -370,7 +353,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
 {/* ///Auto1 */}
           {declaData.Type_D_L_R != null &&
           declaData.Type_D_L_R.map((elem,index2)=>
-  <div key={elem}>
+  <div key={index2}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Description de l’effet indésirable
@@ -385,7 +368,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
           </Form.Group>
           { declaData.Description_D_L_R != null &&
                 declaData.Description_D_L_R.map((elem2, index3) => (
-                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail"  key={index3}>
                     <Form.Label column sm="5">
                     :
                     </Form.Label>
@@ -424,7 +407,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
 {/* Auto3 */}
           {declaData.Type_A != null &&
           declaData.Type_A.map((elem,index2)=>
-  <div key={elem}>
+  <div key={index2}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Antécédents et terrain du patient 
@@ -439,7 +422,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
           </Form.Group>
           { declaData.Description_A != null &&
                 declaData.Description_A.map((elem2, index3) => (
-                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail"  key={index3}>
                     <Form.Label column sm="5">
                     :
                     </Form.Label>
@@ -556,7 +539,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
 
           {declaData.Type_Evolution != null &&
           declaData.Type_Evolution.map((elem,index2)=>
-  <div key={elem}>
+  <div key={index2}>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
             <Form.Label column sm="5">
             Evolution
@@ -571,7 +554,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
           </Form.Group>
           { declaData.Description_Evolution != null &&
                 declaData.Description_Evolution.map((elem2, index3) => (
-                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail"  key={index3}>
                     <Form.Label column sm="5">
                     :
                     </Form.Label>

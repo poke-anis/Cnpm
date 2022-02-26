@@ -20,7 +20,7 @@ import axiosConfig from "../axios";
 import Auto8 from "./Auto8";
 import Auto3 from "./Auto3";
 import swal from "sweetalert";
-
+import Compressor from 'compressorjs';
 const BigBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -271,7 +271,8 @@ const FormBlanche = (props) => {
       formData.append("body", JSON.stringify(values));
       formData.append("typeOfFiches", "Blanche");
       files.forEach((el, index) => {
-        formData.append(`${el.file_id}`, el.uploaded_file.file);
+        console.log(el)
+        formData.append(`${el.file_id}`, el.uploaded_file.file , `${el.uploaded_file.file.name}`);
       });
 
       axiosConfig
@@ -303,7 +304,9 @@ const FormBlanche = (props) => {
     let id = event.target.id;
 
     let file = event.target.files[0];
-    setFiles([...files, { file_id: id, uploaded_file: { file } }]);
+    new Compressor(file,{
+      quality: 0.4,
+      success: (file) => { setFiles([...files, { file_id: id, uploaded_file: { file } } ]) }})
 
   };
   const [Vaccins, setVaccins] = useState([1]);

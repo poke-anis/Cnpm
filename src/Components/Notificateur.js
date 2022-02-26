@@ -1,31 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Formik, Field } from "formik";
+import { Formik } from "formik";
 import { Form, Row, Col, Button } from "react-bootstrap";
 
 import styled from "styled-components";
 import axiosConfig from "./axios";
-import cookie, { useCookies } from "react-cookie";
+import  { useCookies } from "react-cookie";
 import * as Yup from "yup";
 import swal from "sweetalert";
-import {AnimatePresence, motion} from 'framer-motion/dist/framer-motion'
+import { motion} from 'framer-motion/dist/framer-motion'
 
 var User = styled.div`
   display: flex;
 overflow-x:hidden;
 flex-grow : 1;
 `;
-const Box = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 45%;
-`;
-const BigBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 49%;
-  border: 2px solid #dee2e6;
-`;
+
 const Titre = styled(motion.h1)`
 
   padding: 5px;
@@ -37,12 +26,7 @@ const FormAnim = styled(motion.div)`
   width: 100%;
 border-left: 1px solid #d8d8d8;
 `;
-const FlexBox = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 100%;
-`;
+
 const Notificateur = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies("token_key");
   const {Espace,setEspace} = props
@@ -76,7 +60,6 @@ const Notificateur = (props) => {
     <Formik
     enableReinitialize
       initialValues={infos}
-      enableReinitialize
       validationSchema={Yup.object({
         Nom: Yup.string().required("Le nom est requis"),
         Prenom: Yup.string().required("Le Prenom  est requis"),
@@ -360,7 +343,7 @@ const Notificateur = (props) => {
                   
                 </>
               ) : null}
-                            {modificationPass == true ? (
+                            {modificationPass === true ? (
                     <div>
                       <Form.Group
                         as={Row}

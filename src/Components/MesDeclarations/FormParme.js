@@ -1,24 +1,15 @@
 import React, { useState,useEffect } from "react";
-import { Field,  } from "formik";
 import {Figure} from "react-bootstrap"
 import {
   Col,
   Row,
   ProgressBar,
   Form,} from "react-bootstrap";
-import {
-  InputText,
-  InputCheck,
 
-} from "./FormikInputs";
 import styled from "styled-components";
 import axiosConfig from "../axios";
 
-const Box = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 45%;
-`;
+
 const BigBox = styled.div`
 padding:10px;
   display: flex;
@@ -27,16 +18,8 @@ padding:10px;
   width: 49%;
   border: 2px solid #dee2e6;
 `;
-const Titre = styled.h1`
-  text-align: center;
-  border: 3px black solid;
-  margin: 10px;
-  padding: 5px;
-  width: 100%;
-`;
-const Inputstyled = styled(Field)`
-  margin: 5px;
-`;
+
+
 const FlexBox = styled.div`
 margin-top:10px;
   display: flex;

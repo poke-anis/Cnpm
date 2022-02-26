@@ -5,18 +5,10 @@ import { FaEdit,FaPlus,FaRegTimesCircle } from "react-icons/fa";
 
 import { Field,useFormik,FormikProvider,useField } from 'formik';
 
-import {Card,Badge ,Button,Figure,Form,Row,Nav,Table,Tab,Modal} from 'react-bootstrap'
-import FormJaune from './MesDeclarations/FormJaune'
-import FormBleue from './MesDeclarations/FormBleue'
-import FormParme from './MesDeclarations/FormParme'
-import FormRose from './MesDeclarations/FormPink'
-import FormVerte from './MesDeclarations/FormVerte'
-import FormOrange from './MesDeclarations/FormOrange'
-import FormBlanche from './MesDeclarations/FormBlanche'
-import FormCoronavirus from './MesDeclarations/FormCoronavirus'
+import {Button,Figure,Form,Row,Nav,Table,Tab,Modal} from 'react-bootstrap'
+
 import SelectField from './React-select'
 import { useCookies } from 'react-cookie'
-import JoditEditor from "jodit-react";
 import parse from 'html-react-parser';
 import * as Yup from "yup";
 
@@ -25,11 +17,7 @@ flex-grow : 1;
 padding: 50px;
 `
 
-const LeftContent = styled.div`
 
-margin-Right: 50px;
-border-right: 2px solid #dee2e6;
-`
 
 function ModalForm(props) {
   const [field, meta, helpers] = useField('description');
@@ -38,7 +26,6 @@ function ModalForm(props) {
     buttons: ['preview','|',"bold", "italic", "link", "unlink", "underline", "source"],
     sizeLG: 900,
     sizeMD: 700,
-    sizeSM: 400,
     sizeSM: 400,
 }
 const editor = useRef(null)
@@ -84,7 +71,7 @@ const editor = useRef(null)
 
 const UserManagment = (props) => {
   const [changement,setChangement] = useState(false)
-  const [clicked,setClicked] = useState(false)
+  
   const [cnpmUsers,setCnpmUsers] = useState([])
   const validationSchema  = Yup.object({
     Username: Yup.string().required("Le nom d'utilisateur est requis"),
@@ -121,10 +108,7 @@ const UserManagment = (props) => {
     { label: "Patient", value: "Patient"},
   ]; 
     
-const handleEdit = (props)=>{
-    setClicked(props.id)
 
-}
 const handledelete = (props)=>{
 
   axiosConfig.put(`/Modify/${props}?typeofmodification=delete`)
@@ -232,8 +216,7 @@ const Alert = (props) => {
   var [files, setFiles] = useState([]);
   const [changement,setChangement] = useState(false)
   const [modalShow, setModalShow] = React.useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies('token_key');
-    const [clicked,setClicked] = useState(false)
+  const [cookies] = useCookies('token_key');
     const [cnpmAlertes,setCnpmAlertes] = useState('')
     const validationSchema  = Yup.object({
       titre: Yup.string().required("Le Titre est requis"),
@@ -377,8 +360,7 @@ const News = (props) => {
   var [files, setFiles] = useState([]);
   const [changement,setChangement] = useState(false)
   const [modalShow, setModalShow] = React.useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies('token_key');
-    const [clicked,setClicked] = useState(false)
+  const [cookies] = useCookies('token_key');
     const [cnpmNews,setCnpmNews] = useState('')
     const validationSchema  = Yup.object({
       titre: Yup.string().required("Le Titre est requis"),
@@ -522,32 +504,7 @@ return(
 
 
 const Mods =(props)=>{
-    const [decla,setDecla] = useState([])
-    const {token_key,TypeExecrice,UserType} = props.cookie
-
-    const CompRender = (props) => {
-
-      if (props === undefined) {
-        
-        return "Fiche de déclaration ";
-      } else if (Object.keys(props)[0]=== "Jaune") {
-        return <FormJaune decla={decla[Object.values(props)[0]]}/>;
-      } else if (Object.keys(props)[0] === "Bleue") {
-        return <FormBleue decla={decla[Object.values(props)[0]]}/>;
-      } else if (Object.keys(props)[0] === "Blanche") {
-        return <FormBlanche decla={decla[Object.values(props)[0]]}/>;
-      } else if (Object.keys(props)[0] === "Parme") {
-        return <FormParme decla={decla[Object.values(props)[0]]}/>;
-      } else if (Object.keys(props)[0] === "Verte") {
-        return <FormVerte decla={decla[Object.values(props)[0]]}/>;
-      } else if (Object.keys(props)[0] === "Rose") {
-        return <FormRose decla={decla[Object.values(props)[0]]}/>;
-      } else if (Object.keys(props)[0] === "Orange") {
-        return <FormOrange decla={decla[Object.values(props)[0]]}/>;
-      } else if (Object.keys(props)[0] === "Coronavirus") {
-        return <FormCoronavirus decla={decla[Object.values(props)[0]]}/>;
-      }
-    };
+    const {UserType} = props.cookie
     
 
     return (
