@@ -40,12 +40,7 @@ var optionstime = {
   minute: "numeric",
 };
 
-const mailContent = JSON.stringify(`<p>Cher exp&eacute;diteur,<br />
-Merci d'avoir contact&eacute; le Centre National de Pharmacovigilance et de Mat&eacute;riovigilance (CNPM) Alg&eacute;rie. Nous accusons bonne r&eacute;ception &agrave; votre d&eacute;claration.<br />
-Nous la prenons en charge et reviendrons vers vous, si n&eacute;cessaire<br />
-Bien cordialement</p>
 
-<p>CNPM</p>`);
 
 const CardDeclarations = (props) => {
   const typeOfFiches = (props) => {
@@ -132,7 +127,27 @@ const CardDeclarations = (props) => {
       const change = setTimeout(() => {
         setChangement(!changement);
       }, 100);
+
+      if (status_Type =="En cours" && status){
+        axiosConfig
+        .post(
+          `/send/?name=Cnpm&email=${Email}&messageHtml=CnpmStatus`
+        )
+        .then((response) => {
+          if (response.data.msg === "success") {
+            Swal.fire("Success!", "Message envoyé", "success");
+          } else if (response.data.msg === "fail") {
+            Swal.fire("Error!", "Veuillez ressayer", "error");
+          }
+        })
+  
+  
+  
+      }
     }
+
+
+
   };
 
   const {
@@ -219,7 +234,7 @@ const CardDeclarations = (props) => {
                         disabled={val.status === true ? false : true}
                         style={{ marginTop: "5px" }}
                         onChange={(el) =>
-                          changestatus(val._id, val.status, el.target.value)
+                          changestatus(val._id, val.status, el.target.value,val.creator.Email)
                         }
                         value={val.status_Type}
                         id={"Statut"}
@@ -560,6 +575,21 @@ const MesDeclarations = (props, isMulti) => {
                 }
               })
           );
+      }else if (status_Type =="En cours" && status){
+        axiosConfig
+        .post(
+          `/send/?name=Cnpm&email=${Email}&messageHtml=CnpmStatus`
+        )
+        .then((response) => {
+          if (response.data.msg === "success") {
+            Swal.fire("Success!", "Message envoyé", "success");
+          } else if (response.data.msg === "fail") {
+            Swal.fire("Error!", "Veuillez ressayer", "error");
+          }
+        })
+
+
+
       }
     } else {
       axiosConfig
@@ -708,7 +738,7 @@ const MesDeclarations = (props, isMulti) => {
                   <select
                     style={{ marginTop: "5px" }}
                     onChange={(el) =>
-                      changestatus(val._id, val.status, el.target.value)
+                      changestatus(val._id, val.status, el.target.value,val.creator.Email)
                     }
                     value={val.status_Type}
                     id={"Statut"}
