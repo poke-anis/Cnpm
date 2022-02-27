@@ -112,7 +112,7 @@ const CardDeclarations = (props) => {
           .then(
             axiosConfig
               .post(
-                `/send/?name=Cnpm&email=${Email}&messageHtml="Bonjour%0D%0A${Username}%0D%0A${mailContent}"`
+                `/send/?name=Cnpm&email=${Email}&messageHtml=Cnpm`
               )
               .then((response) => {
                 if (response.data.msg === "success") {
