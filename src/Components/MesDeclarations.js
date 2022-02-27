@@ -575,7 +575,17 @@ const MesDeclarations = (props, isMulti) => {
                 }
               })
           );
-      }else if (status_Type =="En cours" && status){
+      }
+    } else {
+      axiosConfig
+        .put(
+          `/secure/modfichesData/${id}?status=${status}&status_Type=${status_Type}`
+        )
+        .then((res) => {});
+      const change = setTimeout(() => {
+        setChangement(!changement);
+      }, 100);
+      if (status_Type =="En cours" && status){
         axiosConfig
         .post(
           `/send/?name=Cnpm&email=${Email}&messageHtml=CnpmStatus`
@@ -587,19 +597,10 @@ const MesDeclarations = (props, isMulti) => {
             Swal.fire("Error!", "Veuillez ressayer", "error");
           }
         })
-
-
-
+  
+  
+  
       }
-    } else {
-      axiosConfig
-        .put(
-          `/secure/modfichesData/${id}?status=${status}&status_Type=${status_Type}`
-        )
-        .then((res) => {});
-      const change = setTimeout(() => {
-        setChangement(!changement);
-      }, 100);
     }
   };
   const handleClick = (e, props, key) => {
