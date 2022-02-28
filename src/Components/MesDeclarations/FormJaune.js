@@ -20,6 +20,7 @@ const BigBox = styled.div`
   border: 2px solid #dee2e6;
 `;
 const BigBoxR = styled.div`
+margin-top:10px;
   padding:10px;
   justify-content: space-between;
   width: 49%;
