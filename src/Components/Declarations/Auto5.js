@@ -50,7 +50,6 @@ const Auto5 =(props)=>{
         { label: "Hypotonie-hyporeactivité", value: "Hypotonie-hyporeactivité" },
         { label: "Confusion", value: "Confusion" },
         { label: "Insomnie", value: "Insomnie" },
-,
       ];
       const Digestifs = [
         { label: "Nausées", value: "Nausées" },

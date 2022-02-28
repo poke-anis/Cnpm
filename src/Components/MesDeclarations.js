@@ -161,13 +161,7 @@ const CardDeclarations = (props) => {
     progress,
   } = props;
   return (
-    <div
-      style={{
-        width: "65%",
 
-        paddingLeft: "20px",
-      }}
-    >
       <Col md={10} className="g-0">
         {decla.length !== 0
           ? decla.map((val, key) => {
@@ -286,12 +280,12 @@ const CardDeclarations = (props) => {
           <div style={{ display: "none" }}>{CompRender(print)}</div>
         ) : null}
       </Col>
-    </div>
+
   );
 };
 
 const Paginations = (props) => {
-  const { declanum, clicked, numberOfPages, nextpage, currentPage, tenChange ,fiveChange} =
+  const { declanum, clicked, numberOfPages, nextpage, currentPage, tenChange ,fiveChange,threeChange} =
     props.data;
   return (
     declanum > 5 &&
@@ -302,6 +296,7 @@ const Paginations = (props) => {
         currentPage={currentPage}
         tenChange={tenChange}
         fiveChange={fiveChange}
+        threeChange={threeChange}
       ></PaginationPage>
     )
   );
@@ -453,6 +448,14 @@ const MesDeclarations = (props, isMulti) => {
 
     getDecla(finalPage);
   };
+  const threeChange = (pageNumber, isposOrneg) => {
+    var finalPage;
+    if (isposOrneg > 0) finalPage = pageNumber + 3;
+    else finalPage = pageNumber - 3;
+    setCurrentPage(finalPage);
+
+    getDecla(finalPage);
+  };
   const CompRender = (props) => {
     if (props === undefined) {
       return "Fiche de déclaration ";
@@ -544,9 +547,19 @@ const MesDeclarations = (props, isMulti) => {
   });
   const HandlePrint = (e, props, key) => {
     setPrint({ [props]: key });
-    const change = setTimeout(() => {
-      handlePrint();
-    }, 300);
+    Swal.fire({
+      title: "Chargement",
+
+      showSpinner: true,
+    })
+      .then(Swal.showLoading())
+      .then(
+         setTimeout(() => {
+          handlePrint();
+          Swal.close()
+        }, 1000)
+      )
+
   };
   const changestatus = (id, status, status_Type, Email, Username) => {
     if (status_Type === null) {
@@ -665,6 +678,12 @@ const MesDeclarations = (props, isMulti) => {
               isClearable
             />
           </div>
+          <div
+      style={{
+        flexGrow:"1",
+        paddingLeft: "20px",
+      }}
+    >
           <CardDeclarations
             decla={decla}
             handleClick={handleClick}
@@ -676,6 +695,19 @@ const MesDeclarations = (props, isMulti) => {
             changement={changement}
             progress={progress}
           />
+                <Paginations
+        data={{
+          declanum,
+          clicked,
+          numberOfPages,
+          nextpage,
+          currentPage,
+          tenChange,
+          fiveChange,
+          threeChange,
+        }}
+      />
+      </div>
           {/*           <Filtre
             setClicked={setClicked}
             decla={decla}
@@ -797,17 +829,7 @@ const MesDeclarations = (props, isMulti) => {
   clicked === false ?null:<Button onClick={()=>{setClicked(false)}} style={{position: "fixed",top: "350px",right: "20px"}}>Retour</Button>
   } */}
 
-      <Paginations
-        data={{
-          declanum,
-          clicked,
-          numberOfPages,
-          nextpage,
-          currentPage,
-          tenChange,
-          fiveChange,
-        }}
-      />
+
     </div>
   );
 };

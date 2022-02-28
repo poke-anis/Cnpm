@@ -8,10 +8,10 @@ const PaginationPage = (props) => {
     const pageLinks = [];
     const {currentPage,pages} = props;
     
-    let start=(currentPage)-(currentPage%6);
+    let start=(currentPage)-(currentPage%4);
     if(start<=0)
         start=1;
-    for (let i = start; i <= start+5 && i <= pages; i++) {
+    for (let i = start; i <= start+3 && i <= pages; i++) {
         pageLinks.push(
             <Pagination.Item key={i} active={currentPage === i} onClick={() => props.nextPage(i)}> 
                 
@@ -22,7 +22,7 @@ const PaginationPage = (props) => {
     }
   
     return (
-        <Pagination aria-label="Page navigation example" className="paginationcss" style={{position: "fixed",top: "350px",right: "20px"}}>
+        <Pagination aria-label="Page navigation example" className="paginationcss" style={{}}>
   
             {
                 currentPage > 10 &&
@@ -41,7 +41,23 @@ const PaginationPage = (props) => {
                   
                 </Pagination.Item>
             }
+                          {
+                currentPage > 3 &&
+                <Pagination.Item className="addbuttons" onClick={() => props.threeChange(currentPage,-1)}> 
+                    
+                        - 3
+                  
+                </Pagination.Item>
+            }
             {pageLinks}
+            {
+                (currentPage + 3) < pages &&
+                <Pagination.Item className="addbuttons" onClick={() => props.threeChange(currentPage,1)}
+                > 
+                        + 3
+                    
+                </Pagination.Item>
+            }
             {
                 (currentPage + 5) < pages &&
                 <Pagination.Item className="addbuttons" onClick={() => props.fiveChange(currentPage,1)}

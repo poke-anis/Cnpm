@@ -2,7 +2,6 @@ import React, { useState,useEffect } from "react";
 
 import {Figure} from "react-bootstrap"
 import {
-
   Col,
   Row,
   ProgressBar,
@@ -29,7 +28,7 @@ margin-top:10px;
   width: 100%;
 `;
 
-const FormBlancheDecla = React.forwardRef((props,ref) => {
+const FormVerteDecla = React.forwardRef((props,ref) => {
   const { decla } = props;
   const [progress,setProgress] = useState(0)
   const [declaData, setDeclaData] = useState(decla.Cases);
@@ -709,4 +708,4 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
   );
 });
 
-export default FormBlancheDecla;
+export default FormVerteDecla;
