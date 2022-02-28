@@ -153,7 +153,7 @@ const FormJaune = (props) => {
       Evolution_D: "",
       Conséquences_S_V_Q: "",
       Conséquences_S_V_Q_O: "",
-      Type_A:"",
+      Type_A:[],
     },
 
     onSubmit: (values,{resetForm}) => {

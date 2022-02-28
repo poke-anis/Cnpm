@@ -186,7 +186,7 @@ const FormCoronavirus = (props) => {
       Evolution: "",
       Date_D_D: "",
       Autopsie_E: "",
-      Type_A: "",
+      Type_A: [],
       Prise_C_M: "",
       Prise_C_M_M: "",
     },

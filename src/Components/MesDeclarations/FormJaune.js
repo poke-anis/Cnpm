@@ -19,6 +19,12 @@ const BigBox = styled.div`
   width: 49%;
   border: 2px solid #dee2e6;
 `;
+const BigBoxR = styled.div`
+  padding:10px;
+  justify-content: space-between;
+  width: 49%;
+  border: 2px solid #dee2e6;
+`;
 
 const FlexBox = styled.div`
 margin-top:10px;
@@ -204,12 +210,13 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
               </Form.Group>
             </BigBox>
           </FlexBox>
+          
           <FlexBox >
-          {declaData.Reactions.map((el, index) => (
-                        <FlexBox key={index}>
 
-              <BigBox >
-                
+          {declaData.Reactions.map((el, index) => (
+      
+         
+              <BigBoxR key={index} >
                 <h1 style={{ width: "100%", textAlign: "center" }}>
                   Reaction {index + 1}
                 </h1>
@@ -284,11 +291,12 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                   </Col>
                 </Form.Group>
                
-              </BigBox>
-              </FlexBox>
-            
+              </BigBoxR>
+              
+     
           ))}
           </FlexBox>
+          
           {declaData.Medicaments.map((el, index) => (
             <FlexBox key={index}>
               <BigBox>

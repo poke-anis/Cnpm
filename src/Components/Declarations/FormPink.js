@@ -79,7 +79,7 @@ const FormPink = (props) => {
       Traitement: '',
       Evolution: '',
       Sequelles: '',
-      Type_A: '',
+      Type_A: [],
 
 
 

@@ -253,14 +253,14 @@ const FormBlanche = (props) => {
         },
       ],
 
-      Type_Manifestation_P_V_I: "",
+      Type_Manifestation_P_V_I: [],
       Traitement_R_MPVI: "",
       Hospitalisation: "",
       Motif_H: "",
       Evolution: "",
       Date_D_D: "",
       Autopsie_E: "",
-      Antecedents_D_M: "",
+      Antecedents_D_M: [],
       Prise_C_M: "",
     },
 

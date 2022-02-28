@@ -133,7 +133,7 @@ const FormOrange = (props) => {
     }],
     Description_D_L_R:[],
     Photo_E_I:'',
-    Type_A:'',
+    Type_A:[],
       Date_A: '',
       Delai_D_S: '',
       Arret_D_C_A: '',
