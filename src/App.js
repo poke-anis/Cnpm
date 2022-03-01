@@ -15,6 +15,8 @@ import "./Components/Moderateurs.js";
 import Notificateur from "./Components/Notificateur";
 import Moderateurs from "./Components/Moderateurs";
 import Home from "./Components/Home";
+import Privacy from "./Components/Privacy";
+
 import PasswordForget from "./Components/PasswordForget";
 import PasswordChange from "./Components/PasswordChange";
 import Support from "./Components/Support";
@@ -246,6 +248,7 @@ function App() {
             </>
           ) : null}
           <Route path="/" element={<Home />} />
+          <Route path="/Privacy" element={<Privacy />} />
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
         <BasDePage setModalShow={setModalShow} />
