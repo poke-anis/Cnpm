@@ -161,6 +161,7 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
           
           {declaData.Produits.map((el, index) => 
           <FlexBox key={index}>
+            
             <BigBox>
             <h1 style={{width:"100%",textAlign:"center"}}>Produit {index+1}</h1>
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
@@ -310,6 +311,7 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
             </Col>
           </Form.Group>
           </BigBox>
+          {index=== 2 ?<div className="page-break" />:null}
           </FlexBox>
           )}
           <FlexBox>
