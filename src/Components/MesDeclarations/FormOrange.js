@@ -12,6 +12,8 @@ import axiosConfig from "../axios";
 
 
 const BigBox = styled.div`
+margin-top:10px;
+
   padding:10px;
   display: flex;
   flex-direction: column;
