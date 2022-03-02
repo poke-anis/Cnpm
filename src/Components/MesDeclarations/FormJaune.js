@@ -453,8 +453,9 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                   </Col>
                 </Form.Group>
               </BigBox>
-            </FlexBox>
+                       </FlexBox>
           ))}
+          <div className="page-break" />
           <FlexBox>
             <BigBox>
               <Form.Group

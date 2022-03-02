@@ -10,6 +10,9 @@
 }
 
 @media all {
+  div{
+    display: block;
+  }
     .page-break {
       display: none;
     }

@@ -311,7 +311,7 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
             </Col>
           </Form.Group>
           </BigBox>
-          {index=== 2 ?<div className="page-break" />:null}
+          {index=== 1 ?<div className="page-break" />:null}
           </FlexBox>
           )}
           <FlexBox>
