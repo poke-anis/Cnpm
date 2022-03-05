@@ -298,7 +298,7 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
      
           ))}
           </FlexBox>
-          
+          <div className="page-break" />
           {declaData.Medicaments.map((el, index) => (
             <FlexBox key={index}>
               <BigBox>

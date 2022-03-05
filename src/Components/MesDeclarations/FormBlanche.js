@@ -311,7 +311,7 @@ useEffect(() => {
   
             </FlexBox>
           )}
-
+<div className="page-break" />
 
           {declaData.Solvants.map((el, index) => 
           <FlexBox key={index}>

@@ -307,7 +307,7 @@ const FormCoronavirusDecla = React.forwardRef((props,ref) => {
   
   </FlexBox>
           ))}
-
+<div className="page-break" />
 {/*           {declaData.Solvants.map((el, index) => (
                     <FlexBox key={index}>
                     <BigBox>

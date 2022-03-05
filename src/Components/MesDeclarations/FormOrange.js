@@ -13,7 +13,6 @@ import axiosConfig from "../axios";
 
 const BigBox = styled.div`
 margin-top:10px;
-
   padding:10px;
   display: flex;
   flex-direction: column;
@@ -316,6 +315,7 @@ const FormOrangeDecla = React.forwardRef((props,ref) => {
           {index=== 1 ?<div className="page-break" />:null}
           </FlexBox>
           )}
+          <div className="page-break" />
           <FlexBox>
           <BigBox>
 

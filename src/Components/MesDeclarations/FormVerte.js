@@ -346,6 +346,7 @@ const FormVerteDecla = React.forwardRef((props,ref) => {
           </BigBox>
           </FlexBox>
           )}
+          <div className="page-break" />
           <FlexBox>
           <BigBox>
 
