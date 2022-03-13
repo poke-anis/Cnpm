@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axiosConfig from "./axios";
 import styled from "styled-components";
-import { FaPrint } from "react-icons/fa";
+import { FaPrint,FaRegTimesCircle } from "react-icons/fa";
 import { useReactToPrint, ReactToPrint } from "react-to-print";
 import { Card, Badge, Button, Col,ProgressBar } from "react-bootstrap";
 
@@ -159,6 +159,7 @@ const CardDeclarations = (props) => {
     CompRender,
     print,
     progress,
+    deleteFiche
   } = props;
   return (
 
@@ -200,7 +201,7 @@ const CardDeclarations = (props) => {
                     }}
                   >
                     <Card.Title>
-                      {val.Cases.Nom} {val.Cases.Prenom}
+                      {val.id}
                     </Card.Title>
 
                     {/*           <ReactToPrint
@@ -263,6 +264,13 @@ const CardDeclarations = (props) => {
                       }}
                     >
                       Afficher
+                    </Button>
+                    <Button
+                      onClick={(e) => {
+                        deleteFiche(val._id);
+                      }}
+                    >
+                      <FaRegTimesCircle/>
                     </Button>
                     <Button
                       onClick={(e) => {
@@ -616,6 +624,35 @@ const MesDeclarations = (props, isMulti) => {
       }
     }
   };
+  const deleteFiche = (id) => {
+
+      Swal.fire({
+        title: 'Êtes-vous sure ?',
+        text: "Vous ne pourrez pas revenir en arrière !",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'supprimer!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            axiosConfig
+              .post(`/secure/deletefichesData/${id}`)
+              .then((response) => {
+                const change = setTimeout(() => {
+                  setChangement(!changement);
+                }, 200);
+                if (response.data.result === "success") {
+                  Swal.fire("Success!", "La fiche a été suprimée", "success");
+                } else if (response.data.result === "error") {
+                  Swal.fire("Error!", "Veuillez ressayer", "error");
+                }
+              })
+            } })
+    
+      
+    
+  };
   const handleClick = (e, props, key) => {
     e.preventDefault();
 
@@ -694,6 +731,7 @@ const MesDeclarations = (props, isMulti) => {
             setChangement={setChangement}
             changement={changement}
             progress={progress}
+            deleteFiche={deleteFiche}
           />
                 <Paginations
         data={{
