@@ -29,6 +29,7 @@ const FormBlancheDecla = React.forwardRef((props,ref) => {
   const { decla } = props;
   const [progress,setProgress] = useState(0)
   const [declaData, setDeclaData] = useState(decla.Cases);
+  const [declaUser, setDeclaUser] = useState(decla.creator);
   const [declaPic, setdeclaPic] = useState([]);
 useEffect(() => {
   axiosConfig.get(`/secure/getImages/${decla._id}`, {

@@ -265,13 +265,13 @@ const CardDeclarations = (props) => {
                     >
                       Afficher
                     </Button>
-                    <Button
+{/*                     <Button
                       onClick={(e) => {
                         deleteFiche(val._id);
                       }}
                     >
                       <FaRegTimesCircle/>
-                    </Button>
+                    </Button> */}
                     <Button
                       onClick={(e) => {
                         HandlePrint(e, val.typeOfFiches, key);
