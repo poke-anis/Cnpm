@@ -509,7 +509,7 @@ const Mods =(props)=>{
 
     return (
       <Content>
-        <Tab.Container id="left-tabs-example" defaultActiveKey="UserManagment">
+        <Tab.Container id="left-tabs-example" defaultActiveKey={UserType === "Mods" ?"UserManagment":"Alert"}>
           {UserType === "Mods" ? (
             <Nav variant="tabs">
               <Nav.Item>
