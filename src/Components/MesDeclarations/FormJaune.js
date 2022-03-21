@@ -42,6 +42,7 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
 
   const [progress,setProgress] = useState(0)
   const [declaData, setDeclaData] = useState(decla.Cases);
+  const [declaUser, setDeclaUser] = useState(decla.creator);
   const [declaPic, setdeclaPic] = useState([]);
   useEffect(() => {
     axiosConfig.get(`/secure/getImages/${decla._id}`
@@ -91,8 +92,119 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
 
       ) : (
         <div ref={ref} style={{margin :"50px"}}>
+                    <FlexBox>
+
+            <BigBox>
+            <h1 style={{ width: "100%", textAlign: "center" }}>
+                  Information Compte
+                </h1>
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="5">
+                  Nom
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control readOnly defaultValue={declaUser.Nom} />
+                </Col>
+              </Form.Group>
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="5">
+                  Prenom
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control readOnly defaultValue={declaUser.Prenom} />
+                </Col>
+              </Form.Group>
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="5">
+                  Telephone
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control readOnly defaultValue={declaUser.Telephone} />
+                </Col>
+              </Form.Group>
+
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="5">
+                Email
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control readOnly defaultValue={declaUser.Email} />
+                </Col>
+              </Form.Group>
+            </BigBox>
+            <BigBox>
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="5">
+                  Nom d'utilisateur
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control readOnly defaultValue={declaUser.Username} />
+                </Col>
+              </Form.Group>
+                <Form.Group
+                  as={Row}
+                  className="mb-3"
+                  controlId="formPlaintextEmail"
+                >
+                  <Form.Label column sm="5">
+                    Exercice 
+                  </Form.Label>
+                  <Col sm="7">
+                    <Form.Control readOnly defaultValue={declaUser.Type_Exercice} />
+                  </Col>
+                </Form.Group>
+ 
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="5">
+                Adresse Professionnelle
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control readOnly defaultValue={declaUser.Adresse_Professionnelle} />
+                </Col>
+              </Form.Group>
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formPlaintextEmail"
+              >
+                <Form.Label column sm="5">
+                  Profession
+                </Form.Label>
+                <Col sm="7">
+                  <Form.Control readOnly defaultValue={declaUser.Profession} />
+                </Col>
+              </Form.Group>
+            </BigBox>
+          </FlexBox>
           <FlexBox>
             <BigBox>
+            <h1 style={{ width: "100%", textAlign: "center" }}>
+                  Information Patient
+                </h1>
               <Form.Group
                 as={Row}
                 className="mb-3"
