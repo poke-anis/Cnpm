@@ -150,10 +150,10 @@ const handledelete = (props)=>{
       } else if (props === "Rose") {
         return "Cosmétovigilance";
       } else if (props === "Orange") {
-        return "Phytovigilance";
+        return "Compléments alimentaires";
       } else if (props === "Coronavirus") {
         return "Coronavirus";
-      } else if (props === "¨Patient") {
+      } else if (props === "Patient") {
         return "Patient";
       }
     };
