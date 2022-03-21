@@ -536,9 +536,10 @@ const Mods =(props)=>{
           )}
 
           <Tab.Content>
-            <Tab.Pane eventKey="UserManagment">
+          {UserType === "Mods" ?           <Tab.Pane eventKey="UserManagment">
               <UserManagment className="UserManagment" />
-            </Tab.Pane>
+            </Tab.Pane>:null}
+
             <Tab.Pane eventKey="Alert">
               <Alert className="Alert" />
             </Tab.Pane>

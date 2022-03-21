@@ -61,7 +61,11 @@ const Notificateur = (props) => {
     enableReinitialize
       initialValues={infos}
       validationSchema={Yup.object({
-        Nom: Yup.string().required("Le nom est requis"),
+        Nom: Yup.string().when("modificationPass", {
+          is: modificationPass === false,
+          then: Yup.string().required("Le nom est requis"),
+          otherwise: Yup.string(),
+        }),
         Prenom: Yup.string().required("Le Prenom  est requis"),
         Telephone: Yup.number().required("Le numero de Telephone est requis"),
         Profession: Yup.string().when("Espace",
