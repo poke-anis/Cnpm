@@ -9,24 +9,18 @@ import {
 
 import styled from "styled-components";
 import axiosConfig from "../axios";
+const InsideTitre = styled.span`
+    background:#fff; 
+    padding:0 10px; 
+`
 
-
-const BigBox = styled.div`
-margin-top:10px;
-  padding:10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 49%;
-  border: 2px solid #dee2e6;
-`;
-const BigBoxR = styled.div`
-margin-top:10px;
-  padding:10px;
-  justify-content: space-between;
-  width: 49%;
-  border: 2px solid #dee2e6;
-`;
+const TitreBig = styled.h1`
+   width: 100%; 
+   border-bottom: 3px solid #000; 
+   line-height: 0.1em;
+   margin: 10px 0 20px; 
+   padding-top:10px;
+`
 
 const FlexBox = styled.div`
 margin-top:10px;
@@ -93,9 +87,9 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
                     <FlexBox>
 
             
-            <h1 style={{ width: "100%", textAlign: "center" }}>
-                  Information Compte
-                </h1>
+            <TitreBig>
+            <InsideTitre>Information Compte</InsideTitre>
+                </TitreBig>
               <div>
               <h6 style={{display: "inline"}}>
                   Nom :
@@ -161,9 +155,11 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
           </FlexBox>
           <FlexBox>
             
-            <h1 style={{ width: "100%", textAlign: "center" }}>
+            <TitreBig >
+            <InsideTitre>
                   Information Patient
-                </h1>
+                  </InsideTitre>
+                </TitreBig>
                 <div>
 
                 <h6 style={{display: "inline"}}>
@@ -247,9 +243,11 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
       
          
               <div key={index} >
-                <h1 style={{ width: "100%", textAlign: "center" }}>
+                <TitreBig >
+                <InsideTitre>
                   Reaction {index + 1}
-                </h1>
+                  </InsideTitre>
+                </TitreBig>
                 {/* // Auto1 */}
                 { el.Type_D_L_R != null &&
                 el.Type_D_L_R.map((elem, index2) => (
@@ -308,9 +306,11 @@ const FormJauneDecla = React.forwardRef((props,ref) => {
           {declaData.Medicaments.map((el, index) => (
             <FlexBox key={index}>
               
-                <h1 style={{ width: "100%", textAlign: "center" }}>
+                <TitreBig >
+                <InsideTitre>
                   Medicament {index + 1}
-                </h1>
+                  </InsideTitre>
+                </TitreBig>
                 {/* // Auto1 */}
 
                   <h6 style={{display: "inline"}}>
