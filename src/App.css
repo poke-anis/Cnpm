@@ -20,7 +20,7 @@
   
   @media print {
     html, body {
-      font-size: 1.5vw;
+      font-size: 1.8vw;
       height: initial !important;
       overflow: initial !important;
       -webkit-print-color-adjust: exact;

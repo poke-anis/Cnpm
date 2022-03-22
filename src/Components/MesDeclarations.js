@@ -6,6 +6,7 @@ import { useReactToPrint, ReactToPrint } from "react-to-print";
 import { Card, Badge, Button, Col,ProgressBar } from "react-bootstrap";
 
 import FormJaune from "./MesDeclarations/FormJaune";
+import FormJaunePrint from "./PrintDeclarations/FormJaunePrint";
 import FormPatient from "./MesDeclarations/FormPatient";
 import FormBleue from "./MesDeclarations/FormBleue";
 import FormParme from "./MesDeclarations/FormParme";
@@ -159,7 +160,8 @@ const CardDeclarations = (props) => {
     CompRender,
     print,
     progress,
-    deleteFiche
+    deleteFiche,
+    PrintRender,
   } = props;
   return (
 
@@ -285,7 +287,7 @@ const CardDeclarations = (props) => {
             })
           : <ProgressBar animated now={progress} />}
         {print ? (
-          <div style={{ display: "none" }}>{CompRender(print)}</div>
+          <div style={{ display: "none" }}>{PrintRender(print)}</div>
         ) : null}
       </Col>
 
@@ -514,7 +516,56 @@ const MesDeclarations = (props, isMulti) => {
       );
     }
   };
-
+  const PrintRender = (props) => {
+    if (props === undefined) {
+      return "Fiche de déclaration ";
+    } else if (Object.keys(props)[0] === "Jaune") {
+      return (
+        <FormJaunePrint decla={decla[Object.values(props)[0]]} ref={componentRef} />
+      );
+    } else if (Object.keys(props)[0] === "Bleue") {
+      return (
+        <FormBleue decla={decla[Object.values(props)[0]]} ref={componentRef} />
+      );
+    } else if (Object.keys(props)[0] === "Blanche") {
+      return (
+        <FormBlanche
+          decla={decla[Object.values(props)[0]]}
+          ref={componentRef}
+        />
+      );
+    } else if (Object.keys(props)[0] === "Parme") {
+      return (
+        <FormParme decla={decla[Object.values(props)[0]]} ref={componentRef} />
+      );
+    } else if (Object.keys(props)[0] === "Verte") {
+      return (
+        <FormVerte decla={decla[Object.values(props)[0]]} ref={componentRef} />
+      );
+    } else if (Object.keys(props)[0] === "Rose") {
+      return (
+        <FormRose decla={decla[Object.values(props)[0]]} ref={componentRef} />
+      );
+    } else if (Object.keys(props)[0] === "Orange") {
+      return (
+        <FormOrange decla={decla[Object.values(props)[0]]} ref={componentRef} />
+      );
+    } else if (Object.keys(props)[0] === "Coronavirus") {
+      return (
+        <FormCoronavirus
+          decla={decla[Object.values(props)[0]]}
+          ref={componentRef}
+        />
+      );
+    } else if (Object.keys(props)[0] === "Patient") {
+      return (
+        <FormPatient
+          decla={decla[Object.values(props)[0]]}
+          ref={componentRef}
+        />
+      );
+    }
+  };
   useEffect(() => {
     getDeclacount();
   }, [
@@ -728,6 +779,7 @@ const MesDeclarations = (props, isMulti) => {
             HandlePrint={HandlePrint}
             print={print}
             CompRender={CompRender}
+            PrintRender={PrintRender}
             setChangement={setChangement}
             changement={changement}
             progress={progress}
